@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
-  content: ['./pages/**/*.tsx', './components/**/*.tsx'],
+  content: ['./src/pages/**/*.tsx', './src/components/**/*.tsx'],
   theme: {
     extend: {
-      fontFamily: {},
+      fontFamily: {
+        inter: ['var(--font-inter)']
+      },
       colors: {}
     }
   },
