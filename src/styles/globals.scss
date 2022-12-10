@@ -1,9 +1,29 @@
+@use 'nprogress';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  *::selection {
+    @apply bg-accent-blue;
+  }
+
   body {
-    @apply font-inter;
+    @apply bg-white font-inter transition-colors dark:bg-background dark:text-white;
+  }
+}
+
+@layer components {
+  .layout {
+    @apply mx-auto w-11/12 max-w-4xl;
+  }
+
+  .gradient-title {
+    @apply bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 bg-clip-text text-transparent;
+  }
+
+  .smooth-tab {
+    @apply transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue;
   }
 }

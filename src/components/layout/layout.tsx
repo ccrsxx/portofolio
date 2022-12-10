@@ -1,3 +1,5 @@
+import { Footer } from './footer';
+import { Header } from './header';
 import type { ReactNode } from 'react';
 
 type LayoutProps = {
@@ -5,5 +7,11 @@ type LayoutProps = {
 };
 
 export function Layout({ children }: LayoutProps): JSX.Element {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }
