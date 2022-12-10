@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { CustomIcon } from './custom-icon';
+import { ReactIcon } from './react-icon';
 
 type LoadingProps = {
   className?: string;
@@ -12,9 +12,9 @@ export function Loading({
 }: LoadingProps): JSX.Element {
   return (
     <i className={clsx('flex justify-center', className ?? 'p-4')}>
-      <CustomIcon
+      <ReactIcon
+        iconName='ImSpinner2'
         className={clsx('text-main-accent', iconClassName ?? 'h-7 w-7')}
-        iconName='SpinnerIcon'
       />
     </i>
   );
