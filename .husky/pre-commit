@@ -3,4 +3,5 @@
 
 exec 1> /dev/tty
 
+npm run lint
 npx lint-staged
