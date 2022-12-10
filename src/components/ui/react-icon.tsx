@@ -1,11 +1,10 @@
-import * as HeroIcons from 'react-icons/hi2';
-import * as SimpleIcons from 'react-icons/si';
+import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
 import { ImSpinner2 } from 'react-icons/im';
 
 const reactIcons = {
   ImSpinner2,
-  ...HeroIcons,
-  ...SimpleIcons
+  HiOutlineSun,
+  HiOutlineMoon
 };
 
 type IconName = keyof typeof reactIcons;
