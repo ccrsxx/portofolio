@@ -1,13 +1,24 @@
-import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
+import {
+  HiEnvelope,
+  HiOutlineSun,
+  HiOutlineMoon,
+  HiDocumentText
+} from 'react-icons/hi2';
+import { SiTwitter, SiGithub, SiLinkedin } from 'react-icons/si';
 import { ImSpinner2 } from 'react-icons/im';
 
 const reactIcons = {
+  SiGithub,
+  SiTwitter,
+  SiLinkedin,
+  HiEnvelope,
   ImSpinner2,
   HiOutlineSun,
-  HiOutlineMoon
+  HiOutlineMoon,
+  HiDocumentText
 };
 
-type IconName = keyof typeof reactIcons;
+export type IconName = keyof typeof reactIcons;
 
 type ReactIconProps = {
   iconName: IconName;

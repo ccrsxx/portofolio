@@ -39,7 +39,7 @@ export function ThemeSwitch(): JSX.Element | null {
                  dark:border-gray-600 [&>i]:block'
       onClick={flipTheme}
     >
-      <AnimatePresence mode='popLayout'>
+      <AnimatePresence mode='popLayout' initial={false}>
         {isDarkMode ? (
           <motion.i {...sunVariants} key='light'>
             <ReactIcon iconName='HiOutlineSun' />
