@@ -5,22 +5,42 @@
 @tailwind utilities;
 
 @layer base {
-  *::selection {
-    @apply bg-accent-blue;
+  html {
+    @apply scroll-smooth;
   }
 
   body {
     @apply bg-white font-inter transition-colors dark:bg-background dark:text-white;
   }
+
+  ::selection {
+    @apply bg-accent-blue/40;
+  }
 }
 
 @layer components {
   .layout {
-    @apply mx-auto w-11/12 max-w-4xl;
+    @apply mx-auto w-11/12 max-w-6xl;
+  }
+
+  .custom-button {
+    @apply px-4 py-2;
+  }
+
+  .main-border {
+    @apply border border-gray-300 dark:border-gray-600;
+  }
+
+  .clickable {
+    @apply main-border rounded-md shadow-sm transition hover:scale-[1.03] hover:shadow-md active:scale-[.97];
   }
 
   .gradient-title {
-    @apply bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent #{!important};
+  }
+
+  .gradient-heading {
+    @apply bg-gradient-to-r from-blue-300 via-green-400 to-red-500 bg-clip-text text-transparent;
   }
 
   .smooth-tab {
