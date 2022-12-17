@@ -19,23 +19,6 @@ import {
 import { Tooltip } from './tooltip';
 import type { IconType } from 'react-icons';
 
-export type ValidTech =
-  | 'react'
-  | 'nextjs'
-  | 'tailwindcss'
-  | 'scss'
-  | 'javascript'
-  | 'typescript'
-  | 'nodejs'
-  | 'firebase'
-  | 'mongodb'
-  | 'swr'
-  | 'mdx'
-  | 'prettier'
-  | 'analytics'
-  | 'git'
-  | 'notion';
-
 type TechIconsProps = {
   techs: ValidTech[];
   className?: string;
@@ -64,6 +47,23 @@ export function TechIcons({ className, techs }: TechIconsProps): JSX.Element {
     </ul>
   );
 }
+
+export type ValidTech =
+  | 'react'
+  | 'nextjs'
+  | 'tailwindcss'
+  | 'scss'
+  | 'javascript'
+  | 'typescript'
+  | 'nodejs'
+  | 'firebase'
+  | 'mongodb'
+  | 'swr'
+  | 'mdx'
+  | 'prettier'
+  | 'analytics'
+  | 'git'
+  | 'notion';
 
 type TechList = Record<ValidTech, { Icon: IconType; name: string }>;
 

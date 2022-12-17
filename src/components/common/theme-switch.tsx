@@ -37,6 +37,7 @@ export function ThemeSwitch(): JSX.Element | null {
                  transition hover:!border-accent-blue hover:text-accent-blue
                  focus-visible:!border-accent-blue focus-visible:text-accent-blue 
                  dark:border-gray-600 [&>i]:block'
+      type='button'
       onClick={flipTheme}
     >
       <AnimatePresence mode='popLayout' initial={false}>

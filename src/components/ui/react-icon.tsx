@@ -1,4 +1,6 @@
 import {
+  HiEye,
+  HiClock,
   HiEnvelope,
   HiOutlineSun,
   HiOutlineMoon,
@@ -8,6 +10,8 @@ import { SiTwitter, SiGithub, SiLinkedin } from 'react-icons/si';
 import { ImSpinner2 } from 'react-icons/im';
 
 const reactIcons = {
+  HiEye,
+  HiClock,
   SiGithub,
   SiTwitter,
   SiLinkedin,

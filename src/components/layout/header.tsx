@@ -26,9 +26,13 @@ export function Header(): JSX.Element {
             {navLinks.map(({ name, href }, index) => (
               <Link
                 className={clsx(
-                  'smooth-tab transition-colors hover:text-blue-200 hover:delay-[0ms]',
                   pathname === href && 'gradient-title',
-                  `delay-${index * 100}`
+                  {
+                    'delay-100': index === 1,
+                    'delay-200': index === 2,
+                    'delay-300': index === 3
+                  },
+                  'smooth-tab transition-colors hover:text-blue-200 hover:delay-[0ms]'
                 )}
                 href={href}
                 key={name}

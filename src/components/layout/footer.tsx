@@ -3,13 +3,6 @@ import { Tooltip } from '@components/ui/tooltip';
 import { ReactIcon } from '@components/ui/react-icon';
 import type { IconName } from '@components/ui/react-icon';
 
-type FooterLink = {
-  name: string;
-  href: string;
-  tip: string | JSX.Element;
-  out?: boolean;
-};
-
 export function Footer(): JSX.Element {
   return (
     <footer className='main-border layout grid gap-4 border-0 border-t pb-2'>
@@ -17,7 +10,7 @@ export function Footer(): JSX.Element {
         {footerLinks.map(({ name, href, tip, out }) => (
           <Tooltip tip={tip} key={name}>
             <Link
-              className='text-sm font-medium dark:text-gray-200'
+              className='animated-underline text-sm font-medium dark:text-gray-200'
               href={href}
               {...(out && { target: '_blank', rel: 'noreferrer' })}
             >
@@ -56,14 +49,21 @@ export function Footer(): JSX.Element {
   );
 }
 
+type FooterLink = {
+  name: string;
+  href: string;
+  tip: string | JSX.Element;
+  out?: boolean;
+};
+
 const footerLinks: FooterLink[] = [
   {
     name: 'Source code',
     href: 'https://github.com/ccrsxx/ccrsxx.me',
     tip: (
-      <p>
+      <>
         This website is <strong>open source!</strong>
-      </p>
+      </>
     ),
     out: true
   },
@@ -104,9 +104,9 @@ const socialLinks: SocialLink[] = [
     href: 'mailto:me@ccrsxx.me',
     icon: 'HiEnvelope',
     tip: (
-      <p className='text-center'>
+      <>
         Contact me at <span className='gradient-title'>me@ccrsxx.me</span>
-      </p>
+      </>
     )
   },
   {
@@ -114,9 +114,9 @@ const socialLinks: SocialLink[] = [
     href: 'https://github.com/ccrsxx',
     icon: 'SiGithub',
     tip: (
-      <p>
+      <>
         See my other projects at <span className='gradient-title'>GitHub</span>
-      </p>
+      </>
     )
   },
   {
@@ -124,9 +124,9 @@ const socialLinks: SocialLink[] = [
     href: 'https://linkedin.com/in/risalamin',
     icon: 'SiLinkedin',
     tip: (
-      <p>
+      <>
         Find me on <span className='gradient-title'>LinkedIn</span>
-      </p>
+      </>
     )
   },
   {
@@ -134,9 +134,9 @@ const socialLinks: SocialLink[] = [
     href: 'https://twitter.com/ccrsxx',
     icon: 'SiTwitter',
     tip: (
-      <p>
+      <>
         Follow me on <span className='gradient-title'>Twitter</span>
-      </p>
+      </>
     )
   }
 ];

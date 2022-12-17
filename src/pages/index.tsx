@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-import { TwitterClone } from '@lib/images';
+import { FirstPost, SecondPost, TwitterClone } from '@lib/images';
 import { SEO } from '@components/common/seo';
 import { ReactIcon } from '@components/ui/react-icon';
-import { TechIcons } from '@components/ui/tech-icons';
-import type { ValidTech } from '@components/ui/tech-icons';
-import type { StaticImageData } from 'next/image';
+import { BlogCard } from '@components/content/blog-card';
+import { ProjectCard } from '@components/content/project-card';
 import type { Variant } from 'framer-motion';
+import type { Blog } from '@lib/types/blog';
+import type { Project } from '@lib/types/project';
 
 type IndexVariants = Record<'hidden' | 'show' | 'exit', Variant>;
 
@@ -33,7 +33,7 @@ export default function Home(): JSX.Element {
     <main>
       <SEO
         title='Risal Amin'
-        description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and read about my thoughts on the world of web development.'
+        description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.'
       />
       <motion.section
         className='layout min-h-screen pt-48'
@@ -103,48 +103,115 @@ export default function Home(): JSX.Element {
           </a>
         </motion.section>
       </motion.section>
-      <section className='layout py-20'>
+      <section className='layout grid gap-4 py-20'>
+        <h2 className='gradient-heading text-4xl font-bold'>Featured Blogs</h2>
+        <section className='grid grid-cols-3 gap-4'>
+          {blogList.map((blog) => (
+            <BlogCard {...blog} key={blog.title} />
+          ))}
+        </section>
+        <Link
+          className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
+          href='/blog'
+        >
+          See more posts
+        </Link>
+      </section>
+      <section className='layout grid gap-4 py-20'>
         <h2 className='gradient-heading text-4xl font-bold'>
           Featured Project
         </h2>
-        <p className='mt-2 text-gray-600 dark:text-gray-300'>
+        <p className='-mt-2 text-gray-600 dark:text-gray-300'>
           Some projects I&apos;m proud of
         </p>
-        <section className='mt-4 grid grid-cols-3 gap-4'>
-          {projectList.map(({ title, href, techs, image, description }) => (
-            <article className='grid' key={title}>
-              <Link className='clickable p-4' href={`/projects/${href}`}>
-                <h3 className='text-xl font-bold'>{title}</h3>
-                <p className='text-sm text-gray-700 dark:text-gray-300'>
-                  {description}
-                </p>
-                <TechIcons className='mt-2' techs={techs} />
-                <Image
-                  className='mt-3 rounded'
-                  src={image}
-                  alt={title}
-                  placeholder='blur'
-                />
-              </Link>
-            </article>
+        <section className='grid grid-cols-3 gap-4'>
+          {projectList.map((project) => (
+            <ProjectCard {...project} key={project.title} />
           ))}
         </section>
+        <Link
+          className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
+          href='/projects'
+        >
+          See more projects
+        </Link>
       </section>
     </main>
   );
 }
 
-type ProjectList = {
-  href: string;
-  title: string;
-  image: StaticImageData;
-  techs: ValidTech[];
-  description: string;
-};
+const blogList: Blog[] = [
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: FirstPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  },
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: FirstPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  },
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: FirstPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  },
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: SecondPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  },
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: SecondPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  },
+  {
+    slug: 'first-post',
+    tags: 'Next.js,Tailwind CSS,Firebase',
+    views: 12_000,
+    title: 'First Post',
+    image: SecondPost,
+    readTime: '5 min read',
+    publishedAt: '15 December 2022',
+    description:
+      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
+  }
+];
 
-const projectList: ProjectList[] = [
+const projectList: Project[] = [
   {
-    href: '/projects/twitter-clone',
+    slug: 'twitter-clone',
     title: 'Twitter Clone',
     image: TwitterClone,
     techs: ['react', 'nextjs', 'tailwindcss', 'firebase'],
@@ -152,7 +219,7 @@ const projectList: ProjectList[] = [
       'A Twitter clone built with Next.js, Tailwind CSS, and Firebase.'
   },
   {
-    href: '/projects/twitter-clone',
+    slug: 'twitter-clone',
     title: 'Twitter Clone',
     image: TwitterClone,
     techs: ['react', 'nextjs', 'tailwindcss', 'firebase'],
@@ -160,7 +227,7 @@ const projectList: ProjectList[] = [
       'A Twitter clone built with Next.js, Tailwind CSS, and Firebase.'
   },
   {
-    href: '/projects/twitter-clone',
+    slug: 'twitter-clone',
     title: 'Twitter Clone',
     image: TwitterClone,
     techs: ['react', 'nextjs', 'tailwindcss', 'firebase'],
