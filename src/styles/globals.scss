@@ -46,4 +46,14 @@
   .smooth-tab {
     @apply transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue;
   }
+
+  .animated-underline {
+    @apply bg-[linear-gradient(to_right,#60a5fa,#86efac)] bg-[size:0_2px] bg-[position:0_100%] 
+           bg-no-repeat pb-1 transition-[background-size] duration-300;
+
+    &:hover,
+    &:has(+ div:hover) {
+      @apply bg-[size:100%_2px];
+    }
+  }
 }
