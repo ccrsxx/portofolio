@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-white font-inter transition-colors dark:bg-background dark:text-white;
+    @apply bg-white font-inter text-black transition-colors dark:bg-dark-background dark:text-white;
   }
 
   ::selection {
@@ -52,7 +52,8 @@
            bg-no-repeat pb-1 transition-[background-size] duration-300;
 
     &:hover,
-    &:has(+ div:hover) {
+    &:has(+ div:hover),
+    .project-card:hover & {
       @apply bg-[size:100%_2px];
     }
   }

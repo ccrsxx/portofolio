@@ -2,7 +2,7 @@
   @apply pointer-events-none;
 
   .bar {
-    @apply fixed top-0 left-0 z-10 h-0.5 w-full bg-[#222];
+    @apply fixed top-0 left-0 z-10 h-0.5 w-full bg-dark-background;
 
     .peg {
       @apply absolute right-0 block w-[100px] translate-x-0 -translate-y-1 
