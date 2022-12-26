@@ -63,14 +63,18 @@
         ]
       }
     ],
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "args": "all", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
         "checksVoidReturn": { "attributes": false }
       }
-    ],
-    "@typescript-eslint/consistent-type-imports": "warn",
-    "@typescript-eslint/prefer-nullish-coalescing": "warn",
-    "@typescript-eslint/explicit-function-return-type": "warn"
+    ]
   }
 }
