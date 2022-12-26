@@ -13,6 +13,10 @@
     @apply bg-white font-inter text-black transition-colors dark:bg-dark-background dark:text-white;
   }
 
+  main {
+    @apply layout;
+  }
+
   ::selection {
     @apply bg-accent-blue/40;
   }
@@ -31,6 +35,10 @@
     @apply border border-gray-300 dark:border-gray-600;
   }
 
+  .smooth-tab {
+    @apply transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue;
+  }
+
   .clickable {
     @apply main-border rounded-md shadow-sm transition hover:scale-[1.03] hover:shadow-md active:scale-[.97];
   }
@@ -41,10 +49,6 @@
 
   .gradient-heading {
     @apply bg-gradient-to-r from-blue-300 via-green-400 to-red-500 bg-clip-text text-transparent;
-  }
-
-  .smooth-tab {
-    @apply transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue;
   }
 
   .animated-underline {
