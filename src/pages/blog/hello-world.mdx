@@ -1,0 +1,43 @@
+import Image from 'next/image';
+import HelloWorld from '/public/assets/blogs/hello-world.webp';
+import { BlogLayout } from '@components/layout/blog-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const getStaticProps = getContentSlug('blog', 'hello-world');
+
+export const meta = {
+  title: '"Hello World" - A New Beginning',
+  publishedAt: '2022-12-24',
+  banner: HelloWorld,
+  description:
+    "In this post I'll introduces myself and what you can expect from my blog. Follow along for tips, resources, and personal anecdotes.",
+  tags: 'tips,retro'
+};
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);
+
+{/* content start */}
+
+## Introduction
+
+Welcome to my first blog post! I am excited to share my thoughts and experiences with you through this platform.
+
+As the title suggests, this is a classic "Hello World" post - a staple in the world of programming and a great way to kick off a new blog.
+
+## About Me
+
+In this section, I'll introduce myself and give you a brief overview of what you can expect from my blog.
+
+My name is Risal Amin and I am currently a university student studying Computer Science at University of Bina Sarana Informatika Indonesia. As someone who has always been interested in technology, I have recently decided to pursue a career as a full stack developer.
+
+While I'm still in the early stages of my journey, I am constantly learning and growing as a developer. I started this blog as a way to document my progress and connect with like-minded individuals. Whether you're just starting out in your field or are a seasoned professional, I hope that you will find something of value here.
+
+## What to Expect
+
+In this section, I'll give you a better idea of what you can expect to find on my blog.
+
+On my blog, you can expect to find posts about my experiences as a budding full stack developer. I'll share tips, resources, and personal anecdotes that I hope will inspire and inform you.
+
+I'm looking forward to this new journey and hope that you'll join me on it. Thanks for reading and stay tuned for more!

@@ -1,0 +1,170 @@
+import Image from 'next/image';
+import Banner from '/public/assets/blogs/data-fetching-in-nextjs.webp';
+import { BlogLayout } from '@components/layout/blog-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const getStaticProps = getContentSlug('blog', 'data-fetching-in-nextjs');
+
+export const meta = {
+  title: 'Data Fetching in Next.js',
+  publishedAt: '2022-12-26',
+  banner: Banner,
+  description:
+    'Learn about the different methods for fetching data in Next.js, including static generation, server-side rendering, and client-side rendering.',
+  tags: 'Next.js'
+};
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);
+
+{/* content start */}
+
+Next.js is a popular framework for building server-rendered React applications. One key feature of Next.js is its built-in support for data fetching, which allows you to easily retrieve data from APIs or other sources and pass it to your components.
+
+## Static Generation
+
+One way to fetch data in Next.js is through static generation. This method generates a static HTML file at build time, which means that the data is fetched before the application is deployed. This is useful for pages that don't change often, as the HTML is generated once and can be served quickly to users.
+
+To fetch data during the build process, you can use the getStaticProps function in your page component. This function takes in a context object and returns an object with props that will be passed to the component. For example:
+
+```tsx
+import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
+
+type Post = {
+  id: number;
+  title: string;
+  body: string;
+};
+
+export async function getStaticProps(): Promise<GetStaticPropsResult<Post[]>> {
+  const res = await fetch('https://my-api.com/posts');
+  const data = await res.json();
+
+  return {
+    props: {
+      posts: data
+    }
+  };
+}
+
+export default function Posts({
+  posts
+}): InferGetStaticPropsType<typeof getStaticProps> {
+  return (
+    <section>
+      {props.posts.map(({ id, title, body }) => (
+        <article key={id}>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+```
+
+In this example, the getStaticProps function fetches a list of posts from an API and passes them to the Posts component as props. The HTML for this page will be generated at build time with the data included.
+
+## Server-Side Rendering
+
+Another way to fetch data in Next.js is through server-side rendering (SSR). This method generates the HTML for a page on the server on each request, allowing you to fetch data dynamically. This is useful for pages that change frequently or depend on user input.
+
+To fetch data during the server-side rendering process, you can use the getServerSideProps function in your page component. This function works similarly to getStaticProps, but it runs on the server on each request rather than at build time. For example:
+
+```tsx
+import type {
+  GetServerSidePropsResult,
+  InferGetServerSidePropsType
+} from 'next';
+
+type Post = {
+  id: number;
+  title: string;
+  body: string;
+};
+
+export async function getServerSideProps(): Promise<
+  getServerSideProps<Post[]>
+> {
+  const res = await fetch('https://my-api.com/posts');
+  const data = await res.json();
+
+  return {
+    props: {
+      posts: data
+    }
+  };
+}
+
+export default function Posts({
+  posts
+}): InferGetServerSidePropsType<typeof getServerSideProps> {
+  return (
+    <section>
+      {props.posts.map(({ id, title, body }) => (
+        <article key={id}>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+```
+
+In this example, the getServerSideProps function fetches a list of posts from an API and passes them to the Posts component as props. The HTML for this page will be generated on the server on each request with the data included.
+
+## Client-Side Rendering
+
+In addition to static generation and server-side rendering, Next.js also supports client-side rendering. This method generates the HTML for a page on the client using JavaScript, allowing you to fetch data asynchronously and update the page in real-time.
+
+To fetch data on the client, you can use the useEffect hook in your component to make a request to an API. For example:
+
+```tsx
+type Post = {
+  id: number;
+  title: string;
+  body: string;
+};
+
+export default function Posts(): JSX.Element {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      const res = await fetch('https://my-api.com/posts');
+      const data = await res.json();
+
+      setPosts(data);
+    };
+
+    void fetchData();
+  }, []);
+
+  return (
+    <section>
+      {posts.map(({ id, title, body }) => (
+        <article key={id}>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+```
+
+In this example, the useEffect hook fetches a list of posts from an API and updates the posts state variable with the data. The component will then re-render with the updated data.
+
+## Choosing a Data Fetching Method
+
+When deciding which method to use for data fetching in your Next.js application, consider the following factors:
+
+- **Static vs. dynamic data**: If your data is static and doesn't change often, static generation may be a good choice. If your data is dynamic and changes frequently, server-side rendering or client-side rendering may be more suitable.
+
+- **Performance**: Static generation is the most performant option, as the HTML is generated at build time and can be served quickly to users. Server-side rendering is also fast, but it requires generating the HTML on the server on each request. Client-side rendering is the least performant option, as it requires fetching and rendering the data on the client.
+
+- **Developer experience**: Static generation and server-side rendering require rebuilding the application to update the data, which can be time-consuming. Client-side rendering allows you to update the data in real-time, but it can be more complex to implement.
+
+In summary, Next.js provides several options for data fetching, each with its own benefits and trade-offs. Choose the method that best fits your application's needs and use case.

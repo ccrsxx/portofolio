@@ -1,0 +1,134 @@
+import Image from 'next/image';
+import SecondPost from '/public/assets/blogs/custom-layout-in-nextjs.webp';
+import { BlogLayout } from '@components/layout/blog-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
+
+export const meta = {
+  title: 'Creating Custom Layouts in Next.js',
+  publishedAt: '2022-12-26',
+  banner: SecondPost,
+  description:
+    'Learn how to create Single Shared Layouts and Per-Page Layouts in Next.js',
+  tags: 'Next.js'
+};
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);
+
+{/* content start */}
+
+React's composable nature allows us to create reusable components. Layouts are exactly that! In Next.js there are two ways that you can define a custom layout:
+
+- [Single Shared Layout](#single-shared-layout)
+- [Per-Page Layouts](#per-page-layouts)
+
+## Single Shared Layout
+
+A Single Shared Layout in Next.js is a custom layout that's used by every page in our app. Let's say our app is simple, and every page has a `navbar` and a `footer`. We can define our layout like so:
+
+```tsx
+// src/components/layout/layout.tsx
+
+import Navbar from './navbar';
+import Footer from './footer';
+import type { ReactNode } from 'react';
+
+type LayoutProps = {
+  children?: ReactNode;
+};
+
+export function Layout({ children }: LayoutProps): JSX.Element {
+  return (
+    <>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+}
+```
+
+In order to use this custom layout, we can wrap the `Component` component in our `_app.tsx` file:
+
+```tsx
+// pages/_app.tsx
+
+import { Layout } from 'src/components/layout';
+import type { AppProps } from 'next/app';
+
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+```
+
+Since the `Layout` component is reused when changing pages, its component state will be preserved.
+
+## Per-Page Layouts
+
+If we want to have multiple layouts (ex. authentication, dashboard, settings etc...), we can define a `getLayout` property to our pages that will receive the page in `props`, and wrap it in the layout that we want. Since we're returning a function, we can have complex nested layouts if we wanted to.
+
+Here's an example of a page:
+
+```tsx
+// pages/index.tsx
+
+import { Layout } from 'src/components/layout/layout'
+import { Nested Layout } from 'src/components/layout/nested-layout'
+import type { ReactElement } from 'react'
+
+function Page(): JSX.Element {
+  return (
+    // Our page's content...
+  )
+}
+
+Page.getLayout = (page: ReactElement) => {
+  return (
+    <Layout>
+      <NestedLayout>{page}</NestedLayout>
+    </Layout>
+  )
+}
+```
+
+In order to use this, we need to make some changes in our `_app.tsx`:
+
+```tsx
+// pages/_app.tsx
+
+import type { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+
+type NextPageWithLayout = NextPage & {
+  // define the getLayout method for every page
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  // override the default Component definition
+  Component: NextPageWithLayout;
+};
+
+export default function App({
+  Component,
+  pageProps
+}: AppPropsWithLayout): JSX.Element {
+  // use the getLayout defined in each page
+  // if it doesn't exist, provide a fallback
+  const getLayout = Component.getLayout ?? ((page): ReactNode => page);
+
+  return getLayout(<Component {...pageProps} />);
+}
+```
+
+> Have in mind that the Custom Layouts are not considered as Pages, so the only way to fetch data is on the client-side.
+
+That's how we can setup a simple mechanism for custom per-page layouts.
