@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { TechIcons } from '@components/ui/tech-icons';
-import type { Project } from '@lib/types/project';
+import { TechIcons } from '@components/project/tech-icons';
+import type { Project } from '@lib/types/contents';
 
 export function ProjectCard({
   slug,
   title,
   techs,
-  image,
+  banner,
   description
-}: Project): JSX.Element {
+}: Omit<Project, 'readTime' | 'publishedAt'>): JSX.Element {
   return (
     <article className='grid' key={title}>
-      <Link className='clickable p-4' href={`/projects/${slug}`}>
+      <Link className='project-card clickable p-4' href={`/projects/${slug}`}>
         <h3 className='text-xl font-bold'>{title}</h3>
         <p className='text-sm text-gray-700 dark:text-gray-300'>
           {description}
@@ -20,10 +20,11 @@ export function ProjectCard({
         <TechIcons className='mt-2' techs={techs} />
         <Image
           className='mt-3 rounded'
-          src={image}
+          src={banner}
           alt={title}
           placeholder='blur'
         />
+        <p className='animated-underline mt-2 w-fit'>See more →</p>
       </Link>
     </article>
   );

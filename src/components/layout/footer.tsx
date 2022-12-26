@@ -105,7 +105,10 @@ const socialLinks: SocialLink[] = [
     icon: 'HiEnvelope',
     tip: (
       <>
-        Contact me at <span className='gradient-title'>me@ccrsxx.me</span>
+        Contact me at{' '}
+        <span className='gradient-title transition hover:brightness-125'>
+          me@ccrsxx.me
+        </span>
       </>
     )
   },

@@ -11,13 +11,15 @@ export function Header(): JSX.Element {
 
   const { pathname } = useRouter();
 
+  const baseRoute = '/' + pathname.split('/')[1];
+
   return (
     <>
       <div ref={ref} />
       <header
         className={clsx(
           !inView && 'shadow-sm',
-          'fixed z-10 w-full bg-white/60 backdrop-blur-md transition dark:bg-background/60'
+          'sticky top-0 z-10 w-full bg-white/60 backdrop-blur-md transition dark:bg-dark-background/60'
         )}
       >
         <div className='h-2 bg-gradient-to-r from-blue-400 to-green-300' />
@@ -26,7 +28,7 @@ export function Header(): JSX.Element {
             {navLinks.map(({ name, href }, index) => (
               <Link
                 className={clsx(
-                  pathname === href && 'gradient-title',
+                  baseRoute === href && 'gradient-title',
                   {
                     'delay-100': index === 1,
                     'delay-200': index === 2,
@@ -50,7 +52,7 @@ export function Header(): JSX.Element {
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Projects', href: '/projects' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Projects', href: '/projects' },
   { name: 'About', href: '/about' }
-];
+] as const;

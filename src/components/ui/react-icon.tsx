@@ -1,16 +1,21 @@
 import {
   HiEye,
+  HiHeart,
   HiClock,
+  HiCheck,
   HiEnvelope,
   HiOutlineSun,
   HiOutlineMoon,
-  HiDocumentText
+  HiDocumentText,
+  HiArrowsUpDown
 } from 'react-icons/hi2';
 import { SiTwitter, SiGithub, SiLinkedin } from 'react-icons/si';
 import { ImSpinner2 } from 'react-icons/im';
 
 const reactIcons = {
   HiEye,
+  HiHeart,
+  HiCheck,
   HiClock,
   SiGithub,
   SiTwitter,
@@ -19,7 +24,8 @@ const reactIcons = {
   ImSpinner2,
   HiOutlineSun,
   HiOutlineMoon,
-  HiDocumentText
+  HiDocumentText,
+  HiArrowsUpDown
 };
 
 export type IconName = keyof typeof reactIcons;
