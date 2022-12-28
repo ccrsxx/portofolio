@@ -11,12 +11,13 @@ import type {
   ProjectWithMeta
 } from '@lib/types/contents';
 
-export type ContentSlugProps = Pick<Blog, 'readTime'> & InjectedMeta;
+export type ContentSlugProps = Pick<Blog, 'readTime'> &
+  InjectedMeta & { type: ContentType; slug: string };
 
 /**
  * TODO: Get the static props for MDX Layout.
  *
- * @returns Unknown for now.
+ * @returns The static props needed for MDX Layout.
  */
 export function getContentSlug(type: ContentType, slug: string) {
   return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
@@ -27,8 +28,10 @@ export function getContentSlug(type: ContentType, slug: string) {
 
     return {
       props: {
+        ...metaFromDb,
         readTime,
-        ...metaFromDb
+        type,
+        slug
       }
     };
   };
@@ -43,7 +46,7 @@ export function getContentSlug(type: ContentType, slug: string) {
 export async function getAllContents(type: 'blog'): Promise<BlogWithMeta[]>;
 
 export async function getAllContents(
-  type: 'project'
+  type: 'projects'
 ): Promise<ProjectWithMeta[]>;
 
 export async function getAllContents(
