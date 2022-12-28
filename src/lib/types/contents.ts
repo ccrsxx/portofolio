@@ -30,7 +30,7 @@ export type InjectedMeta = {
   likes?: number;
 };
 
-export type ContentType = 'blog' | 'project';
+export type ContentType = 'blog' | 'projects';
 
 export type BlogWithMeta = Blog & InjectedMeta;
 export type ProjectWithMeta = Project & InjectedMeta;
