@@ -27,7 +27,7 @@ export function useActiveHeading(): string | null {
 
       const visibleHeadings: IntersectionObserverEntry[] = [];
 
-      for (const [, headingElement] of Object.entries(
+      for (const headingElement of Object.values(
         headingElementsRef.current as HeadingElementsRef
       ))
         if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
@@ -35,11 +35,11 @@ export function useActiveHeading(): string | null {
       if (visibleHeadings.length === 1)
         setActiveHeading(visibleHeadings[0].target.id);
       else if (visibleHeadings.length > 1) {
-        const sortedVisibleHeadings = visibleHeadings.sort(
+        const [firstVisibleHeading] = visibleHeadings.sort(
           ({ target: { id: firstId } }, { target: { id: secondId } }) =>
             getIndexFromHeadingId(firstId) - getIndexFromHeadingId(secondId)
         );
-        setActiveHeading(sortedVisibleHeadings[0].target.id);
+        setActiveHeading(firstVisibleHeading.target.id);
       }
     };
 
@@ -51,7 +51,9 @@ export function useActiveHeading(): string | null {
       document.querySelectorAll('#mdx-article :is(h2, h3)')
     );
 
-    headingElements.forEach((heading) => headingObserver.observe(heading));
+    headingElements.forEach((headingElement) =>
+      headingObserver.observe(headingElement)
+    );
 
     return () => headingObserver.disconnect();
   }, []);
