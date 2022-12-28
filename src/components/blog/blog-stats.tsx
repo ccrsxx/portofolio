@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
+import { HiEye, HiClock } from 'react-icons/hi2';
 import { formatNumber } from '@lib/format';
-import { ReactIcon } from '@components/ui/react-icon';
 import type { ComponentPropsWithoutRef } from 'react';
 import type { Blog, InjectedMeta } from '@lib/types/contents';
 
@@ -16,17 +16,11 @@ export function BlogStats({
   return (
     <div className={clsx('flex gap-4 text-sm', className)}>
       <div className='flex items-center gap-1'>
-        <ReactIcon
-          className='h-4 w-4 text-gray-600 dark:text-gray-300'
-          iconName='HiClock'
-        />
+        <HiEye className='h-4 w-4 text-gray-600 dark:text-gray-300' />
         <p className='gradient-title'>{readTime}</p>
       </div>
       <div className='flex items-center gap-1'>
-        <ReactIcon
-          className='h-4 w-4 text-gray-600 dark:text-gray-300'
-          iconName='HiEye'
-        />
+        <HiClock className='h-4 w-4 text-gray-600 dark:text-gray-300' />
         <p className='gradient-title'>{formatNumber(views)} views</p>
       </div>
     </div>

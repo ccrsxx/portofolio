@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { HiHeart } from 'react-icons/hi2';
 import { formatDate } from '@lib/format';
 import { SEO } from '@components/common/seo';
 import { BlogStats } from '@components/blog/blog-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
-import { ReactIcon } from '@components/ui/react-icon';
 import type { ReactElement } from 'react';
 import type { Variants } from 'framer-motion';
 import type { Blog } from '@lib/types/contents';
@@ -53,7 +53,7 @@ export function BlogLayout({
         </article>
         <TableOfContents>
           <i className='mx-auto mt-4 flex items-center gap-2 not-italic'>
-            <ReactIcon className='h-10 w-10' iconName='HiHeart' /> {likes}
+            <HiHeart className='h-10 w-10' /> {likes}
           </i>
         </TableOfContents>
       </section>

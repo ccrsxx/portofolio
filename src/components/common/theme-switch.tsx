@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
 import { useTheme } from 'next-themes';
-import { ReactIcon } from '@components/ui/react-icon';
 import type { MotionProps } from 'framer-motion';
 
 const variants: MotionProps[] = [
@@ -43,11 +43,11 @@ export function ThemeSwitch(): JSX.Element | null {
       <AnimatePresence mode='popLayout' initial={false}>
         {isDarkMode ? (
           <motion.i {...sunVariants} key='light'>
-            <ReactIcon iconName='HiOutlineSun' />
+            <HiOutlineSun className='h-6 w-6' />
           </motion.i>
         ) : (
           <motion.i {...moonVariants} key='dark'>
-            <ReactIcon iconName='HiOutlineMoon' />
+            <HiOutlineMoon className='h-6 w-6' />
           </motion.i>
         )}
       </AnimatePresence>

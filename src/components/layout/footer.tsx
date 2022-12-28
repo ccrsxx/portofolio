@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { HiEnvelope } from 'react-icons/hi2';
+import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
-import { ReactIcon } from '@components/ui/react-icon';
-import type { IconName } from '@components/ui/react-icon';
+import type { IconType } from 'react-icons';
 
 export function Footer(): JSX.Element {
   return (
@@ -22,7 +23,7 @@ export function Footer(): JSX.Element {
       <section className='mt-4 grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
         <h2 className='font-medium'>Reach me out</h2>
         <section className='flex gap-4'>
-          {socialLinks.map(({ name, href, icon, tip }) => (
+          {socialLinks.map(({ name, href, Icon, tip }) => (
             <Tooltip tip={tip} key={name}>
               <a
                 className='transition-colors hover:text-accent-blue'
@@ -30,7 +31,7 @@ export function Footer(): JSX.Element {
                 target='_blank'
                 rel='noreferrer'
               >
-                <ReactIcon iconName={icon} />
+                <Icon className='h-6 w-6' />
               </a>
             </Tooltip>
           ))}
@@ -93,7 +94,7 @@ const footerLinks: FooterLink[] = [
 type SocialLink = {
   name: string;
   href: string;
-  icon: IconName;
+  Icon: IconType;
   tip: JSX.Element;
   tooltipClassName?: string;
 };
@@ -102,7 +103,7 @@ const socialLinks: SocialLink[] = [
   {
     name: 'Email',
     href: 'mailto:me@ccrsxx.me',
-    icon: 'HiEnvelope',
+    Icon: HiEnvelope,
     tip: (
       <>
         Contact me at{' '}
@@ -115,7 +116,7 @@ const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     href: 'https://github.com/ccrsxx',
-    icon: 'SiGithub',
+    Icon: SiGithub,
     tip: (
       <>
         See my other projects at <span className='gradient-title'>GitHub</span>
@@ -125,7 +126,7 @@ const socialLinks: SocialLink[] = [
   {
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/risalamin',
-    icon: 'SiLinkedin',
+    Icon: SiLinkedin,
     tip: (
       <>
         Find me on <span className='gradient-title'>LinkedIn</span>
@@ -135,7 +136,7 @@ const socialLinks: SocialLink[] = [
   {
     name: 'Twitter',
     href: 'https://twitter.com/ccrsxx',
-    icon: 'SiTwitter',
+    Icon: SiTwitter,
     tip: (
       <>
         Follow me on <span className='gradient-title'>Twitter</span>

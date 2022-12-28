@@ -4,8 +4,9 @@ import TwitterClone from '/public/assets/projects/twitter-clone.webp';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { HiDocumentText } from 'react-icons/hi2';
+import { SiGithub, SiTwitter } from 'react-icons/si';
 import { SEO } from '@components/common/seo';
-import { ReactIcon } from '@components/ui/react-icon';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import type { Variant } from 'framer-motion';
@@ -79,10 +80,7 @@ export default function Home(): JSX.Element {
                        hover:text-black dark:text-gray-400 dark:hover:text-white'
             href='https://drive.google.com'
           >
-            <ReactIcon
-              className='h-4 w-4 transition-colors group-hover:text-accent-blue'
-              iconName='HiDocumentText'
-            />{' '}
+            <HiDocumentText className='h-4 w-4 transition-colors group-hover:text-accent-blue' />{' '}
             Resume
           </a>
           <a
@@ -90,10 +88,7 @@ export default function Home(): JSX.Element {
                        hover:text-black dark:text-gray-400 dark:hover:text-white'
             href='https://twitter/ccrsxx'
           >
-            <ReactIcon
-              className='h-4 w-4 transition-colors group-hover:text-[#1d9bf0]'
-              iconName='SiTwitter'
-            />{' '}
+            <SiTwitter className='h-4 w-4 transition-colors group-hover:text-[#1d9bf0]' />{' '}
             Twitter
           </a>
           <a
@@ -101,7 +96,7 @@ export default function Home(): JSX.Element {
                        hover:text-black dark:text-gray-400 dark:hover:text-white'
             href='https://github.com/ccrsxx'
           >
-            <ReactIcon className='h-4 w-4' iconName='SiGithub' /> Github
+            <SiGithub className='h-4 w-4' /> Github
           </a>
         </motion.section>
       </motion.section>

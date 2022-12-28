@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { Listbox } from '@headlessui/react';
-import { ReactIcon } from '@components/ui/react-icon';
+import { HiCheck, HiArrowsUpDown } from 'react-icons/hi2';
 import type { Variants } from 'framer-motion';
 
 const sortOptions = ['date', 'views'] as const;
@@ -37,10 +37,7 @@ export function SortListbox(): JSX.Element {
           >
             <span className='block truncate'>Sort by {sortOption}</span>
             <i className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
-              <ReactIcon
-                iconName='HiArrowsUpDown'
-                className='h-5 w-5 text-gray-400'
-              />
+              <HiArrowsUpDown className='h-5 w-5 text-gray-400' />
             </i>
           </Listbox.Button>
           <AnimatePresence mode='wait'>
@@ -79,7 +76,7 @@ export function SortListbox(): JSX.Element {
                             className='absolute inset-y-0 left-0 flex items-center pl-3 
                                        text-blue-500 dark:text-blue-300'
                           >
-                            <ReactIcon iconName='HiCheck' className='h-5 w-5' />
+                            <HiCheck className='h-5 w-5' />
                           </i>
                         )}
                       </>
