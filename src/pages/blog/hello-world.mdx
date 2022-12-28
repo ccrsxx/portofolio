@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import HelloWorld from '/public/assets/blogs/hello-world.webp';
-import { BlogLayout } from '@components/layout/blog-layout';
+import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
 
 export const getStaticProps = getContentSlug('blog', 'hello-world');
@@ -15,7 +15,7 @@ export const meta = {
 };
 
 export default ({ children }) => (
-  <BlogLayout meta={meta}>{children}</BlogLayout>
+  <ContentLayout meta={meta}>{children}</ContentLayout>
 );
 
 {/* content start */}

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import SecondPost from '/public/assets/blogs/custom-layout-in-nextjs.webp';
-import { BlogLayout } from '@components/layout/blog-layout';
+import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
 
 export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
@@ -10,12 +10,12 @@ export const meta = {
   publishedAt: '2022-12-26',
   banner: SecondPost,
   description:
-    'Learn how to create Single Shared Layouts and Per-Page Layouts in Next.js',
-  tags: 'Next.js'
+    'Learn how to create Single Shared Layouts and Per-Page Layouts in Next.js.',
+  tags: 'nextjs'
 };
 
 export default ({ children }) => (
-  <BlogLayout meta={meta}>{children}</BlogLayout>
+  <ContentLayout meta={meta}>{children}</ContentLayout>
 );
 
 {/* content start */}
