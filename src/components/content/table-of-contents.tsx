@@ -47,7 +47,7 @@ export function TableOfContents({
 }
 
 const linkStyles = [
-  'text-gray-400 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200 transition-colors',
+  'text-gray-400 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-200',
   'text-gray-900 dark:text-gray-100'
 ] as const;
 
@@ -55,5 +55,5 @@ function getHeadingStyle(
   currentActiveId: string | null,
   targetId: string
 ): string {
-  return linkStyles[+(currentActiveId === targetId)];
+  return clsx('transition-colors', linkStyles[+(currentActiveId === targetId)]);
 }
