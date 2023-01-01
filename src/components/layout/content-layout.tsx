@@ -5,6 +5,8 @@ import { HiHeart } from 'react-icons/hi2';
 import { REPOSITORY_URL } from '@lib/env';
 import { formatDate } from '@lib/format';
 import { SEO } from '@components/common/seo';
+import { BlogCard } from '@components/blog/blog-card';
+import { ProjectCard } from '@components/project/project-card';
 import { BlogStats } from '@components/blog/blog-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
@@ -28,7 +30,8 @@ export function ContentLayout({
   meta: { title, description, publishedAt, banner },
   children
 }: ContentLayoutProps): JSX.Element {
-  const { type, slug, views, likes, readTime } = children.props;
+  const { type, slug, views, likes, readTime, suggestedContents } =
+    children.props;
 
   const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/blog/${slug}.mdx`;
 
@@ -68,7 +71,23 @@ export function ContentLayout({
           </div>
         </TableOfContents>
       </section>
-      <SubscribeCard />
+      <section className='mt-16 grid gap-4'>
+        <h2 className='gradient-heading text-4xl font-bold'>
+          Other {type === 'blog' ? 'posts' : type} you might like
+        </h2>
+        <section className='grid grid-cols-3 gap-4'>
+          {suggestedContents.map((suggestedContent, index) =>
+            'tags' in suggestedContent ? (
+              <BlogCard {...suggestedContent} key={index} />
+            ) : (
+              <ProjectCard {...suggestedContent} key={index} />
+            )
+          )}
+        </section>
+      </section>
+      <section className='mt-8'>
+        <SubscribeCard />
+      </section>
       <section
         className='[&>a>span]:gradient-title [&>a]:animated-underline
                    mt-4 flex justify-between font-medium'
