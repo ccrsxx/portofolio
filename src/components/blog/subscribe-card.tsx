@@ -2,7 +2,7 @@ import { Button } from '@components/ui/button';
 
 export function SubscribeCard(): JSX.Element {
   return (
-    <div className='main-border mt-6 grid gap-2 rounded-md p-4'>
+    <div className='main-border grid gap-2 rounded-md p-4'>
       <h2 className='gradient-heading text-4xl font-bold'>
         Subscribe to the newsletter
       </h2>
