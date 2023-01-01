@@ -1,6 +1,9 @@
 import { join } from 'path/posix';
-import { readdir } from 'fs/promises';
-import { getContentReadTime, getMetaFromDb } from './mdx-utils';
+import {
+  getMetaFromDb,
+  getContentFiles,
+  getContentReadTime
+} from './mdx-utils';
 import type { GetStaticPropsResult } from 'next';
 import type {
   Blog,
@@ -12,7 +15,11 @@ import type {
 } from '@lib/types/contents';
 
 export type ContentSlugProps = Pick<Blog, 'readTime'> &
-  InjectedMeta & { type: ContentType; slug: string };
+  InjectedMeta & {
+    type: ContentType;
+    slug: string;
+    suggestedContents: (BlogWithMeta | ProjectWithMeta)[];
+  };
 
 /**
  * TODO: Get the static props for MDX Layout.
@@ -21,6 +28,19 @@ export type ContentSlugProps = Pick<Blog, 'readTime'> &
  */
 export function getContentSlug(type: ContentType, slug: string) {
   return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
+    const contentFiles = await getContentFiles(type);
+
+    const shuffledFiles = contentFiles
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    const randomShuffledFiles = shuffledFiles.slice(0, 3);
+
+    const suggestedContents = await Promise.all(
+      randomShuffledFiles.map((file) => getContentByFile(type, file))
+    );
+
     const contentPath = join('src', 'pages', type, `${slug}.mdx`);
 
     const readTime = await getContentReadTime(contentPath);
@@ -29,6 +49,7 @@ export function getContentSlug(type: ContentType, slug: string) {
     return {
       props: {
         ...metaFromDb,
+        suggestedContents,
         readTime,
         type,
         slug
@@ -52,26 +73,36 @@ export async function getAllContents(
 export async function getAllContents(
   type: ContentType
 ): Promise<BlogWithMeta[] | ProjectWithMeta[]> {
-  const contentDirectory = join('src', 'pages', type);
-  const contentPosts = await readdir(contentDirectory);
+  const contentPosts = await getContentFiles(type);
 
   const contents = (await Promise.all(
-    contentPosts.map(async (contentPost) => {
-      const { meta } = (await import(`${contentDirectory}/${contentPost}`)) as {
-        meta:
-          | Omit<Blog, 'slug' | 'readTime'>
-          | Omit<Project, 'slug' | 'readTime'>;
-      };
-
-      const contentPath = join(contentDirectory, contentPost);
-      const readTime = await getContentReadTime(contentPath);
-
-      const slug = contentPost.replace(/\.mdx$/, '');
-      const metaFromDb = getMetaFromDb(type, contentPost);
-
-      return { ...meta, ...metaFromDb, readTime, slug };
-    })
+    contentPosts.map(async (contentPost) => getContentByFile(type, contentPost))
   )) as BlogWithMeta[] | ProjectWithMeta[];
 
   return contents;
+}
+
+/**
+ * Get the content by file.
+ *
+ * @param type The type of the content.
+ * @param fileName The file name of the content.
+ */
+export async function getContentByFile(
+  type: ContentType,
+  fileName: string
+): Promise<BlogWithMeta | ProjectWithMeta> {
+  const { meta } = (await import(`../pages/${type}/${fileName}`)) as {
+    meta: Omit<Blog, 'slug' | 'readTime'> | Omit<Project, 'slug' | 'readTime'>;
+  };
+
+  const contentDirectory = join('src', 'pages', type);
+  const contentPath = join(contentDirectory, fileName);
+
+  const readTime = await getContentReadTime(contentPath);
+
+  const slug = fileName.replace(/\.mdx$/, '');
+  const metaFromDb = getMetaFromDb(type, fileName);
+
+  return { ...meta, ...metaFromDb, readTime, slug };
 }

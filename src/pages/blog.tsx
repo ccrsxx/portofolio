@@ -1,7 +1,6 @@
-import { readdir } from 'fs/promises';
-import { join } from 'path/posix';
 import { motion } from 'framer-motion';
-import { getContentReadTime, getMetaFromDb, getTags } from '@lib/mdx-utils';
+import { getAllContents } from '@lib/mdx';
+import { getTags } from '@lib/mdx-utils';
 import { SEO } from '@components/common/seo';
 import { Tag } from '@components/blog/tag';
 import { SortListbox } from '@components/blog/sort-listbox';
@@ -63,7 +62,9 @@ export default function Blog({
           <BlogCard {...post} key={post.title} />
         ))}
       </section>
-      <SubscribeCard />
+      <section className='mt-6'>
+        <SubscribeCard />
+      </section>
     </motion.main>
   );
 }
@@ -76,26 +77,13 @@ type BlogProps = {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
-  const contentDirectory = join('src', 'pages', 'blog');
-  const contentPosts = await readdir(contentDirectory);
-
-  const posts: BlogWithMeta[] = await Promise.all(
-    contentPosts.map(async (contentPost) => {
-      const { meta } = (await import(`${contentDirectory}/${contentPost}`)) as {
-        meta: Omit<Blog, 'slug' | 'readTime'>;
-      };
-
-      const contentPath = join(contentDirectory, contentPost);
-      const readTime = await getContentReadTime(contentPath);
-
-      const slug = contentPost.replace(/\.mdx$/, '');
-      const metaFromDb = getMetaFromDb('blog', contentPost);
-
-      return { ...meta, ...metaFromDb, readTime, slug };
-    })
-  );
-
+  const posts = await getAllContents('blog');
   const tags = getTags(posts);
 
-  return { props: { posts, tags } };
+  return {
+    props: {
+      posts,
+      tags
+    }
+  };
 }

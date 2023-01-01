@@ -1,6 +1,20 @@
-import { readFile } from 'fs/promises';
+import { readFile, readdir } from 'fs/promises';
+import { join } from 'path';
 import readingTime from 'reading-time';
 import type { Blog, ContentType, InjectedMeta } from './types/contents';
+
+/**
+ * Get all the content posts.
+ *
+ * @param type The type of the content.
+ * @returns The content posts.
+ */
+export async function getContentFiles(type: ContentType): Promise<string[]> {
+  const contentDirectory = join('src', 'pages', type);
+  const contentPosts = await readdir(contentDirectory);
+
+  return contentPosts;
+}
 
 /**
  * Get the content read time.
