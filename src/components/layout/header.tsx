@@ -34,7 +34,7 @@ export function Header(): JSX.Element {
                     'delay-200': index === 2,
                     'delay-300': index === 3
                   },
-                  'smooth-tab transition-colors hover:text-blue-200 hover:delay-[0ms]'
+                  'smooth-tab hover:text-blue-200 hover:transition-colors hover:delay-[0ms]'
                 )}
                 href={href}
                 key={name}

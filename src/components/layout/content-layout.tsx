@@ -8,16 +8,24 @@ import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { BlogStats } from '@components/blog/blog-stats';
+import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
+import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
 import type { Variants } from 'framer-motion';
-import type { Blog } from '@lib/types/contents';
+import type {
+  Blog,
+  Project,
+  BlogWithMeta,
+  ProjectWithMeta
+} from '@lib/types/contents';
 import type { ContentSlugProps } from '@lib/mdx';
 
 type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;
-  meta: Pick<Blog, 'title' | 'publishedAt' | 'description' | 'banner' | 'tags'>;
+  meta: Pick<Blog, 'title' | 'publishedAt' | 'description' | 'banner'> &
+    Pick<Project, 'techs' | 'link' | 'github' | 'youtube' | 'category'>;
 };
 
 const item: Variants = {
@@ -27,13 +35,17 @@ const item: Variants = {
 };
 
 export function ContentLayout({
-  meta: { title, description, publishedAt, banner },
+  meta,
   children
 }: ContentLayoutProps): JSX.Element {
-  const { type, slug, views, likes, readTime, suggestedContents } =
-    children.props;
+  const [
+    { title, description, publishedAt, banner },
+    { type, slug, views, likes, readTime, suggestedContents }
+  ] = [meta, children.props];
 
-  const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/blog/${slug}.mdx`;
+  const contentIsBlog = type === 'blog';
+
+  const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
     <motion.main className='mb-12 grid gap-4' {...item}>
@@ -49,7 +61,11 @@ export function ContentLayout({
         <p className='text-sm text-gray-600 dark:text-gray-300'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
-        <BlogStats className='mt-4' views={views} readTime={readTime} />
+        {contentIsBlog ? (
+          <BlogStats className='mt-4' readTime={readTime} views={views} />
+        ) : (
+          <ProjectStats readTime={readTime} views={views} {...meta} />
+        )}
       </section>
       <hr className='dark:border-gray-600' />
       <section className='flex justify-between gap-4'>
@@ -72,28 +88,31 @@ export function ContentLayout({
         </TableOfContents>
       </section>
       <section className='mt-16 grid gap-4'>
-        <h2 className='gradient-heading text-4xl font-bold'>
-          Other {type === 'blog' ? 'posts' : type} you might like
+        <h2 className='text-4xl font-bold'>
+          <Accent>Other {contentIsBlog ? 'posts' : type} you might like</Accent>
         </h2>
         <section className='grid grid-cols-3 gap-4'>
-          {suggestedContents.map((suggestedContent, index) =>
-            'tags' in suggestedContent ? (
-              <BlogCard {...suggestedContent} key={index} />
-            ) : (
-              <ProjectCard {...suggestedContent} key={index} />
-            )
-          )}
+          {contentIsBlog
+            ? (suggestedContents as BlogWithMeta[]).map(
+                (suggestedContent, index) => (
+                  <BlogCard {...suggestedContent} key={index} />
+                )
+              )
+            : (suggestedContents as ProjectWithMeta[]).map(
+                (suggestedContent, index) => (
+                  <ProjectCard {...suggestedContent} key={index} />
+                )
+              )}
         </section>
       </section>
-      <section className='mt-8'>
-        <SubscribeCard />
-      </section>
-      <section
-        className='[&>a>span]:gradient-title [&>a]:animated-underline
-                   mt-4 flex justify-between font-medium'
-      >
+      {contentIsBlog && (
+        <section className='mt-8'>
+          <SubscribeCard />
+        </section>
+      )}
+      <section className='[&>a]:animated-underline mt-4 flex justify-between font-medium'>
         <Link className='with-dots' href={`/${type}`}>
-          <span>← Back to {type}</span>
+          <Accent>← Back to {type}</Accent>
         </Link>
         <a
           className='with-dots'
@@ -101,7 +120,7 @@ export function ContentLayout({
           target='_blank'
           rel='noreferrer'
         >
-          <span>Edit this on GitHub</span>
+          <Accent>Edit this on GitHub</Accent>
         </a>
       </section>
     </motion.main>
