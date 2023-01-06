@@ -1,18 +1,18 @@
 import Image from 'next/image';
-import SecondPost from '/public/assets/blogs/custom-layout-in-nextjs.webp';
+import Banner from '/public/assets/blogs/custom-layout-in-nextjs/banner.webp';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
-
-export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
 
 export const meta = {
   title: 'Creating Custom Layouts in Next.js',
   publishedAt: '2022-12-26',
-  banner: SecondPost,
+  banner: Banner,
   description:
     'Learn how to create Single Shared Layouts and Per-Page Layouts in Next.js.',
   tags: 'nextjs'
 };
+
+export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
 
 export default ({ children }) => (
   <ContentLayout meta={meta}>{children}</ContentLayout>

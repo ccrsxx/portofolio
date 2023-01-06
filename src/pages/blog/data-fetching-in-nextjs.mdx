@@ -1,9 +1,7 @@
 import Image from 'next/image';
-import Banner from '/public/assets/blogs/data-fetching-in-nextjs.webp';
+import Banner from '/public/assets/blogs/data-fetching-in-nextjs/banner.webp';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
-
-export const getStaticProps = getContentSlug('blog', 'data-fetching-in-nextjs');
 
 export const meta = {
   title: 'Data Fetching in Next.js',
@@ -13,6 +11,8 @@ export const meta = {
     'Learn about the different methods for fetching data in Next.js, including static generation, server-side rendering, and client-side rendering.',
   tags: 'nextjs'
 };
+
+export const getStaticProps = getContentSlug('blog', 'data-fetching-in-nextjs');
 
 export default ({ children }) => (
   <ContentLayout meta={meta}>{children}</ContentLayout>

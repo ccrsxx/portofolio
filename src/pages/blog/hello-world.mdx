@@ -1,18 +1,18 @@
 import Image from 'next/image';
-import HelloWorld from '/public/assets/blogs/hello-world.webp';
+import Banner from '/public/assets/blogs/hello-world/banner.webp';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
-
-export const getStaticProps = getContentSlug('blog', 'hello-world');
 
 export const meta = {
   title: '"Hello World" - A New Beginning',
   publishedAt: '2022-12-24',
-  banner: HelloWorld,
+  banner: Banner,
   description:
     "In this post I'll introduces myself and what you can expect from my blog. Follow along for tips, resources, and personal anecdotes.",
   tags: 'tips,retro'
 };
+
+export const getStaticProps = getContentSlug('blog', 'hello-world');
 
 export default ({ children }) => (
   <ContentLayout meta={meta}>{children}</ContentLayout>
