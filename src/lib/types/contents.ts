@@ -20,6 +20,7 @@ export type Project = {
   github?: string;
   youtube?: string;
   readTime: string;
+  category?: string;
   description: string;
   publishedAt: string;
   lastUpdatedAt?: string;
