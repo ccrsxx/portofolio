@@ -1,5 +1,5 @@
 import { getTags } from '@lib/mdx-utils';
-import FirstPost from '/public/assets/blogs/custom-layout-in-nextjs.webp';
+import Banner from '/public/assets/blogs/custom-layout-in-nextjs/banner.webp';
 import type { Blog } from '@lib/types/contents';
 
 describe('Test getTags', () => {
@@ -10,7 +10,7 @@ describe('Test getTags', () => {
       title: 'title',
       description: 'description',
       readTime: 'readTime',
-      banner: FirstPost,
+      banner: Banner,
       publishedAt: 'publishedAt'
     };
   }
