@@ -37,8 +37,9 @@ export function getContentSlug(type: ContentType, slug: string) {
 
     const randomShuffledFiles = shuffledFiles.slice(0, 3);
 
-    const suggestedContents = await Promise.all(
-      randomShuffledFiles.map((file) => getContentByFile(type, file))
+    const suggestedContents = await getContentByFiles(
+      type,
+      randomShuffledFiles
     );
 
     const contentPath = join('src', 'pages', type, `${slug}.mdx`);
@@ -72,37 +73,43 @@ export async function getAllContents(
 
 export async function getAllContents(
   type: ContentType
-): Promise<BlogWithMeta[] | ProjectWithMeta[]> {
+): Promise<(BlogWithMeta | ProjectWithMeta)[]> {
   const contentPosts = await getContentFiles(type);
 
-  const contents = (await Promise.all(
-    contentPosts.map(async (contentPost) => getContentByFile(type, contentPost))
-  )) as BlogWithMeta[] | ProjectWithMeta[];
+  const contents = await getContentByFiles(type, contentPosts);
 
   return contents;
 }
 
 /**
- * Get the content by file.
+ * Get the contents by files.
  *
  * @param type The type of the content.
- * @param fileName The file name of the content.
+ * @param files The files of the content.
  */
-export async function getContentByFile(
+export async function getContentByFiles(
   type: ContentType,
-  fileName: string
-): Promise<BlogWithMeta | ProjectWithMeta> {
-  const { meta } = (await import(`../pages/${type}/${fileName}`)) as {
-    meta: Omit<Blog, 'slug' | 'readTime'> | Omit<Project, 'slug' | 'readTime'>;
-  };
+  files: string[]
+): Promise<(BlogWithMeta | ProjectWithMeta)[]> {
+  const contentPromises = files.map(async (file) => {
+    const { meta } = (await import(`../pages/${type}/${file}`)) as {
+      meta:
+        | Omit<Blog, 'slug' | 'readTime'>
+        | Omit<Project, 'slug' | 'readTime'>;
+    };
 
-  const contentDirectory = join('src', 'pages', type);
-  const contentPath = join(contentDirectory, fileName);
+    const contentDirectory = join('src', 'pages', type);
+    const contentPath = join(contentDirectory, file);
 
-  const readTime = await getContentReadTime(contentPath);
+    const readTime = await getContentReadTime(contentPath);
 
-  const slug = fileName.replace(/\.mdx$/, '');
-  const metaFromDb = getMetaFromDb(type, fileName);
+    const slug = file.replace(/\.mdx$/, '');
+    const metaFromDb = getMetaFromDb(type, file);
 
-  return { ...meta, ...metaFromDb, readTime, slug };
+    return { ...meta, ...metaFromDb, readTime, slug };
+  });
+
+  const contents = await Promise.all(contentPromises);
+
+  return contents;
 }
