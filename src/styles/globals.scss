@@ -47,13 +47,9 @@
     @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent #{!important};
   }
 
-  .gradient-heading {
-    @apply bg-gradient-to-r from-blue-300 via-green-400 to-red-500 bg-clip-text text-transparent;
-  }
-
   .animated-underline {
     @apply bg-[linear-gradient(to_right,#60a5fa,#86efac)] bg-[size:0_2px] bg-[position:0_100%] 
-           bg-no-repeat pb-1 transition-all duration-300;
+           bg-no-repeat pb-0.5 transition-all duration-300;
 
     &.with-dots {
       @apply border-b border-dotted border-black dark:border-white;
