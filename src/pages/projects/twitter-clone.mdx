@@ -1,0 +1,77 @@
+import Image from 'next/image';
+import TwitterClone from '/public/assets/projects/twitter-clone.webp';
+import { ContentLayout } from '@components/layout/content-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const meta = {
+  title: 'Twitter Clone',
+  publishedAt: '2023-01-05',
+  banner: TwitterClone,
+  description:
+    'How I built a Twitter clone using Next.js, TypeScript, and Firebase.',
+  techs: 'nextjs,tailwindcss,typescript,firebase',
+  category: 'Personal Project',
+  github: 'https://github.com/ccrsxx/twitter-clone',
+  link: 'https://twitter-clone-ccrsxx.vercel.app'
+};
+
+export const getStaticProps = getContentSlug('projects', 'twitter-clone');
+
+export default ({ children }) => (
+  <ContentLayout meta={meta}>{children}</ContentLayout>
+);
+
+{/* content start */}
+
+## Overview
+
+As a self-taught fullstack developer, I was always interested in building my own version of popular web applications. Recently, I decided to tackle the challenge of building a Twitter clone using a combination of modern technologies.
+
+## The Tech Stack
+
+For this project, I chose to use the following technologies:
+
+- Next.js for the frontend framework
+- TypeScript for static type checking
+- Tailwind CSS for styling
+- Firebase for the backend (database, authentication, and hosting)
+- SWR for data fetching and caching
+- Headless UI for the design system and UI components
+- React Hot Toast for notification messages
+- Framer Motion for smooth animations
+
+## Features
+
+I wanted to make sure that my Twitter clone had all the basic features of the real platform, so I implemented the following:
+
+- User authentication (sign up, log in, log out)
+- Tweet creation, editing, and deletion
+- Like and unlike tweets
+- Follow and unfollow users
+- View user profiles and tweet lists
+- Real-time notifications for likes and follows
+- Infinite scroll for the home timeline and user tweet lists
+- Responsive design for mobile devices
+- The Development Process
+
+Building this project was a great learning experience for me. Here are some of the highlights:
+
+- I started by setting up a Next.js project with TypeScript and installing the necessary dependencies (including Firebase).
+
+- I then set up the Firebase backend, including the Firestore database and authentication system. I also configured hosting on Firebase so that I could deploy my app easily.
+
+- Next, I worked on the user authentication flow, including sign up, log in, and log out. I used Firebase's built-in authentication functions to handle the logic, and Next.js's getServerSideProps to secure sensitive routes.
+
+- With the authentication system in place, I moved on to the main feature: tweeting. This involved creating a form for creating and editing tweets, as well as displaying a list of tweets on the home timeline and user profiles. I used SWR to fetch and cache the data from the Firestore database.
+
+- I then added the ability to like and unlike tweets, as well as follow and unfollow users. This required updating the data in the Firestore database and using real-time listeners to trigger notifications.
+
+- Finally, I worked on the design and polish of the app. I used Tailwind CSS for the basic styles, and Headless UI and Framer Motion for the design system and animations. I also added React Hot Toast for notification messages.
+
+## Conclusion
+
+Overall, building this Twitter clone was a rewarding and educational experience. I learned a lot about using Next.js, TypeScript, and Firebase together, as well as various other tools and libraries.
+
+If you're interested in seeing the code or trying out the app, you can check out the repository on GitHub: https://github.com/ccrsxx/twitter-clone
+
+Thanks for reading!
