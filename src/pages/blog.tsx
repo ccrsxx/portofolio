@@ -6,9 +6,10 @@ import { Tag } from '@components/blog/tag';
 import { SortListbox } from '@components/blog/sort-listbox';
 import { BlogCard } from '@components/blog/blog-card';
 import { SubscribeCard } from '@components/blog/subscribe-card';
+import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
 import type { Variants } from 'framer-motion';
-import type { Blog, BlogWithMeta } from '@lib/types/contents';
+import type { BlogWithMeta } from '@lib/types/contents';
 
 const item: Variants = {
   initial: { opacity: 0, y: 50 },
@@ -33,7 +34,9 @@ export default function Blog({
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
       />
       <section className='grid gap-2'>
-        <h1 className='gradient-heading pb-1 text-5xl font-bold'>Blog</h1>
+        <span className='pb-1 text-5xl font-bold'>
+          <Accent>Blog</Accent>
+        </span>
         <p className='text-gray-600 dark:text-gray-300'>
           My thoughts on the web, tech, and everything in between.
         </p>
