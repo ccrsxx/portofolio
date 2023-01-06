@@ -1,16 +1,15 @@
-import FirstPost from '/public/assets/blogs/custom-layout-in-nextjs.webp';
-import SecondPost from '/public/assets/blogs/data-fetching-in-nextjs.webp';
-import TwitterClone from '/public/assets/projects/twitter-clone.webp';
-
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
+import { getAllContents } from '@lib/mdx';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
+import { Accent } from '@components/ui/accent';
 import type { Variant } from 'framer-motion';
-import type { Project, BlogWithMeta } from '@lib/types/contents';
+import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
+import type { BlogWithMeta, ProjectWithMeta } from '@lib/types/contents';
 
 type IndexVariants = Record<'hidden' | 'show' | 'exit', Variant>;
 
@@ -31,7 +30,10 @@ const item: IndexVariants = {
   exit: { opacity: 0, y: 50 }
 };
 
-export default function Home(): JSX.Element {
+export default function Home({
+  featuredBlog,
+  featuredProjects
+}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <main>
       <SEO
@@ -55,7 +57,7 @@ export default function Home(): JSX.Element {
           className='mt-1 text-6xl font-bold transition-colors delay-200'
           variants={item}
         >
-          You can call me <span className='gradient-title'>Risal</span>
+          You can call me <Accent>Risal</Accent>
         </motion.h1>
         <motion.p
           className='mt-6 max-w-4xl text-xl text-gray-700 transition-colors 
@@ -101,9 +103,11 @@ export default function Home(): JSX.Element {
         </motion.section>
       </motion.section>
       <section className='grid gap-4 py-20'>
-        <h2 className='gradient-heading text-4xl font-bold'>Featured Posts</h2>
+        <h2 className='text-4xl font-bold'>
+          <Accent>Featured Posts</Accent>
+        </h2>
         <section className='grid grid-cols-3 gap-4'>
-          {blogList.map((blog, index) => (
+          {featuredBlog.map((blog, index) => (
             <BlogCard {...blog} key={index} />
           ))}
         </section>
@@ -115,14 +119,14 @@ export default function Home(): JSX.Element {
         </Link>
       </section>
       <section className='grid gap-4 py-20'>
-        <h2 className='gradient-heading text-4xl font-bold'>
-          Featured Project
+        <h2 className='text-4xl font-bold'>
+          <Accent>Featured Project</Accent>
         </h2>
         <p className='-mt-2 text-gray-600 dark:text-gray-300'>
           Some projects I&apos;m proud of
         </p>
         <section className='grid grid-cols-3 gap-4'>
-          {projectList.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard {...project} key={index} />
           ))}
         </section>
@@ -137,98 +141,21 @@ export default function Home(): JSX.Element {
   );
 }
 
-const blogList: BlogWithMeta[] = [
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: FirstPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  },
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: FirstPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  },
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: FirstPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  },
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: SecondPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  },
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: SecondPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  },
-  {
-    slug: 'first-post',
-    tags: 'Next.js,Tailwind CSS,Firebase',
-    views: 12_000,
-    title: 'First Post',
-    banner: SecondPost,
-    readTime: '5 min read',
-    publishedAt: '2022-12-15',
-    description:
-      'This is my first post. I will be writing about my journey as a developer and some of the things I have learned along the way. I hope you enjoy it.'
-  }
-];
+type HomeProps = {
+  featuredBlog: BlogWithMeta[];
+  featuredProjects: ProjectWithMeta[];
+};
 
-const projectList: Omit<Project, 'readTime' | 'publishedAt'>[] = [
-  {
-    slug: 'twitter-clone',
-    title: 'Twitter Clone',
-    banner: TwitterClone,
-    techs: 'react,nextjs,tailwindcss,firebase',
-    description:
-      'A Twitter clone built with Next.js, Tailwind CSS, and Firebase.'
-  },
-  {
-    slug: 'twitter-clone',
-    title: 'Twitter Clone',
-    banner: TwitterClone,
-    techs: 'react,nextjs,tailwindcss,firebase',
-    description:
-      'A Twitter clone built with Next.js, Tailwind CSS, and Firebase.'
-  },
-  {
-    slug: 'twitter-clone',
-    title: 'Twitter Clone',
-    banner: TwitterClone,
-    techs: 'react,nextjs,tailwindcss,firebase',
-    description:
-      'A Twitter clone built with Next.js, Tailwind CSS, and Firebase.'
-  }
-];
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<HomeProps>
+> {
+  const featuredBlog = await getAllContents('blog');
+  const featuredProjects = await getAllContents('projects');
+
+  return {
+    props: {
+      featuredBlog,
+      featuredProjects
+    }
+  };
+}
