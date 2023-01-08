@@ -1,6 +1,6 @@
 import { getTags } from '@lib/mdx-utils';
-import Banner from '/public/assets/blog/custom-layout-in-nextjs/banner.webp';
 import type { Blog } from '@lib/types/contents';
+import type { StaticImageData } from 'next/image';
 
 describe('Test getTags', () => {
   function createContent(tags: string): Blog {
@@ -10,7 +10,7 @@ describe('Test getTags', () => {
       title: 'title',
       description: 'description',
       readTime: 'readTime',
-      banner: Banner,
+      banner: '/public/logo192.webp' as unknown as StaticImageData,
       publishedAt: 'publishedAt'
     };
   }
