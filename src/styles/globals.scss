@@ -28,7 +28,7 @@
   }
 
   .custom-button {
-    @apply px-4 py-2;
+    @apply px-4 py-2 font-bold;
   }
 
   .main-border {
@@ -49,7 +49,7 @@
 
   .animated-underline {
     @apply bg-[linear-gradient(to_right,#60a5fa,#86efac)] bg-[size:0_2px] bg-[position:0_100%] 
-           bg-no-repeat pb-0.5 transition-all duration-300;
+           bg-no-repeat pb-0.5 no-underline transition-all duration-300;
 
     &.with-dots {
       @apply border-b border-dotted border-black dark:border-white;
