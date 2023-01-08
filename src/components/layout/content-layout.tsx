@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { HiHeart } from 'react-icons/hi2';
 import { REPOSITORY_URL } from '@lib/env';
+import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
@@ -11,9 +12,9 @@ import { BlogStats } from '@components/blog/blog-stats';
 import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
+import { AccentExternalLink } from '@components/link/accent-external-link';
 import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
-import type { Variants } from 'framer-motion';
 import type {
   Blog,
   Project,
@@ -26,12 +27,6 @@ type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;
   meta: Pick<Blog, 'title' | 'publishedAt' | 'description' | 'banner'> &
     Pick<Project, 'techs' | 'link' | 'github' | 'youtube' | 'category'>;
-};
-
-const item: Variants = {
-  initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 50 }
 };
 
 export function ContentLayout({
@@ -48,7 +43,10 @@ export function ContentLayout({
   const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
-    <motion.main className='mb-12 grid gap-4' {...item}>
+    <motion.main
+      className='mb-12 grid gap-4'
+      {...setTransition({ distance: 25 })}
+    >
       <SEO title={`${title} | Risal Amin`} description={description} />
       <Image
         className='h-[448px] rounded-md object-cover'
@@ -110,18 +108,13 @@ export function ContentLayout({
           <SubscribeCard />
         </section>
       )}
-      <section className='[&>a]:animated-underline mt-4 flex justify-between font-medium'>
-        <Link className='with-dots' href={`/${type}`}>
+      <section className='mt-4 flex justify-between font-medium'>
+        <Link className='animated-underline with-dots' href={`/${type}`}>
           <Accent>← Back to {type}</Accent>
         </Link>
-        <a
-          className='with-dots'
-          href={contentUrl}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <Accent>Edit this on GitHub</Accent>
-        </a>
+        <AccentExternalLink href={contentUrl}>
+          Edit this on GitHub
+        </AccentExternalLink>
       </section>
     </motion.main>
   );
