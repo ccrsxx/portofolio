@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { HiEnvelope } from 'react-icons/hi2';
 import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
+import { AccentExternalLink } from '@components/link/accent-external-link';
+import { ExternalLink } from '@components/link/external-link';
 import type { IconType } from 'react-icons';
 
 export function Footer(): JSX.Element {
@@ -23,8 +25,16 @@ export function Footer(): JSX.Element {
       <section className='mt-4 grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
         <h2 className='font-medium'>Reach me out</h2>
         <section className='flex gap-4'>
-          {socialLinks.map(({ name, href, Icon, tip }) => (
-            <Tooltip tip={tip} key={name}>
+          {socialLinks.map(({ tip, name, href, Icon }) => (
+            <Tooltip
+              tip={
+                <>
+                  {tip}{' '}
+                  <AccentExternalLink href={href}>{name}</AccentExternalLink>
+                </>
+              }
+              key={name}
+            >
               <a
                 className='transition-colors hover:text-accent-blue'
                 href={href}
@@ -39,12 +49,12 @@ export function Footer(): JSX.Element {
       </section>
       <p className='mt-4 text-center text-sm text-gray-600 dark:text-gray-300'>
         &copy; Risal Amin 2022 •{' '}
-        <a
+        <ExternalLink
           className='transition hover:text-gray-800 dark:hover:text-gray-100'
           href='https://github.com/ccrsxx/ccrsxx.me'
         >
           Got any feedback?
-        </a>
+        </ExternalLink>
       </p>
     </footer>
   );
@@ -92,55 +102,35 @@ const footerLinks: FooterLink[] = [
 ];
 
 type SocialLink = {
+  tip: string;
   name: string;
   href: string;
   Icon: IconType;
-  tip: JSX.Element;
-  tooltipClassName?: string;
 };
 
 const socialLinks: SocialLink[] = [
   {
-    name: 'Email',
+    tip: 'Contact me at',
+    name: 'me@ccrsxx.me',
     href: 'mailto:me@ccrsxx.me',
-    Icon: HiEnvelope,
-    tip: (
-      <>
-        Contact me at{' '}
-        <span className='gradient-title transition hover:brightness-125'>
-          me@ccrsxx.me
-        </span>
-      </>
-    )
+    Icon: HiEnvelope
   },
   {
+    tip: 'See my other projects on',
     name: 'GitHub',
     href: 'https://github.com/ccrsxx',
-    Icon: SiGithub,
-    tip: (
-      <>
-        See my other projects at <span className='gradient-title'>GitHub</span>
-      </>
-    )
+    Icon: SiGithub
   },
   {
+    tip: 'Find me on',
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/risalamin',
-    Icon: SiLinkedin,
-    tip: (
-      <>
-        Find me on <span className='gradient-title'>LinkedIn</span>
-      </>
-    )
+    Icon: SiLinkedin
   },
   {
+    tip: 'Follow me on',
     name: 'Twitter',
     href: 'https://twitter.com/ccrsxx',
-    Icon: SiTwitter,
-    tip: (
-      <>
-        Follow me on <span className='gradient-title'>Twitter</span>
-      </>
-    )
+    Icon: SiTwitter
   }
 ];

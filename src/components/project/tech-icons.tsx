@@ -25,8 +25,7 @@ type TechIconsProps = {
 };
 
 export function TechIcons({ className, techs }: TechIconsProps): JSX.Element {
-  const techsArray = techs.split(',') as ValidTech[];
-
+  const techsArray = techs.split(',');
   return (
     <ul className={clsx(className, 'flex gap-2')}>
       {techsArray.map((tech) => {
@@ -50,84 +49,67 @@ export function TechIcons({ className, techs }: TechIconsProps): JSX.Element {
   );
 }
 
-export type ValidTech =
-  | 'react'
-  | 'nextjs'
-  | 'tailwindcss'
-  | 'scss'
-  | 'javascript'
-  | 'typescript'
-  | 'nodejs'
-  | 'firebase'
-  | 'mongodb'
-  | 'swr'
-  | 'mdx'
-  | 'prettier'
-  | 'analytics'
-  | 'git'
-  | 'notion';
-
-type TechList = Record<ValidTech, { Icon: IconType; name: string }>;
+type TechList = Record<string, { name: string; Icon: IconType }>;
 
 const techList: TechList = {
   react: {
-    Icon: SiReact,
-    name: 'React'
+    name: 'React',
+    Icon: SiReact
   },
   nextjs: {
-    Icon: SiNextdotjs,
-    name: 'Next.js'
+    name: 'Next.js',
+    Icon: SiNextdotjs
   },
   tailwindcss: {
-    Icon: SiTailwindcss,
-    name: 'Tailwind CSS'
+    name: 'Tailwind CSS',
+    Icon: SiTailwindcss
   },
   scss: {
-    Icon: SiSass,
-    name: 'SCSS'
+    name: 'SCSS',
+    Icon: SiSass
   },
   javascript: {
-    Icon: SiJavascript,
-    name: 'JavaScript'
+    name: 'JavaScript',
+    Icon: SiJavascript
   },
   typescript: {
-    Icon: SiTypescript,
-    name: 'TypeScript'
+    name: 'TypeScript',
+    Icon: SiTypescript
   },
   nodejs: {
-    Icon: SiNodedotjs,
-    name: 'Node.js'
+    name: 'Node.js',
+    Icon: SiNodedotjs
   },
   firebase: {
-    Icon: SiFirebase,
-    name: 'Firebase'
+    name: 'Firebase',
+    Icon: SiFirebase
   },
   mongodb: {
-    Icon: SiMongodb,
-    name: 'MongoDB'
+    name: 'MongoDB',
+    Icon: SiMongodb
   },
   swr: {
-    Icon: IoLogoVercel,
-    name: 'SWR'
+    name: 'SWR',
+    Icon: IoLogoVercel
   },
   mdx: {
-    Icon: SiMarkdown,
-    name: 'MDX'
+    name: 'MDX',
+    Icon: SiMarkdown
   },
   prettier: {
-    Icon: SiPrettier,
-    name: 'Prettier'
+    name: 'Prettier',
+    Icon: SiPrettier
   },
   analytics: {
-    Icon: SiGoogleanalytics,
-    name: 'Google Analytics'
+    name: 'Google Analytics',
+    Icon: SiGoogleanalytics
   },
   git: {
-    Icon: SiGit,
-    name: 'Git'
+    name: 'Git',
+    Icon: SiGit
   },
   notion: {
-    Icon: SiNotion,
-    name: 'Notion API'
+    name: 'Notion API',
+    Icon: SiNotion
   }
 };
