@@ -1,5 +1,5 @@
 import { getTags } from '@lib/mdx-utils';
-import Banner from '/public/assets/blogs/custom-layout-in-nextjs/banner.webp';
+import Banner from '/public/assets/blog/custom-layout-in-nextjs/banner.webp';
 import type { Blog } from '@lib/types/contents';
 
 describe('Test getTags', () => {
