@@ -69,7 +69,7 @@ export function ContentLayout({
       <section className='flex justify-between gap-4'>
         <article
           id='mdx-article'
-          className='prose mt-2 dark:prose-invert md:prose-lg [&>:is(h2,h3)]:scroll-m-24'
+          className='prose mt-2 dark:prose-invert md:prose-lg [&>:is(h2,h3)]:scroll-mt-24'
         >
           {children}
         </article>

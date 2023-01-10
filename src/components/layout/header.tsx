@@ -7,7 +7,7 @@ import { ThemeSwitch } from '@components/common/theme-switch';
 
 export function Header(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: '40px', amount: 'all' });
+  const inView = useInView(ref, { margin: '40px 0px 0px', amount: 'all' });
 
   const { pathname } = useRouter();
 
@@ -25,16 +25,11 @@ export function Header(): JSX.Element {
         <div className='h-2 bg-gradient-to-r from-blue-400 to-green-300' />
         <div className='layout flex items-center justify-between py-4'>
           <nav className='flex gap-4 font-medium'>
-            {navLinks.map(({ name, href }, index) => (
+            {navLinks.map(({ name, href }) => (
               <Link
                 className={clsx(
                   baseRoute === href && 'gradient-title',
-                  {
-                    'delay-100': index === 1,
-                    'delay-200': index === 2,
-                    'delay-300': index === 3
-                  },
-                  'smooth-tab hover:text-blue-200 hover:transition-colors hover:delay-[0ms]'
+                  'smooth-tab transition hover:text-accent-blue'
                 )}
                 href={href}
                 key={name}
