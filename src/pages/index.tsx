@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
 import { getAllContents } from '@lib/mdx';
-import { setTransition } from '@lib/transition';
+import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
@@ -84,7 +84,7 @@ export default function Home({
           </ExternalLink>
         </motion.section>
       </section>
-      <section className='grid gap-4 py-20'>
+      <motion.section className='grid gap-4 py-20' {...fadeInWhenVisible()}>
         <h2 className='text-4xl font-bold'>
           <Accent>Featured Posts</Accent>
         </h2>
@@ -99,8 +99,8 @@ export default function Home({
         >
           See more posts
         </Link>
-      </section>
-      <section className='grid gap-4 py-20'>
+      </motion.section>
+      <motion.section className='grid gap-4 py-20' {...fadeInWhenVisible()}>
         <h2 className='text-4xl font-bold'>
           <Accent>Featured Project</Accent>
         </h2>
@@ -118,7 +118,7 @@ export default function Home({
         >
           See more projects
         </Link>
-      </section>
+      </motion.section>
     </main>
   );
 }

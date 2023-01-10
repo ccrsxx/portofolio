@@ -1,6 +1,6 @@
-import type { Transition, AnimationProps } from 'framer-motion';
+import type { MotionProps, Transition } from 'framer-motion';
 
-type TransitionReturn = Pick<AnimationProps, 'initial' | 'animate' | 'exit'>;
+type SetTransition = Pick<MotionProps, 'initial' | 'animate' | 'exit'>;
 type TransitionType = 'spring' | 'tween' | 'inertia';
 
 type setTransitionProps = {
@@ -27,7 +27,7 @@ export function setTransition({
   distance = 50,
   durationIn,
   durationOut
-}: setTransitionProps = {}): TransitionReturn {
+}: setTransitionProps = {}): SetTransition {
   const transitionIn: Transition = {
     type: typeIn,
     delay: delayIn,
@@ -55,5 +55,19 @@ export function setTransition({
       y: distance,
       transition: transitionOut
     }
+  };
+}
+
+type FadeInWhenVisible = Pick<
+  MotionProps,
+  'viewport' | 'initial' | 'whileInView' | 'transition'
+>;
+
+export function fadeInWhenVisible(): FadeInWhenVisible {
+  return {
+    viewport: { margin: '0px 0px -240px' },
+    initial: { y: 50, opacity: 0 },
+    whileInView: { y: 0, opacity: 1 },
+    transition: { type: 'tween' }
   };
 }
