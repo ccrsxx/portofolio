@@ -44,7 +44,7 @@ export function useActiveHeading(): string | null {
     };
 
     const headingObserver = new IntersectionObserver(callback, {
-      rootMargin: '0px 0px -40% 0px'
+      rootMargin: '0px 0px -40%'
     });
 
     const headingElements: HTMLHeadingElement[] = Array.from(
