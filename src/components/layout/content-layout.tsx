@@ -56,7 +56,7 @@ export function ContentLayout({
         <p className='text-sm text-gray-600 dark:text-gray-300'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
-        <section className='mt-4'>
+        <section className='mt-4 grid gap-2'>
           {contentIsBlog ? (
             <BlogStats readTime={readTime} views={views} />
           ) : (
