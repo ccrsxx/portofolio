@@ -17,13 +17,13 @@ Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
 Router.events.on('routeChangeComplete', nProgress.done);
 
+const popAudio =
+  typeof window !== 'undefined' ? new Audio('/assets/pop.mp3') : null;
+
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const { pathname } = useRouter();
 
-  useEffect(() => {
-    const popAudio = new Audio('/assets/pop.mp3');
-    void popAudio.play();
-  }, [pathname]);
+  useEffect(() => void popAudio?.play(), [pathname]);
 
   return (
     <>
