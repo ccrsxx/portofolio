@@ -43,10 +43,7 @@ export function ContentLayout({
   const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
-    <motion.main
-      className='mb-12 grid gap-4'
-      {...setTransition({ distance: 25 })}
-    >
+    <motion.main className='mb-12' {...setTransition({ distance: 25 })}>
       <SEO title={`${title} | Risal Amin`} description={description} />
       <Image
         className='h-[448px] rounded-md object-cover'
@@ -54,22 +51,24 @@ export function ContentLayout({
         alt={title}
         placeholder='blur'
       />
-      <section className='mt-4 grid gap-2'>
+      <section className='mt-8 grid gap-2'>
         <h1 className='text-4xl font-bold'>{title}</h1>
         <p className='text-sm text-gray-600 dark:text-gray-300'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
-        {contentIsBlog ? (
-          <BlogStats className='mt-4' readTime={readTime} views={views} />
-        ) : (
-          <ProjectStats readTime={readTime} views={views} {...meta} />
-        )}
+        <section className='mt-4'>
+          {contentIsBlog ? (
+            <BlogStats readTime={readTime} views={views} />
+          ) : (
+            <ProjectStats readTime={readTime} views={views} {...meta} />
+          )}
+        </section>
       </section>
-      <hr className='dark:border-gray-600' />
-      <section className='flex justify-between gap-4'>
+      <hr className='mt-4 dark:border-gray-600' />
+      <section className='mt-4 flex justify-between gap-4'>
         <article
           id='mdx-article'
-          className='prose mt-2 dark:prose-invert md:prose-lg [&>:is(h2,h3)]:scroll-mt-24'
+          className='prose dark:prose-invert [&>:is(h2,h3)]:scroll-mt-24'
         >
           {children}
         </article>
@@ -85,7 +84,7 @@ export function ContentLayout({
           </div>
         </TableOfContents>
       </section>
-      <section className='mt-16 grid gap-4'>
+      <section className='mt-20 grid gap-4'>
         <h2 className='text-4xl font-bold'>
           <Accent>Other {contentIsBlog ? 'posts' : type} you might like</Accent>
         </h2>
@@ -104,11 +103,11 @@ export function ContentLayout({
         </section>
       </section>
       {contentIsBlog && (
-        <section className='mt-8'>
+        <section className='mt-12'>
           <SubscribeCard />
         </section>
       )}
-      <section className='mt-4 flex justify-between font-medium'>
+      <section className='mt-8 flex justify-between font-medium'>
         <Link className='animated-underline with-dots' href={`/${type}`}>
           <Accent>← Back to {type}</Accent>
         </Link>

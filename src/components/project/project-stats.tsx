@@ -45,7 +45,7 @@ export function ProjectStats({
 
   return (
     <>
-      <div className='mt-4 flex gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
+      <div className='flex gap-3 text-sm font-medium text-gray-600 dark:text-gray-300'>
         <div className='flex items-center gap-1'>
           <HiEye className='h-4 w-4' />
           <p>{readTime}</p>

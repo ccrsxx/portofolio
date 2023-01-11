@@ -8,7 +8,7 @@ import type { IconType } from 'react-icons';
 
 export function Footer(): JSX.Element {
   return (
-    <footer className='main-border layout grid gap-4 border-0 border-t pb-2'>
+    <footer className='main-border layout grid gap-8 border-0 border-t pb-2'>
       <nav className='mt-6 flex justify-center gap-8'>
         {footerLinks.map(({ name, href, tip, out }) => (
           <Tooltip tip={tip} key={name}>
@@ -22,7 +22,7 @@ export function Footer(): JSX.Element {
           </Tooltip>
         ))}
       </nav>
-      <section className='mt-4 grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
+      <section className='grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
         <h2 className='font-medium'>Reach me out</h2>
         <section className='flex gap-4'>
           {socialLinks.map(({ tip, name, href, Icon }) => (
@@ -47,7 +47,7 @@ export function Footer(): JSX.Element {
           ))}
         </section>
       </section>
-      <p className='mt-4 text-center text-sm text-gray-600 dark:text-gray-300'>
+      <p className='text-center text-sm text-gray-600 dark:text-gray-300'>
         &copy; Risal Amin 2022 •{' '}
         <ExternalLink
           className='transition hover:text-gray-800 dark:hover:text-gray-100'

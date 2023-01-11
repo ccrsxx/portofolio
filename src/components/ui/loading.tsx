@@ -7,14 +7,12 @@ type LoadingProps = {
 };
 
 export function Loading({
-  className,
-  iconClassName
+  className = 'p-4',
+  iconClassName = 'h-7 w-7'
 }: LoadingProps): JSX.Element {
   return (
-    <i className={clsx('flex justify-center', className ?? 'p-4')}>
-      <ImSpinner2
-        className={clsx('text-main-accent', iconClassName ?? 'h-7 w-7')}
-      />
+    <i className={clsx('flex justify-center', className)}>
+      <ImSpinner2 className={clsx('text-main-accent', iconClassName)} />
     </i>
   );
 }

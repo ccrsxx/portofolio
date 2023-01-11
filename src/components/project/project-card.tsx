@@ -17,7 +17,7 @@ export function ProjectCard({
         <p className='text-sm text-gray-700 dark:text-gray-300'>
           {description}
         </p>
-        <TechIcons className='mt-2' techs={techs} />
+        <TechIcons techs={techs} />
         <Image
           className='mt-3 rounded'
           src={banner}

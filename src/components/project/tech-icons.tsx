@@ -1,4 +1,3 @@
-import { clsx } from 'clsx';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
   SiGit,
@@ -21,13 +20,13 @@ import type { IconType } from 'react-icons';
 
 type TechIconsProps = {
   techs: string;
-  className?: string;
 };
 
-export function TechIcons({ className, techs }: TechIconsProps): JSX.Element {
+export function TechIcons({ techs }: TechIconsProps): JSX.Element {
   const techsArray = techs.split(',');
+
   return (
-    <ul className={clsx(className, 'flex gap-2')}>
+    <ul className='mt-2 flex gap-2'>
       {techsArray.map((tech) => {
         if (!techList[tech]) return;
 

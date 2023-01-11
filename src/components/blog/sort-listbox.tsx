@@ -21,14 +21,9 @@ export function SortListbox(): JSX.Element {
   const [sortOption, setSortOption] = useState(sortOptions[0]);
 
   return (
-    <Listbox
-      className='relative ml-auto w-52'
-      as='div'
-      value={sortOption}
-      onChange={setSortOption}
-    >
+    <Listbox value={sortOption} onChange={setSortOption}>
       {({ open }): JSX.Element => (
-        <>
+        <div className='relative ml-auto w-52'>
           <Listbox.Button
             className={clsx(
               'clickable relative w-full py-2 pl-3 pr-10 text-left text-sm',
@@ -53,8 +48,8 @@ export function SortListbox(): JSX.Element {
                   <Listbox.Option
                     className={({ active }): string =>
                       clsx(
-                        `relative cursor-pointer select-none py-2 pl-10 pr-4 
-                         transition-colors hover:bg-blue-300/10 dark:hover:bg-blue-300/25`,
+                        `relative cursor-pointer select-none py-2 pl-10 pr-4 transition-colors 
+                         hover:bg-blue-300/10 dark:hover:bg-blue-300/25`,
                         active && 'bg-blue-300/10 dark:bg-blue-300/25'
                       )
                     }
@@ -86,7 +81,7 @@ export function SortListbox(): JSX.Element {
               </Listbox.Options>
             )}
           </AnimatePresence>
-        </>
+        </div>
       )}
     </Listbox>
   );

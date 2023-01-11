@@ -16,7 +16,7 @@ export default function Blog({
   posts
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
-    <main className='grid gap-2 py-12'>
+    <main className='py-12'>
       <SEO
         title='Blog | Risal Amin'
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
@@ -32,7 +32,7 @@ export default function Blog({
           My thoughts on the web, tech, and everything in between.
         </motion.p>
       </section>
-      <section className='grid gap-2'>
+      <section className='mt-2'>
         <motion.form {...setTransition({ delayIn: 0.2 })}>
           <input
             className='main-border mt-2 w-full rounded-md px-3 py-2 outline-none
@@ -42,7 +42,7 @@ export default function Blog({
           />
         </motion.form>
         <motion.section
-          className='flex items-center gap-2'
+          className='mt-2 flex items-center gap-2'
           {...setTransition({ delayIn: 0.3 })}
         >
           <p className='text-sm font-medium text-gray-600 dark:text-gray-300'>
@@ -52,19 +52,19 @@ export default function Blog({
             <Tag key={tag}>{tag}</Tag>
           ))}
         </motion.section>
-        <motion.section className='mt-4' {...setTransition({ delayIn: 0.4 })}>
+        <motion.section className='mt-6' {...setTransition({ delayIn: 0.4 })}>
           <SortListbox />
         </motion.section>
       </section>
       <motion.section
-        className='mt-2 grid grid-cols-3 gap-4'
+        className='mt-4 grid grid-cols-3 gap-4'
         {...setTransition({ delayIn: 0.5 })}
       >
         {posts.map((post) => (
           <BlogCard {...post} key={post.title} />
         ))}
       </motion.section>
-      <motion.section className='mt-6' {...setTransition({ delayIn: 0.6 })}>
+      <motion.section className='mt-8' {...setTransition({ delayIn: 0.6 })}>
         <SubscribeCard />
       </motion.section>
     </main>

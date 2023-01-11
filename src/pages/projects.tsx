@@ -11,7 +11,7 @@ export default function Projects({
   projects
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
-    <main className='grid gap-2 py-12'>
+    <main className='grid gap-6 py-12'>
       <SEO
         title='Projects | Risal Amin'
         description='A showcase of my projects on the web development.'
@@ -28,7 +28,7 @@ export default function Projects({
         </motion.p>
       </section>
       <motion.section
-        className='mt-4 grid grid-cols-3 gap-4'
+        className='grid grid-cols-3 gap-4'
         {...setTransition({ delayIn: 0.2 })}
       >
         {projects.map((post) => (

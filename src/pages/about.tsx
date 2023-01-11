@@ -29,8 +29,10 @@ export default function About(): JSX.Element {
         >
           <Accent>Risal Amin</Accent>
         </motion.h1>
+      </section>
+      <section className='mt-4'>
         <motion.article
-          className='prose mt-3 dark:prose-invert'
+          className='prose dark:prose-invert'
           {...setTransition({ delayIn: 0.2 })}
         >
           <p>

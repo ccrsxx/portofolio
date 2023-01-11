@@ -39,11 +39,11 @@ export function BlogCard({
             ))}
           </ul>
         </div>
-        <section className='p-4'>
+        <section className='p-4 [&>div]:mt-1'>
           <h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
             {title}
           </h3>
-          <BlogStats className='mt-1' views={views} readTime={readTime} />
+          <BlogStats views={views} readTime={readTime} />
           <p className='mt-4 text-sm font-bold text-gray-800 dark:text-gray-100'>
             {formatDate(publishedAt)}
           </p>
