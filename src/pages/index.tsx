@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { clsx } from 'clsx';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
 import { getAllContents } from '@lib/mdx';
@@ -10,6 +11,7 @@ import { ProjectCard } from '@components/project/project-card';
 import { ExternalLink } from '@components/link/external-link';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
+import type { IconType } from 'react-icons';
 import type { BlogWithMeta, ProjectWithMeta } from '@lib/types/contents';
 
 export default function Home({
@@ -59,29 +61,19 @@ export default function Home({
           className='mt-8 flex gap-4'
           {...setTransition({ delayIn: 0.4 })}
         >
-          <ExternalLink
-            className='group flex items-center gap-2 text-gray-600 transition-colors
-                       hover:text-black dark:text-gray-400 dark:hover:text-white'
-            href='https://drive.google.com'
-          >
-            <HiDocumentText className='h-4 w-4 transition-colors group-hover:text-accent-blue' />{' '}
-            Resume
-          </ExternalLink>
-          <ExternalLink
-            className='group flex items-center gap-2 text-gray-600 transition-colors
-                       hover:text-black dark:text-gray-400 dark:hover:text-white'
-            href='https://twitter/ccrsxx'
-          >
-            <SiTwitter className='h-4 w-4 transition-colors group-hover:text-[#1d9bf0]' />{' '}
-            Twitter
-          </ExternalLink>
-          <ExternalLink
-            className='flex items-center gap-2 text-gray-600 transition-colors
-                       hover:text-black dark:text-gray-400 dark:hover:text-white'
-            href='https://github.com/ccrsxx'
-          >
-            <SiGithub className='h-4 w-4' /> Github
-          </ExternalLink>
+          {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
+            <ExternalLink
+              className='group flex items-center gap-2 text-gray-600 transition-colors
+                        hover:text-black dark:text-gray-400 dark:hover:text-white'
+              href={href}
+              key={name}
+            >
+              <Icon
+                className={clsx('h-4 w-4 transition-colors', iconHoverColor)}
+              />{' '}
+              {name}
+            </ExternalLink>
+          ))}
         </motion.section>
       </section>
       <motion.section className='grid gap-4 py-20' {...fadeInWhenVisible()}>
@@ -141,3 +133,30 @@ export async function getStaticProps(): Promise<
     }
   };
 }
+
+type SocialLink = {
+  name: string;
+  href: string;
+  iconHoverColor?: string;
+  Icon: IconType;
+};
+
+const socialLink: SocialLink[] = [
+  {
+    name: 'Resume',
+    href: 'placeholder',
+    iconHoverColor: 'group-hover:text-accent-blue',
+    Icon: HiDocumentText
+  },
+  {
+    name: 'Twitter',
+    href: 'placeholder',
+    iconHoverColor: 'group-hover:text-[#1d9bf0]',
+    Icon: SiTwitter
+  },
+  {
+    name: 'GitHub',
+    href: 'placeholder',
+    Icon: SiGithub
+  }
+];
