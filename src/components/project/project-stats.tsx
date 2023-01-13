@@ -66,7 +66,7 @@ export function ProjectStats({
                   </i>
                   <a
                     className='animated-underline with-dots'
-                    href={github}
+                    href={link}
                     target='_blank'
                     rel='noreferrer'
                   >
