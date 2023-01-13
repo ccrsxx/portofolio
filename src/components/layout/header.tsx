@@ -29,7 +29,7 @@ export function Header(): JSX.Element {
               <Link
                 className={clsx(
                   baseRoute === href && 'gradient-title',
-                  'smooth-tab transition hover:text-accent-blue'
+                  'smooth-tab hover:text-accent-blue hover:transition-colors'
                 )}
                 href={href}
                 key={name}
