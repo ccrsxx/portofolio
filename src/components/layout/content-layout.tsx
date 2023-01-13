@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
 import { HiHeart } from 'react-icons/hi2';
-import { REPOSITORY_URL } from '@lib/env';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
 import { SEO } from '@components/common/seo';
