@@ -62,7 +62,7 @@ export function ProjectStats({
                 <i>-</i>
                 <div className='flex items-center gap-3'>
                   <i>
-                    <Icon className='h-5 w-5 text-black dark:text-white' />
+                    <Icon className='text-lg text-black dark:text-white' />
                   </i>
                   <a
                     className='animated-underline with-dots'
@@ -79,7 +79,7 @@ export function ProjectStats({
       </div>
       <div className='flex items-center gap-2 text-gray-600 dark:text-gray-300'>
         <i>
-          <HiUser className='h-4 w-4' />
+          <HiUser className='text-lg' />
         </i>
         <p className='text-sm'>{category}</p>
       </div>
