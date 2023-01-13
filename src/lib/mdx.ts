@@ -1,8 +1,9 @@
-import { join } from 'path/posix';
 import {
   getMetaFromDb,
   getContentFiles,
-  getContentReadTime
+  getContentReadTime,
+  getSuggestedContents,
+  getContentLastUpdatedDate
 } from './mdx-utils';
 import type { GetStaticPropsResult } from 'next';
 import type {
@@ -14,7 +15,7 @@ import type {
   ProjectWithMeta
 } from '@lib/types/contents';
 
-export type ContentSlugProps = Pick<Blog, 'readTime'> &
+export type ContentSlugProps = Pick<Blog, 'readTime' | 'lastUpdatedAt'> &
   InjectedMeta & {
     type: ContentType;
     slug: string;
@@ -28,28 +29,17 @@ export type ContentSlugProps = Pick<Blog, 'readTime'> &
  */
 export function getContentSlug(type: ContentType, slug: string) {
   return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
-    const contentFiles = await getContentFiles(type);
-
-    const shuffledFiles = contentFiles
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
-
-    const randomShuffledFiles = shuffledFiles.slice(0, 3);
-
-    const suggestedContents = await getContentByFiles(
-      type,
-      randomShuffledFiles
-    );
-
-    const contentPath = join('src', 'pages', type, `${slug}.mdx`);
-
-    const readTime = await getContentReadTime(contentPath);
     const metaFromDb = getMetaFromDb(type, slug);
+
+    const lastUpdatedAt = await getContentLastUpdatedDate(type, slug);
+    const suggestedContents = await getSuggestedContents(type);
+
+    const readTime = await getContentReadTime(type, slug);
 
     return {
       props: {
         ...metaFromDb,
+        ...(lastUpdatedAt && { lastUpdatedAt }),
         suggestedContents,
         readTime,
         type,
@@ -98,15 +88,12 @@ export async function getContentByFiles(
         | Omit<Project, 'slug' | 'readTime'>;
     };
 
-    const contentDirectory = join('src', 'pages', type);
-    const contentPath = join(contentDirectory, file);
-
-    const readTime = await getContentReadTime(contentPath);
-
-    const slug = file.replace(/\.mdx$/, '');
     const metaFromDb = getMetaFromDb(type, file);
 
-    return { ...meta, ...metaFromDb, readTime, slug };
+    const slug = file.replace(/\.mdx$/, '');
+    const readTime = await getContentReadTime(type, slug);
+
+    return { ...meta, ...metaFromDb, slug, readTime };
   });
 
   const contents = await Promise.all(contentPromises);

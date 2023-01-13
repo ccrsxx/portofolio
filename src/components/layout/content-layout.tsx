@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { MdHistory } from 'react-icons/md';
 import { HiHeart } from 'react-icons/hi2';
 import { REPOSITORY_URL } from '@lib/env';
 import { setTransition } from '@lib/transition';
@@ -12,6 +13,7 @@ import { BlogStats } from '@components/blog/blog-stats';
 import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
+import { ExternalLink } from '@components/link/external-link';
 import { AccentExternalLink } from '@components/link/accent-external-link';
 import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
@@ -35,12 +37,13 @@ export function ContentLayout({
 }: ContentLayoutProps): JSX.Element {
   const [
     { title, description, publishedAt, banner },
-    { type, slug, views, likes, readTime, suggestedContents }
+    { type, slug, views, likes, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
   const contentIsBlog = type === 'blog';
 
-  const contentUrl = `${REPOSITORY_URL}/blob/main/src/pages/${type}/${slug}.mdx`;
+  const historyUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
+  const contentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
     <motion.main className='mb-12' {...setTransition({ distance: 25 })}>
@@ -56,6 +59,18 @@ export function ContentLayout({
         <p className='text-sm text-gray-600 dark:text-gray-300'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
+        {lastUpdatedAt && (
+          <div className='flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200'>
+            <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
+            <ExternalLink
+              className='flex items-center gap-1 transition-colors hover:text-accent-blue'
+              href={historyUrl}
+            >
+              <MdHistory className='text-lg' />
+              View history
+            </ExternalLink>
+          </div>
+        )}
         <section className='mt-4 grid gap-2'>
           {contentIsBlog ? (
             <BlogStats readTime={readTime} views={views} />
