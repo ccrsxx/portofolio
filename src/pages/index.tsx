@@ -92,7 +92,10 @@ export default function Home({
           See more posts
         </Link>
       </motion.section>
-      <motion.section className='grid gap-4 py-20' {...fadeInWhenVisible()}>
+      <motion.section
+        className='grid gap-4 py-12 pt-20'
+        {...fadeInWhenVisible()}
+      >
         <h2 className='text-4xl font-bold'>
           <Accent>Featured Project</Accent>
         </h2>

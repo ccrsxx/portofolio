@@ -45,7 +45,7 @@ export function ContentLayout({
   const contentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
-    <motion.main className='mb-12' {...setTransition({ distance: 25 })}>
+    <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
       <SEO title={`${title} | Risal Amin`} description={description} />
       <Image
         className='h-[448px] rounded-md object-cover'
