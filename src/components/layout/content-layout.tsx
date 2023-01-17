@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { MDXProvider } from '@mdx-js/react';
 import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
 import { HiHeart } from 'react-icons/hi2';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
+import { components } from '@components/mdx/components';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
@@ -41,8 +43,8 @@ export function ContentLayout({
 
   const contentIsBlog = type === 'blog';
 
-  const historyUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
-  const contentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
+  const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
+  const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
 
   return (
     <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
@@ -63,7 +65,7 @@ export function ContentLayout({
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
             <ExternalLink
               className='flex items-center gap-1 transition-colors hover:text-accent-blue'
-              href={historyUrl}
+              href={githubCommitHistoryUrl}
             >
               <MdHistory className='text-lg' />
               View history
@@ -79,12 +81,12 @@ export function ContentLayout({
         </section>
       </section>
       <hr className='mt-4 dark:border-gray-600' />
-      <section className='mt-4 flex justify-between gap-4'>
+      <section className='mt-4 flex gap-8'>
         <article
           id='mdx-article'
-          className='prose dark:prose-invert [&>:is(h2,h3)]:scroll-mt-24'
+          className='prose max-w-4xl dark:prose-invert [&>:is(h2,h3)]:scroll-mt-24'
         >
-          {children}
+          <MDXProvider components={components}>{children}</MDXProvider>
         </article>
         <TableOfContents>
           <div className='mt-4 flex items-center justify-center gap-2'>
@@ -125,7 +127,7 @@ export function ContentLayout({
         <Link className='animated-underline with-dots' href={`/${type}`}>
           <Accent>← Back to {type}</Accent>
         </Link>
-        <AccentExternalLink href={contentUrl}>
+        <AccentExternalLink href={githubContentUrl}>
           Edit this on GitHub
         </AccentExternalLink>
       </section>

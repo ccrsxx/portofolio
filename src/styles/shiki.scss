@@ -1,0 +1,44 @@
+pre {
+  opacity: 0.98;
+  background: rgba(200, 200, 255, 0.05);
+  padding: 0.75rem 0 !important;
+  line-height: 2;
+
+  code {
+    display: grid;
+    counter-reset: line;
+
+    .word {
+      background: rgba(200, 200, 255, 0.15);
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+    }
+
+    .line {
+      padding: 0 1.25rem;
+      border-left: 2px solid transparent;
+
+      &.highlighted {
+        background: rgba(200, 200, 255, 0.1);
+        border-left-color: theme('colors.blue.400');
+      }
+    }
+
+    &[data-line-numbers] {
+      .line::before {
+        content: counter(line);
+        counter-increment: line;
+
+        display: inline-block;
+        width: 1rem;
+        margin-right: 1rem;
+        text-align: right;
+        color: theme('colors.slate.600');
+      }
+
+      .line.highlighted::before {
+        color: theme('colors.slate.400');
+      }
+    }
+  }
+}
