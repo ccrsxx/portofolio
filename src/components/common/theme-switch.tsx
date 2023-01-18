@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
 import { useTheme } from 'next-themes';
-import type { MotionProps } from 'framer-motion';
+import { useMounted } from '@lib/hooks/useMounted';
+import type { Variants } from 'framer-motion';
 
-const variants: MotionProps[] = [
+const variants: Variants[] = [
   {
     initial: { x: '-50px', y: '25px' },
     animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },
@@ -21,9 +21,7 @@ const [sunVariants, moonVariants] = variants;
 
 export function ThemeSwitch(): JSX.Element | null {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useMounted();
 
   if (!mounted) return null;
 
