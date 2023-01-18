@@ -1,6 +1,12 @@
 import nextMDX from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
+
+/** @type {import('rehype-autolink-headings').Options} */
+const rehypeAutolinkHeadingsOptions = {
+  behavior: 'wrap'
+};
 
 /** @type {import('rehype-pretty-code').Options} */
 const rehypePrettyCodeOptions = {
@@ -38,7 +44,11 @@ const withMDX = nextMDX({
     // as the package is ESM only
     // https://github.com/remarkjs/remark-gfm#install
     remarkPlugins: [],
-    rehypePlugins: [rehypeSlug, [rehypePrettyCode, rehypePrettyCodeOptions]],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, rehypeAutolinkHeadingsOptions],
+      [rehypePrettyCode, rehypePrettyCodeOptions]
+    ],
     // If you use `MDXProvider`, uncomment the following line.
     providerImportSource: '@mdx-js/react'
   }
