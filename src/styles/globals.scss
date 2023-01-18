@@ -1,5 +1,5 @@
 @use 'nprogress';
-@use 'shiki';
+@use 'mdx';
 
 @tailwind base;
 @tailwind components;
@@ -45,12 +45,15 @@
   }
 
   .gradient-title {
-    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent #{!important};
+    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent;
   }
 
   .animated-underline {
-    @apply bg-[linear-gradient(to_right,#60a5fa,#86efac)] bg-[size:0_2px] bg-[position:0_100%] 
-           bg-no-repeat pb-0.5 no-underline transition-all duration-300;
+    background-size: 0 2px;
+    background-position: 0 100%;
+
+    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-no-repeat pb-0.5 no-underline 
+           transition-all duration-300;
 
     &.with-dots {
       @apply border-b border-dotted border-black dark:border-white;
@@ -59,7 +62,7 @@
     &:hover,
     &:has(+ div:hover),
     .project-card:hover & {
-      @apply bg-[size:100%_2px];
+      background-size: 100% 2px;
 
       &.with-dots {
         @apply border-transparent;
