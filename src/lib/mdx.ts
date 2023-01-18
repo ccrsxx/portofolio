@@ -15,8 +15,8 @@ import type {
   ProjectWithMeta
 } from '@lib/types/contents';
 
-export type ContentSlugProps = Pick<Blog, 'readTime' | 'lastUpdatedAt'> &
-  InjectedMeta & {
+export type ContentSlugProps = InjectedMeta &
+  Pick<Blog, 'readTime' | 'lastUpdatedAt'> & {
     type: ContentType;
     slug: string;
     suggestedContents: (BlogWithMeta | ProjectWithMeta)[];
