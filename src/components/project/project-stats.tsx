@@ -1,7 +1,7 @@
 import { HiEye, HiUser, HiClock, HiLink } from 'react-icons/hi2';
 import { SiGithub, SiYoutube } from 'react-icons/si';
 import { formatNumber } from '@lib/format';
-import { Accent } from '@components/ui/accent';
+import { CustomLink } from '@components/link/custom-link';
 import type { IconType } from 'react-icons';
 import type { Project, InjectedMeta } from '@lib/types/contents';
 
@@ -64,14 +64,7 @@ export function ProjectStats({
                   <i>
                     <Icon className='text-lg text-black dark:text-white' />
                   </i>
-                  <a
-                    className='animated-underline with-dots'
-                    href={link}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    <Accent>{name}</Accent>
-                  </a>
+                  <CustomLink href={link}>{name}</CustomLink>
                 </div>
               </>
             )

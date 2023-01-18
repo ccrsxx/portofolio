@@ -1,6 +1,8 @@
-import { Code } from './code';
+import { CustomLink } from '@components/link/custom-link';
+import { CustomPre } from './custom-pre';
 import type { MDXComponents } from 'mdx/types';
 
 export const components: MDXComponents = {
-  code: Code
+  a: CustomLink,
+  pre: CustomPre
 };

@@ -1,0 +1,102 @@
+.prose {
+  & > :is(h2, h3) > a {
+    border-bottom: 0 !important;
+
+    span {
+      @apply text-black dark:text-white;
+    }
+
+    &::after {
+      @apply gradient-title ml-2 inline-block opacity-0
+             transition-opacity duration-300 content-['#'];
+    }
+    &:hover::after {
+      @apply opacity-100;
+    }
+  }
+
+  :where(code):not(:where([class~='not-prose'] *)) {
+    @apply rounded-md border border-gray-300 p-1 dark:border-gray-600;
+  }
+
+  blockquote {
+    border-image: linear-gradient(
+        to top,
+        theme('colors.blue.400'),
+        theme('colors.green.300')
+      )
+      1;
+
+    p:first-of-type::before,
+    p:last-of-type::after {
+      @apply content-none;
+    }
+  }
+
+  hr {
+    border-image: linear-gradient(
+        to right,
+        theme('colors.blue.400'),
+        theme('colors.green.300')
+      )
+      1;
+  }
+
+  div[data-rehype-pretty-code-fragment] {
+    @apply relative;
+
+    div[data-rehype-pretty-code-title] {
+      @apply hidden;
+
+      &:first-of-type {
+        @apply gradient-title absolute top-0.5 left-6 z-10 block rounded-b-md 
+               border-x border-b border-gray-600 px-2 font-medium;
+      }
+
+      &:last-of-type + pre > code {
+        @apply mt-8;
+      }
+    }
+
+    pre {
+      opacity: 0.98;
+      background: rgba(200, 200, 255, 0.05);
+      padding: 0.75rem 0 !important;
+
+      code {
+        counter-reset: line;
+
+        @apply grid;
+
+        .word {
+          background: rgba(200, 200, 255, 0.15);
+
+          @apply rounded p-1;
+        }
+
+        .line {
+          @apply border-l-2 border-transparent py-0 px-5;
+
+          &.highlighted {
+            background: rgba(200, 200, 255, 0.1);
+
+            @apply border-l-slate-400;
+          }
+        }
+
+        &[data-line-numbers] {
+          .line::before {
+            content: counter(line);
+            counter-increment: line;
+
+            @apply mr-4 inline-block w-4 text-right text-slate-600;
+          }
+
+          .line.highlighted::before {
+            @apply text-slate-400;
+          }
+        }
+      }
+    }
+  }
+}
