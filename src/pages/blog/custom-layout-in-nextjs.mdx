@@ -29,9 +29,7 @@ React's composable nature allows us to create reusable components. Layouts are e
 
 A Single Shared Layout in Next.js is a custom layout that's used by every page in our app. Let's say our app is simple, and every page has a `navbar` and a `footer`. We can define our layout like so:
 
-```tsx
-// src/components/layout/layout.tsx
-
+```tsx title="components/layout/layout.tsx"
 import Navbar from './navbar';
 import Footer from './footer';
 import type { ReactNode } from 'react';
@@ -53,10 +51,8 @@ export function Layout({ children }: LayoutProps): JSX.Element {
 
 In order to use this custom layout, we can wrap the `Component` component in our `_app.tsx` file:
 
-```tsx
-// pages/_app.tsx
-
-import { Layout } from 'src/components/layout';
+```tsx title="pages/_app.tsx"
+import { Layout } from '@components/layout';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
@@ -76,11 +72,9 @@ If we want to have multiple layouts (ex. authentication, dashboard, settings etc
 
 Here's an example of a page:
 
-```tsx
-// pages/index.tsx
-
-import { Layout } from 'src/components/layout/layout'
-import { Nested Layout } from 'src/components/layout/nested-layout'
+```tsx title="pages/index.tsx"
+import { Layout } from '@components/layout/layout'
+import { Nested Layout } from '@components/layout/nested-layout'
 import type { ReactElement } from 'react'
 
 function Page(): JSX.Element {
@@ -100,9 +94,7 @@ Page.getLayout = (page: ReactElement) => {
 
 In order to use this, we need to make some changes in our `_app.tsx`:
 
-```tsx
-// pages/_app.tsx
-
+```tsx title="pages/_app.tsx"
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
@@ -128,6 +120,8 @@ export default function App({
   return getLayout(<Component {...pageProps} />);
 }
 ```
+
+---
 
 > Have in mind that the Custom Layouts are not considered as Pages, so the only way to fetch data is on the client-side.
 
