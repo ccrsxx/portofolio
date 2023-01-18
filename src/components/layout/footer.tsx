@@ -1,24 +1,22 @@
-import Link from 'next/link';
 import { HiEnvelope } from 'react-icons/hi2';
 import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
-import { AccentExternalLink } from '@components/link/accent-external-link';
-import { ExternalLink } from '@components/link/external-link';
+import { CustomLink } from '@components/link/custom-link';
+import { UnstyledLink } from '@components/link/unstyled-link';
 import type { IconType } from 'react-icons';
 
 export function Footer(): JSX.Element {
   return (
     <footer className='main-border layout grid gap-8 border-0 border-t pb-2'>
       <nav className='mt-6 flex justify-center gap-8'>
-        {footerLinks.map(({ name, href, tip, out }) => (
+        {footerLinks.map(({ name, href, tip }) => (
           <Tooltip tip={tip} key={name}>
-            <Link
+            <UnstyledLink
               className='animated-underline text-sm font-medium dark:text-gray-200'
               href={href}
-              {...(out && { target: '_blank', rel: 'noreferrer' })}
             >
               {name}
-            </Link>
+            </UnstyledLink>
           </Tooltip>
         ))}
       </nav>
@@ -29,32 +27,29 @@ export function Footer(): JSX.Element {
             <Tooltip
               tip={
                 <>
-                  {tip}{' '}
-                  <AccentExternalLink href={href}>{name}</AccentExternalLink>
+                  {tip} <CustomLink href={href}>{name}</CustomLink>
                 </>
               }
               key={name}
             >
-              <a
+              <UnstyledLink
                 className='transition-colors hover:text-accent-blue'
                 href={href}
-                target='_blank'
-                rel='noreferrer'
               >
                 <Icon className='h-6 w-6' />
-              </a>
+              </UnstyledLink>
             </Tooltip>
           ))}
         </section>
       </section>
       <p className='text-center text-sm text-gray-600 dark:text-gray-300'>
         &copy; Risal Amin 2022 •{' '}
-        <ExternalLink
+        <UnstyledLink
           className='transition hover:text-gray-800 dark:hover:text-gray-100'
           href='https://github.com/ccrsxx/ccrsxx.me'
         >
           Got any feedback?
-        </ExternalLink>
+        </UnstyledLink>
       </p>
     </footer>
   );
@@ -64,7 +59,6 @@ type FooterLink = {
   name: string;
   href: string;
   tip: string | JSX.Element;
-  out?: boolean;
 };
 
 const footerLinks: FooterLink[] = [
@@ -75,8 +69,7 @@ const footerLinks: FooterLink[] = [
       <>
         This website is <strong>open source!</strong>
       </>
-    ),
-    out: true
+    )
   },
   {
     name: 'Design',
@@ -86,8 +79,7 @@ const footerLinks: FooterLink[] = [
   {
     name: 'Analytics',
     href: 'https://umami.ccrsxx.me',
-    tip: 'ccrsxx.me views and visitors analytics',
-    out: true
+    tip: 'ccrsxx.me views and visitors analytics'
   },
   {
     name: 'Statistics',

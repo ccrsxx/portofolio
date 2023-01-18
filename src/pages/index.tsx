@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { clsx } from 'clsx';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
@@ -8,7 +7,7 @@ import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
-import { ExternalLink } from '@components/link/external-link';
+import { UnstyledLink } from '@components/link/unstyled-link';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
@@ -50,19 +49,19 @@ export default function Home({
           className='mt-8 flex gap-4'
           {...setTransition({ delayIn: 0.3 })}
         >
-          <Link className='custom-button clickable' href='/blog'>
+          <UnstyledLink className='custom-button clickable' href='/blog'>
             Read my blog
-          </Link>
-          <Link className='custom-button clickable' href='/about'>
+          </UnstyledLink>
+          <UnstyledLink className='custom-button clickable' href='/about'>
             Learn more about me
-          </Link>
+          </UnstyledLink>
         </motion.section>
         <motion.section
           className='mt-8 flex gap-4'
           {...setTransition({ delayIn: 0.4 })}
         >
           {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
-            <ExternalLink
+            <UnstyledLink
               className='group flex items-center gap-2 text-gray-600 transition-colors
                         hover:text-black dark:text-gray-400 dark:hover:text-white'
               href={href}
@@ -72,7 +71,7 @@ export default function Home({
                 className={clsx('h-4 w-4 transition-colors', iconHoverColor)}
               />{' '}
               {name}
-            </ExternalLink>
+            </UnstyledLink>
           ))}
         </motion.section>
       </section>
@@ -85,12 +84,12 @@ export default function Home({
             <BlogCard {...blog} key={index} />
           ))}
         </section>
-        <Link
+        <UnstyledLink
           className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
           href='/blog'
         >
           See more posts
-        </Link>
+        </UnstyledLink>
       </motion.section>
       <motion.section
         className='grid gap-4 py-12 pt-20'
@@ -107,12 +106,12 @@ export default function Home({
             <ProjectCard {...project} key={index} />
           ))}
         </section>
-        <Link
+        <UnstyledLink
           className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
           href='/projects'
         >
           See more projects
-        </Link>
+        </UnstyledLink>
       </motion.section>
     </main>
   );

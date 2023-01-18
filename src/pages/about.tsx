@@ -9,7 +9,7 @@ import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { Tooltip } from '@components/ui/tooltip';
-import { AccentExternalLink } from '@components/link/accent-external-link';
+import { CustomLink } from '@components/link/custom-link';
 import type { IconType } from 'react-icons';
 
 export default function About(): JSX.Element {
@@ -38,25 +38,20 @@ export default function About(): JSX.Element {
           <p>
             Hi, I&apos;m Risal. I started learning web development in November
             2021, after building my first web app with{' '}
-            <AccentExternalLink href='https://python.org'>
-              Python
-            </AccentExternalLink>{' '}
-            and the{' '}
-            <AccentExternalLink href='https://streamlit.io'>
-              Streamlit
-            </AccentExternalLink>{' '}
+            <CustomLink href='https://python.org'>Python</CustomLink> and the{' '}
+            <CustomLink href='https://streamlit.io'>Streamlit</CustomLink>{' '}
             module. Since then, I&apos;ve been dedicated to learning as much as
             I can about web development.
           </p>
           <p>
             I began my journey by completing the front-end course on{' '}
-            <AccentExternalLink href='https://freecodecamp.org'>
+            <CustomLink href='https://freecodecamp.org'>
               FreeCodeCamp
-            </AccentExternalLink>{' '}
+            </CustomLink>{' '}
             and then moved on to{' '}
-            <AccentExternalLink href='https://theodinproject.com'>
+            <CustomLink href='https://theodinproject.com'>
               The Odin Project
-            </AccentExternalLink>{' '}
+            </CustomLink>{' '}
             to learn fullstack development. I&apos;m always motivated to learn
             new technologies and techniques, and I enjoy getting feedback to
             help me improve.
@@ -85,7 +80,7 @@ export default function About(): JSX.Element {
               key={name}
               tip={
                 <>
-                  <AccentExternalLink href={href}>{name}</AccentExternalLink>
+                  <CustomLink href={href}>{name}</CustomLink>
                   {', '}
                   {tip}
                 </>

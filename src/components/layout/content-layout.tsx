@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { MDXProvider } from '@mdx-js/react';
 import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
@@ -14,8 +13,8 @@ import { BlogStats } from '@components/blog/blog-stats';
 import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
-import { ExternalLink } from '@components/link/external-link';
-import { AccentExternalLink } from '@components/link/accent-external-link';
+import { UnstyledLink } from '@components/link/unstyled-link';
+import { CustomLink } from '@components/link/custom-link';
 import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
 import type {
@@ -63,13 +62,13 @@ export function ContentLayout({
         {lastUpdatedAt && (
           <div className='flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200'>
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
-            <ExternalLink
+            <UnstyledLink
               className='flex items-center gap-1 transition-colors hover:text-accent-blue'
               href={githubCommitHistoryUrl}
             >
               <MdHistory className='text-lg' />
               View history
-            </ExternalLink>
+            </UnstyledLink>
           </div>
         )}
         <section className='mt-4 grid gap-2'>
@@ -124,12 +123,8 @@ export function ContentLayout({
         </section>
       )}
       <section className='mt-8 flex justify-between font-medium'>
-        <Link className='animated-underline with-dots' href={`/${type}`}>
-          <Accent>← Back to {type}</Accent>
-        </Link>
-        <AccentExternalLink href={githubContentUrl}>
-          Edit this on GitHub
-        </AccentExternalLink>
+        <CustomLink href={`/${type}`}>← Back to {type}</CustomLink>
+        <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
       </section>
     </motion.main>
   );
