@@ -1,27 +1,21 @@
-import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { Listbox } from '@headlessui/react';
-import { HiCheck, HiArrowsUpDown } from 'react-icons/hi2';
+import { HiEye, HiCheck, HiCalendar, HiArrowsUpDown } from 'react-icons/hi2';
+import type { Dispatch, SetStateAction } from 'react';
 import type { Variants } from 'framer-motion';
 
-const sortOptions = ['date', 'views'] as const;
-
-const variants: Variants = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', duration: 0.4 }
-  },
-  exit: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+type SortListboxProps = {
+  sortOrder: SortOption;
+  onSortOrderChange: Dispatch<SetStateAction<SortOption>>;
 };
 
-export function SortListbox(): JSX.Element {
-  const [sortOption, setSortOption] = useState(sortOptions[0]);
-
+export function SortListbox({
+  sortOrder,
+  onSortOrderChange
+}: SortListboxProps): JSX.Element {
   return (
-    <Listbox value={sortOption} onChange={setSortOption}>
+    <Listbox value={sortOrder} onChange={onSortOrderChange}>
       {({ open }): JSX.Element => (
         <div className='relative ml-auto w-52'>
           <Listbox.Button
@@ -30,7 +24,10 @@ export function SortListbox(): JSX.Element {
               open && 'shadow-md'
             )}
           >
-            <span className='block truncate'>Sort by {sortOption}</span>
+            <span className='flex items-center gap-2 truncate'>
+              {sortOrder === 'date' ? <HiCalendar /> : <HiEye />}
+              Sort by {sortOrder}
+            </span>
             <i className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
               <HiArrowsUpDown className='h-5 w-5 text-gray-400' />
             </i>
@@ -44,7 +41,7 @@ export function SortListbox(): JSX.Element {
                 {...variants}
                 static
               >
-                {sortOptions.map((option) => (
+                {sortOptions.map((sortOption) => (
                   <Listbox.Option
                     className={({ active }): string =>
                       clsx(
@@ -53,8 +50,8 @@ export function SortListbox(): JSX.Element {
                         active && 'bg-blue-300/10 dark:bg-blue-300/25'
                       )
                     }
-                    value={option}
-                    key={option}
+                    value={sortOption}
+                    key={sortOption}
                   >
                     {({ selected }): JSX.Element => (
                       <>
@@ -64,7 +61,7 @@ export function SortListbox(): JSX.Element {
                             selected ? 'font-medium' : 'font-normal'
                           )}
                         >
-                          Sort by {option}
+                          Sort by {sortOption}
                         </span>
                         {selected && (
                           <i
@@ -86,3 +83,17 @@ export function SortListbox(): JSX.Element {
     </Listbox>
   );
 }
+
+export type SortOption = typeof sortOptions[number];
+
+export const sortOptions = ['date', 'views'] as const;
+
+const variants: Variants = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', duration: 0.4 }
+  },
+  exit: { opacity: 0, y: 20, transition: { duration: 0.2 } }
+};

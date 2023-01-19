@@ -4,7 +4,6 @@ import readingTime from 'reading-time';
 import { GITHUB_TOKEN } from './env';
 import { getContentByFiles } from './mdx';
 import type {
-  Blog,
   ContentType,
   InjectedMeta,
   BlogWithMeta,
@@ -48,19 +47,16 @@ export async function getContentReadTime(
 }
 
 /**
- * Get the tags from a blog post string.
+ * Get random int within a range.
  *
- * @param contents The tags string.
- * @returns The tags array.
+ * @param min Minimum number.
+ * @param max Maximum number.
+ * @returns The random number.
  */
-export function getTags(contents: Blog[]): string[] {
-  const validTags = contents.flatMap(({ tags }) =>
-    tags.split(',').map((tag) => tag.trim())
-  );
-
-  const uniqueTags = Array.from(new Set(validTags));
-
-  return uniqueTags;
+function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 /**
@@ -72,8 +68,8 @@ export function getTags(contents: Blog[]): string[] {
  */
 export function getMetaFromDb(_type: ContentType, _slug: string): InjectedMeta {
   return {
-    views: 12_000,
-    likes: 120
+    views: getRandomInt(1_000, 1_000_00),
+    likes: getRandomInt(100, 1_000)
   };
 }
 

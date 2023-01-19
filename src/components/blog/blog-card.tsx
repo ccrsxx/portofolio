@@ -1,11 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatDate } from '@lib/format';
-import { Tag } from './tag';
+import { Accent } from '@components/ui/accent';
 import { BlogStats } from './blog-stats';
+import { TechTag } from './tech-tag';
 import type { BlogWithMeta } from '@lib/types/contents';
 
+type BlogCardProps = BlogWithMeta & {
+  Tag?: keyof JSX.IntrinsicElements;
+  isTagSelected?: (tag: string) => boolean;
+};
+
 export function BlogCard({
+  Tag = 'article',
   slug,
   tags,
   views,
@@ -13,13 +20,17 @@ export function BlogCard({
   banner,
   readTime,
   publishedAt,
-  description
-}: BlogWithMeta): JSX.Element {
+  description,
+  isTagSelected
+}: BlogCardProps): JSX.Element {
   const techTags = tags.split(',');
 
   return (
-    <article className='grid' key={title}>
-      <Link className='clickable' href={`/blog/${slug}`}>
+    <Tag className='grid'>
+      <Link
+        className='clickable bg-white dark:bg-dark-background'
+        href={`/blog/${slug}`}
+      >
         <div className='relative'>
           <Image
             className='h-36 rounded-t-md object-cover'
@@ -29,13 +40,17 @@ export function BlogCard({
           />
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
             {techTags.map((tag) => (
-              <Tag
+              <TechTag
                 className='bg-opacity-80 dark:bg-opacity-60'
-                tag='li'
+                Tag='li'
                 key={tag}
               >
-                {tag}
-              </Tag>
+                {isTagSelected && isTagSelected(tag) ? (
+                  <Accent>{tag}</Accent>
+                ) : (
+                  tag
+                )}
+              </TechTag>
             ))}
           </ul>
         </div>
@@ -52,6 +67,6 @@ export function BlogCard({
           </p>
         </section>
       </Link>
-    </article>
+    </Tag>
   );
 }
