@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 import { useInView } from 'framer-motion';
 import { clsx } from 'clsx';
-import { useRouter } from 'next/router';
+import { Accent } from '@components/ui/accent';
 import { ThemeSwitch } from '@components/common/theme-switch';
 
 export function Header(): JSX.Element {
@@ -18,8 +19,8 @@ export function Header(): JSX.Element {
       <div ref={ref} />
       <header
         className={clsx(
-          !inView && 'shadow-sm',
-          'sticky top-0 z-20 w-full bg-white/60 backdrop-blur-md transition dark:bg-dark-background/60'
+          'sticky top-0 z-20 w-full bg-white/60 backdrop-blur-md transition dark:bg-dark-background/60',
+          !inView && 'shadow-sm'
         )}
       >
         <div className='h-2 bg-gradient-to-r from-blue-400 to-green-300' />
@@ -27,14 +28,11 @@ export function Header(): JSX.Element {
           <nav className='flex gap-4 font-medium'>
             {navLinks.map(({ name, href }) => (
               <Link
-                className={clsx(
-                  baseRoute === href && 'gradient-title !text-transparent',
-                  'smooth-tab hover:text-accent-blue hover:transition-colors'
-                )}
+                className='smooth-tab hover:text-accent-blue hover:transition-colors'
                 href={href}
                 key={name}
               >
-                {name}
+                {baseRoute === href ? <Accent>{name}</Accent> : name}
               </Link>
             ))}
           </nav>
