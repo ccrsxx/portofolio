@@ -110,6 +110,12 @@ export async function getContentLastUpdatedDate(
   return date;
 }
 
+/**
+ * Get three random suggested contents.
+ *
+ * @param type The type of the content.
+ * @returns The suggested contents.
+ */
 export async function getSuggestedContents(
   type: ContentType
 ): Promise<(BlogWithMeta | ProjectWithMeta)[]> {

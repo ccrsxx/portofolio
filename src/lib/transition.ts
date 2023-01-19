@@ -17,7 +17,7 @@ type setTransitionProps = {
  * Set the transition for the component.
  *
  * @param transitionProps a set of props to set the transition.
- * @returns an AnimationProps object with initial, animate and exit properties.
+ * @returns MotionProps object with initial, animate, and exit.
  */
 export function setTransition({
   typeIn = 'tween',
@@ -63,6 +63,11 @@ type FadeInWhenVisible = Pick<
   'viewport' | 'initial' | 'whileInView' | 'transition'
 >;
 
+/**
+ * Set the component to fade in when it is visible.
+ *
+ * @returns MotionProps object with viewport, initial, whileInView and transition properties.
+ */
 export function fadeInWhenVisible(): FadeInWhenVisible {
   return {
     viewport: { margin: '0px 0px -240px' },

@@ -23,7 +23,7 @@ export type ContentSlugProps = InjectedMeta &
   };
 
 /**
- * TODO: Get the static props for MDX Layout.
+ * Get the static props needed for MDX Layout.
  *
  * @returns The static props needed for MDX Layout.
  */
@@ -76,6 +76,7 @@ export async function getAllContents(
  *
  * @param type The type of the content.
  * @param files The files of the content.
+ * @returns The contents.
  */
 export async function getContentByFiles(
   type: ContentType,
