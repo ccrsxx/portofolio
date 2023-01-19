@@ -1,4 +1,4 @@
-import { getTags } from '@lib/mdx-utils';
+import { getTags } from '@lib/validation';
 import type { Blog } from '@lib/types/contents';
 import type { StaticImageData } from 'next/image';
 
