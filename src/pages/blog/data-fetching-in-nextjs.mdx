@@ -162,9 +162,7 @@ In this example, the useEffect hook fetches a list of posts from an API and upda
 When deciding which method to use for data fetching in your Next.js application, consider the following factors:
 
 - **Static vs. dynamic data**: If your data is static and doesn't change often, static generation may be a good choice. If your data is dynamic and changes frequently, server-side rendering or client-side rendering may be more suitable.
-
 - **Performance**: Static generation is the most performant option, as the HTML is generated at build time and can be served quickly to users. Server-side rendering is also fast, but it requires generating the HTML on the server on each request. Client-side rendering is the least performant option, as it requires fetching and rendering the data on the client.
-
 - **Developer experience**: Static generation and server-side rendering require rebuilding the application to update the data, which can be time-consuming. Client-side rendering allows you to update the data in real-time, but it can be more complex to implement.
 
 In summary, Next.js provides several options for data fetching, each with its own benefits and trade-offs. Choose the method that best fits your application's needs and use case.
