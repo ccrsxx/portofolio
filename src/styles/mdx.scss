@@ -10,13 +10,14 @@
       @apply gradient-title ml-2 inline-block opacity-0
              transition-opacity duration-300 content-['#'];
     }
+
     &:hover::after {
       @apply opacity-100;
     }
   }
 
-  :where(code):not(:where([class~='not-prose'] *)) {
-    @apply rounded-md border border-gray-300 p-1 dark:border-gray-600;
+  & :where(code):not(:where([class~='not-prose'] *)) {
+    @apply main-border rounded-md p-1;
   }
 
   blockquote {
