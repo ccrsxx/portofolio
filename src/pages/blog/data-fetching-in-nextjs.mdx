@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Banner from '/public/assets/blog/data-fetching-in-nextjs/banner.webp';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
@@ -7,6 +6,8 @@ export const meta = {
   title: 'Data Fetching in Next.js',
   publishedAt: '2022-12-26',
   banner: Banner,
+  altBanner: 'Photo by Irina Ermakova on Unsplash',
+  altBannerLink: 'https://unsplash.com/photos/rIsHXq2Bvho',
   description:
     'Learn about the different methods for fetching data in Next.js, including static generation, server-side rendering, and client-side rendering.',
   tags: 'nextjs'

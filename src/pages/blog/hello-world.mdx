@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Banner from '/public/assets/blog/hello-world/banner.webp';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
@@ -7,9 +6,11 @@ export const meta = {
   title: '"Hello World" - A New Beginning',
   publishedAt: '2022-12-24',
   banner: Banner,
+  altBanner: 'Photo by Clay Banks on Unsplash',
+  altBannerLink: 'https://unsplash.com/photos/8q6e5hu3Ilc',
   description:
     "In this post I'll introduces myself and what you can expect from my blog. Follow along for tips, resources, and personal anecdotes.",
-  tags: 'tips,retro'
+  tags: 'self'
 };
 
 export const getStaticProps = getContentSlug('blog', 'hello-world');
