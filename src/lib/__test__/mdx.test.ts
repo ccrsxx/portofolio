@@ -1,4 +1,4 @@
-import { getTags } from '@lib/validation';
+import { getTags } from '@lib/helper';
 import type { Blog } from '@lib/types/contents';
 import type { StaticImageData } from 'next/image';
 

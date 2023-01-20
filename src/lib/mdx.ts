@@ -9,6 +9,7 @@ import type { GetStaticPropsResult } from 'next';
 import type {
   Blog,
   Project,
+  Content,
   ContentType,
   InjectedMeta,
   BlogWithMeta,
@@ -16,7 +17,7 @@ import type {
 } from '@lib/types/contents';
 
 export type ContentSlugProps = InjectedMeta &
-  Pick<Blog, 'readTime' | 'lastUpdatedAt'> & {
+  Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
     type: ContentType;
     slug: string;
     suggestedContents: (BlogWithMeta | ProjectWithMeta)[];
