@@ -1,15 +1,15 @@
-import Image from 'next/image';
 import { MDXProvider } from '@mdx-js/react';
 import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
 import { HiHeart } from 'react-icons/hi2';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
-import { components } from '@components/mdx/components';
+import { components } from '@components/content/components';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { BlogStats } from '@components/blog/blog-stats';
+import { ImagePreview } from '@components/modal/image-preview';
 import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
@@ -20,6 +20,7 @@ import type { ReactElement } from 'react';
 import type {
   Blog,
   Project,
+  Content,
   BlogWithMeta,
   ProjectWithMeta
 } from '@lib/types/contents';
@@ -27,7 +28,8 @@ import type { ContentSlugProps } from '@lib/mdx';
 
 type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;
-  meta: Pick<Blog, 'title' | 'publishedAt' | 'description' | 'banner'> &
+  meta: Pick<Content, 'title' | 'publishedAt' | 'description' | 'banner'> &
+    Pick<Blog, 'altBanner' | 'altBannerLink'> &
     Pick<Project, 'techs' | 'link' | 'github' | 'youtube' | 'category'>;
 };
 
@@ -36,7 +38,7 @@ export function ContentLayout({
   children
 }: ContentLayoutProps): JSX.Element {
   const [
-    { title, description, publishedAt, banner },
+    { title, description, publishedAt, banner, altBanner, altBannerLink },
     { type, slug, views, likes, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
@@ -48,11 +50,11 @@ export function ContentLayout({
   return (
     <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
       <SEO title={`${title} | Risal Amin`} description={description} />
-      <Image
-        className='h-[448px] rounded-md object-cover'
+      <ImagePreview
+        className='max-h-[448px] object-cover'
         src={banner}
-        alt={title}
-        placeholder='blur'
+        alt={altBanner ?? title}
+        altBannerLink={altBannerLink}
       />
       <section className='mt-8 grid gap-2'>
         <h1 className='text-4xl font-bold'>{title}</h1>

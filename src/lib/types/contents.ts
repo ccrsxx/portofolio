@@ -1,8 +1,7 @@
 import type { StaticImageData } from 'next/image';
 
-export type Blog = {
+export type Content = {
   slug: string;
-  tags: string;
   title: string;
   banner: StaticImageData;
   readTime: string;
@@ -11,19 +10,19 @@ export type Blog = {
   lastUpdatedAt?: string;
 };
 
-export type Project = {
+export type Blog = Content & {
+  tags: string;
+  altBanner?: string;
+  altBannerLink?: string;
+};
+
+export type Project = Content & {
   slug: string;
   link?: string;
-  title: string;
   techs: string;
-  banner: StaticImageData;
   github?: string;
   youtube?: string;
-  readTime: string;
   category?: string;
-  description: string;
-  publishedAt: string;
-  lastUpdatedAt?: string;
 };
 
 export type InjectedMeta = {
