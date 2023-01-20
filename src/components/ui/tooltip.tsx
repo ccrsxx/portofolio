@@ -13,7 +13,7 @@ export function Tooltip({
   children,
   className,
   tag: Tag = 'div',
-  tooltipClassName
+  tooltipClassName = 'group-hover:-translate-y-16'
 }: TooltipProps): JSX.Element | null {
   return (
     <Tag className={cn('group relative', className)}>
@@ -24,7 +24,7 @@ export function Tooltip({
            rounded bg-white px-2 py-1 text-sm opacity-0 [transition:visibility_0ms_ease_300ms,300ms_ease] 
            group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100
            dark:bg-dark-background`,
-          tooltipClassName ?? 'group-hover:-translate-y-16'
+          tooltipClassName
         )}
       >
         <span>{tip}</span>

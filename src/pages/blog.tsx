@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getAllContents } from '@lib/mdx';
-import { getTags, textIncludes } from '@lib/validation';
+import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/useSessionStorage';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
@@ -129,8 +129,8 @@ export default function Blog({
                 <motion.article
                   className='grid'
                   layout='position'
-                  key={post.title}
                   {...variants}
+                  key={post.title}
                 >
                   <BlogCard Tag='div' {...post} isTagSelected={isTagSelected} />
                 </motion.article>
@@ -154,21 +154,6 @@ export default function Blog({
   );
 }
 
-const variants: Variants = {
-  initial: {
-    scale: 0.9,
-    opacity: 0
-  },
-  animate: {
-    scale: 1,
-    opacity: 1
-  },
-  exit: {
-    scale: 0.9,
-    opacity: 0
-  }
-};
-
 type BlogProps = {
   posts: BlogWithMeta[];
   tags: string[];
@@ -187,3 +172,18 @@ export async function getStaticProps(): Promise<
     }
   };
 }
+
+const variants: Variants = {
+  initial: {
+    scale: 0.9,
+    opacity: 0
+  },
+  animate: {
+    scale: 1,
+    opacity: 1
+  },
+  exit: {
+    scale: 0.9,
+    opacity: 0
+  }
+};

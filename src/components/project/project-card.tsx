@@ -19,7 +19,7 @@ export function ProjectCard({
         </p>
         <TechIcons techs={techs} />
         <Image
-          className='mt-3 rounded'
+          className='mt-3 h-44 rounded object-cover'
           src={banner}
           alt={title}
           placeholder='blur'

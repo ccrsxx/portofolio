@@ -36,8 +36,8 @@ export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
       <pre {...props} ref={preRef}>
         {mounted && (
           <button
-            className='main-border smooth-tab absolute top-2 right-2 grid rounded-md 
-                       border-gray-600 p-2 brightness-75 transition hover:brightness-100'
+            className='main-border smooth-tab clickable absolute top-2 right-2 grid rounded-md
+                       border-gray-600 p-2'
             onClick={handleCopied}
           >
             <AnimatePresence mode='popLayout' initial={false}>

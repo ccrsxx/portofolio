@@ -28,8 +28,6 @@ export function TechIcons({ techs }: TechIconsProps): JSX.Element {
   return (
     <ul className='mt-2 flex gap-2'>
       {techsArray.map((tech) => {
-        if (!techList[tech]) return;
-
         const { name, Icon } = techList[tech];
 
         return (

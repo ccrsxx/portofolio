@@ -5,17 +5,14 @@ import { CustomLink } from '@components/link/custom-link';
 import type { IconType } from 'react-icons';
 import type { Project, InjectedMeta } from '@lib/types/contents';
 
-type ProjectStatsProps = Pick<
-  Project,
-  'readTime' | 'link' | 'category' | 'github' | 'youtube'
-> &
-  Pick<InjectedMeta, 'views'>;
-
 type ProjectLinks = {
   name: string;
   link: string | undefined;
   Icon: IconType;
 };
+
+type ProjectStatsProps = Pick<InjectedMeta, 'views'> &
+  Pick<Project, 'readTime' | 'link' | 'category' | 'github' | 'youtube'>;
 
 export function ProjectStats({
   link,

@@ -10,7 +10,7 @@ export function UnstyledLink({
   children,
   ...rest
 }: UnstyledLinkProps): JSX.Element {
-  const openInNewTab = !/^\//.test(href);
+  const openInNewTab = !href.startsWith('/');
 
   if (!openInNewTab)
     return (
@@ -19,7 +19,7 @@ export function UnstyledLink({
       </Link>
     );
 
-  const linkIsExternal = /^http/.test(href);
+  const linkIsExternal = href.startsWith('http');
 
   return (
     <a
