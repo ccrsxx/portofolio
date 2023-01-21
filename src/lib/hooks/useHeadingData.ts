@@ -7,9 +7,7 @@ type HeadingData = {
 };
 
 /**
- * A hook that returns an array of heading data objects.
- *
- * @returns An array of heading data objects.
+ * Returns an array of heading data.
  */
 export function useHeadingData(): HeadingData[] {
   const [headingData, setHeadingData] = useState<HeadingData[]>([]);

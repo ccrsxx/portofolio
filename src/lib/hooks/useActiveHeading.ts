@@ -3,9 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 type HeadingElementsRef = Record<string, IntersectionObserverEntry>;
 
 /**
- * A hook that returns the id of the active heading.
- *
- * @returns The id of the active heading.
+ * Returns the current active heading.
  */
 export function useActiveHeading(): string | null {
   const [activeHeading, setActiveHeading] = useState<string | null>(null);

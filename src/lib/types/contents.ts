@@ -17,7 +17,6 @@ export type Blog = Content & {
 };
 
 export type Project = Content & {
-  slug: string;
   link?: string;
   techs: string;
   github?: string;

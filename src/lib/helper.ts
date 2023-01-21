@@ -7,7 +7,7 @@ type PreventBubblingProps = {
 };
 
 /**
- * A function that prevents the event from bubbling up the DOM tree.
+ * Prevents the event from bubbling up the DOM tree.
  */
 export function preventBubbling({
   preventDefault,
@@ -22,10 +22,7 @@ export function preventBubbling({
 }
 
 /**
- * Get the tags from a blog post string.
- *
- * @param contents The tags string.
- * @returns The tags array.
+ * Returns an array of unique tags from the contents.
  */
 export function getTags(contents: Blog[]): string[] {
   const validTags = contents.flatMap(({ tags }) =>
@@ -38,7 +35,7 @@ export function getTags(contents: Blog[]): string[] {
 }
 
 /**
- * A function that returns a boolean if the target string includes the filter string.
+ * Returns a boolean value indicating whether the target text includes the filter text.
  */
 export function textIncludes(target: string, filter: string): boolean {
   const [newTarget, newFilter] = [target, filter].map((text) =>

@@ -6,7 +6,7 @@ import type { Dispatch, SetStateAction } from 'react';
  *
  * @param key The key of the state.
  * @param initialValue The initial value of the state.
- * @returns The state from session storage, null if state doesn't exist.
+ * @returns The state and the state setter. State is fallback to the initial value if the session storage is empty.
  */
 export function useSessionStorage<T>(
   key: string,

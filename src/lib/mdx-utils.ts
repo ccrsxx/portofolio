@@ -12,10 +12,7 @@ import type {
 import type { Commit } from './types/commit';
 
 /**
- * Get all the content posts.
- *
- * @param type The type of the content.
- * @returns The content posts.
+ * Returns the content files within the selected content directory.
  */
 export async function getContentFiles(type: ContentType): Promise<string[]> {
   const contentDirectory = join('src', 'pages', type);
@@ -25,11 +22,7 @@ export async function getContentFiles(type: ContentType): Promise<string[]> {
 }
 
 /**
- * Get the content read time.
- *
- * @param type The type of the content.
- * @param slug The slug of the content.
- * @returns The read time.
+ * Returns the content read time.
  */
 export async function getContentReadTime(
   type: ContentType,
@@ -47,11 +40,7 @@ export async function getContentReadTime(
 }
 
 /**
- * Get random int within a range.
- *
- * @param min Minimum number.
- * @param max Maximum number.
- * @returns The random number.
+ * Returns a random integer between min (inclusive) and max (inclusive).
  */
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -60,11 +49,7 @@ function getRandomInt(min: number, max: number): number {
 }
 
 /**
- * TODO: Get the meta from the database.
- *
- * @param _type The type of the content.
- * @param _slug The slug of the content.
- * @returns The meta object.
+ * Returns the content meta data from the database.
  */
 export function getMetaFromDb(_type: ContentType, _slug: string): InjectedMeta {
   return {
@@ -74,11 +59,7 @@ export function getMetaFromDb(_type: ContentType, _slug: string): InjectedMeta {
 }
 
 /**
- * Get the content last updated date.
- *
- * @param type The type of the content.
- * @param slug The slug of the content.
- * @returns The last updated date or null if the content is new.
+ * Returns the content last updated date from the GitHub API.
  */
 export async function getContentLastUpdatedDate(
   type: ContentType,
@@ -107,10 +88,7 @@ export async function getContentLastUpdatedDate(
 }
 
 /**
- * Get three random suggested contents.
- *
- * @param type The type of the content.
- * @returns The suggested contents.
+ * Returns three random suggested contents.
  */
 export async function getSuggestedContents(
   type: ContentType

@@ -64,7 +64,7 @@ type FadeInWhenVisible = Pick<
 >;
 
 /**
- * Set the component to fade in when it is visible.
+ * Set the component to fade in when it's visible.
  *
  * @returns MotionProps object with viewport, initial, whileInView and transition properties.
  */
