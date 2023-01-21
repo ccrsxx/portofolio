@@ -36,11 +36,11 @@ export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
       <pre {...props} ref={preRef}>
         {mounted && (
           <button
-            className='main-border smooth-tab clickable absolute top-2 right-2 grid rounded-md
-                       border-gray-600 p-2'
+            className='main-border smooth-tab clickable absolute top-2 right-2 
+                       grid rounded-md p-2 text-gray-600 dark:text-gray-300'
             onClick={handleCopied}
           >
-            <AnimatePresence mode='popLayout' initial={false}>
+            <AnimatePresence mode='wait' initial={false}>
               {copied ? (
                 <motion.i {...variants} key='copied'>
                   <HiClipboardDocumentCheck className='h-5 w-5 text-green-400' />
@@ -62,5 +62,5 @@ export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
 const variants: Variants = {
   initial: { opacity: 0, scale: 0.5 },
   animate: { opacity: 1, scale: 1, transition: { duration: 0.15 } },
-  exit: { opacity: 0, scale: 0.5 }
+  exit: { opacity: 0, scale: 0.5, transition: { duration: 0.1 } }
 };

@@ -11,7 +11,10 @@ const rehypeAutolinkHeadingsOptions = {
 /** @type {import('rehype-pretty-code').Options} */
 const rehypePrettyCodeOptions = {
   // Use one of Shiki's packaged themes
-  theme: 'dark-plus',
+  theme: {
+    light: 'light-plus',
+    dark: 'dark-plus'
+  },
 
   // Keep the background or use a custom background color?
   keepBackground: true,

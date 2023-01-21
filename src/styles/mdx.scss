@@ -1,3 +1,23 @@
+html {
+  pre {
+    @apply main-border;
+
+    &[data-theme='dark'] {
+      background-color: theme('colors.dark-background') !important;
+
+      @apply border-gray-600;
+    }
+  }
+
+  &.light pre[data-theme='dark'] {
+    @apply hidden;
+  }
+
+  &.dark pre[data-theme='light'] {
+    @apply hidden;
+  }
+}
+
 .prose {
   & > :is(h2, h3) > a {
     border-bottom: 0 !important;
@@ -20,13 +40,17 @@
     @apply main-border rounded-md p-1;
   }
 
-  blockquote {
+  @mixin border-gradient($position) {
     border-image: linear-gradient(
-        to top,
+        to $position,
         theme('colors.blue.400'),
         theme('colors.green.300')
       )
       1;
+  }
+
+  blockquote {
+    @include border-gradient(top);
 
     p:first-of-type::before,
     p:last-of-type::after {
@@ -35,12 +59,7 @@
   }
 
   hr {
-    border-image: linear-gradient(
-        to right,
-        theme('colors.blue.400'),
-        theme('colors.green.300')
-      )
-      1;
+    @include border-gradient(right);
   }
 
   div[data-rehype-pretty-code-fragment] {
@@ -50,11 +69,11 @@
       @apply hidden;
 
       &:first-of-type {
-        @apply gradient-title absolute top-0.5 left-6 z-10 block rounded-b-md 
-               border-x border-b border-gray-600 px-2 font-medium;
+        @apply gradient-title main-border absolute left-6 z-10 block 
+               rounded-b-md border-t-0 px-2 font-medium;
       }
 
-      &:last-of-type + pre > code {
+      & + pre > code {
         @apply mt-8;
       }
     }
@@ -81,7 +100,7 @@
           &.highlighted {
             background: rgba(200, 200, 255, 0.1);
 
-            @apply border-l-slate-400;
+            @apply border-l-blue-400;
           }
         }
 
@@ -94,7 +113,7 @@
           }
 
           .line.highlighted::before {
-            @apply text-slate-400;
+            @apply text-slate-800 dark:text-slate-400;
           }
         }
       }
