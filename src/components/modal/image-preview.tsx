@@ -6,8 +6,8 @@ import { Modal } from './modal';
 import type { ImageProps, StaticImageData } from 'next/image';
 import type { Blog } from '@lib/types/contents';
 
-type ImagePreviewProps = Omit<ImageProps, 'src'> &
-  Pick<Blog, 'bannerLink'> & {
+type ImagePreviewProps = Pick<Blog, 'bannerLink'> &
+  Omit<ImageProps, 'src'> & {
     src: StaticImageData;
   };
 
