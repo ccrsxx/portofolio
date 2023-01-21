@@ -92,7 +92,7 @@ export async function getContentLastUpdatedDate(
   const commits = (await response.json()) as Commit[];
 
   const featCommits = commits.filter(({ commit: { message } }) =>
-    /^feat/.test(message)
+    message.startsWith('feat')
   );
 
   if (featCommits.length === 1) return null;
