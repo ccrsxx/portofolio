@@ -29,7 +29,7 @@ import type { ContentSlugProps } from '@lib/mdx';
 type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;
   meta: Pick<Content, 'title' | 'publishedAt' | 'description' | 'banner'> &
-    Pick<Blog, 'altBanner' | 'altBannerLink'> &
+    Pick<Blog, 'bannerAlt' | 'bannerLink'> &
     Pick<Project, 'techs' | 'link' | 'github' | 'youtube' | 'category'>;
 };
 
@@ -38,7 +38,7 @@ export function ContentLayout({
   children
 }: ContentLayoutProps): JSX.Element {
   const [
-    { title, description, publishedAt, banner, altBanner, altBannerLink },
+    { title, description, publishedAt, banner, bannerAlt, bannerLink },
     { type, slug, views, likes, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
@@ -53,8 +53,8 @@ export function ContentLayout({
       <ImagePreview
         className='max-h-[448px] object-cover'
         src={banner}
-        alt={altBanner ?? title}
-        altBannerLink={altBannerLink}
+        alt={bannerAlt ?? title}
+        bannerLink={bannerLink}
       />
       <section className='mt-8 grid gap-2'>
         <h1 className='text-4xl font-bold'>{title}</h1>

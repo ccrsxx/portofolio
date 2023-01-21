@@ -12,8 +12,8 @@ export type Content = {
 
 export type Blog = Content & {
   tags: string;
-  altBanner?: string;
-  altBannerLink?: string;
+  bannerAlt?: string;
+  bannerLink?: string;
 };
 
 export type Project = Content & {

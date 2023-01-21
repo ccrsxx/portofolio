@@ -7,7 +7,7 @@ import type { ImageProps, StaticImageData } from 'next/image';
 import type { Blog } from '@lib/types/contents';
 
 type ImagePreviewProps = Omit<ImageProps, 'src'> &
-  Pick<Blog, 'altBannerLink'> & {
+  Pick<Blog, 'bannerLink'> & {
     src: StaticImageData;
   };
 
@@ -15,21 +15,21 @@ export function ImagePreview({
   src,
   alt,
   className,
-  altBannerLink
+  bannerLink
 }: ImagePreviewProps): JSX.Element {
   const { open, openModal, closeModal } = useModal();
 
-  const { src: bannerLink } = src;
+  const { src: imageLink } = src;
 
-  const imageIsGif = bannerLink.endsWith('.gif');
+  const imageIsGif = imageLink.endsWith('.gif');
   const placeholder: ImageProps['placeholder'] = imageIsGif ? 'empty' : 'blur';
 
-  altBannerLink ??= bannerLink;
+  bannerLink ??= imageLink;
 
   return (
     <>
       <Modal open={open} closeModal={closeModal}>
-        <div className='relative mx-auto'>
+        <div className='relative'>
           <div className='group relative max-w-6xl'>
             <Image
               className='max-h-[70vh] w-fit rounded-md object-contain'
@@ -43,7 +43,7 @@ export function ImagePreview({
                          hover:text-white focus-visible:translate-y-0 focus-visible:text-white
                          focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 
                          dark:bg-dark-background/40 dark:text-white/80'
-              href={altBannerLink}
+              href={bannerLink}
               target='_blank'
               rel='noreferrer'
               onClick={preventBubbling()}
@@ -56,7 +56,7 @@ export function ImagePreview({
                        underline-offset-2 transition-colors hover:text-black hover:decoration-black 
                        focus-visible:text-black dark:text-white/80 dark:hover:text-white 
                        dark:hover:decoration-white dark:focus-visible:text-white'
-            href={altBannerLink}
+            href={bannerLink}
             target='_blank'
             rel='noreferrer'
             onClick={preventBubbling()}
