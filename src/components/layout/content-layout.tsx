@@ -54,7 +54,7 @@ export function ContentLayout({
         className='max-h-[448px] object-cover'
         src={banner}
         alt={bannerAlt ?? title}
-        bannerLink={bannerLink}
+        customLink={bannerLink}
       />
       <section className='mt-8 grid gap-2'>
         <h1 className='text-4xl font-bold'>{title}</h1>

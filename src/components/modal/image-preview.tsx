@@ -4,18 +4,17 @@ import { useModal } from '@lib/hooks/useModal';
 import { preventBubbling } from '@lib/helper';
 import { Modal } from './modal';
 import type { ImageProps, StaticImageData } from 'next/image';
-import type { Blog } from '@lib/types/contents';
 
-type ImagePreviewProps = Pick<Blog, 'bannerLink'> &
-  Omit<ImageProps, 'src'> & {
-    src: StaticImageData;
-  };
+type ImagePreviewProps = Omit<ImageProps, 'src'> & {
+  src: StaticImageData;
+  customLink?: string;
+};
 
 export function ImagePreview({
   src,
   alt,
   className,
-  bannerLink
+  customLink
 }: ImagePreviewProps): JSX.Element {
   const { open, openModal, closeModal } = useModal();
 
@@ -24,7 +23,7 @@ export function ImagePreview({
   const imageIsGif = imageLink.endsWith('.gif');
   const placeholder: ImageProps['placeholder'] = imageIsGif ? 'empty' : 'blur';
 
-  bannerLink ??= imageLink;
+  customLink ??= imageLink;
 
   return (
     <>
@@ -43,7 +42,7 @@ export function ImagePreview({
                          hover:text-white focus-visible:translate-y-0 focus-visible:text-white
                          focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 
                          dark:bg-dark-background/40 dark:text-white/80'
-              href={bannerLink}
+              href={customLink}
               target='_blank'
               rel='noreferrer'
               onClick={preventBubbling()}
@@ -56,7 +55,7 @@ export function ImagePreview({
                        underline-offset-2 transition-colors hover:text-black hover:decoration-black 
                        focus-visible:text-black dark:text-white/80 dark:hover:text-white 
                        dark:hover:decoration-white dark:focus-visible:text-white'
-            href={bannerLink}
+            href={customLink}
             target='_blank'
             rel='noreferrer'
             onClick={preventBubbling()}
