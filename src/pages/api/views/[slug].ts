@@ -1,9 +1,8 @@
 import { doc, getDoc, increment, updateDoc } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
-import { isValidContentType } from '@lib/helper-server';
-import type { ContentMeta } from '@lib/types/meta';
-import type { Response } from '@lib/types/api';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { APIResponse } from '@lib/types/helper';
+import type { Views } from '@lib/types/meta';
 
 /**
  * TODO: Sometimes the views returns 1 from firebase.
@@ -13,29 +12,28 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response<ContentMeta>>
+  res: NextApiResponse<APIResponse<Views>>
 ): Promise<void> {
-  const { content } = req.query as { content: string[] };
-
-  const [type, slug] = content as [ContentMeta['type'], string];
-
-  if (content.length > 2 || !isValidContentType(type))
-    res.status(400).json({ message: 'Invalid content type or slug' });
+  const { slug } = req.query as { slug: string };
 
   try {
-    const snapshot = await getDoc(doc(contentsCollection, slug));
+    const docRef = doc(contentsCollection, slug);
+
+    const snapshot = await getDoc(docRef);
     const data = snapshot.data();
 
     if (!data) return res.status(404).json({ message: 'Content not found' });
 
-    if (req.method === 'GET') return res.status(200).json(data);
+    const { views } = data;
+
+    if (req.method === 'GET') return res.status(200).json(views);
 
     if (req.method === 'POST') {
-      await updateDoc(doc(contentsCollection, slug), {
+      await updateDoc(docRef, {
         views: increment(1)
       });
 
-      return res.status(200).json({ message: 'content views incremented' });
+      return res.status(201).json(views + 1);
     }
   } catch (err) {
     if (err instanceof Error)

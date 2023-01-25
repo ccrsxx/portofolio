@@ -1,19 +1,9 @@
 import { formatNumber } from '@lib/format';
-import { useContent } from '@lib/hooks/useContent';
-import type { Content, ContentType } from '@lib/types/contents';
+import { useContentViews } from '@lib/hooks/useContentViews';
+import type { PropsForViews } from '@lib/types/helper';
 
-type ViewsCounterProps = Pick<Content, 'slug'> & {
-  type: ContentType;
-  incrementViews?: boolean;
-};
-
-export function ViewsCounter({
-  type,
-  slug,
-  incrementViews
-}: ViewsCounterProps): JSX.Element {
-  const { data } = useContent(type, slug, { incrementViews });
-  const views = data?.views;
+export function ViewsCounter({ slug, increment }: PropsForViews): JSX.Element {
+  const { views } = useContentViews(slug, { increment });
 
   return <p>{views ? formatNumber(views) : '---'} views</p>;
 }

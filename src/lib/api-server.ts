@@ -1,63 +1,24 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { contentsCollection } from './firebase/collections';
-import { getAllContents } from './mdx';
-import { getContentFiles } from './mdx-utils';
-import { VALID_CONTENT_TYPES } from './helper-server';
-import { removeContentExtension } from './helper';
-import type { Blog, ContentType } from './types/contents';
-import type { ContentMeta } from './types/meta';
+import { promisify } from 'util';
+import { scrypt, randomBytes } from 'crypto';
+import type { NextApiRequest } from 'next';
+
+const scryptAsync = promisify(scrypt);
 
 /**
- * Initialize all blog and projects if not exists in firestore at build time
+ * Returns a hashed session id from the user's IP address.
  */
-export async function initializeAllContents(): Promise<void> {
-  const contentPromises = VALID_CONTENT_TYPES.map((type) =>
-    initializeContents(type)
-  );
-  await Promise.all(contentPromises);
-}
+export async function getSessionId(req: NextApiRequest): Promise<string> {
+  const originalIpAddress = req.headers['x-forwarded-for'] as
+    | string
+    | undefined;
 
-/**
- * Initialize contents with selected content type
- */
-export async function initializeContents(type: ContentType): Promise<void> {
-  const contents = await getContentFiles(type);
+  const ipAddress = originalIpAddress ?? '127.0.0.1';
 
-  const contentPromises = contents.map(async (slug) => {
-    slug = removeContentExtension(slug);
+  const salt = originalIpAddress ? randomBytes(16).toString('hex') : '';
 
-    const snapshot = await getDoc(doc(contentsCollection, slug));
+  const buffer = (await scryptAsync(ipAddress, salt, 20)) as Buffer;
 
-    if (snapshot.exists()) return;
+  const hashedIpAddress = buffer.toString('hex');
 
-    const newContent: Omit<ContentMeta, 'slug'> = {
-      type,
-      views: 0,
-      likes: 0
-    };
-
-    await setDoc(doc(contentsCollection, slug), newContent);
-  });
-
-  await Promise.all(contentPromises);
-}
-
-export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
-
-/**
- * Returns all the blog posts with the views.
- */
-export async function getAllBlogWithViews(): Promise<BlogWithViews[]> {
-  const posts = await getAllContents('blog');
-
-  const postsPromises = posts.map(async (post) => {
-    const snapshot = await getDoc(doc(contentsCollection, post.slug));
-    const { views } = snapshot.data() as ContentMeta;
-
-    return { ...post, views };
-  });
-
-  const postsWithViews = await Promise.all(postsPromises);
-
-  return postsWithViews;
+  return hashedIpAddress;
 }

@@ -2,7 +2,7 @@ import { getDocs, query, where } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
 import { isValidContentType } from '@lib/helper-server';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Response } from '@lib/types/api';
+import type { APIResponse } from '@lib/types/helper';
 import type { ContentType } from '@lib/types/contents';
 
 type StatsData = {
@@ -13,7 +13,7 @@ type StatsData = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Response<StatsData>>
+  res: NextApiResponse<APIResponse<StatsData>>
 ): Promise<void> {
   const { type } = req.query as { type: ContentType };
 

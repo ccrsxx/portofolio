@@ -6,6 +6,15 @@ export type ContentMeta = {
   type: ContentType;
   views: number;
   likes: number;
+  likesBy: Record<string, number>;
+};
+
+export type Likes = ContentMeta['likes'];
+export type Views = ContentMeta['views'];
+
+export type LikeStatus = {
+  likes: number;
+  userLikes: number;
 };
 
 export const contentMetaConverter: FirestoreDataConverter<ContentMeta> = {

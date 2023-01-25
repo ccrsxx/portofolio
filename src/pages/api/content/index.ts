@@ -1,7 +1,7 @@
 import { getDocs } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Response } from '@lib/types/api';
+import type { APIResponse } from '@lib/types/helper';
 
 type TotalData = {
   totalViews: number;
@@ -10,7 +10,7 @@ type TotalData = {
 
 export default async function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<Response<TotalData>>
+  res: NextApiResponse<APIResponse<TotalData>>
 ): Promise<void> {
   const snapshot = await getDocs(contentsCollection);
   const contents = snapshot.docs.map((doc) => doc.data());

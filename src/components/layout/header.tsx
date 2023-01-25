@@ -28,11 +28,14 @@ export function Header(): JSX.Element {
           <nav className='flex gap-4 font-medium'>
             {navLinks.map(({ name, href }) => (
               <Link
-                className='smooth-tab hover:text-accent-blue hover:transition-colors'
+                className={clsx(
+                  'smooth-tab hover:text-accent-blue hover:transition-colors',
+                  baseRoute === href && 'gradient-title !text-transparent'
+                )}
                 href={href}
                 key={name}
               >
-                {baseRoute === href ? <Accent>{name}</Accent> : name}
+                {name}
               </Link>
             ))}
           </nav>
