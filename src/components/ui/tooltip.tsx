@@ -1,12 +1,13 @@
 import cn from 'clsx';
-import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { PropsWithChildren, ComponentPropsWithoutRef } from 'react';
 
-type TooltipProps = {
-  tip: string | JSX.Element;
-  tag?: keyof JSX.IntrinsicElements;
-  children: ReactNode;
-  tooltipClassName?: string;
-} & ComponentPropsWithoutRef<'div'>;
+type TooltipProps = PropsWithChildren<
+  ComponentPropsWithoutRef<'div'> & {
+    tip: string | JSX.Element;
+    tag?: keyof JSX.IntrinsicElements;
+    tooltipClassName?: string;
+  }
+>;
 
 export function Tooltip({
   tip,
@@ -14,7 +15,7 @@ export function Tooltip({
   className,
   tag: Tag = 'div',
   tooltipClassName = 'group-hover:-translate-y-16'
-}: TooltipProps): JSX.Element | null {
+}: TooltipProps): JSX.Element {
   return (
     <Tag className={cn('group relative', className)}>
       {children}

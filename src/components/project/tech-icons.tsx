@@ -18,11 +18,7 @@ import {
 import { Tooltip } from '../ui/tooltip';
 import type { IconType } from 'react-icons';
 
-type TechIconsProps = {
-  techs: string;
-};
-
-export function TechIcons({ techs }: TechIconsProps): JSX.Element {
+export function TechIcons({ techs }: { techs: string }): JSX.Element {
   const techsArray = techs.split(',');
 
   return (

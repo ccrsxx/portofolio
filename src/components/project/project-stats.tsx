@@ -1,9 +1,9 @@
 import { HiEye, HiUser, HiClock, HiLink } from 'react-icons/hi2';
 import { SiGithub, SiYoutube } from 'react-icons/si';
-import { formatNumber } from '@lib/format';
 import { CustomLink } from '@components/link/custom-link';
+import type { PropsWithChildren } from 'react';
 import type { IconType } from 'react-icons';
-import type { Project, InjectedMeta } from '@lib/types/contents';
+import type { Project } from '@lib/types/contents';
 
 type ProjectLinks = {
   name: string;
@@ -11,16 +11,17 @@ type ProjectLinks = {
   Icon: IconType;
 };
 
-type ProjectStatsProps = Pick<InjectedMeta, 'views'> &
-  Pick<Project, 'readTime' | 'link' | 'category' | 'github' | 'youtube'>;
+type ProjectStatsProps = PropsWithChildren<
+  Pick<Project, 'readTime' | 'link' | 'category' | 'github' | 'youtube'>
+>;
 
 export function ProjectStats({
   link,
-  views,
   github,
   youtube,
   readTime,
-  category
+  category,
+  children
 }: ProjectStatsProps): JSX.Element {
   const projectLinks: ProjectLinks[] = [
     {
@@ -50,7 +51,7 @@ export function ProjectStats({
         <i>-</i>
         <div className='flex items-center gap-1'>
           <HiClock className='h-4 w-4' />
-          <p>{formatNumber(views)} views</p>
+          {children}
         </div>
         {projectLinks.map(
           ({ name, link, Icon }) =>

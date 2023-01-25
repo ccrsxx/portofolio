@@ -1,15 +1,9 @@
 import { clsx } from 'clsx';
 import { useHeadingData } from '@lib/hooks/useHeadingData';
 import { useActiveHeading } from '@lib/hooks/useActiveHeading';
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
-type TableOfContentsProps = {
-  children: ReactNode;
-};
-
-export function TableOfContents({
-  children
-}: TableOfContentsProps): JSX.Element {
+export function TableOfContents({ children }: PropsWithChildren): JSX.Element {
   const headingData = useHeadingData();
   const activeHeadingId = useActiveHeading();
 

@@ -1,9 +1,5 @@
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
-type AccentProps = {
-  children: ReactNode;
-};
-
-export function Accent({ children }: AccentProps): JSX.Element {
+export function Accent({ children }: PropsWithChildren): JSX.Element {
   return <span className='gradient-title'>{children}</span>;
 }

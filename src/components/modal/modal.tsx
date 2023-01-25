@@ -1,17 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import { clsx } from 'clsx';
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import type { Variants } from 'framer-motion';
 
-type ModalProps = {
+type ModalProps = PropsWithChildren<{
   open: boolean;
-  children: ReactNode;
   className?: string;
   modalClassName?: string;
   closePanelOnClick?: boolean;
   closeModal: () => void;
-};
+}>;
 
 export function Modal({
   open,

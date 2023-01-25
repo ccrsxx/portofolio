@@ -1,11 +1,12 @@
 import { clsx } from 'clsx';
-import type { ReactNode, HTMLAttributes } from 'react';
+import type { PropsWithChildren, HTMLAttributes } from 'react';
 
-type TagProps = HTMLAttributes<HTMLOrSVGElement> & {
-  Tag?: keyof JSX.IntrinsicElements;
-  disabled?: boolean;
-  children: ReactNode;
-};
+type TagProps = PropsWithChildren<
+  HTMLAttributes<HTMLOrSVGElement> & {
+    Tag?: keyof JSX.IntrinsicElements;
+    disabled?: boolean;
+  }
+>;
 
 export function TechTag({
   Tag = 'button',

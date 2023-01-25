@@ -2,15 +2,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { HiClipboard, HiClipboardDocumentCheck } from 'react-icons/hi2';
 import { useMounted } from '@lib/hooks/useMounted';
-import type { ReactNode, ComponentPropsWithoutRef, CSSProperties } from 'react';
+import type {
+  CSSProperties,
+  PropsWithChildren,
+  ComponentPropsWithoutRef
+} from 'react';
 import type { Variants } from 'framer-motion';
 
-type PrettyCodeProps = {
+type PrettyCodeProps = PropsWithChildren<{
   style: Pick<CSSProperties, 'backgroundColor'>;
-  children: ReactNode;
   'data-theme': string;
   'data-language': string;
-};
+}>;
 
 type CustomPreProps = ComponentPropsWithoutRef<'pre'> &
   Partial<PrettyCodeProps>;
