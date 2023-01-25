@@ -17,12 +17,10 @@ export function middleware(req: NextRequest): NextResponse {
   if (!isValidRequestMethod(req))
     return generateNextResponse(405, 'Method not allowed');
 
-  if (req.method === 'POST') {
-    const bearerToken = getBearerToken(req);
+  const bearerToken = getBearerToken(req);
 
-    if (bearerToken !== OWNER_BEARER_TOKEN)
-      return generateNextResponse(401, 'Invalid token');
-  }
+  if (bearerToken !== OWNER_BEARER_TOKEN)
+    return generateNextResponse(401, 'Invalid token');
 
   return NextResponse.next();
 }
