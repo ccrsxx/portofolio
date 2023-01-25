@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
+import { initializeAllContents } from '@lib/api-server';
 import { getAllContents } from '@lib/mdx';
 import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
@@ -11,7 +12,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
-import type { BlogWithMeta, ProjectWithMeta } from '@lib/types/contents';
+import type { Blog, Project } from '@lib/types/contents';
 
 export default function Home({
   featuredBlog,
@@ -63,7 +64,7 @@ export default function Home({
           {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
             <UnstyledLink
               className='group flex items-center gap-2 text-gray-600 transition-colors
-                        hover:text-black dark:text-gray-400 dark:hover:text-white'
+                         hover:text-black dark:text-gray-400 dark:hover:text-white'
               href={href}
               key={name}
             >
@@ -118,13 +119,15 @@ export default function Home({
 }
 
 type HomeProps = {
-  featuredBlog: BlogWithMeta[];
-  featuredProjects: ProjectWithMeta[];
+  featuredBlog: Blog[];
+  featuredProjects: Project[];
 };
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<HomeProps>
 > {
+  await initializeAllContents();
+
   const featuredBlog = await getAllContents('blog');
   const featuredProjects = await getAllContents('projects');
 

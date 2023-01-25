@@ -5,7 +5,7 @@ import { SEO } from '@components/common/seo';
 import { ProjectCard } from '@components/project/project-card';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
-import type { ProjectWithMeta } from '@lib/types/contents';
+import type { Project } from '@lib/types/contents';
 
 export default function Projects({
   projects
@@ -40,7 +40,7 @@ export default function Projects({
 }
 
 type BlogProps = {
-  projects: ProjectWithMeta[];
+  projects: Project[];
 };
 
 export async function getStaticProps(): Promise<

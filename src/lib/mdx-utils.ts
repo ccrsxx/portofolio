@@ -3,12 +3,7 @@ import { join } from 'path';
 import readingTime from 'reading-time';
 import { GITHUB_TOKEN } from './env';
 import { getContentByFiles } from './mdx';
-import type {
-  ContentType,
-  InjectedMeta,
-  BlogWithMeta,
-  ProjectWithMeta
-} from './types/contents';
+import type { Blog, Project, ContentType } from './types/contents';
 import type { Commit } from './types/commit';
 
 /**
@@ -37,25 +32,6 @@ export async function getContentReadTime(
   const { text } = readingTime(actualContent);
 
   return text;
-}
-
-/**
- * Returns a random integer between min (inclusive) and max (inclusive).
- */
-function getRandomInt(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-/**
- * Returns the content meta data from the database.
- */
-export function getMetaFromDb(_type: ContentType, _slug: string): InjectedMeta {
-  return {
-    views: getRandomInt(1_000, 1_000_00),
-    likes: getRandomInt(100, 1_000)
-  };
 }
 
 /**
@@ -92,7 +68,7 @@ export async function getContentLastUpdatedDate(
  */
 export async function getSuggestedContents(
   type: ContentType
-): Promise<(BlogWithMeta | ProjectWithMeta)[]> {
+): Promise<(Blog | Project)[]> {
   const contentFiles = await getContentFiles(type);
 
   const shuffledFiles = contentFiles

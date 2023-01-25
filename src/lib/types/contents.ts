@@ -24,12 +24,4 @@ export type Project = Content & {
   category?: string;
 };
 
-export type InjectedMeta = {
-  views: number;
-  likes?: number;
-};
-
 export type ContentType = 'blog' | 'projects';
-
-export type BlogWithMeta = Blog & InjectedMeta;
-export type ProjectWithMeta = Project & InjectedMeta;

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { SITE_URL } from '@lib/env';
+import { PUBLIC_URL } from '@lib/env';
 
 type MainLayoutProps = {
   title: string;
@@ -24,7 +24,7 @@ export function SEO({
       {image && <meta property='og:image' content={image} />}
       <meta
         name='og:url'
-        content={`${SITE_URL}${asPath === '/' ? '' : asPath}`}
+        content={`${PUBLIC_URL}${asPath === '/' ? '' : asPath}`}
       />
     </Head>
   );
