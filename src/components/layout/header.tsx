@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useInView } from 'framer-motion';
 import { clsx } from 'clsx';
-import { Accent } from '@components/ui/accent';
 import { ThemeSwitch } from '@components/common/theme-switch';
 
 export function Header(): JSX.Element {
