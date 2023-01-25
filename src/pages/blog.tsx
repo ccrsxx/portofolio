@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { getAllBlogWithViews } from '@lib/api-server';
+import { getAllBlogWithViews } from '@lib/build';
 import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/useSessionStorage';
 import { setTransition } from '@lib/transition';
@@ -14,7 +14,7 @@ import type { ChangeEvent } from 'react';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
 import type { Variants } from 'framer-motion';
 import type { Blog } from '@lib/types/contents';
-import type { BlogWithViews } from '@lib/api-server';
+import type { BlogWithViews } from '@lib/build';
 import type { SortOption } from '@components/blog/sort-listbox';
 
 export default function Blog({

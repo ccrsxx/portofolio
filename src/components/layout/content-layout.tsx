@@ -14,7 +14,6 @@ import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { CustomLink } from '@components/link/custom-link';
-import { ViewsCounter } from '@components/content/views-counter';
 import { LikesCounter } from '@components/content/likes-counter';
 import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
@@ -41,10 +40,6 @@ export function ContentLayout({
 
   const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
   const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
-
-  const ViewsIncrementer = (): JSX.Element => (
-    <ViewsCounter type={type} slug={slug} incrementViews />
-  );
 
   return (
     <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
@@ -74,13 +69,9 @@ export function ContentLayout({
         )}
         <section className='mt-4 grid gap-2'>
           {contentIsBlog ? (
-            <BlogStats readTime={readTime}>
-              <ViewsIncrementer />
-            </BlogStats>
+            <BlogStats slug={slug} readTime={readTime} increment />
           ) : (
-            <ProjectStats readTime={readTime} {...meta}>
-              <ViewsIncrementer />
-            </ProjectStats>
+            <ProjectStats slug={slug} readTime={readTime} increment {...meta} />
           )}
         </section>
       </section>
