@@ -7,7 +7,9 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    // ! use important as a workaround for nextjs@13.1.0 bug that prevents smooth scroll
+    // * remove it when the bug is fixed
+    scroll-behavior: smooth !important;
   }
 
   body {
