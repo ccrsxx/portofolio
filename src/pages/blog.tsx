@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { getAllContents } from '@lib/mdx';
+import { getAllBlogWithViews } from '@lib/api-server';
 import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/useSessionStorage';
 import { setTransition } from '@lib/transition';
@@ -13,7 +13,8 @@ import { Accent } from '@components/ui/accent';
 import type { ChangeEvent } from 'react';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
 import type { Variants } from 'framer-motion';
-import type { BlogWithMeta } from '@lib/types/contents';
+import type { Blog } from '@lib/types/contents';
+import type { BlogWithViews } from '@lib/api-server';
 import type { SortOption } from '@components/blog/sort-listbox';
 
 export default function Blog({
@@ -25,7 +26,7 @@ export default function Blog({
     sortOptions[0]
   );
 
-  const [filteredPosts, setFilteredPosts] = useState<BlogWithMeta[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Blog[]>([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -155,14 +156,14 @@ export default function Blog({
 }
 
 type BlogProps = {
-  posts: BlogWithMeta[];
+  posts: BlogWithViews[];
   tags: string[];
 };
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
-  const posts = await getAllContents('blog');
+  const posts = await getAllBlogWithViews();
   const tags = getTags(posts);
 
   return {

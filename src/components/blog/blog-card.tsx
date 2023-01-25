@@ -2,11 +2,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { formatDate } from '@lib/format';
 import { Accent } from '@components/ui/accent';
+import { ViewsCounter } from '@components/content/views-counter';
 import { BlogStats } from './blog-stats';
 import { TechTag } from './tech-tag';
-import type { BlogWithMeta } from '@lib/types/contents';
+import type { Blog } from '@lib/types/contents';
 
-type BlogCardProps = BlogWithMeta & {
+type BlogCardProps = Blog & {
   Tag?: keyof JSX.IntrinsicElements;
   isTagSelected?: (tag: string) => boolean;
 };
@@ -15,7 +16,6 @@ export function BlogCard({
   Tag = 'article',
   slug,
   tags,
-  views,
   title,
   banner,
   readTime,
@@ -58,7 +58,9 @@ export function BlogCard({
           <h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
             {title}
           </h3>
-          <BlogStats views={views} readTime={readTime} />
+          <BlogStats readTime={readTime}>
+            <ViewsCounter type='blog' slug={slug} />
+          </BlogStats>
           <p className='mt-4 text-sm font-bold text-gray-800 dark:text-gray-100'>
             {formatDate(publishedAt)}
           </p>

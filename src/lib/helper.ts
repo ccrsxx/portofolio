@@ -22,6 +22,13 @@ export function preventBubbling({
 }
 
 /**
+ * Returns the content without the extension.
+ */
+export function removeContentExtension(content: string): string {
+  return content.replace(/\.mdx$/, '');
+}
+
+/**
  * Returns an array of unique tags from the contents.
  */
 export function getTags(contents: Blog[]): string[] {

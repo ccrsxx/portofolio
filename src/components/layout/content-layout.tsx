@@ -1,7 +1,6 @@
 import { MDXProvider } from '@mdx-js/react';
 import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
-import { HiHeart } from 'react-icons/hi2';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
 import { components } from '@components/content/components';
@@ -15,15 +14,11 @@ import { TableOfContents } from '@components/content/table-of-contents';
 import { SubscribeCard } from '@components/blog/subscribe-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { CustomLink } from '@components/link/custom-link';
+import { ViewsCounter } from '@components/content/views-counter';
+import { LikesCounter } from '@components/content/likes-counter';
 import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
-import type {
-  Blog,
-  Project,
-  Content,
-  BlogWithMeta,
-  ProjectWithMeta
-} from '@lib/types/contents';
+import type { Blog, Project, Content } from '@lib/types/contents';
 import type { ContentSlugProps } from '@lib/mdx';
 
 type ContentLayoutProps = {
@@ -39,13 +34,17 @@ export function ContentLayout({
 }: ContentLayoutProps): JSX.Element {
   const [
     { title, description, publishedAt, banner, bannerAlt, bannerLink },
-    { type, slug, views, likes, readTime, lastUpdatedAt, suggestedContents }
+    { type, slug, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
   const contentIsBlog = type === 'blog';
 
   const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
   const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
+
+  const ViewsIncrementer = (): JSX.Element => (
+    <ViewsCounter type={type} slug={slug} incrementViews />
+  );
 
   return (
     <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
@@ -75,9 +74,13 @@ export function ContentLayout({
         )}
         <section className='mt-4 grid gap-2'>
           {contentIsBlog ? (
-            <BlogStats readTime={readTime} views={views} />
+            <BlogStats readTime={readTime}>
+              <ViewsIncrementer />
+            </BlogStats>
           ) : (
-            <ProjectStats readTime={readTime} views={views} {...meta} />
+            <ProjectStats readTime={readTime} {...meta}>
+              <ViewsIncrementer />
+            </ProjectStats>
           )}
         </section>
       </section>
@@ -90,15 +93,7 @@ export function ContentLayout({
           <MDXProvider components={components}>{children}</MDXProvider>
         </article>
         <TableOfContents>
-          <div className='mt-4 flex items-center justify-center gap-2'>
-            <button
-              className='text-gray-400 transition-transform hover:scale-110
-                         active:scale-95 dark:text-gray-600'
-            >
-              <HiHeart className='h-12 w-12' />
-            </button>
-            <p className='text-lg text-gray-400 dark:text-gray-500'>{likes}</p>
-          </div>
+          <LikesCounter slug={slug} />
         </TableOfContents>
       </section>
       <section className='mt-20 grid gap-4'>
@@ -107,12 +102,10 @@ export function ContentLayout({
         </h2>
         <section className='grid grid-cols-3 gap-4'>
           {contentIsBlog
-            ? (suggestedContents as BlogWithMeta[]).map(
-                (suggestedContent, index) => (
-                  <BlogCard {...suggestedContent} key={index} />
-                )
-              )
-            : (suggestedContents as ProjectWithMeta[]).map(
+            ? (suggestedContents as Blog[]).map((suggestedContent, index) => (
+                <BlogCard {...suggestedContent} key={index} />
+              ))
+            : (suggestedContents as Project[]).map(
                 (suggestedContent, index) => (
                   <ProjectCard {...suggestedContent} key={index} />
                 )
