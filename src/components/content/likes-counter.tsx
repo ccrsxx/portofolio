@@ -80,11 +80,8 @@ function GradientHeart({ likes }: { likes: number }): JSX.Element {
           />
           <rect
             fill='url(#gradient)'
-            className='h-5 w-5'
-            style={{
-              transform: `translateY(${20 - likes * 4}px)`,
-              transition: 'transform 150ms cubic-bezier(0.64, 0.57, 0.67, 1.53)'
-            }}
+            className='h-5 w-5 transition-transform'
+            style={{ transform: `translateY(${20 - likes * 4}px)` }}
           />
         </g>
       </svg>
