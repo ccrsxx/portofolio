@@ -1,6 +1,6 @@
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
-import { getSessionId } from '@lib/api-server';
+import { getSessionId, getTotalLikes } from '@lib/helper-server';
 import type { LikeStatus } from '@lib/types/meta';
 import type { APIResponse } from '@lib/types/helper';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -11,7 +11,8 @@ export default async function handler(
 ): Promise<void> {
   const { slug } = req.query as { slug: string };
 
-  const sessionId = await getSessionId(req);
+  const sessionId = getSessionId(req);
+  const sessionIdFieldReference = `likesBy.${sessionId}`;
 
   try {
     const docRef = doc(contentsCollection, slug);
@@ -25,14 +26,14 @@ export default async function handler(
 
     if (!(sessionId in likesBy)) likesBy[sessionId] = 0;
 
-    const userLikes = likesBy[sessionId];
+    let userLikes = likesBy[sessionId];
 
     if (req.method === 'GET') {
-      const likes = Object.values(likesBy).reduce((acc, curr) => acc + curr, 0);
+      const likes = getTotalLikes(likesBy);
 
       await updateDoc(docRef, {
         likes,
-        likesBy
+        [sessionIdFieldReference]: userLikes
       });
 
       return res.status(200).json({ likes, userLikes });
@@ -42,16 +43,16 @@ export default async function handler(
       if (userLikes >= 5)
         return res.status(422).json({ message: 'Likes limit reached' });
 
-      likesBy[sessionId] += 1;
+      userLikes += 1;
 
-      const likes = Object.values(likesBy).reduce((acc, curr) => acc + curr, 0);
+      const likes = getTotalLikes(likesBy);
 
       await updateDoc(docRef, {
         likes,
-        likesBy
+        [sessionIdFieldReference]: userLikes
       });
 
-      return res.status(201).json({ likes, userLikes: userLikes + 1 });
+      return res.status(201).json({ likes, userLikes });
     }
   } catch (err) {
     if (err instanceof Error)

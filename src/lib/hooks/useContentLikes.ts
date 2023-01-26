@@ -1,12 +1,11 @@
 import useSWR from 'swr';
 import { fetcher } from '@lib/fetcher';
 import type { ValidApiEndpoints } from '@lib/types/api';
-import type { Likes, LikeStatus } from '@lib/types/meta';
+import type { LikeStatus } from '@lib/types/meta';
 
 type ContentLikes = {
-  likes?: Likes;
+  likeStatus?: LikeStatus;
   isLoading: boolean;
-  likesLimitReached: boolean;
   registerLikes: () => Promise<void>;
 };
 
@@ -23,12 +22,8 @@ export function useContentLikes(slug: string): ContentLikes {
     fetcher
   );
 
-  const { likes } = likeStatus ?? {};
-
-  const likesLimitReached = !!(likeStatus && likeStatus.userLikes >= 5);
-
   const registerLikes = async (): Promise<void> => {
-    if (likesLimitReached) return;
+    if (!likeStatus || likeStatus.userLikes >= 5) return;
 
     const likes = await fetcher<LikeStatus>(`/api/likes/${slug}`, {
       method: 'POST'
@@ -37,5 +32,5 @@ export function useContentLikes(slug: string): ContentLikes {
     await mutate(likes);
   };
 
-  return { likes, likesLimitReached, isLoading, registerLikes };
+  return { likeStatus, isLoading, registerLikes };
 }
