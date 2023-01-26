@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MdHistory } from 'react-icons/md';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
-import { components } from '@components/content/components';
+import { components } from '@components/content/mdx-components';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
