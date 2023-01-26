@@ -1,5 +1,32 @@
+import { createHash } from 'crypto';
 import { NextResponse } from 'next/server';
+import { IP_ADDRESS_SALT } from './env';
+import type { NextApiRequest } from 'next';
 import type { NextRequest } from 'next/server';
+
+/**
+ * Returns a hashed session id from the user's IP address.
+ */
+export function getSessionId(req: NextApiRequest): string {
+  const ipAddressFromHeaders = req.headers['x-forwarded-for'] as
+    | string
+    | undefined;
+
+  const ipAddress = ipAddressFromHeaders ?? '127.0.0.1';
+
+  const hashedIpAddress = createHash('md5')
+    .update(ipAddress + IP_ADDRESS_SALT)
+    .digest('hex');
+
+  return hashedIpAddress;
+}
+
+/**
+ * Get total likes from an object of likes.
+ */
+export function getTotalLikes(likes: Record<string, number>): number {
+  return Object.values(likes).reduce((accLikes, like) => accLikes + like, 0);
+}
 
 /**
  * Returns the bearer token from the request headers.
