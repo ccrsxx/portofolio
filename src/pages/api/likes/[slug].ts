@@ -45,7 +45,7 @@ export default async function handler(
 
       userLikes += 1;
 
-      const likes = getTotalLikes(likesBy);
+      const likes = getTotalLikes(likesBy) + 1;
 
       await updateDoc(docRef, {
         likes,
