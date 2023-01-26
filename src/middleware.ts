@@ -12,7 +12,7 @@ export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);
 
   if (origin !== VALID_ORIGIN_URL)
-    return generateNextResponse(403, 'Invalid origin');
+    return generateNextResponse(403, 'Forbidden');
 
   if (!isValidRequestMethod(req))
     return generateNextResponse(405, 'Method not allowed');
@@ -20,7 +20,7 @@ export function middleware(req: NextRequest): NextResponse {
   const bearerToken = getBearerToken(req);
 
   if (bearerToken !== OWNER_BEARER_TOKEN)
-    return generateNextResponse(401, 'Invalid token');
+    return generateNextResponse(401, 'Unauthorized');
 
   return NextResponse.next();
 }
