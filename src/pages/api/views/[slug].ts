@@ -4,12 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import type { APIResponse } from '@lib/types/helper';
 import type { Views } from '@lib/types/meta';
 
-/**
- * TODO: Sometimes the views returns 1 from firebase.
- * This only happens when I increment the views from the API.
- * Need to investigate why this happens later.
- */
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<APIResponse<Views>>
