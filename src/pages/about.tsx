@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import {
-  SiReact,
+  SiFirebase,
   SiNextdotjs,
   SiTypescript,
   SiTailwindcss
@@ -110,16 +110,16 @@ const favoriteTechStack: FavoriteTechStack[] = [
     Icon: SiNextdotjs
   },
   {
-    tip: 'a javascript library for building user interfaces. Great for Single Page Applications.',
-    name: 'Create React App',
-    href: 'https://reactjs.org',
-    Icon: SiReact
-  },
-  {
-    tip: 'a superset of JavaScript that adds static typing and other features.',
+    tip: 'a strongly typed language that builds on JavaScript, giving you better tooling at any scale.',
     name: 'TypeScript',
     href: 'https://www.typescriptlang.org',
     Icon: SiTypescript
+  },
+  {
+    tip: 'an app development platform that helps you build and grow apps and games users love.',
+    name: 'Firebase',
+    href: 'https://firebase.google.com',
+    Icon: SiFirebase
   },
   {
     tip: 'a utility-first CSS framework that helps you build custom designs without ever leaving your JSX.',
