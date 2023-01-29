@@ -170,7 +170,8 @@ export async function getStaticProps(): Promise<
     props: {
       posts,
       tags
-    }
+    },
+    revalidate: 60
   };
 }
 
