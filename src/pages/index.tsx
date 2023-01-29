@@ -21,7 +21,7 @@ export default function Home({
   return (
     <main>
       <SEO
-        title='Risal Amin - Web Developer'
+        title='Risal Amin | Full Stack Developer'
         description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.'
       />
       <section className='-mt-20 grid min-h-screen content-center'>
@@ -35,7 +35,7 @@ export default function Home({
           className='mt-1 text-6xl font-bold transition-colors delay-200'
           {...setTransition({ delayIn: 0.1 })}
         >
-          You can call me <Accent>Risal</Accent>
+          I&apos;m <Accent>Risal</Accent> - Full Stack Developer
         </motion.h1>
         <motion.p
           className='mt-6 max-w-4xl text-xl text-gray-700 transition-colors 
@@ -80,6 +80,9 @@ export default function Home({
         <h2 className='text-4xl font-bold'>
           <Accent>Featured Posts</Accent>
         </h2>
+        <p className='-mt-2 text-gray-600 dark:text-gray-300'>
+          Check out my featured blog posts.
+        </p>
         <section className='grid grid-cols-3 gap-4'>
           {featuredBlog.map((blog, index) => (
             <BlogCard {...blog} key={index} />
@@ -100,7 +103,7 @@ export default function Home({
           <Accent>Featured Project</Accent>
         </h2>
         <p className='-mt-2 text-gray-600 dark:text-gray-300'>
-          Some projects I&apos;m proud of
+          Check out my featured blog posts.
         </p>
         <section className='grid grid-cols-3 gap-4'>
           {featuredProjects.map((project, index) => (
