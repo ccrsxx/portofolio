@@ -26,5 +26,6 @@ export function middleware(req: NextRequest): NextResponse {
 }
 
 export const config = {
-  matcher: '/api/:path*'
+  // Match all API routes except /api/auth/*
+  matcher: '/api/((?!auth).*)'
 };
