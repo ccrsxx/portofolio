@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
 import { NextResponse } from 'next/server';
-import { IP_ADDRESS_SALT } from './env';
+import { GITHUB_TOKEN } from './env';
 import type { NextApiRequest } from 'next';
 import type { NextRequest } from 'next/server';
 
@@ -15,14 +15,27 @@ export function getSessionId(req: NextApiRequest): string {
   const ipAddress = ipAddressFromHeaders ?? '127.0.0.1';
 
   const hashedIpAddress = createHash('md5')
-    .update(ipAddress + IP_ADDRESS_SALT)
+    .update(ipAddress + (process.env.IP_ADDRESS_SALT as string))
     .digest('hex');
 
   return hashedIpAddress;
 }
 
 /**
- * Get total likes from an object of likes.
+ * Returns the username with the given user id from the GitHub API.
+ */
+export async function getGithubUsername(userId: string): Promise<string> {
+  const response = await fetch(`https://api.github.com/user/${userId}`, {
+    headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+  });
+
+  const { login } = (await response.json()) as { login: string };
+
+  return login;
+}
+
+/**
+ * Returns total likes from the given likes object.
  */
 export function getTotalLikes(likes: Record<string, number>): number {
   return Object.values(likes).reduce((accLikes, like) => accLikes + like, 0);
