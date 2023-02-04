@@ -13,7 +13,7 @@ export function SubscribeCard(): JSX.Element {
       </p>
       <div className='mt-4 flex items-center gap-2'>
         <input
-          className='main-border w-full rounded-md bg-white px-3 py-2 outline-none
+          className='main-border w-full rounded-md px-3 py-2 outline-none
                      transition focus:border-accent-blue dark:bg-dark-background'
           type='email'
           placeholder='Email'

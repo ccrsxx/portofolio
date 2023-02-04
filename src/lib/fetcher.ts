@@ -1,6 +1,9 @@
 import { OWNER_BEARER_TOKEN } from './env';
 import type { ValidApiEndpoints } from './types/api';
 
+/**
+ * A fetcher function that adds the owner bearer token to the request.
+ */
 export async function fetcher<T>(
   input: ValidApiEndpoints | Request,
   init?: RequestInit

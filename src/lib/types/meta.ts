@@ -9,7 +9,6 @@ export type ContentMeta = {
   likesBy: Record<string, number>;
 };
 
-export type Likes = ContentMeta['likes'];
 export type Views = ContentMeta['views'];
 
 export type LikeStatus = {
