@@ -1,11 +1,22 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { contentsCollection } from './firebase/collections';
+import {
+  doc,
+  query,
+  getDoc,
+  setDoc,
+  getDocs,
+  orderBy
+} from 'firebase/firestore';
+import {
+  contentsCollection,
+  guestbookCollection
+} from './firebase/collections';
 import { getAllContents } from './mdx';
 import { getContentFiles } from './mdx-utils';
 import { VALID_CONTENT_TYPES } from './helper-server';
 import { removeContentExtension } from './helper';
 import type { Blog, ContentType } from './types/contents';
 import type { ContentMeta } from './types/meta';
+import type { Guestbook } from './types/guestbook';
 
 /**
  * Initialize all blog and projects if not exists in firestore at build time.
@@ -41,6 +52,20 @@ export async function initializeContents(type: ContentType): Promise<void> {
   });
 
   await Promise.all(contentPromises);
+}
+
+/**
+ * Returns all the guestbook.
+ */
+export async function getGuestbook(): Promise<Guestbook[]> {
+  const snapshot = await getDocs(
+    query(guestbookCollection, orderBy('createdAt', 'desc'))
+  );
+
+  const guestbook = snapshot.docs.map((doc) => doc.data());
+  const parsedGuestbook = JSON.parse(JSON.stringify(guestbook)) as Guestbook[];
+
+  return parsedGuestbook;
 }
 
 export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;

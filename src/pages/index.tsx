@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
-import { initializeAllContents } from '@lib/build';
+import { initializeAllContents } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
 import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
