@@ -40,9 +40,7 @@ export function getContentSlug(type: ContentType, slug: string) {
  * Returns all the contents within the selected content directory.
  */
 export async function getAllContents(type: 'blog'): Promise<Blog[]>;
-
 export async function getAllContents(type: 'projects'): Promise<Project[]>;
-
 export async function getAllContents(
   type: ContentType
 ): Promise<(Blog | Project)[]> {

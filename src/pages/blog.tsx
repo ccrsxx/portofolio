@@ -128,9 +128,9 @@ export default function Blog({
             <AnimatePresence>
               {filteredPosts.map((post) => (
                 <motion.article
+                  {...variants}
                   className='grid'
                   layout='position'
-                  {...variants}
                   key={post.title}
                 >
                   <BlogCard Tag='div' {...post} isTagSelected={isTagSelected} />
