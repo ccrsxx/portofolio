@@ -12,7 +12,9 @@ export function Loading({
 }: LoadingProps): JSX.Element {
   return (
     <i className={clsx('flex justify-center', className)}>
-      <ImSpinner2 className={clsx('text-main-accent', iconClassName)} />
+      <ImSpinner2
+        className={clsx('animate-spin text-accent-blue', iconClassName)}
+      />
     </i>
   );
 }

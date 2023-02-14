@@ -20,7 +20,8 @@ export function Button({
     <button
       className={clsx(
         'smooth-tab clickable',
-        loading && 'relative !text-transparent disabled:cursor-wait',
+        loading &&
+          'relative !text-transparent brightness-75 disabled:cursor-wait',
         className
       )}
       type='button'
