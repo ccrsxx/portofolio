@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import {
   getOrigin,
   getBearerToken,
-  generateNextResponse,
-  isValidRequestMethod
+  generateNextResponse
 } from '@lib/helper-server';
 import { OWNER_BEARER_TOKEN, VALID_ORIGIN_URL } from '@lib/env';
 import type { NextRequest } from 'next/server';
@@ -13,9 +12,6 @@ export function middleware(req: NextRequest): NextResponse {
 
   if (origin !== VALID_ORIGIN_URL)
     return generateNextResponse(403, 'Forbidden');
-
-  if (!isValidRequestMethod(req))
-    return generateNextResponse(405, 'Method not allowed');
 
   const bearerToken = getBearerToken(req);
 

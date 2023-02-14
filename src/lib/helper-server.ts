@@ -71,19 +71,6 @@ export function getOrigin(req: NextRequest): string | null {
   return originFromReferer;
 }
 
-type ValidRequestsMethod = typeof VALID_REQUESTS_METHODS[number];
-
-const VALID_REQUESTS_METHODS = ['GET', 'POST'] as const;
-
-/**
- * Returns true if the request method is `GET` or `POST`
- */
-export function isValidRequestMethod(
-  req: NextRequest
-): req is NextRequest & { method: ValidRequestsMethod } {
-  return VALID_REQUESTS_METHODS.includes(req.method as ValidRequestsMethod);
-}
-
 type ValidContentTypes = typeof VALID_CONTENT_TYPES[number];
 
 export const VALID_CONTENT_TYPES = ['blog', 'projects'] as const;
