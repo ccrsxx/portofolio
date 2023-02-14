@@ -1,20 +1,30 @@
 import { getServerSession } from 'next-auth/next';
 import { motion } from 'framer-motion';
+import { getGuestbook } from '@lib/api';
 import { setTransition } from '@lib/transition';
+import { useGuestbook } from '@lib/hooks/useGuestbook';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { GuestbookCard } from '@components/guestbook/guestbook-card';
+import { GuestbookForm } from '@components/guestbook/guestbook-form';
+import { GuestbookEntry } from '@components/guestbook/guestbook-entry';
 import { authOptions } from './api/auth/[...nextauth]';
 import type {
   GetServerSidePropsResult,
   GetServerSidePropsContext,
   InferGetServerSidePropsType
 } from 'next';
-import type { AuthOptions, Session } from 'next-auth';
+import type { AuthOptions } from 'next-auth';
+import type { CustomSession } from '@lib/types/api';
+import type { Guestbook } from '@lib/types/guestbook';
 
 export default function Guestbook({
-  session
+  session,
+  guestbook: fallbackData
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+  const { guestbook, registerGuestbook, unRegisterGuestbook } =
+    useGuestbook(fallbackData);
+
   return (
     <main className='grid gap-6 py-12'>
       <SEO
@@ -34,17 +44,33 @@ export default function Guestbook({
         </motion.p>
       </section>
       <motion.section {...setTransition({ delayIn: 0.2 })}>
-        <GuestbookCard session={session} />
+        <GuestbookCard>
+          <GuestbookForm
+            session={session}
+            registerGuestbook={registerGuestbook}
+          />
+        </GuestbookCard>
       </motion.section>
-      <section></section>
+      <motion.section
+        className='grid gap-4'
+        {...setTransition({ delayIn: 0.3 })}
+      >
+        {guestbook?.map((entry) => (
+          <GuestbookEntry
+            {...entry}
+            session={session}
+            unRegisterGuestbook={unRegisterGuestbook}
+            key={entry.id}
+          />
+        ))}
+      </motion.section>
     </main>
   );
 }
 
-type CustomSession = Session & { user: { username: string } };
-
 type GuestbookProps = {
   session: CustomSession | null;
+  guestbook: Guestbook[];
 };
 
 export async function getServerSideProps(
@@ -56,9 +82,12 @@ export async function getServerSideProps(
     authOptions
   );
 
+  const guestbook = await getGuestbook();
+
   return {
     props: {
-      session
+      session,
+      guestbook
     }
   };
 }
