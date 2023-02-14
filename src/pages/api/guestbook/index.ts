@@ -51,7 +51,7 @@ export default async function handler(
         createdAt: Timestamp.now()
       } as Guestbook;
 
-      res.status(201).json(newestGuestbook);
+      return res.status(201).json(newestGuestbook);
     }
   } catch (err) {
     if (err instanceof Error)
