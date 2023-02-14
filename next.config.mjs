@@ -61,7 +61,7 @@ export default withMDX({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: []
+    domains: ['avatars.githubusercontent.com']
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx']
 });
