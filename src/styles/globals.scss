@@ -50,6 +50,11 @@
     @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent;
   }
 
+  .custom-underline {
+    @apply underline decoration-transparent outline-none transition [text-decoration-thickness:1px] 
+           hover:decoration-inherit focus-visible:decoration-inherit;
+  }
+
   .animated-underline {
     background-size: 0 2px;
     background-position: 0 100%;
