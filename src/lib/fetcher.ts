@@ -11,6 +11,7 @@ export async function fetcher<T>(
   const res = await fetch(input, {
     ...init,
     headers: {
+      ...init?.headers,
       Authorization: `Bearer ${OWNER_BEARER_TOKEN}`
     }
   });
