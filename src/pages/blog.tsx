@@ -71,7 +71,7 @@ export default function Blog({
     filteredTags.includes(tag) && search.toLowerCase().split(' ').includes(tag);
 
   return (
-    <main className='py-12'>
+    <main className='min-h-screen py-12'>
       <SEO
         title='Blog | Risal Amin'
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'

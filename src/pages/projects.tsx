@@ -11,7 +11,7 @@ export default function Projects({
   projects
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
-    <main className='grid gap-6 py-12'>
+    <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO
         title='Projects | Risal Amin'
         description='A showcase of my projects on the web development.'
