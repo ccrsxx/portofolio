@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import type { Timestamp } from 'firebase/firestore';
 
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
@@ -10,9 +10,7 @@ export function formatNumber(numberValue: number): string {
 }
 
 const DATE_FORMATTER = new Intl.DateTimeFormat(undefined, {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+  dateStyle: 'long'
 });
 
 /**
@@ -43,6 +41,8 @@ export function formatTimestamp({
   seconds,
   nanoseconds
 }: formatTimestampProps): string {
-  const date = new Timestamp(seconds, nanoseconds).toDate();
+  const miliseconds = seconds * 1000 + nanoseconds / 1_000_000;
+  const date = new Date(miliseconds);
+
   return TIMESTAMP_FORMATTER.format(date);
 }
