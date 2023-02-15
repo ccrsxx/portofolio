@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth/next';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { getGuestbook } from '@lib/api';
 import { setTransition } from '@lib/transition';
 import { useGuestbook } from '@lib/hooks/useGuestbook';
@@ -26,7 +26,7 @@ export default function Guestbook({
     useGuestbook(fallbackData);
 
   return (
-    <main className='grid gap-6 py-12'>
+    <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO
         title='Guestbook | Risal Amin'
         description='Sign my digital guestbook and share some wisdom.'
@@ -55,14 +55,25 @@ export default function Guestbook({
         className='grid gap-4'
         {...setTransition({ delayIn: 0.3 })}
       >
-        {guestbook?.map((entry) => (
-          <GuestbookEntry
-            {...entry}
-            session={session}
-            unRegisterGuestbook={unRegisterGuestbook}
-            key={entry.id}
-          />
-        ))}
+        <AnimatePresence>
+          {guestbook?.length ? (
+            guestbook?.map((entry) => (
+              <GuestbookEntry
+                {...entry}
+                session={session}
+                unRegisterGuestbook={unRegisterGuestbook}
+                key={entry.id}
+              />
+            ))
+          ) : (
+            <motion.h2
+              className='text-center text-3xl font-bold'
+              {...setTransition({ delayIn: 0.2 })}
+            >
+              <Accent>Sorry, Guestbook is currently empty :&#40;</Accent>
+            </motion.h2>
+          )}
+        </AnimatePresence>
       </motion.section>
     </main>
   );

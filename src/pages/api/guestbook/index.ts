@@ -43,11 +43,11 @@ export default async function handler(
         createdAt: serverTimestamp()
       };
 
-      await addDoc(guestbookCollection, data);
+      const { id } = await addDoc(guestbookCollection, data);
 
       const newestGuestbook = {
         ...data,
-        id: Math.random().toString(),
+        id,
         createdAt: Timestamp.now()
       } as Guestbook;
 

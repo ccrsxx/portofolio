@@ -1,12 +1,17 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { HiTrash } from 'react-icons/hi2';
 import { formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
+import { Button } from '@components/ui/button';
+import type { Variants } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
 
 type GuestbookEntryProps = Guestbook & {
   session: CustomSession | null;
-  unRegisterGuestbook: (id: string) => () => Promise<void>;
+  unRegisterGuestbook: (id: string) => Promise<void>;
 };
 
 export function GuestbookEntry({
@@ -19,12 +24,24 @@ export function GuestbookEntry({
   createdAt,
   unRegisterGuestbook
 }: GuestbookEntryProps): JSX.Element {
+  const [loading, setLoading] = useState(false);
+
+  const handleUnRegisterGuestbook = async (): Promise<void> => {
+    setLoading(true);
+    await unRegisterGuestbook(id);
+    setLoading(false);
+  };
+
   const isOwner = session?.user.username === username;
 
   const GITHUB_PROFILE_URL = `https://github.com/${username}`;
 
   return (
-    <article className='main-border grid grid-cols-[auto,1fr] gap-3 rounded-md p-4'>
+    <motion.article
+      className='main-border relative grid grid-cols-[auto,1fr] gap-3 rounded-md p-4'
+      layout='position'
+      {...variants}
+    >
       <UnstyledLink href={GITHUB_PROFILE_URL}>
         <Image
           className='rounded-full transition hover:brightness-75'
@@ -46,18 +63,26 @@ export function GuestbookEntry({
           <p className='text-gray-600 dark:text-gray-300'>
             {formatTimestamp(createdAt)}
           </p>
-          {isOwner && (
-            <button
-              className='custom-underline text-red-400'
-              type='button'
-              onClick={unRegisterGuestbook(id)}
-            >
-              Delete
-            </button>
-          )}
         </div>
         <p className='break-words'>{text}</p>
       </div>
-    </article>
+      {isOwner && (
+        <Button
+          className='custom-underline main-border clickable !absolute right-2 top-2 
+                     rounded-md p-1.5 text-red-400'
+          loading={loading}
+          type='button'
+          onClick={handleUnRegisterGuestbook}
+        >
+          <HiTrash className='h-5 w-5' />
+        </Button>
+      )}
+    </motion.article>
   );
 }
+
+const variants: Variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.8 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } }
+};

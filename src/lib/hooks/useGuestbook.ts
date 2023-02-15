@@ -7,7 +7,7 @@ type ContentGuestbook = {
   guestbook?: Guestbook[];
   isLoading: boolean;
   registerGuestbook: (text: Text) => Promise<void>;
-  unRegisterGuestbook: (id: string) => () => Promise<void>;
+  unRegisterGuestbook: (id: string) => Promise<void>;
 };
 
 /**
@@ -34,7 +34,7 @@ export function useGuestbook(fallbackData: Guestbook[]): ContentGuestbook {
     await mutate([newGuestbook, ...(guestbook ?? [])]);
   };
 
-  const unRegisterGuestbook = (id: string) => async (): Promise<void> => {
+  const unRegisterGuestbook = async (id: string): Promise<void> => {
     await fetcher(`/api/guestbook/${id}`, { method: 'DELETE' });
 
     const newGuestbook = guestbook?.filter((entry) => entry.id !== id);

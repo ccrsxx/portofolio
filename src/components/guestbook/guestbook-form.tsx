@@ -80,12 +80,12 @@ export function GuestbookForm({
       </form>
       {session && (
         <button
-          className='mt-2 border-none text-gray-600 hover:brightness-110 
-                     disabled:cursor-not-allowed disabled:brightness-90 dark:text-gray-300'
+          className='mt-2 border-none font-medium text-gray-600 transition hover:brightness-110
+                     disabled:cursor-not-allowed disabled:brightness-75 dark:text-gray-300'
           onClick={handleSignOut}
           disabled={loading}
         >
-          ← Sign out
+          ← Sign out @{session.user.name}
         </button>
       )}
     </>
