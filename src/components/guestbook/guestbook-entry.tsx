@@ -43,10 +43,7 @@ export function GuestbookEntry({
       {...variants}
     >
       <UnstyledLink href={GITHUB_PROFILE_URL}>
-        <GuestbookEntryAvatar
-          src={`${image}?lastmod=${Date.now()}`}
-          alt={name}
-        />
+        <GuestbookEntryAvatar src={image} alt={name} />
       </UnstyledLink>
       <div className='min-w-0'>
         <div className='flex gap-2'>

@@ -4,21 +4,6 @@ import { useTheme } from 'next-themes';
 import { useMounted } from '@lib/hooks/useMounted';
 import type { Variants } from 'framer-motion';
 
-const variants: Variants[] = [
-  {
-    initial: { x: '-50px', y: '25px' },
-    animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },
-    exit: { x: '-50px', y: '25px', transition: { duration: 0.5 } }
-  },
-  {
-    initial: { x: '50px', y: '25px' },
-    animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },
-    exit: { x: '50px', y: '25px', transition: { duration: 0.5 } }
-  }
-];
-
-const [sunVariants, moonVariants] = variants;
-
 export function ThemeSwitch(): JSX.Element | null {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
@@ -52,3 +37,18 @@ export function ThemeSwitch(): JSX.Element | null {
     </button>
   );
 }
+
+const variants: Variants[] = [
+  {
+    initial: { x: '-50px', y: '25px' },
+    animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },
+    exit: { x: '-50px', y: '25px', transition: { duration: 0.5 } }
+  },
+  {
+    initial: { x: '50px', y: '25px' },
+    animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },
+    exit: { x: '50px', y: '25px', transition: { duration: 0.5 } }
+  }
+];
+
+const [sunVariants, moonVariants] = variants;

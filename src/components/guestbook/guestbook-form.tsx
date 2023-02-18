@@ -48,7 +48,7 @@ export function GuestbookForm({
         <input
           className={clsx(
             `main-border w-full rounded-md bg-white px-3 py-2 outline-none transition
-            focus:border-accent-blue disabled:cursor-not-allowed dark:bg-dark-background`,
+             focus:border-accent-blue disabled:cursor-not-allowed dark:bg-dark-background`,
             loading && 'brightness-75'
           )}
           type='text'
@@ -80,8 +80,9 @@ export function GuestbookForm({
       </form>
       {session && (
         <button
-          className='mt-2 border-none font-medium text-gray-600 transition hover:brightness-110
-                     disabled:cursor-not-allowed disabled:brightness-75 dark:text-gray-300'
+          className='mt-2 border-none font-medium text-gray-700 transition hover:text-black 
+                     disabled:cursor-not-allowed disabled:brightness-50 dark:text-gray-200 
+                     dark:hover:text-white'
           onClick={handleSignOut}
           disabled={loading}
         >
