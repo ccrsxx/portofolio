@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { HiTrash } from 'react-icons/hi2';
 import { formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
+import { GuestbookEntryAvatar } from './guestbook-entry-avatar';
 import type { Variants } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
@@ -43,11 +43,8 @@ export function GuestbookEntry({
       {...variants}
     >
       <UnstyledLink href={GITHUB_PROFILE_URL}>
-        <Image
-          className='rounded-full transition hover:brightness-75'
-          src={image}
-          width={48}
-          height={48}
+        <GuestbookEntryAvatar
+          src={`${image}?lastmod=${Date.now()}`}
           alt={name}
         />
       </UnstyledLink>
