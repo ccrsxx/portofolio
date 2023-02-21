@@ -32,7 +32,7 @@ export function GuestbookEntry({
     setLoading(false);
   };
 
-  const isOwner = session?.user.username === username;
+  const isOwner = session?.user.username === username || session?.user.admin;
 
   const GITHUB_PROFILE_URL = `https://github.com/${username}`;
 

@@ -29,8 +29,10 @@ export default async function handler(
 
       if (!guestbookData) return res.status(404).json({ message: 'Not found' });
 
-      if (session.user.username !== guestbookData.username)
-        return res.status(403).json({ message: 'Forbidden' });
+      const isOwner =
+        session.user.username === guestbookData.username || session.user.admin;
+
+      if (!isOwner) return res.status(403).json({ message: 'Forbidden' });
 
       await deleteDoc(docRef);
 

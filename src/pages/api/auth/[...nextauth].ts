@@ -15,7 +15,9 @@ export const authOptions: AuthOptions = {
       const userId = token.sub as string;
       const username = await getGithubUsername(userId);
 
-      return { ...session, user: { ...session.user, username } };
+      const admin = username === 'ccrsxx';
+
+      return { ...session, user: { ...session.user, username, admin } };
     }
   }
 };

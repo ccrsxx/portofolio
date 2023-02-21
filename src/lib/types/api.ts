@@ -12,6 +12,7 @@ type ApiEndpoints =
 export type ValidApiEndpoints = `/api/${ApiEndpoints}`;
 
 type CustomUser = Record<keyof NonNullable<Session['user']>, string> & {
+  admin: boolean;
   username: string;
 };
 
