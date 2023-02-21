@@ -1,4 +1,4 @@
-name: Deploy 🚀
+name: 🚀 Deployment
 
 on:
   push:
@@ -7,41 +7,54 @@ on:
     branches: ['main']
 
 jobs:
-  prettier:
-    name: 🧪 Prettier
+  type-check:
+    name: ✅ Type Check
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: 📥 Download deps
+      - name: Download deps
         run: npm ci
 
-      - name: 🔍 Format
-        run: npm run format
+      - name: Check types
+        run: npm run type-check
 
   eslint:
-    name: ✅ ESLint
+    name: 🧪 ESLint
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: 📥 Download deps
+      - name: Download deps
         run: npm ci
 
-      - name: 🪄 Lint
+      - name: Lint
         run: npm run lint
+
+  prettier:
+    name: 🔍 Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download deps
+        run: npm ci
+
+      - name: Format
+        run: npm run format
 
   jest:
     name: 🃏 Jest
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: 📥 Download deps
+      - name: Download deps
         run: npm ci
 
-      - name: 🔬 Test
+      - name: Test
         run: npm run test:ci

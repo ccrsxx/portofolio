@@ -3,4 +3,7 @@
 
 exec 1> /dev/tty
 
+npm run type-check
+npm run lint 
+
 npx lint-staged
