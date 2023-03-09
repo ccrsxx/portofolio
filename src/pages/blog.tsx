@@ -77,7 +77,7 @@ export default function Blog({
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
       />
       <section className='grid gap-2'>
-        <motion.h1 className='pb-1 text-5xl font-bold' {...setTransition()}>
+        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
           <Accent>Blog</Accent>
         </motion.h1>
         <motion.p

@@ -17,7 +17,7 @@ export default function Projects({
         description='A showcase of my projects on the web development.'
       />
       <section className='grid gap-2'>
-        <motion.h1 className='pb-1 text-5xl font-bold' {...setTransition()}>
+        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
           <Accent>Projects</Accent>
         </motion.h1>
         <motion.p

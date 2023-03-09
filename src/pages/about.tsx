@@ -19,7 +19,7 @@ export default function About(): JSX.Element {
         title='About | Risal Amin'
         description='Risal Amin is a web developer'
       />
-      <section className='grid gap-1'>
+      <section className='grid gap-2'>
         <motion.h2 className='text-3xl font-bold' {...setTransition()}>
           About
         </motion.h2>

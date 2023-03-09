@@ -32,7 +32,7 @@ export default function Guestbook({
         description='Sign my digital guestbook and share some wisdom.'
       />
       <section className='grid gap-2'>
-        <motion.h1 className='pb-1 text-5xl font-bold' {...setTransition()}>
+        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
           <Accent>Guestbook</Accent>
         </motion.h1>
         <motion.p
