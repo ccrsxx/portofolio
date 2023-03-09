@@ -61,7 +61,7 @@ export function GuestbookForm({
         {session ? (
           <Button
             type='submit'
-            className='custom-button bg-white font-bold text-gray-600 
+            className='custom-button clickable bg-white font-bold text-gray-600
                        dark:bg-dark-background dark:text-gray-300'
             loading={loading}
           >
@@ -69,7 +69,7 @@ export function GuestbookForm({
           </Button>
         ) : (
           <Button
-            className='custom-button flex items-center gap-2 whitespace-nowrap 
+            className='custom-button clickable flex items-center gap-2 whitespace-nowrap
                        font-bold text-gray-600 dark:text-gray-300'
             onClick={handleSignIn}
           >

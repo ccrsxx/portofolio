@@ -18,7 +18,7 @@ export function SubscribeCard(): JSX.Element {
           type='email'
           placeholder='Email'
         />
-        <Button className='custom-button font-bold text-gray-600 dark:text-gray-300'>
+        <Button className='custom-button clickable font-bold text-gray-600 dark:text-gray-300'>
           Subscribe
         </Button>
       </div>
