@@ -1,3 +1,4 @@
+import { createTransport } from 'nodemailer';
 import {
   doc,
   query,
@@ -15,6 +16,7 @@ import { getContentFiles } from './mdx-utils';
 import { VALID_CONTENT_TYPES } from './helper-server';
 import { removeContentExtension } from './helper';
 import type { Blog, ContentType } from './types/contents';
+import type { CustomSession } from './types/api';
 import type { ContentMeta } from './types/meta';
 import type { Guestbook } from './types/guestbook';
 
@@ -86,4 +88,31 @@ export async function getAllBlogWithViews(): Promise<BlogWithViews[]> {
   const postsWithViews = await Promise.all(postsPromises);
 
   return postsWithViews;
+}
+
+/**
+ * Send email to my email address.
+ */
+export async function sendEmail(
+  text: string,
+  session: CustomSession
+): Promise<void> {
+  const client = createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.EMAIL_ADDRESS as string,
+      pass: process.env.EMAIL_PASSWORD as string
+    }
+  });
+
+  const { name, email } = session.user;
+
+  const emailHeader = `New guestbook from ${name} (${email})`;
+
+  await client.sendMail({
+    from: process.env.EMAIL_ADDRESS as string,
+    to: process.env.EMAIL_TARGET as string,
+    subject: emailHeader,
+    text: text
+  });
 }

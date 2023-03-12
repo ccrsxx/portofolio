@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { addDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { getGuestbook } from '@lib/api';
+import { getGuestbook, sendEmail } from '@lib/api';
 import { guestbookCollection } from '@lib/firebase/collections';
 import { authOptions } from '../auth/[...nextauth]';
 import type { AuthOptions } from 'next-auth';
@@ -44,6 +44,8 @@ export default async function handler(
       };
 
       const { id } = await addDoc(guestbookCollection, data);
+
+      await sendEmail(text, session);
 
       const newestGuestbook = {
         ...data,
