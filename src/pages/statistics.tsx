@@ -1,6 +1,7 @@
 import { formatNumber } from '@lib/format';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
+import { Table } from '@components/statistics/table';
 import type { ContentStatistics } from '@lib/types/statistics';
 
 export default function Statistics(): JSX.Element {
@@ -38,6 +39,14 @@ export default function Statistics(): JSX.Element {
             </div>
           </article>
         ))}
+      </section>
+      <section className='mt-6 grid gap-4'>
+        <h2 className='text-2xl font-bold'>Blog</h2>
+        <Table />
+      </section>
+      <section className='mt-6 grid gap-4'>
+        <h2 className='text-2xl font-bold'>Projects</h2>
+        <Table />
       </section>
     </main>
   );

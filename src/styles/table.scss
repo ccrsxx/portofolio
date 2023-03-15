@@ -1,0 +1,17 @@
+table {
+  thead,
+  tbody {
+    tr {
+      th,
+      td {
+        &:first-child {
+          @apply text-left;
+        }
+
+        &:not(:first-child) {
+          @apply text-right;
+        }
+      }
+    }
+  }
+}
