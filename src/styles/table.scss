@@ -1,16 +1,20 @@
 table {
-  thead,
-  tbody {
+  thead {
     tr {
-      th,
-      td {
-        &:first-child {
-          @apply text-left;
-        }
+      th:first-child > div {
+        @apply flex-row-reverse;
+      }
+    }
+  }
 
-        &:not(:first-child) {
-          @apply text-right;
-        }
+  tbody {
+    tr > td {
+      &:first-child {
+        @apply text-left text-gray-900 dark:text-gray-50;
+      }
+
+      &:not(:first-child) {
+        @apply text-right text-gray-500 dark:text-gray-50;
       }
     }
   }
