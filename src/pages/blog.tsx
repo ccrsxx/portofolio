@@ -90,8 +90,7 @@ export default function Blog({
       <section className='mt-2'>
         <motion.section {...setTransition({ delayIn: 0.2 })}>
           <input
-            className='main-border mt-2 w-full rounded-md px-3 py-2 outline-none
-                       transition focus:border-accent-blue dark:bg-dark-background'
+            className='custom-input mt-2 w-full'
             type='text'
             value={search}
             placeholder='Search blog...'

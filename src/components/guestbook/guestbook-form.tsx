@@ -47,8 +47,7 @@ export function GuestbookForm({
       >
         <input
           className={clsx(
-            `main-border w-full rounded-md bg-white px-3 py-2 outline-none transition
-             focus:border-accent-blue disabled:cursor-not-allowed dark:bg-dark-background`,
+            'custom-input w-full disabled:cursor-not-allowed',
             loading && 'brightness-75'
           )}
           type='text'
