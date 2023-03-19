@@ -1,21 +1,15 @@
 table {
-  thead {
-    tr {
-      th:first-child > div {
-        @apply flex-row-reverse;
-      }
-    }
+  thead > tr > th:first-child > div {
+    @apply flex-row-reverse;
   }
 
-  tbody {
-    tr > td {
-      &:first-child {
-        @apply text-left text-gray-900 dark:text-gray-50;
-      }
+  tbody > tr > td {
+    &:first-child {
+      @apply text-left text-gray-900 dark:text-gray-50;
+    }
 
-      &:not(:first-child) {
-        @apply text-right text-gray-500 dark:text-gray-50;
-      }
+    &:not(:first-child) {
+      @apply text-right text-gray-500 dark:text-gray-50;
     }
   }
 }
