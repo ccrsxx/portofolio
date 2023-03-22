@@ -9,64 +9,25 @@ import {
   getFilteredRowModel
 } from '@tanstack/react-table';
 import { rankItem } from '@tanstack/match-sorter-utils';
+import { formatNumber } from '@lib/format';
 import { SortIcon } from './sort-icon';
 import type { ChangeEvent } from 'react';
 import type {
   Row,
   ColumnDef,
   FilterMeta,
+  CellContext,
   SortingState,
   SortDirection,
   ColumnFiltersState
 } from '@tanstack/react-table';
+import type { ContentColumn } from '@lib/types/statistics';
 
-type ContentColumn = {
-  postName: string;
-  views: number;
-  likes: number;
+type TableProps = {
+  data: ContentColumn[];
 };
 
-const data: ContentColumn[] = [
-  {
-    postName: 'Hello World',
-    views: 100_000,
-    likes: 1_000
-  },
-  {
-    postName: 'Hello World 2',
-    views: 200_000,
-    likes: 2_000
-  },
-  {
-    postName: 'Hello World 3',
-    views: 300_000,
-    likes: 3_000
-  }
-];
-
-const { accessor } = createColumnHelper<ContentColumn>();
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const columns: ColumnDef<ContentColumn, any>[] = [
-  accessor('postName', { header: 'Post Name' }),
-  accessor('views', { header: 'Views' }),
-  accessor('likes', { header: 'Likes' })
-];
-
-function fuzzyFilter(
-  row: Row<ContentColumn>,
-  columnId: string,
-  value: string,
-  addMeta: (meta: FilterMeta) => void
-): boolean {
-  const itemRank = rankItem(row.getValue(columnId), value);
-
-  addMeta({ itemRank });
-
-  return itemRank.passed;
-}
-
-export function Table(): JSX.Element {
+export function Table({ data }: TableProps): JSX.Element {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -108,7 +69,7 @@ export function Table(): JSX.Element {
         onChange={handleGlobalFilterChange}
       />
       <div className='main-border relative overflow-hidden rounded-md shadow-sm'>
-        <table className='w-full table-auto border-collapse divide-y divide-gray-300 text-sm dark:divide-gray-600'>
+        <table>
           <thead>
             {getHeaderGroups().map(({ id, headers }) => (
               <tr key={id}>
@@ -125,7 +86,7 @@ export function Table(): JSX.Element {
                   }) => (
                     <th
                       className={clsx(
-                        'group p-4 font-medium text-gray-500 dark:text-gray-200',
+                        'group',
                         getCanSort() && 'cursor-pointer select-none'
                       )}
                       onClick={getToggleSortingHandler()}
@@ -149,7 +110,7 @@ export function Table(): JSX.Element {
               </tr>
             ))}
           </thead>
-          <tbody className='divide-y divide-gray-300 dark:divide-gray-600'>
+          <tbody>
             {getRowModel().rows.map(({ id, getVisibleCells }) => (
               <tr key={id}>
                 {getVisibleCells().map(({ id, column, getContext }) => (
@@ -163,14 +124,48 @@ export function Table(): JSX.Element {
           <tfoot>
             <tr>
               <td>Total</td>
-              <td>{totalViews}</td>
-              <td>{totalLikes}</td>
+              <td>{formatNumber(totalViews)}</td>
+              <td>{formatNumber(totalLikes)}</td>
             </tr>
           </tfoot>
         </table>
       </div>
     </div>
   );
+}
+
+const { accessor } = createColumnHelper<ContentColumn>();
+
+function numericCellFormatter({
+  getValue
+}: CellContext<ContentColumn, number>): string {
+  return formatNumber(getValue());
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const columns: ColumnDef<ContentColumn, any>[] = [
+  accessor('slug', { header: 'Post Slug' }),
+  accessor('views', {
+    header: 'Views',
+    cell: numericCellFormatter
+  }),
+  accessor('likes', {
+    header: 'Likes',
+    cell: numericCellFormatter
+  })
+];
+
+function fuzzyFilter(
+  { getValue }: Row<ContentColumn>,
+  columnId: string,
+  value: string,
+  addMeta: (meta: FilterMeta) => void
+): boolean {
+  const itemRank = rankItem(getValue(columnId), value);
+
+  addMeta({ itemRank });
+
+  return itemRank.passed;
 }
 
 const sortDirections: SortDirection[] = ['asc', 'desc'];
