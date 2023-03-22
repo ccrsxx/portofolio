@@ -1,15 +1,38 @@
 table {
+  &,
+  tbody {
+    @apply divide-y divide-gray-300 dark:divide-gray-600;
+  }
+
+  & > :is(thead, tbody, tfoot) > tr > td {
+    @apply p-4 font-medium;
+  }
+
+  & > :is(tbody, tfoot) > tr > td {
+    &:first-child {
+      @apply text-left;
+    }
+
+    &:not(:first-child) {
+      @apply text-right;
+    }
+  }
+
   thead > tr > th:first-child > div {
     @apply flex-row-reverse;
   }
 
   tbody > tr > td {
     &:first-child {
-      @apply text-left text-gray-900 dark:text-gray-50;
+      @apply text-gray-900 dark:text-gray-50;
     }
 
     &:not(:first-child) {
-      @apply text-right text-gray-500 dark:text-gray-50;
+      @apply text-gray-500 dark:text-gray-50;
     }
+  }
+
+  tfoot > tr > td {
+    @apply text-gray-500 dark:text-gray-200;
   }
 }

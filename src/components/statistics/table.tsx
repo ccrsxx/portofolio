@@ -90,6 +90,14 @@ export function Table(): JSX.Element {
     target: { value }
   }: ChangeEvent<HTMLInputElement>): void => setGlobalFilter(value);
 
+  const [totalViews, totalLikes] = getRowModel().rows.reduce(
+    ([accViews, accLikes], { original: { views, likes } }) => [
+      accViews + views,
+      accLikes + likes
+    ],
+    [0, 0]
+  );
+
   return (
     <div className='grid gap-4'>
       <input
@@ -100,8 +108,8 @@ export function Table(): JSX.Element {
         onChange={handleGlobalFilterChange}
       />
       <div className='main-border relative overflow-hidden rounded-md shadow-sm'>
-        <table className='w-full table-auto border-collapse text-sm'>
-          <thead className='main-border border-0 border-b'>
+        <table className='w-full table-auto border-collapse divide-y divide-gray-300 text-sm dark:divide-gray-600'>
+          <thead>
             {getHeaderGroups().map(({ id, headers }) => (
               <tr key={id}>
                 {headers.map(
@@ -117,13 +125,13 @@ export function Table(): JSX.Element {
                   }) => (
                     <th
                       className={clsx(
-                        'group font-medium text-gray-500 dark:text-gray-200',
+                        'group p-4 font-medium text-gray-500 dark:text-gray-200',
                         getCanSort() && 'cursor-pointer select-none'
                       )}
                       onClick={getToggleSortingHandler()}
                       key={id}
                     >
-                      <div className='flex items-center justify-end gap-2 p-4'>
+                      <div className='flex items-center justify-end gap-2'>
                         <div className='-space-y-1 text-xs opacity-0 transition-opacity group-hover:opacity-100'>
                           {sortDirections.map((sortDirection) => (
                             <SortIcon
@@ -145,16 +153,20 @@ export function Table(): JSX.Element {
             {getRowModel().rows.map(({ id, getVisibleCells }) => (
               <tr key={id}>
                 {getVisibleCells().map(({ id, column, getContext }) => (
-                  <td
-                    className='p-4 font-medium text-gray-500 dark:text-gray-400'
-                    key={id}
-                  >
+                  <td key={id}>
                     {flexRender(column.columnDef.cell, getContext())}
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td>{totalViews}</td>
+              <td>{totalLikes}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
