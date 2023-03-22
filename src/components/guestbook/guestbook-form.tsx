@@ -7,9 +7,6 @@ import type { Text } from '@lib/types/guestbook';
 import type { FormEvent } from 'react';
 import type { CustomSession } from '@lib/types/api';
 
-const handleSignIn = (): void => void signIn('github');
-const handleSignOut = (): void => void signOut();
-
 type GuestbookCardProps = {
   session: CustomSession | null;
   registerGuestbook: (text: Text) => Promise<void>;
@@ -90,4 +87,12 @@ export function GuestbookForm({
       )}
     </>
   );
+}
+
+function handleSignIn(): void {
+  void signIn('github');
+}
+
+function handleSignOut(): void {
+  void signOut();
 }
