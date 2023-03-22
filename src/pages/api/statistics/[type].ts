@@ -1,19 +1,13 @@
-import { getDocs, query, where } from 'firebase/firestore';
-import { contentsCollection } from '@lib/firebase/collections';
 import { isValidContentType } from '@lib/helper-server';
+import { getContentStatistics } from '@lib/api';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { APIResponse } from '@lib/types/helper';
 import type { ContentType } from '@lib/types/contents';
-
-type StatsData = {
-  totalPosts: number;
-  totalViews: number;
-  totalLikes: number;
-};
+import type { ContentStatistics } from '@lib/types/statistics';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<APIResponse<StatsData>>
+  res: NextApiResponse<APIResponse<ContentStatistics>>
 ): Promise<void> {
   const { type } = req.query as { type: ContentType };
 
@@ -21,26 +15,17 @@ export default async function handler(
     return res.status(400).json({ message: 'Invalid content type' });
 
   try {
-    const snapshot = await getDocs(
-      query(contentsCollection, where('type', '==', type))
-    );
+    if (req.method === 'GET') {
+      const contentStatistics = await getContentStatistics(type);
 
-    const contents = snapshot.docs.map((doc) => doc.data());
-
-    const [totalPosts, totalViews, totalLikes] = contents.reduce(
-      ([accPosts, accViews, accLikes], { views, likes }) => [
-        accPosts + 1,
-        accViews + views,
-        accLikes + likes
-      ],
-      [0, 0, 0]
-    );
-
-    return res.status(200).json({ totalPosts, totalViews, totalLikes });
+      return res.status(200).json(contentStatistics);
+    }
   } catch (error) {
     if (error instanceof Error)
       return res.status(500).json({ message: error.message });
 
     return res.status(500).json({ message: 'Internal server error' });
   }
+
+  return res.status(405).json({ message: 'Method not allowed' });
 }

@@ -2,6 +2,7 @@ import { createTransport } from 'nodemailer';
 import {
   doc,
   query,
+  where,
   getDoc,
   setDoc,
   getDocs,
@@ -18,6 +19,11 @@ import { removeContentExtension } from './helper';
 import type { Blog, ContentType } from './types/contents';
 import type { CustomSession } from './types/api';
 import type { ContentMeta } from './types/meta';
+import type {
+  ContentData,
+  ContentColumn,
+  ContentStatistics
+} from './types/statistics';
 import type { Guestbook } from './types/guestbook';
 
 /**
@@ -60,12 +66,16 @@ export async function initializeContents(type: ContentType): Promise<void> {
  * Returns all the guestbook.
  */
 export async function getGuestbook(): Promise<Guestbook[]> {
-  const snapshot = await getDocs(
+  const guestbookSnapshot = await getDocs(
     query(guestbookCollection, orderBy('createdAt', 'desc'))
   );
 
-  const guestbook = snapshot.docs.map((doc) => doc.data());
-  const parsedGuestbook = JSON.parse(JSON.stringify(guestbook)) as Guestbook[];
+  const guestbook = guestbookSnapshot.docs.map((doc) => doc.data());
+
+  const parsedGuestbook = guestbook.map(({ createdAt, ...data }) => ({
+    ...data,
+    createdAt: createdAt.toJSON()
+  })) as Guestbook[];
 
   return parsedGuestbook;
 }
@@ -115,4 +125,80 @@ export async function sendEmail(
     subject: emailHeader,
     text: text
   });
+}
+
+/**
+ * Returns the contents statistics with selected content type.
+ */
+export async function getContentStatistics(
+  type: ContentType
+): Promise<ContentStatistics> {
+  const contentsSnapshot = await getDocs(
+    query(contentsCollection, where('type', '==', type))
+  );
+
+  const contents = contentsSnapshot.docs.map((doc) => doc.data());
+
+  const [totalPosts, totalViews, totalLikes] = contents.reduce(
+    ([accPosts, accViews, accLikes], { views, likes }) => [
+      accPosts + 1,
+      accViews + views,
+      accLikes + likes
+    ],
+    [0, 0, 0]
+  );
+
+  return { type, totalPosts, totalViews, totalLikes };
+}
+
+/**
+ * Returns all the contents statistics.
+ */
+export async function getAllContentsStatistics(): Promise<ContentStatistics[]> {
+  const statisticsPromises = VALID_CONTENT_TYPES.map((type) =>
+    getContentStatistics(type)
+  );
+
+  const statistics = await Promise.all(statisticsPromises);
+
+  return statistics;
+}
+
+/**
+ * Returns the content data with selected content type.
+ */
+export async function getContentData(type: ContentType): Promise<ContentData> {
+  const contentsSnapshot = await getDocs(
+    query(contentsCollection, where('type', '==', type))
+  );
+
+  const contents = contentsSnapshot.docs.map((doc) => doc.data());
+
+  const filteredContents: ContentColumn[] = contents.map(
+    ({ slug, views, likes }) => ({
+      slug,
+      views,
+      likes
+    })
+  );
+
+  const contentData: ContentData = {
+    type,
+    data: filteredContents
+  };
+
+  return contentData;
+}
+
+/**
+ * Returns all the content data.
+ */
+export async function getAllContentsData(): Promise<ContentData[]> {
+  const contentDataPromises = VALID_CONTENT_TYPES.map((type) =>
+    getContentData(type)
+  );
+
+  const contentData = await Promise.all(contentDataPromises);
+
+  return contentData;
 }
