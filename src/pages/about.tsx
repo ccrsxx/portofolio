@@ -65,12 +65,17 @@ export default function About(): JSX.Element {
           </p>
         </motion.article>
       </section>
-      <motion.section
-        className='mt-12 grid gap-4'
-        {...setTransition({ delayIn: 0.3 })}
-      >
-        <h2 className='text-3xl font-bold'>Favorite Tech Stack</h2>
-        <ul className='translate flex gap-4'>
+      <section className='mt-12 grid gap-4'>
+        <motion.h2
+          className='text-3xl font-bold'
+          {...setTransition({ delayIn: 0.3 })}
+        >
+          Favorite Tech Stack
+        </motion.h2>
+        <motion.ul
+          className='translate flex gap-4'
+          {...setTransition({ delayIn: 0.4 })}
+        >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
               className='[&:first-child>div]:!-translate-x-12 [&:nth-child(2)>div]:!-translate-x-1/3'
@@ -89,8 +94,8 @@ export default function About(): JSX.Element {
               <Icon className='h-10 w-10 transition-colors hover:text-accent-blue' />
             </Tooltip>
           ))}
-        </ul>
-      </motion.section>
+        </motion.ul>
+      </section>
     </main>
   );
 }
