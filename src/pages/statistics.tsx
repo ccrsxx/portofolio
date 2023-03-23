@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { formatNumber } from '@lib/format';
+import { setTransition } from '@lib/transition';
 import { getAllContentsData, getAllContentsStatistics } from '@lib/api';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
@@ -17,14 +19,20 @@ export default function Statistics({
         description='A statistics page by Risal Amin.'
       />
       <section className='grid gap-2'>
-        <h1 className='text-5xl font-bold'>
+        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
           <Accent>Statistics</Accent>
-        </h1>
-        <p className='text-gray-600 dark:text-gray-300'>
+        </motion.h1>
+        <motion.p
+          className='text-gray-600 dark:text-gray-300'
+          {...setTransition({ delayIn: 0.1 })}
+        >
           A statistics from blog and projects.
-        </p>
+        </motion.p>
       </section>
-      <section className='grid grid-cols-2 gap-6'>
+      <motion.section
+        className='grid grid-cols-2 gap-6'
+        {...setTransition({ delayIn: 0.2 })}
+      >
         {contentsStatistics.map(
           ({ type, totalPosts, totalViews, totalLikes }) => (
             <article
@@ -46,12 +54,19 @@ export default function Statistics({
             </article>
           )
         )}
-      </section>
-      {contentsData.map(({ type, data }) => (
-        <section className='grid gap-4' key={type}>
-          <h2 className='text-2xl font-bold capitalize'>{type}</h2>
-          <Table data={data} />
-        </section>
+      </motion.section>
+      {contentsData.map(({ type, data }, index) => (
+        <motion.section className='grid gap-4' key={type}>
+          <motion.h2
+            className='text-2xl font-bold capitalize'
+            {...setTransition({ delayIn: 0.3 + index * 0.25 })}
+          >
+            {type}
+          </motion.h2>
+          <motion.section {...setTransition({ delayIn: 0.4 + index * 0.25 })}>
+            <Table data={data} />
+          </motion.section>
+        </motion.section>
       ))}
     </main>
   );
