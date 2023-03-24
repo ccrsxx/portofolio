@@ -59,11 +59,11 @@ export default function Statistics({
         <motion.section className='grid gap-4' key={type}>
           <motion.h2
             className='text-2xl font-bold capitalize'
-            {...setTransition({ delayIn: 0.3 + index * 0.25 })}
+            {...setTransition({ delayIn: 0.3 + index / 10 })}
           >
             {type}
           </motion.h2>
-          <motion.section {...setTransition({ delayIn: 0.4 + index * 0.25 })}>
+          <motion.section {...setTransition({ delayIn: 0.4 + index / 10 })}>
             <Table data={data} />
           </motion.section>
         </motion.section>
