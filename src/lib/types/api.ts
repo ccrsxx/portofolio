@@ -1,9 +1,10 @@
-import type { Session } from 'next-auth';
+import type { Session, User } from 'next-auth';
 import type { ContentType } from './contents';
 
 type SlugEndPoints = 'views' | 'likes' | 'guestbook';
 
 type ApiEndpoints =
+  | 'spotify'
   | 'contents'
   | 'guestbook'
   | `contents/${ContentType}`
@@ -11,7 +12,7 @@ type ApiEndpoints =
 
 export type ValidApiEndpoints = `/api/${ApiEndpoints}`;
 
-type CustomUser = Record<keyof NonNullable<Session['user']>, string> & {
+type CustomUser = Record<keyof NonNullable<User>, string> & {
   admin: boolean;
   username: string;
 };

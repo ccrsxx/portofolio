@@ -4,7 +4,7 @@ import readingTime from 'reading-time';
 import { GITHUB_TOKEN } from './env';
 import { getContentByFiles } from './mdx';
 import type { Blog, Project, ContentType } from './types/contents';
-import type { Commit } from './types/commit';
+import type { FileCommitHistory } from './types/github';
 
 /**
  * Returns the content files within the selected content directory.
@@ -46,7 +46,7 @@ export async function getContentLastUpdatedDate(
     { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
   );
 
-  const commits = (await response.json()) as Commit[];
+  const commits = (await response.json()) as FileCommitHistory[];
 
   const featCommits = commits.filter(({ commit: { message } }) =>
     message.startsWith('feat')

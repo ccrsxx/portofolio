@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { GITHUB_TOKEN } from './env';
 import type { NextApiRequest } from 'next';
 import type { NextRequest } from 'next/server';
+import type { GithubUser } from './types/github';
 
 /**
  * Returns a hashed session id from the user's IP address.
@@ -29,7 +30,7 @@ export async function getGithubUsername(userId: string): Promise<string> {
     headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
   });
 
-  const { login } = (await response.json()) as { login: string };
+  const { login } = (await response.json()) as GithubUser;
 
   return login;
 }
@@ -49,7 +50,9 @@ export function getBearerToken(req: NextRequest): string | null {
 
   if (!authorization) return null;
 
-  const bearerToken = authorization.split(' ')[1];
+  const [authType, bearerToken] = authorization.split(' ');
+
+  if (authType.toLowerCase() !== 'bearer' || !bearerToken) return null;
 
   return bearerToken;
 }
