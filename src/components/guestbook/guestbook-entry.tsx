@@ -4,7 +4,7 @@ import { HiTrash } from 'react-icons/hi2';
 import { formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
-import { GuestbookEntryAvatar } from './guestbook-entry-avatar';
+import { LazyImage } from '../ui/lazy-image';
 import type { Variants } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
@@ -43,7 +43,13 @@ export function GuestbookEntry({
       {...variants}
     >
       <UnstyledLink href={GITHUB_PROFILE_URL}>
-        <GuestbookEntryAvatar src={image} alt={name} />
+        <LazyImage
+          className='main-border rounded-full transition hover:brightness-75'
+          src={image}
+          alt={name}
+          width={48}
+          height={48}
+        />
       </UnstyledLink>
       <div className='min-w-0'>
         <div className='flex gap-2'>
