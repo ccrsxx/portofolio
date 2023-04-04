@@ -8,7 +8,7 @@ export type FullNowPlaying = {
 
 export type NowPlaying = NotPlaying | IsPlaying;
 
-type IsPlaying = {
+export type IsPlaying = {
   trackUrl: string;
   trackName: string;
   albumName: string;
