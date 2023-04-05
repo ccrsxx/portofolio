@@ -7,7 +7,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { Tooltip } from '@components/ui/tooltip';
 import type { IsPlaying } from '@lib/types/spotify';
 
-export function SpotifyCard(): null | JSX.Element {
+export function SpotifyCard(): JSX.Element {
   const { track } = useNowPlayingTrack();
 
   const {
@@ -17,7 +17,7 @@ export function SpotifyCard(): null | JSX.Element {
     isPlaying,
     artistName,
     albumImageUrl
-  } = track as IsPlaying;
+  } = (track as IsPlaying) ?? {};
 
   return (
     <AnimatePresence>
