@@ -4,14 +4,17 @@ import {
   getBearerToken,
   generateNextResponse
 } from '@lib/helper-server';
-import { OWNER_BEARER_TOKEN, VALID_ORIGIN_URL } from '@lib/env';
+import { OWNER_BEARER_TOKEN, PUBLIC_URL, IS_DEVELOPMENT } from '@lib/env';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);
 
-  if (origin !== VALID_ORIGIN_URL)
-    return generateNextResponse(403, 'Forbidden');
+  const isValidOrigin = IS_DEVELOPMENT
+    ? [PUBLIC_URL, 'http://localhost'].includes(origin as string)
+    : origin === PUBLIC_URL;
+
+  if (!isValidOrigin) return generateNextResponse(403, 'Forbidden');
 
   const bearerToken = getBearerToken(req);
 
@@ -21,7 +24,11 @@ export function middleware(req: NextRequest): NextResponse {
   return NextResponse.next();
 }
 
-export const config = {
-  // Match all API routes except /api/auth/*
-  matcher: '/api/((?!auth).*)'
+type Config = {
+  matcher: string;
+};
+
+export const config: Config = {
+  // Match all API routes except /api/auth/* and /api/og
+  matcher: '/api/((?!auth|og).*)'
 };
