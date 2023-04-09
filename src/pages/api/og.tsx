@@ -9,8 +9,10 @@ import type { NextRequest } from 'next/server';
 export default async function handler(
   req: NextRequest
 ): Promise<ImageResponse> {
-  const [regularFontData, mediumFontData, semiBoldFontData, boldFontData] =
-    await Promise.all([regularFont, mediumFont, semiboldFont, boldFont]);
+  const [regularFontData, mediumFontData] = await Promise.all([
+    regularFont,
+    mediumFont
+  ]);
 
   const { searchParams } = req.nextUrl;
 
@@ -25,7 +27,7 @@ export default async function handler(
     (
       <div tw='flex h-full w-full bg-[#222222] p-8 text-white '>
         {article ? (
-          <div tw='flex justify-between w-full'>
+          <div tw='flex w-full justify-between'>
             <div tw='flex max-w-xl flex-col justify-between'>
               <div tw='flex flex-col'>
                 <p tw='-my-2 text-xl font-medium text-gray-400'>ccrsxx.me</p>
@@ -41,8 +43,9 @@ export default async function handler(
                   alt='Emilia'
                 />
                 <div tw='ml-4 flex flex-col'>
-                  <p tw='-mb-4 text-2xl font-semibold'>Risal Amin</p>
-                  <p tw='text-lg text-gray-400 font-medium'>@ccrsxx</p>
+                  {/* Originally semibold */}
+                  <p tw='-mb-4 text-2xl font-medium'>Risal Amin</p>
+                  <p tw='text-lg font-medium text-gray-400'>@ccrsxx</p>
                 </div>
               </div>
             </div>
@@ -54,17 +57,18 @@ export default async function handler(
             />
           </div>
         ) : (
-          <div tw='w-full flex justify-center items-center flex-col'>
+          <div tw='flex w-full flex-col items-center justify-center'>
             <img
-              tw='w-24 h-24'
+              tw='h-24 w-24'
               src={`${PUBLIC_URL}/logo512.png`}
               alt="ccrsxx.me's logo"
             />
-            <h2 style={gradientTitleStyles} tw='text-6xl pb-1'>
+            <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>
               {isHomepage ? 'Risal Amin' : title}
             </h2>
+            {/* Originally semibold */}
             {!isHomepage && (
-              <p tw='text-2xl text-gray-200 font-semibold'>ccrsxx.me</p>
+              <p tw='text-2xl font-medium text-gray-200'>ccrsxx.me</p>
             )}
             <p tw='max-w-4xl text-center text-2xl text-gray-300'>
               {description}
@@ -86,17 +90,17 @@ export default async function handler(
           name: 'Inter',
           data: mediumFontData,
           weight: 500
-        },
-        {
-          name: 'Inter',
-          data: semiBoldFontData,
-          weight: 600
-        },
-        {
-          name: 'Inter',
-          data: boldFontData,
-          weight: 700
         }
+        // {
+        //   name: 'Inter',
+        //   data: semiBoldFontData,
+        //   weight: 600
+        // },
+        // {
+        //   name: 'Inter',
+        //   data: boldFontData,
+        //   weight: 700
+        // }
       ]
     }
   );
@@ -114,13 +118,13 @@ const mediumFont = fetch(
   new URL('/public/assets/inter-medium.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const semiboldFont = fetch(
-  new URL('/public/assets/inter-semibold.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// const semiboldFont = fetch(
+//   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
-const boldFont = fetch(
-  new URL('/public/assets/inter-bold.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// const boldFont = fetch(
+//   new URL('/public/assets/inter-bold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<
   CSSProperties,
