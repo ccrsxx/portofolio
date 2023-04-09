@@ -13,7 +13,7 @@ export default function Projects({
   return (
     <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO
-        title='Projects | Risal Amin'
+        title='Projects'
         description='A showcase of my projects on the web development.'
       />
       <section className='grid gap-2'>

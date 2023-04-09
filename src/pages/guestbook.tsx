@@ -28,7 +28,7 @@ export default function Guestbook({
   return (
     <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO
-        title='Guestbook | Risal Amin'
+        title='Guestbook'
         description='Sign my digital guestbook and share some wisdom.'
       />
       <section className='grid gap-2'>

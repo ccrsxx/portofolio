@@ -73,7 +73,7 @@ export default function Blog({
   return (
     <main className='min-h-screen py-12'>
       <SEO
-        title='Blog | Risal Amin'
+        title='Blog'
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
       />
       <section className='grid gap-2'>

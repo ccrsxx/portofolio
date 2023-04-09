@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
+import { motion } from 'framer-motion';
 import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub, SiTwitter } from 'react-icons/si';
 import { initializeAllContents } from '@lib/api';
@@ -21,7 +21,7 @@ export default function Home({
   return (
     <main>
       <SEO
-        title='Risal Amin | Full Stack Developer'
+        title='Risal Amin'
         description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.'
       />
       <section className='-mt-20 grid min-h-screen content-center'>

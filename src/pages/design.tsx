@@ -11,10 +11,7 @@ export default function Design(): JSX.Element {
 
   return (
     <main className='grid min-h-screen content-start gap-6 py-12'>
-      <SEO
-        title='Design | Risal Amin'
-        description="ccrsxx.me's color palette"
-      />
+      <SEO title='Design' description="ccrsxx.me's color palette" />
       <section className='grid gap-2'>
         <motion.h1
           className='text-5xl font-bold'

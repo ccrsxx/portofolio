@@ -8,7 +8,7 @@ export default function Subscribe(): JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO
-        title='Subscribe | Risal Amin'
+        title='Subscribe'
         description='Get notified when I publish new post'
       />
       <section className='grid gap-2'>
