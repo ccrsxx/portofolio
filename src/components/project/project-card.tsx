@@ -6,7 +6,7 @@ import type { Project } from '@lib/types/contents';
 export function ProjectCard({
   slug,
   title,
-  techs,
+  tags,
   banner,
   description
 }: Omit<Project, 'readTime' | 'publishedAt'>): JSX.Element {
@@ -17,7 +17,7 @@ export function ProjectCard({
         <p className='text-sm text-gray-700 dark:text-gray-300'>
           {description}
         </p>
-        <TechIcons techs={techs} />
+        <TechIcons tags={tags} />
         <Image
           className='mt-3 h-44 rounded object-cover'
           src={banner}

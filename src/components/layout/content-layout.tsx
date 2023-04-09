@@ -19,12 +19,16 @@ import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
 import type { Blog, Project, Content } from '@lib/types/contents';
 import type { ContentSlugProps } from '@lib/mdx';
+import type { Article } from '@components/common/seo';
 
 type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;
-  meta: Pick<Content, 'title' | 'publishedAt' | 'description' | 'banner'> &
+  meta: Pick<
+    Content,
+    'title' | 'tags' | 'publishedAt' | 'description' | 'banner'
+  > &
     Pick<Blog, 'bannerAlt' | 'bannerLink'> &
-    Pick<Project, 'techs' | 'link' | 'github' | 'youtube' | 'category'>;
+    Pick<Project, 'link' | 'github' | 'youtube' | 'category'>;
 };
 
 export function ContentLayout({
@@ -32,7 +36,7 @@ export function ContentLayout({
   children
 }: ContentLayoutProps): JSX.Element {
   const [
-    { title, description, publishedAt, banner, bannerAlt, bannerLink },
+    { title, description, publishedAt, banner, bannerAlt, bannerLink, tags },
     { type, slug, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
@@ -41,9 +45,16 @@ export function ContentLayout({
   const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
   const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
 
+  const article: Article = {
+    tags,
+    banner,
+    publishedAt,
+    lastUpdatedAt
+  };
+
   return (
     <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
-      <SEO title={`${title} | Risal Amin`} description={description} />
+      <SEO title={title} description={description} article={article} />
       <ImagePreview
         className='max-h-[448px] object-cover'
         src={banner}

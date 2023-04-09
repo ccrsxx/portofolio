@@ -18,8 +18,8 @@ import {
 import { Tooltip } from '../ui/tooltip';
 import type { IconType } from 'react-icons';
 
-export function TechIcons({ techs }: { techs: string }): JSX.Element {
-  const techsArray = techs.split(',');
+export function TechIcons({ tags }: { tags: string }): JSX.Element {
+  const techsArray = tags.split(',');
 
   return (
     <ul className='mt-2 flex gap-2'>

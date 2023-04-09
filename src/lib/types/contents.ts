@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image';
 
 export type Content = {
+  tags: string;
   slug: string;
   title: string;
   banner: StaticImageData;
@@ -11,14 +12,12 @@ export type Content = {
 };
 
 export type Blog = Content & {
-  tags: string;
   bannerAlt?: string;
   bannerLink?: string;
 };
 
 export type Project = Content & {
   link?: string;
-  techs: string;
   github?: string;
   youtube?: string;
   category?: string;
