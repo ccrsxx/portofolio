@@ -28,10 +28,10 @@ export default async function handler(
       <div tw='flex h-full w-full bg-[#222222] p-8 text-white '>
         {article ? (
           <div tw='flex w-full justify-between'>
-            <div tw='flex max-w-xl flex-col justify-between'>
+            <div tw='flex flex-col justify-between'>
               <div tw='flex flex-col'>
                 <p tw='-my-2 text-xl font-medium text-gray-400'>ccrsxx.me</p>
-                <h2 style={gradientTitleStyles} tw='text-4xl'>
+                <h2 style={gradientTitleStyles} tw='max-w-xl text-4xl'>
                   {title}
                 </h2>
               </div>
