@@ -37,40 +37,40 @@ export function SEO({
     ogImageQuery.set('image', PUBLIC_URL + (banner?.src as string));
   }
 
-  const ogImageUrl = `${PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
-
   const isHomepage = asPath === '/';
   const isDarkMode = theme === 'dark';
 
-  const { colorScheme, themeColor } = systemTheme[+isDarkMode];
-
-  const parsedTitle = `${title} | ${
+  const mainTitle = `${title} | ${
     isHomepage ? 'Fullstack Developer' : 'Risal Amin'
   }`;
 
-  const parsedUrl = `${PUBLIC_URL}${isHomepage ? '' : asPath}`;
+  const { colorScheme, themeColor } = systemTheme[+isDarkMode];
+
+  const ogImageUrl = `${PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
+
+  const ogUrl = `${PUBLIC_URL}${isHomepage ? '' : asPath}`;
 
   return (
     <Head>
-      <title>{parsedTitle}</title>
+      <title>{mainTitle}</title>
       <meta name='description' content={description} />
       <meta name='keywords' content={tags} />
       <meta name='color-scheme' content={colorScheme} />
       <meta name='theme-color' content={themeColor} />
       <meta name='author' content='Risal Amin' />
       <meta name='generator' content='Next.js' />
-      <meta name='twitter:title' content={parsedTitle} />
+      <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={ogImageUrl} />
-      <meta name='twitter:image:alt' content={parsedTitle} />
+      <meta name='twitter:image:alt' content={title} />
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:site' content='@ccrsxx' />
       <meta name='twitter:creator' content='@ccrsxx' />
-      <meta property='og:title' content={parsedTitle} />
+      <meta property='og:title' content={title} />
       <meta property='og:description' content={description} />
-      <meta property='og:url' content={parsedUrl} />
+      <meta property='og:url' content={ogUrl} />
       <meta property='og:image' content={ogImageUrl} />
-      <meta property='og:image:alt' content={parsedTitle} />
+      <meta property='og:image:alt' content={title} />
       <meta property='og:image:type' content='image/png' />
       <meta property='og:image:width' content='1200' />
       <meta property='og:image:height' content='600' />
