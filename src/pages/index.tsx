@@ -152,19 +152,19 @@ type SocialLink = {
 const socialLink: SocialLink[] = [
   {
     name: 'Resume',
-    href: 'placeholder',
+    href: '/placeholder',
     iconHoverColor: 'group-hover:text-accent-blue',
     Icon: HiDocumentText
   },
   {
     name: 'Twitter',
-    href: 'placeholder',
+    href: '/placeholder',
     iconHoverColor: 'group-hover:text-[#1d9bf0]',
     Icon: SiTwitter
   },
   {
     name: 'GitHub',
-    href: 'placeholder',
+    href: '/placeholder',
     Icon: SiGithub
   }
 ];
