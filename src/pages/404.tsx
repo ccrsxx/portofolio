@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { CustomLink } from '@components/link/custom-link';
+import type { MotionProps } from 'framer-motion';
 
 export default function NotFound(): JSX.Element {
   const [currentUrl, setCurrentUrl] = useState<null | string>(null);
@@ -31,15 +32,16 @@ export default function NotFound(): JSX.Element {
         <h1 className='gradient-title text-8xl font-bold'>404</h1>
         <h2 className='text-2xl font-medium'>
           Page{' '}
-          <span
+          <motion.span
             title={currentUrl ?? ''}
             className={clsx(
               'text-main-accent inline-block max-w-[160px] truncate align-bottom font-semibold text-accent-blue',
-              !currentUrl && 'animate-pulse'
+              currentUrl ? 'opacity-0' : 'animate-pulse'
             )}
+            {...(currentUrl && variants)}
           >
             {currentUrl ?? '...'}
-          </span>{' '}
+          </motion.span>{' '}
           not found
         </h2>
         <CustomLink href='/'>Go back home</CustomLink>
@@ -47,3 +49,8 @@ export default function NotFound(): JSX.Element {
     </main>
   );
 }
+
+const variants: MotionProps = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 }
+};
