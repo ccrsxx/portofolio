@@ -8,7 +8,7 @@ type AccessToken = {
 };
 
 const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } =
-  process.env as Record<string, string>;
+  process.env;
 
 /**
  * Returns the access token from the Spotify API.

@@ -16,7 +16,7 @@ export function getSessionId(req: NextApiRequest): string {
   const ipAddress = ipAddressFromHeaders ?? '127.0.0.1';
 
   const hashedIpAddress = createHash('md5')
-    .update(ipAddress + (process.env.IP_ADDRESS_SALT as string))
+    .update(ipAddress + process.env.IP_ADDRESS_SALT)
     .digest('hex');
 
   return hashedIpAddress;

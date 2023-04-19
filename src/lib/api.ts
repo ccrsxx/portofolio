@@ -110,8 +110,8 @@ export async function sendEmail(
   const client = createTransport({
     service: 'Gmail',
     auth: {
-      user: process.env.EMAIL_ADDRESS as string,
-      pass: process.env.EMAIL_PASSWORD as string
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.EMAIL_PASSWORD
     }
   });
 
@@ -120,8 +120,8 @@ export async function sendEmail(
   const emailHeader = `New guestbook from ${name} (${email})`;
 
   await client.sendMail({
-    from: process.env.EMAIL_ADDRESS as string,
-    to: process.env.EMAIL_TARGET as string,
+    from: process.env.EMAIL_ADDRESS,
+    to: process.env.EMAIL_TARGET,
     subject: emailHeader,
     text: text
   });
