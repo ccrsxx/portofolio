@@ -46,6 +46,7 @@ export function ContentLayout({
   const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/@pages/${type}/${slug}.mdx`;
 
   const article: Article = {
+    type,
     tags,
     banner,
     publishedAt,

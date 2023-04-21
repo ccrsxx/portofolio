@@ -16,6 +16,7 @@ export default async function handler(
 
   const { searchParams } = req.nextUrl;
 
+  const type = searchParams.get('type');
   const title = searchParams.get('title');
   const image = searchParams.get('image');
   const article = searchParams.get('article');
@@ -30,7 +31,9 @@ export default async function handler(
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
               <div tw='flex flex-col'>
-                <p tw='-my-2 text-xl font-medium text-gray-400'>ccrsxx.me</p>
+                <p tw='-my-2 text-xl font-medium text-gray-400'>
+                  ccrsxx.me/{type}
+                </p>
                 <h2 style={gradientTitleStyles} tw='max-w-xl text-4xl'>
                   {title}
                 </h2>

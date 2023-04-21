@@ -2,12 +2,14 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { PUBLIC_URL } from '@lib/env';
-import type { Content } from '@lib/types/contents';
+import type { Content, ContentType } from '@lib/types/contents';
 
 export type Article = Pick<
   Content,
   'tags' | 'banner' | 'publishedAt' | 'lastUpdatedAt'
->;
+> & {
+  type: ContentType;
+};
 
 type MainLayoutProps = {
   tag?: string;
@@ -30,9 +32,10 @@ export function SEO({
   ogImageQuery.set('title', title);
   ogImageQuery.set('description', description ?? 'Description');
 
-  const { tags, banner, publishedAt, lastUpdatedAt } = article ?? {};
+  const { type, tags, banner, publishedAt, lastUpdatedAt } = article ?? {};
 
   if (article) {
+    ogImageQuery.set('type', type as string);
     ogImageQuery.set('article', 'true');
     ogImageQuery.set('image', PUBLIC_URL + (banner?.src as string));
   }
