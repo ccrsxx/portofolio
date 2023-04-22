@@ -52,7 +52,7 @@ export async function getContentLastUpdatedDate(
     message.startsWith('feat')
   );
 
-  if (featCommits.length === 1) return null;
+  if (featCommits.length <= 1) return null;
 
   const {
     commit: {
