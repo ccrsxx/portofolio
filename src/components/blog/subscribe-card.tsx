@@ -4,7 +4,7 @@ import { Accent } from '@components/ui/accent';
 export function SubscribeCard(): JSX.Element {
   return (
     <div className='main-border rounded-md p-4'>
-      <h2 className='text-4xl font-bold'>
+      <h2 className='text-2xl font-bold md:text-4xl'>
         <Accent>Subscribe to the newsletter</Accent>
       </h2>
       <p className='mt-2'>
@@ -17,7 +17,10 @@ export function SubscribeCard(): JSX.Element {
           type='email'
           placeholder='Email'
         />
-        <Button className='custom-button clickable font-bold text-gray-600 dark:text-gray-300'>
+        <Button
+          className='custom-button clickable text-sm font-bold text-gray-600 
+                     dark:text-gray-300 md:text-base'
+        >
           Subscribe
         </Button>
       </div>

@@ -28,7 +28,7 @@ export function Header(): JSX.Element {
             {navLinks.map(({ name, href }) => (
               <Link
                 className={clsx(
-                  'smooth-tab hover:text-accent-blue hover:transition-colors',
+                  'smooth-tab text-xs hover:text-accent-blue hover:transition-colors md:text-base',
                   baseRoute === href && 'gradient-title !text-transparent'
                 )}
                 href={href}

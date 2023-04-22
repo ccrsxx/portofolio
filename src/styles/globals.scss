@@ -18,7 +18,7 @@
   }
 
   main {
-    @apply layout;
+    @apply layout md:pt-12;
   }
 
   ::selection {
@@ -29,6 +29,10 @@
 @layer components {
   .layout {
     @apply mx-auto w-11/12 max-w-6xl;
+  }
+
+  .card-layout {
+    @apply grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4;
   }
 
   .custom-button {

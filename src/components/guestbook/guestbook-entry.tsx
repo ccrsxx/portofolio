@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
-import { formatTimestamp } from '@lib/format';
+import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
-import { LazyImage } from '../ui/lazy-image';
+import { Tooltip } from '@components/ui/tooltip';
+import { LazyImage } from '@components/ui/lazy-image';
 import type { Variants } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
@@ -29,7 +30,6 @@ export function GuestbookEntry({
   const handleUnRegisterGuestbook = async (): Promise<void> => {
     setLoading(true);
     await unRegisterGuestbook(id);
-    setLoading(false);
   };
 
   const isOwner = session?.user.username === username || session?.user.admin;
@@ -52,17 +52,22 @@ export function GuestbookEntry({
         />
       </UnstyledLink>
       <div className='min-w-0'>
-        <div className='flex gap-2'>
+        <div className='mr-10 flex items-end gap-2'>
           <UnstyledLink
-            className='custom-underline font-bold'
+            className='custom-underline truncate font-bold'
+            title={name}
             href={GITHUB_PROFILE_URL}
           >
             {name}
           </UnstyledLink>
-          <span className='text-gray-700 dark:text-gray-200'>/</span>
-          <p className='text-gray-600 dark:text-gray-300'>
-            {formatTimestamp(createdAt)}
-          </p>
+          <Tooltip
+            className='whitespace-nowrap'
+            tip={formatFullTimeStamp(createdAt)}
+          >
+            <button className='custom-underline cursor-pointer text-sm text-gray-600 dark:text-gray-300'>
+              {formatTimestamp(createdAt)}
+            </button>
+          </Tooltip>
         </div>
         <p className='break-words'>{text}</p>
       </div>

@@ -5,7 +5,7 @@ import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/useSessionStorage';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
-import { TechTag } from '@components/blog/tech-tag';
+import { BlogTag } from '@components/blog/blog-tag';
 import { SortListbox, sortOptions } from '@components/blog/sort-listbox';
 import { BlogCard } from '@components/blog/blog-card';
 import { SubscribeCard } from '@components/blog/subscribe-card';
@@ -71,13 +71,16 @@ export default function Blog({
     filteredTags.includes(tag) && search.toLowerCase().split(' ').includes(tag);
 
   return (
-    <main className='min-h-screen py-12'>
+    <main className='min-h-screen'>
       <SEO
         title='Blog'
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
       />
       <section className='grid gap-2'>
-        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
+        <motion.h1
+          className='text-3xl font-bold md:text-5xl'
+          {...setTransition()}
+        >
           <Accent>Blog</Accent>
         </motion.h1>
         <motion.p
@@ -98,20 +101,20 @@ export default function Blog({
           />
         </motion.section>
         <motion.section
-          className='mt-2 flex items-center gap-2'
+          className='mt-2 flex flex-wrap items-center gap-2'
           {...setTransition({ delayIn: 0.3 })}
         >
           <p className='text-sm font-medium text-gray-600 dark:text-gray-300'>
             Choose topic:
           </p>
           {tags.map((tag) => (
-            <TechTag
+            <BlogTag
               disabled={!filteredTags.includes(tag)}
               onClick={handleTagClick(tag)}
               key={tag}
             >
               {isTagSelected(tag) ? <Accent>{tag}</Accent> : tag}
-            </TechTag>
+            </BlogTag>
           ))}
         </motion.section>
         <motion.section className='mt-6' {...setTransition({ delayIn: 0.4 })}>
@@ -119,7 +122,7 @@ export default function Blog({
         </motion.section>
       </section>
       <motion.section
-        className='mt-4 grid grid-cols-3 gap-4'
+        className='card-layout mt-4'
         {...setTransition({ delayIn: 0.5 })}
       >
         <AnimatePresence mode='popLayout'>

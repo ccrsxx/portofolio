@@ -19,27 +19,27 @@ export default function Home({
   featuredProjects
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
-    <main>
+    <main className='grid gap-20'>
       <SEO
         title='Risal Amin'
         description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.'
       />
       <section className='-mt-20 grid min-h-screen content-center'>
         <motion.h2
-          className='text-5xl font-bold transition-colors delay-100'
+          className='text-2xl font-bold transition-colors delay-100 md:text-4xl 2xl:text-5xl'
           {...setTransition()}
         >
           Hi!
         </motion.h2>
         <motion.h1
-          className='mt-1 text-6xl font-bold transition-colors delay-200'
+          className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl'
           {...setTransition({ delayIn: 0.1 })}
         >
           I&apos;m <Accent>Risal</Accent> - Full Stack Developer
         </motion.h1>
         <motion.p
-          className='mt-6 max-w-4xl text-xl text-gray-700 transition-colors 
-                     delay-[400ms] dark:text-gray-200'
+          className='mt-4 max-w-4xl leading-relaxed text-gray-700 transition-colors delay-[400ms] dark:text-gray-200 
+                     md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
           I&apos;m a self-taught developer, who&apos;s currently pursuing a
@@ -47,7 +47,7 @@ export default function Home({
           front-end, scalable, and secure infrastructure on the backend.
         </motion.p>
         <motion.section
-          className='mt-8 flex gap-4'
+          className='mt-8 flex gap-4 text-sm md:text-base'
           {...setTransition({ delayIn: 0.3 })}
         >
           <UnstyledLink className='custom-button clickable' href='/blog'>
@@ -63,27 +63,25 @@ export default function Home({
         >
           {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
             <UnstyledLink
-              className='group flex items-center gap-2 text-gray-600 transition-colors
-                         hover:text-black dark:text-gray-400 dark:hover:text-white'
+              className='group flex items-center gap-2 text-sm text-gray-600 transition-colors
+                         hover:text-black dark:text-gray-400 dark:hover:text-white md:text-base'
               href={href}
               key={name}
             >
-              <Icon
-                className={clsx('h-4 w-4 transition-colors', iconHoverColor)}
-              />{' '}
+              <Icon className={clsx('transition-colors', iconHoverColor)} />{' '}
               {name}
             </UnstyledLink>
           ))}
         </motion.section>
       </section>
-      <motion.section className='grid gap-4 py-20' {...fadeInWhenVisible()}>
-        <h2 className='text-4xl font-bold'>
+      <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
+        <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
         </h2>
         <p className='-mt-2 text-gray-600 dark:text-gray-300'>
           Check out my featured blog posts.
         </p>
-        <section className='grid grid-cols-3 gap-4'>
+        <section className='card-layout'>
           {featuredBlog.map((blog, index) => (
             <BlogCard {...blog} key={index} />
           ))}
@@ -95,17 +93,14 @@ export default function Home({
           See more posts
         </UnstyledLink>
       </motion.section>
-      <motion.section
-        className='grid gap-4 py-12 pt-20'
-        {...fadeInWhenVisible()}
-      >
-        <h2 className='text-4xl font-bold'>
+      <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
+        <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Project</Accent>
         </h2>
         <p className='-mt-2 text-gray-600 dark:text-gray-300'>
           Check out my featured blog posts.
         </p>
-        <section className='grid grid-cols-3 gap-4'>
+        <section className='card-layout'>
           {featuredProjects.map((project, index) => (
             <ProjectCard {...project} key={index} />
           ))}
@@ -152,19 +147,19 @@ type SocialLink = {
 const socialLink: SocialLink[] = [
   {
     name: 'Resume',
-    href: '/placeholder',
+    href: 'https://drive.google.com/file/d/1UKtyok5uV8DkS18-VUmHsdR-5hxOn1Z4/view?usp=sharing',
     iconHoverColor: 'group-hover:text-accent-blue',
     Icon: HiDocumentText
   },
   {
     name: 'Twitter',
-    href: '/placeholder',
+    href: 'https://twitter.com/ccrsxx',
     iconHoverColor: 'group-hover:text-[#1d9bf0]',
     Icon: SiTwitter
   },
   {
     name: 'GitHub',
-    href: '/placeholder',
+    href: 'https://github.com/ccrsxx',
     Icon: SiGithub
   }
 ];

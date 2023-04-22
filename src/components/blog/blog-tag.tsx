@@ -1,19 +1,19 @@
 import { clsx } from 'clsx';
 import type { PropsWithChildren, HTMLAttributes } from 'react';
 
-type TagProps = PropsWithChildren<
+type BlogTagProps = PropsWithChildren<
   HTMLAttributes<HTMLOrSVGElement> & {
     Tag?: keyof JSX.IntrinsicElements;
     disabled?: boolean;
   }
 >;
 
-export function TechTag({
+export function BlogTag({
   Tag = 'button',
   children,
   className,
   ...rest
-}: TagProps): JSX.Element {
+}: BlogTagProps): JSX.Element {
   return (
     <Tag
       className={clsx(

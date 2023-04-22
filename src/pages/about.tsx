@@ -14,14 +14,17 @@ import type { IconType } from 'react-icons';
 
 export default function About(): JSX.Element {
   return (
-    <main className='layout min-h-screen pt-20'>
+    <main className='layout min-h-screen'>
       <SEO title='About' description='Risal Amin is a web developer' />
       <section className='grid gap-2'>
-        <motion.h2 className='text-3xl font-bold' {...setTransition()}>
+        <motion.h2
+          className='text-xl font-bold md:text-3xl'
+          {...setTransition()}
+        >
           About
         </motion.h2>
         <motion.h1
-          className='text-4xl font-bold'
+          className='text-2xl font-bold md:text-4xl'
           {...setTransition({ delayIn: 0.1 })}
         >
           <Accent>Risal Amin</Accent>
@@ -64,20 +67,20 @@ export default function About(): JSX.Element {
       </section>
       <section className='mt-12 grid gap-4'>
         <motion.h2
-          className='text-3xl font-bold'
+          className='text-xl font-bold md:text-3xl'
           {...setTransition({ delayIn: 0.3 })}
         >
           Favorite Tech Stack
         </motion.h2>
         <motion.ul
-          className='translate flex gap-4'
+          className='translate flex gap-4 [&>li:first-child>div]:-translate-x-4
+                     [&>li:nth-child(2)>div]:-translate-x-16 [&>li:nth-child(3)>div]:-translate-x-28'
           {...setTransition({ delayIn: 0.4 })}
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              className='[&:first-child>div]:!-translate-x-12 [&:nth-child(2)>div]:!-translate-x-1/3'
-              tooltipClassName='group-hover:!-translate-y-32 w-72 px-3 py-4 !-translate-y-28 text-center 
-                                !whitespace-normal'
+              tooltipClassName='group-hover:!-translate-y-32 w-72 px-3 py-4 !-translate-y-28
+                                text-center !whitespace-normal 2xl:!-translate-x-1/2'
               tag='li'
               key={name}
               tip={
@@ -88,7 +91,7 @@ export default function About(): JSX.Element {
                 </>
               }
             >
-              <Icon className='h-10 w-10 transition-colors hover:text-accent-blue' />
+              <Icon className='text-4xl transition-colors hover:text-accent-blue' />
             </Tooltip>
           ))}
         </motion.ul>

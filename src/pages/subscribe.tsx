@@ -13,7 +13,7 @@ export default function Subscribe(): JSX.Element {
       />
       <section className='grid gap-2'>
         <motion.h1
-          className='text-5xl font-bold'
+          className='text-3xl font-bold md:text-5xl'
           {...setTransition({ delayIn: 0.1 })}
         >
           <Accent>Subscribe to ccrsxx.me</Accent>

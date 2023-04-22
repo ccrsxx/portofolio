@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { formatDate } from '@lib/format';
 import { Accent } from '@components/ui/accent';
 import { BlogStats } from './blog-stats';
-import { TechTag } from './tech-tag';
+import { BlogTag } from './blog-tag';
 import type { Blog } from '@lib/types/contents';
 
 type BlogCardProps = Blog & {
@@ -39,7 +39,7 @@ export function BlogCard({
           />
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
             {techTags.map((tag) => (
-              <TechTag
+              <BlogTag
                 className='bg-opacity-80 dark:bg-opacity-60'
                 Tag='li'
                 key={tag}
@@ -49,7 +49,7 @@ export function BlogCard({
                 ) : (
                   tag
                 )}
-              </TechTag>
+              </BlogTag>
             ))}
           </ul>
         </div>

@@ -42,8 +42,8 @@ export function ContentLayout({
 
   const contentIsBlog = type === 'blog';
 
-  const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/@pages/${type}/${slug}.mdx`;
-  const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/@pages/${type}/${slug}.mdx`;
+  const githubCommitHistoryUrl = `https://github.com/ccrsxx/ccrsxx.me/commits/main/src/pages/${type}/${slug}.mdx`;
+  const githubContentUrl = `https://github.com/ccrsxx/ccrsxx.me/blob/main/src/pages/${type}/${slug}.mdx`;
 
   const article: Article = {
     type,
@@ -54,7 +54,7 @@ export function ContentLayout({
   };
 
   return (
-    <motion.main className='pb-12' {...setTransition({ distance: 25 })}>
+    <motion.main className='pt-0' {...setTransition({ distance: 25 })}>
       <SEO title={title} description={description} article={article} />
       <ImagePreview
         className='max-h-[448px] object-cover'
@@ -63,7 +63,7 @@ export function ContentLayout({
         customLink={bannerLink}
       />
       <section className='mt-8 grid gap-2'>
-        <h1 className='text-4xl font-bold'>{title}</h1>
+        <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
         <p className='text-sm text-gray-600 dark:text-gray-300'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
@@ -88,11 +88,8 @@ export function ContentLayout({
         </section>
       </section>
       <hr className='mt-4 dark:border-gray-600' />
-      <section className='mt-4 flex gap-8'>
-        <article
-          id='mdx-article'
-          className='prose max-w-4xl dark:prose-invert [&>:is(h2,h3)]:scroll-mt-24'
-        >
+      <section className='mt-4 grid gap-8 lg:grid-cols-[auto,1fr]'>
+        <article id='mdx-article' className='prose max-w-4xl dark:prose-invert'>
           <MDXProvider components={components}>{children}</MDXProvider>
         </article>
         <TableOfContents>
@@ -100,10 +97,10 @@ export function ContentLayout({
         </TableOfContents>
       </section>
       <section className='mt-20 grid gap-4'>
-        <h2 className='text-4xl font-bold'>
+        <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Other {contentIsBlog ? 'posts' : type} you might like</Accent>
         </h2>
-        <section className='grid grid-cols-3 gap-4'>
+        <section className='card-layout'>
           {contentIsBlog
             ? (suggestedContents as Blog[]).map((suggestedContent, index) => (
                 <BlogCard {...suggestedContent} key={index} />

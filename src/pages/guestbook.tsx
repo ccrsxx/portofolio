@@ -26,13 +26,16 @@ export default function Guestbook({
     useGuestbook(fallbackData);
 
   return (
-    <main className='grid min-h-screen content-start gap-6 py-12'>
+    <main className='grid min-h-screen content-start gap-6'>
       <SEO
         title='Guestbook'
         description='Sign my digital guestbook and share some wisdom.'
       />
       <section className='grid gap-2'>
-        <motion.h1 className='text-5xl font-bold' {...setTransition()}>
+        <motion.h1
+          className='text-3xl font-bold md:text-5xl'
+          {...setTransition()}
+        >
           <Accent>Guestbook</Accent>
         </motion.h1>
         <motion.p

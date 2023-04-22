@@ -10,7 +10,7 @@ export default function Design(): JSX.Element {
   const { theme } = useTheme();
 
   return (
-    <main className='grid min-h-screen content-start gap-6 py-12'>
+    <main className='grid min-h-screen content-start gap-6'>
       <SEO title='Design' description="ccrsxx.me's color palette" />
       <section className='grid gap-2'>
         <motion.h1

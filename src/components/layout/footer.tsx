@@ -7,10 +7,14 @@ import type { IconType } from 'react-icons';
 
 export function Footer(): JSX.Element {
   return (
-    <footer className='main-border layout grid gap-8 border-0 border-t pb-2'>
-      <nav className='mt-6 flex justify-center gap-8'>
+    <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
+      <nav className='mt-6 flex flex-wrap justify-center gap-x-8 gap-y-4'>
         {footerLinks.map(({ name, href, tip }) => (
-          <Tooltip tip={tip} key={name}>
+          <Tooltip
+            tooltipClassName='group-hover:-translate-y-16 hidden sm:block'
+            tip={tip}
+            key={name}
+          >
             <UnstyledLink
               className='animated-underline text-sm font-medium dark:text-gray-200'
               href={href}

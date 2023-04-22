@@ -68,7 +68,7 @@ export function Table({ data }: TableProps): JSX.Element {
         value={globalFilter}
         onChange={handleGlobalFilterChange}
       />
-      <div className='main-border relative overflow-hidden rounded-md shadow-sm'>
+      <div className='main-border relative max-w-full overflow-x-auto rounded-md shadow-sm'>
         <table>
           <thead>
             {getHeaderGroups().map(({ id, headers }) => (
@@ -102,7 +102,9 @@ export function Table({ data }: TableProps): JSX.Element {
                             />
                           ))}
                         </div>
-                        <p>{flexRender(columnDef.header, getContext())}</p>
+                        <p className='whitespace-nowrap'>
+                          {flexRender(columnDef.header, getContext())}
+                        </p>
                       </div>
                     </th>
                   )
@@ -114,7 +116,7 @@ export function Table({ data }: TableProps): JSX.Element {
             {getRowModel().rows.map(({ id, getVisibleCells }) => (
               <tr key={id}>
                 {getVisibleCells().map(({ id, column, getContext }) => (
-                  <td key={id}>
+                  <td className='whitespace-nowrap' key={id}>
                     {flexRender(column.columnDef.cell, getContext())}
                   </td>
                 ))}

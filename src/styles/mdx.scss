@@ -1,18 +1,22 @@
 .prose {
-  & > :is(h2, h3) > a {
-    border-bottom: 0 !important;
+  & > :is(h2, h3) {
+    @apply scroll-mt-24;
 
-    span {
-      @apply text-black dark:text-white;
-    }
+    a {
+      border-bottom: 0 !important;
 
-    &::after {
-      @apply gradient-title ml-2 inline-block opacity-0
+      span {
+        @apply text-black dark:text-white;
+      }
+
+      &::after {
+        @apply gradient-title ml-2 inline-block opacity-0
              transition-opacity duration-300 content-['#'];
-    }
+      }
 
-    &:hover::after {
-      @apply opacity-100;
+      &:hover::after {
+        @apply opacity-100;
+      }
     }
   }
 
@@ -43,7 +47,7 @@
   }
 
   div[data-rehype-pretty-code-fragment] {
-    @apply relative;
+    @apply relative grid;
 
     div[data-rehype-pretty-code-title] {
       @apply hidden;
@@ -63,7 +67,7 @@
       background: rgba(200, 200, 255, 0.05);
       padding: 0.75rem 0 !important;
 
-      @apply main-border;
+      @apply main-border my-0;
 
       &[data-theme='light'] {
         @apply dark:hidden;

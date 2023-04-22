@@ -16,21 +16,21 @@ export function ThemeSwitch(): JSX.Element | null {
 
   return (
     <button
-      className='relative overflow-hidden rounded-md border p-2 outline-none 
+      className='relative overflow-hidden rounded-md border p-2 text-lg outline-none
                  transition hover:!border-accent-blue hover:text-accent-blue
                  focus-visible:!border-accent-blue focus-visible:text-accent-blue 
-                 dark:border-gray-600 [&>i]:block'
+                 dark:border-gray-600 md:text-xl [&>i]:block'
       type='button'
       onClick={flipTheme}
     >
       <AnimatePresence mode='popLayout' initial={false}>
         {isDarkMode ? (
           <motion.i {...sunVariants} key='light'>
-            <HiOutlineSun className='h-6 w-6' />
+            <HiOutlineSun />
           </motion.i>
         ) : (
           <motion.i {...moonVariants} key='dark'>
-            <HiOutlineMoon className='h-6 w-6' />
+            <HiOutlineMoon />
           </motion.i>
         )}
       </AnimatePresence>

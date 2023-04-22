@@ -4,7 +4,7 @@ import type { PropsWithChildren } from 'react';
 export function GuestbookCard({ children }: PropsWithChildren): JSX.Element {
   return (
     <div className='main-border rounded-md p-4'>
-      <h2 className='text-4xl font-bold'>
+      <h2 className='text-2xl font-bold md:text-4xl'>
         <Accent>Sign the Guestbook</Accent>
       </h2>
       <p className='mt-2'>Share a message for a future visitor of my site.</p>
