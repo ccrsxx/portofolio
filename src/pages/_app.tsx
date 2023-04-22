@@ -23,7 +23,7 @@ const popAudio =
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const { pathname } = useRouter();
 
-  useEffect(() => void popAudio?.play(), [pathname]);
+  useEffect(() => void popAudio?.play().catch(() => void 0), [pathname]);
 
   return (
     <>
