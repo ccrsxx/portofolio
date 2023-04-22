@@ -11,15 +11,15 @@ export function SubscribeCard(): JSX.Element {
         Get emails from me about web development, tech, and early access to new
         articles.
       </p>
-      <div className='mt-4 flex items-center gap-2'>
+      <div className='mt-4 flex items-center gap-2 text-sm md:text-base'>
         <input
           className='custom-input w-full'
           type='email'
           placeholder='Email'
         />
         <Button
-          className='custom-button clickable text-sm font-bold text-gray-600 
-                     dark:text-gray-300 md:text-base'
+          className='custom-button clickable font-bold text-gray-600 
+                     dark:text-gray-300'
         >
           Subscribe
         </Button>
