@@ -60,7 +60,7 @@ export default function Guestbook({
       >
         <AnimatePresence>
           {guestbook?.length ? (
-            guestbook?.map((entry) => (
+            guestbook.map((entry) => (
               <GuestbookEntry
                 {...entry}
                 session={session}

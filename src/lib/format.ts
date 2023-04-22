@@ -54,8 +54,13 @@ export function formatTimestamp(timestamp: TimestampProps): string {
 }
 
 const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
-  dateStyle: 'full',
-  timeStyle: 'short'
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric'
 });
 
 /**
