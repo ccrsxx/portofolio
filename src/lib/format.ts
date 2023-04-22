@@ -24,25 +24,80 @@ export function formatDate(dateString: string): string {
   return DATE_FORMATTER.format(date);
 }
 
-const TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
-  dateStyle: 'long',
+const SHORT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
   timeStyle: 'short'
 });
 
-type formatTimestampProps = Pick<Timestamp, 'seconds' | 'nanoseconds'>;
+const LONG_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'short'
+});
+
+type TimestampProps = Pick<Timestamp, 'seconds' | 'nanoseconds'>;
 
 /**
  * Get a formatted date from a Firestore timestamp.
  *
- * @param formatTimestampProps The timestamp to format.
+ * @param timestampProps The timestamp to format.
  * @returns A formatted date string.
  */
-export function formatTimestamp({
-  seconds,
-  nanoseconds
-}: formatTimestampProps): string {
+export function formatTimestamp(timestamp: TimestampProps): string {
+  const date = getDateFromTimestamp(timestamp);
+  const relativeTime = getRelativeTime(date);
+
+  if (relativeTime === 'today')
+    return `Today at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
+
+  if (relativeTime === 'yesterday')
+    return `Yesterday at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
+
+  return LONG_TIMESTAMP_FORMATTER.format(date);
+}
+
+const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'full',
+  timeStyle: 'short'
+});
+
+/**
+ * Get a full formatted date from a Firestore timestamp.
+ *
+ * @param timestamp The timestamp to format.
+ * @returns A formatted date string.
+ */
+export function formatFullTimeStamp(timestamp: TimestampProps): string {
+  const date = getDateFromTimestamp(timestamp);
+
+  return FULL_TIMESTAMP_FORMATTER.format(date);
+}
+
+/**
+ * Returns a converted date from a Firestore timestamp.
+ */
+function getDateFromTimestamp({ seconds, nanoseconds }: TimestampProps): Date {
   const miliseconds = seconds * 1000 + nanoseconds / 1_000_000;
   const date = new Date(miliseconds);
 
-  return TIMESTAMP_FORMATTER.format(date);
+  return date;
+}
+
+const DAY_MILLISECONDS = 24 * 60 * 60 * 1000;
+
+const RELATIVE_TIME_FORMATTER = new Intl.RelativeTimeFormat('en', {
+  numeric: 'auto'
+});
+
+type RelativeTime =
+  | 'yesterday'
+  | 'today'
+  | 'tomorrow'
+  | `${number} days ago`
+  | `in ${number} days`;
+
+/**
+ * Returns a relative time from a date.
+ */
+function getRelativeTime(date: Date): RelativeTime {
+  const daysDifference = Math.round((+date - Date.now()) / DAY_MILLISECONDS);
+
+  return RELATIVE_TIME_FORMATTER.format(daysDifference, 'day') as RelativeTime;
 }
