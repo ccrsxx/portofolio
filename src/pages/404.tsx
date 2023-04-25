@@ -26,7 +26,7 @@ export default function NotFound(): JSX.Element {
         description='The page you are looking for is not found.'
       />
       <motion.div
-        className='main-border grid w-full max-w-md justify-items-center gap-8 rounded-md p-8'
+        className='main-border grid w-full max-w-md justify-items-center gap-8 rounded-md p-8 text-center'
         {...setTransition()}
       >
         <h1 className='gradient-title text-8xl font-bold'>404</h1>

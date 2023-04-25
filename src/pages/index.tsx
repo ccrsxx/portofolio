@@ -63,7 +63,7 @@ export default function Home({
         >
           {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
             <UnstyledLink
-              className='group flex items-center gap-2 text-sm text-gray-600 transition-colors
+              className='smooth-tab group flex items-center gap-2 text-sm text-gray-600 transition
                          hover:text-black dark:text-gray-400 dark:hover:text-white md:text-base'
               href={href}
               key={name}

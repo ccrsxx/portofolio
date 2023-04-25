@@ -5,8 +5,8 @@ import type { Project } from '@lib/types/contents';
 
 export function ProjectCard({
   slug,
-  title,
   tags,
+  title,
   banner,
   description
 }: Omit<Project, 'readTime' | 'publishedAt'>): JSX.Element {

@@ -76,7 +76,7 @@ export function GuestbookForm({
       </form>
       {session && (
         <button
-          className='mt-2 border-none text-sm font-medium text-gray-700 transition 
+          className='smooth-tab mt-2 border-none text-sm font-medium text-gray-700 transition
                      hover:text-black disabled:cursor-not-allowed disabled:brightness-50 
                      dark:text-gray-200 dark:hover:text-white md:text-base'
           onClick={handleSignOut}

@@ -109,6 +109,7 @@ export default function Blog({
           </p>
           {tags.map((tag) => (
             <BlogTag
+              className='smooth-tab'
               disabled={!filteredTags.includes(tag)}
               onClick={handleTagClick(tag)}
               key={tag}

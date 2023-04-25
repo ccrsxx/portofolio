@@ -11,12 +11,12 @@ export function Footer(): JSX.Element {
       <nav className='mt-6 flex flex-wrap justify-center gap-x-8 gap-y-4'>
         {footerLinks.map(({ name, href, tip }) => (
           <Tooltip
-            tooltipClassName='group-hover:-translate-y-16 hidden sm:block'
+            tooltipClassName='hidden sm:block group-hover:-translate-y-16 peer-focus-visible:-translate-y-16'
             tip={tip}
             key={name}
           >
             <UnstyledLink
-              className='animated-underline text-sm font-medium dark:text-gray-200'
+              className='animated-underline peer text-sm font-medium dark:text-gray-200'
               href={href}
             >
               {name}
@@ -40,10 +40,10 @@ export function Footer(): JSX.Element {
               key={name}
             >
               <UnstyledLink
-                className='transition-colors hover:text-accent-blue'
+                className='smooth-tab peer grid transition-colors hover:text-accent-blue'
                 href={href}
               >
-                <Icon className='h-6 w-6' />
+                <Icon className='smooth-tab h-6 w-6' />
               </UnstyledLink>
             </Tooltip>
           ))}
@@ -52,7 +52,7 @@ export function Footer(): JSX.Element {
       <p className='text-center text-sm text-gray-600 dark:text-gray-300'>
         &copy; Risal Amin 2022 •{' '}
         <UnstyledLink
-          className='transition hover:text-gray-800 dark:hover:text-gray-100'
+          className='smooth-tab transition hover:text-gray-800 dark:hover:text-gray-100'
           href='https://github.com/ccrsxx/ccrsxx.me'
         >
           Got any feedback?

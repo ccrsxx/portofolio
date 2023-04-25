@@ -36,7 +36,7 @@ export function SortListbox({
             {open && (
               <Listbox.Options
                 as={motion.ul}
-                className='main-border absolute z-10 mt-2 max-h-60 w-full overflow-auto
+                className='main-border smooth-tab absolute z-10 mt-2 max-h-60 w-full overflow-auto
                            rounded-md bg-white text-sm shadow-lg dark:bg-dark-background'
                 {...variants}
                 static

@@ -22,7 +22,7 @@ export function TechIcons({ tags }: { tags: string }): JSX.Element {
   const techsArray = tags.split(',');
 
   return (
-    <ul className='mt-2 flex gap-2'>
+    <ul className='mt-2 flex gap-2 [&>li:first-child>div]:-translate-x-1/3'>
       {techsArray.map((tech) => {
         const { name, Icon } = techList[tech];
 

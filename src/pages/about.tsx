@@ -80,18 +80,23 @@ export default function About(): JSX.Element {
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
               tooltipClassName='group-hover:!-translate-y-32 w-72 px-3 py-4 !-translate-y-28
-                                text-center !whitespace-normal 2xl:!-translate-x-1/2'
+                                text-center !whitespace-normal 2xl:!-translate-x-1/2
+                                peer-focus-visible:!-translate-y-32'
               tag='li'
               key={name}
               tip={
                 <>
-                  <CustomLink href={href}>{name}</CustomLink>
+                  <CustomLink href={href} tabIndex={-1}>
+                    {name}
+                  </CustomLink>
                   {', '}
                   {tip}
                 </>
               }
             >
-              <Icon className='text-4xl transition-colors hover:text-accent-blue' />
+              <button className='smooth-tab peer'>
+                <Icon className='text-4xl transition-colors hover:text-accent-blue' />
+              </button>
             </Tooltip>
           ))}
         </motion.ul>

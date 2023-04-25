@@ -25,11 +25,10 @@ export function SpotifyCard(): JSX.Element {
         <motion.div {...setTransition()}>
           <Tooltip
             tip='Currently playing on my Spotify'
-            className='clickable'
-            tooltipClassName='group-hover:!-translate-y-36 !-translate-y-32'
+            tooltipClassName='!-translate-y-32 group-hover:!-translate-y-36 peer-focus-visible:!-translate-y-36'
           >
             <UnstyledLink
-              className='main-border relative flex w-72 gap-4 rounded-md p-4'
+              className='clickable main-border peer relative flex w-72 gap-4 rounded-md p-4'
               href={trackUrl}
             >
               <LazyImage

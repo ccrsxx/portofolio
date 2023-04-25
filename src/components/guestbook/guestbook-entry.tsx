@@ -42,7 +42,7 @@ export function GuestbookEntry({
       layout='position'
       {...variants}
     >
-      <UnstyledLink href={GITHUB_PROFILE_URL}>
+      <UnstyledLink className='smooth-tab' href={GITHUB_PROFILE_URL}>
         <LazyImage
           className='main-border rounded-full transition hover:brightness-75'
           src={image}
@@ -64,7 +64,7 @@ export function GuestbookEntry({
             className='whitespace-nowrap'
             tip={formatFullTimeStamp(createdAt)}
           >
-            <button className='custom-underline cursor-pointer text-sm text-gray-600 dark:text-gray-300'>
+            <button className='custom-underline peer cursor-pointer text-sm text-gray-600 dark:text-gray-300'>
               {formatTimestamp(createdAt)}
             </button>
           </Tooltip>
