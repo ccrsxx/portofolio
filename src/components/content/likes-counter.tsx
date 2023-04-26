@@ -20,8 +20,8 @@ export function LikesCounter({ slug }: Pick<Content, 'slug'>): JSX.Element {
       )}
     >
       <button
-        className='relative text-gray-400 transition-transform hover:scale-110 
-                   active:scale-95 disabled:cursor-not-allowed dark:text-gray-600'
+        className='smooth-tab relative text-gray-400 transition-transform hover:scale-110
+                   focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed dark:text-gray-600'
         onClick={registerLikes}
         disabled={likesIsDisabled}
       >

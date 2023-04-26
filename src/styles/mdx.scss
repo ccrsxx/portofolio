@@ -11,11 +11,14 @@
 
       &::after {
         @apply gradient-title ml-2 inline-block opacity-0
-             transition-opacity duration-300 content-['#'];
+               transition-opacity duration-300 content-['#'];
       }
 
-      &:hover::after {
-        @apply opacity-100;
+      &:hover,
+      &:focus-visible {
+        &::after {
+          @apply opacity-100;
+        }
       }
     }
   }

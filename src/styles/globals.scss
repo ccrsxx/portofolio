@@ -83,7 +83,8 @@
     &:hover,
     &:focus-visible,
     &:has(+ div:hover),
-    .project-card:hover & {
+    .project-card:hover &,
+    .project-card:focus-visible & {
       background-size: 100% 2px;
 
       &.with-dots {

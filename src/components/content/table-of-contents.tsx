@@ -13,7 +13,7 @@ export function TableOfContents({ children }: PropsWithChildren): JSX.Element {
         <h2 className='text-xl font-bold text-gray-900 dark:text-gray-100'>
           Table of Contents
         </h2>
-        <nav className='grid gap-2 text-sm font-medium'>
+        <nav className='grid justify-items-start gap-2 text-sm font-medium'>
           {headingData.map(({ id, title, items }) => (
             <>
               <a
@@ -54,5 +54,8 @@ function getHeadingStyle(
   currentActiveId: string | null,
   targetId: string
 ): string {
-  return clsx('transition-colors', linkStyles[+(currentActiveId === targetId)]);
+  return clsx(
+    'smooth-tab transition',
+    linkStyles[+(currentActiveId === targetId)]
+  );
 }

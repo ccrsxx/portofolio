@@ -8,13 +8,15 @@ import type { ImageProps, StaticImageData } from 'next/image';
 type ImagePreviewProps = Omit<ImageProps, 'src'> & {
   src: StaticImageData;
   customLink?: string;
+  wrapperClassName?: string;
 };
 
 export function ImagePreview({
   src,
   alt,
   className,
-  customLink
+  customLink,
+  wrapperClassName
 }: ImagePreviewProps): JSX.Element {
   const { open, openModal, closeModal } = useModal();
 
@@ -38,10 +40,10 @@ export function ImagePreview({
             />
             <a
               className='absolute bottom-0 right-0 mx-2 mb-2 translate-y-4 rounded-md bg-white/40 px-2 py-1 
-                         text-sm text-black/80 opacity-0 outline-none transition hover:!bg-blue-400 
-                         hover:text-white focus-visible:translate-y-0 focus-visible:text-white
-                         focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 
-                         dark:bg-dark-background/40 dark:text-white/80'
+                         text-sm text-black/80 opacity-0 outline-none transition hover:!bg-accent-blue 
+                         hover:text-white focus-visible:translate-y-0 focus-visible:!bg-accent-blue
+                         focus-visible:text-white focus-visible:opacity-100 group-hover:translate-y-0 
+                         group-hover:opacity-100 dark:bg-dark-background/40 dark:text-white/80'
               href={customLink}
               target='_blank'
               rel='noreferrer'
@@ -52,9 +54,9 @@ export function ImagePreview({
           </div>
           <a
             className='absolute left-0 -bottom-7 font-medium text-black/80 underline decoration-transparent 
-                       underline-offset-2 transition-colors hover:text-black hover:decoration-black 
-                       focus-visible:text-black dark:text-white/80 dark:hover:text-white 
-                       dark:hover:decoration-white dark:focus-visible:text-white'
+                       underline-offset-2 outline-none transition-colors hover:text-black hover:decoration-black
+                       focus-visible:text-black focus-visible:decoration-inherit dark:text-white/80 
+                       dark:hover:text-white dark:hover:decoration-white dark:focus-visible:text-white'
             href={customLink}
             target='_blank'
             rel='noreferrer'
@@ -64,17 +66,21 @@ export function ImagePreview({
           </a>
         </div>
       </Modal>
-      <Image
-        className={clsx(
-          'mx-auto cursor-pointer rounded-md transition hover:brightness-75',
-          className
-        )}
-        src={src}
-        alt={alt}
-        title={alt}
-        placeholder={placeholder}
+      <button
+        className={clsx('smooth-tab grid', wrapperClassName)}
         onClick={openModal}
-      />
+      >
+        <Image
+          className={clsx(
+            'mx-auto cursor-pointer rounded-md transition hover:brightness-75',
+            className
+          )}
+          src={src}
+          alt={alt}
+          title={alt}
+          placeholder={placeholder}
+        />
+      </button>
     </>
   );
 }

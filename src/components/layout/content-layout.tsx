@@ -58,6 +58,7 @@ export function ContentLayout({
       <SEO title={title} description={description} article={article} />
       <ImagePreview
         className='max-h-[448px] object-cover'
+        wrapperClassName='mt-0.5'
         src={banner}
         alt={bannerAlt ?? title}
         customLink={bannerLink}
@@ -71,7 +72,7 @@ export function ContentLayout({
           <div className='flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200'>
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
             <UnstyledLink
-              className='flex items-center gap-1 transition-colors hover:text-accent-blue'
+              className='smooth-tab flex items-center gap-1 transition-colors hover:text-accent-blue'
               href={githubCommitHistoryUrl}
             >
               <MdHistory className='text-lg' />
