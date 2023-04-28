@@ -8,6 +8,7 @@ export type Guestbook = {
   image: string;
   username: string;
   createdAt: Timestamp;
+  createdBy: string;
 };
 
 export type Text = Guestbook['text'];

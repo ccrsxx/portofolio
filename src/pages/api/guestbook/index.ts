@@ -35,11 +35,12 @@ export default async function handler(
       if (!text)
         return res.status(422).json({ message: "Text can't be empty" });
 
-      const { user } = session;
+      const { id: createdBy, admin: _, ...rest } = session.user;
 
       const data: WithFieldValue<Omit<Guestbook, 'id'>> = {
-        ...user,
+        ...rest,
         text,
+        createdBy,
         createdAt: serverTimestamp()
       };
 

@@ -23,6 +23,7 @@ export function GuestbookEntry({
   session,
   username,
   createdAt,
+  createdBy,
   unRegisterGuestbook
 }: GuestbookEntryProps): JSX.Element {
   const [loading, setLoading] = useState(false);
@@ -32,9 +33,9 @@ export function GuestbookEntry({
     await unRegisterGuestbook(id);
   };
 
-  const isOwner = session?.user.username === username || session?.user.admin;
+  const isOwner = session?.user.id === createdBy || session?.user.admin;
 
-  const GITHUB_PROFILE_URL = `https://github.com/${username}`;
+  const githubProfileUrl = `https://github.com/${username}`;
 
   return (
     <motion.article
@@ -42,7 +43,7 @@ export function GuestbookEntry({
       layout='position'
       {...variants}
     >
-      <UnstyledLink className='smooth-tab' href={GITHUB_PROFILE_URL}>
+      <UnstyledLink className='smooth-tab' href={githubProfileUrl}>
         <LazyImage
           className='main-border rounded-full transition hover:brightness-75'
           src={image}
@@ -56,7 +57,7 @@ export function GuestbookEntry({
           <UnstyledLink
             className='custom-underline truncate font-bold'
             title={name}
-            href={GITHUB_PROFILE_URL}
+            href={githubProfileUrl}
           >
             {name}
           </UnstyledLink>
