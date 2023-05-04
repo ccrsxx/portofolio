@@ -29,9 +29,9 @@ export default async function handler(
 
       return res.status(201).json(views + 1);
     }
-  } catch (err) {
-    if (err instanceof Error)
-      return res.status(500).json({ message: err.message });
+  } catch (error) {
+    if (error instanceof Error)
+      return res.status(500).json({ message: error.message });
 
     return res.status(500).json({ message: 'Internal server error' });
   }
