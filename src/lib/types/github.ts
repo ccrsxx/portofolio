@@ -15,10 +15,10 @@ type Commit = {
 
 export type GithubUser = {
   id: number;
-  bio: null | string;
-  name: null | string;
+  bio: string | null;
+  name: string | null;
   login: string;
-  email: null | string;
+  email: string | null;
   node_id: string;
   avatar_url: string;
 };

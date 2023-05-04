@@ -8,7 +8,7 @@ import { CustomLink } from '@components/link/custom-link';
 import type { MotionProps } from 'framer-motion';
 
 export default function NotFound(): JSX.Element {
-  const [currentUrl, setCurrentUrl] = useState<null | string>(null);
+  const [currentUrl, setCurrentUrl] = useState<string | null>(null);
 
   const { asPath, isReady } = useRouter();
 

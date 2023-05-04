@@ -40,7 +40,7 @@ export async function getAccessToken(): Promise<AccessToken> {
 /**
  * Returns the currently playing song from the Spotify API.
  */
-export async function getNowPlaying(): Promise<null | FullNowPlaying> {
+export async function getNowPlaying(): Promise<FullNowPlaying | null> {
   const { access_token } = await getAccessToken();
 
   const response = await fetch(
