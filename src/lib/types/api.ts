@@ -12,9 +12,11 @@ type ApiEndpoints =
 
 export type ValidApiEndpoints = `/api/${ApiEndpoints}`;
 
-type DefaultUser = Omit<User, 'id'>;
+type DefaultUser = Required<Omit<User, 'id'>>;
 
-export type AssertedUser = Record<keyof NonNullable<DefaultUser>, string>;
+export type AssertedUser = {
+  [K in keyof DefaultUser]: NonNullable<DefaultUser[K]>;
+};
 
 type CustomUser = AssertedUser & {
   id: string;
