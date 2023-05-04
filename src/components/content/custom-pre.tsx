@@ -18,7 +18,7 @@ type PrettyCodeProps = PropsWithChildren<{
 type CustomPreProps = ComponentPropsWithoutRef<'pre'> &
   Partial<PrettyCodeProps>;
 
-export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
+export function CustomPre({ children, ...rest }: CustomPreProps): JSX.Element {
   const [copied, setCopied] = useState(false);
   const mounted = useMounted();
 
@@ -31,12 +31,12 @@ export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const dataLanguage = props['data-language'];
+  const dataLanguage = rest['data-language'];
 
   return (
     <>
       {mounted && <div data-rehype-pretty-code-title>{dataLanguage}</div>}
-      <pre {...props} ref={preRef}>
+      <pre {...rest} ref={preRef}>
         {mounted && (
           <button
             className='main-border smooth-tab clickable absolute top-2 right-2 
