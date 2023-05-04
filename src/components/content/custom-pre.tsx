@@ -7,7 +7,7 @@ import type {
   PropsWithChildren,
   ComponentPropsWithoutRef
 } from 'react';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 
 type PrettyCodeProps = PropsWithChildren<{
   style: Pick<CSSProperties, 'backgroundColor'>;
@@ -62,7 +62,7 @@ export function CustomPre({ children, ...props }: CustomPreProps): JSX.Element {
   );
 }
 
-const variants: Variants = {
+const variants: MotionProps = {
   initial: { opacity: 0, scale: 0.5 },
   animate: { opacity: 1, scale: 1, transition: { duration: 0.15 } },
   exit: { opacity: 0, scale: 0.5, transition: { duration: 0.1 } }

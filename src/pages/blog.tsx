@@ -12,7 +12,7 @@ import { SubscribeCard } from '@components/blog/subscribe-card';
 import { Accent } from '@components/ui/accent';
 import type { ChangeEvent } from 'react';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 import type { Blog } from '@lib/types/contents';
 import type { BlogWithViews } from '@lib/api';
 import type { SortOption } from '@components/blog/sort-listbox';
@@ -178,7 +178,7 @@ export async function getStaticProps(): Promise<
   };
 }
 
-const variants: Variants = {
+const variants: MotionProps = {
   initial: {
     scale: 0.9,
     opacity: 0

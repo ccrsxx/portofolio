@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import { clsx } from 'clsx';
 import type { PropsWithChildren } from 'react';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 
 type ModalProps = PropsWithChildren<{
   open: boolean;
@@ -50,7 +50,7 @@ export function Modal({
   );
 }
 
-const variants: Variants[] = [
+const variants: MotionProps[] = [
   {
     initial: { opacity: 0 },
     animate: { opacity: 1 },

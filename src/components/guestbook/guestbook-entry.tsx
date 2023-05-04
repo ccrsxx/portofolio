@@ -6,7 +6,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
 import { Tooltip } from '@components/ui/tooltip';
 import { LazyImage } from '@components/ui/lazy-image';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
 
@@ -87,7 +87,7 @@ export function GuestbookEntry({
   );
 }
 
-const variants: Variants = {
+const variants: MotionProps = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.8 } },
   exit: { opacity: 0, transition: { duration: 0.2 } }

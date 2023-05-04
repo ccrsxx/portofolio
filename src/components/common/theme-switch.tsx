@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
 import { useTheme } from 'next-themes';
 import { useMounted } from '@lib/hooks/useMounted';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 
 export function ThemeSwitch(): JSX.Element | null {
   const { theme, setTheme } = useTheme();
@@ -38,7 +38,7 @@ export function ThemeSwitch(): JSX.Element | null {
   );
 }
 
-const variants: Variants[] = [
+const variants: MotionProps[] = [
   {
     initial: { x: '-50px', y: '25px' },
     animate: { scale: 1, x: 0, y: 0, transition: { duration: 0.8 } },

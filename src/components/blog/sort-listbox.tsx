@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { Listbox } from '@headlessui/react';
 import { HiEye, HiCheck, HiCalendar, HiArrowsUpDown } from 'react-icons/hi2';
 import type { Dispatch, SetStateAction } from 'react';
-import type { Variants } from 'framer-motion';
+import type { MotionProps } from 'framer-motion';
 
 type SortListboxProps = {
   sortOrder: SortOption;
@@ -88,7 +88,7 @@ export type SortOption = typeof sortOptions[number];
 
 export const sortOptions = ['date', 'views'] as const;
 
-const variants: Variants = {
+const variants: MotionProps = {
   initial: { opacity: 0, y: 20 },
   animate: {
     opacity: 1,
