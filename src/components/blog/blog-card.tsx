@@ -5,14 +5,17 @@ import { Accent } from '@components/ui/accent';
 import { BlogStats } from './blog-stats';
 import { BlogTag } from './blog-tag';
 import type { Blog } from '@lib/types/contents';
+import type { CustomTag, ValidTag } from '@lib/types/helper';
 
-type BlogCardProps = Blog & {
-  Tag?: keyof JSX.IntrinsicElements;
-  isTagSelected?: (tag: string) => boolean;
-};
+const DEFAULT_TAG = 'article' as const;
 
-export function BlogCard({
-  Tag = 'article',
+type BlogCardProps<T extends ValidTag> = CustomTag<T> &
+  Blog & {
+    isTagSelected?: (tag: string) => boolean;
+  };
+
+export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
+  tag = DEFAULT_TAG,
   slug,
   tags,
   title,
@@ -20,12 +23,15 @@ export function BlogCard({
   readTime,
   publishedAt,
   description,
-  isTagSelected
-}: BlogCardProps): JSX.Element {
+  isTagSelected,
+  ...rest
+}: BlogCardProps<T>): JSX.Element {
+  const CustomTag: ValidTag = tag;
+
   const techTags = tags.split(',');
 
   return (
-    <Tag className='grid'>
+    <CustomTag className='grid' {...rest}>
       <Link
         className='clickable bg-white dark:bg-dark-background'
         href={`/blog/${slug}`}
@@ -41,7 +47,7 @@ export function BlogCard({
             {techTags.map((tag) => (
               <BlogTag
                 className='bg-opacity-80 dark:bg-opacity-60'
-                Tag='li'
+                tag='li'
                 key={tag}
               >
                 {isTagSelected && isTagSelected(tag) ? (
@@ -66,6 +72,6 @@ export function BlogCard({
           </p>
         </section>
       </Link>
-    </Tag>
+    </CustomTag>
   );
 }

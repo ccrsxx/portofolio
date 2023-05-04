@@ -136,7 +136,7 @@ export default function Blog({
                   layout='position'
                   key={post.title}
                 >
-                  <BlogCard Tag='div' {...post} isTagSelected={isTagSelected} />
+                  <BlogCard {...post} tag='div' isTagSelected={isTagSelected} />
                 </motion.article>
               ))}
             </AnimatePresence>

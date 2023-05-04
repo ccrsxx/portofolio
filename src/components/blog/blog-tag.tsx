@@ -1,21 +1,18 @@
 import { clsx } from 'clsx';
-import type { PropsWithChildren, HTMLAttributes } from 'react';
+import type { CustomTag, ValidTag } from '@lib/types/helper';
 
-type BlogTagProps = PropsWithChildren<
-  HTMLAttributes<HTMLOrSVGElement> & {
-    Tag?: keyof JSX.IntrinsicElements;
-    disabled?: boolean;
-  }
->;
+const DEFAULT_TAG = 'button' as const;
 
-export function BlogTag({
-  Tag = 'button',
+export function BlogTag<T extends ValidTag = typeof DEFAULT_TAG>({
+  tag = DEFAULT_TAG,
   children,
   className,
   ...rest
-}: BlogTagProps): JSX.Element {
+}: CustomTag<T>): JSX.Element {
+  const CustomTag: ValidTag = tag;
+
   return (
-    <Tag
+    <CustomTag
       className={clsx(
         className,
         `rounded-md bg-gray-100 px-1.5 py-0.5 text-sm font-medium text-gray-700 transition hover:text-black 
@@ -25,6 +22,6 @@ export function BlogTag({
       {...rest}
     >
       {children}
-    </Tag>
+    </CustomTag>
   );
 }
