@@ -7,6 +7,13 @@ import {
 import { OWNER_BEARER_TOKEN, PUBLIC_URL, IS_DEVELOPMENT } from '@lib/env';
 import type { NextRequest } from 'next/server';
 
+console.log(
+  'PR TEST',
+  IS_DEVELOPMENT,
+  window?.location?.origin,
+  process.env.NEXT_PUBLIC_URL
+);
+
 export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);
 
