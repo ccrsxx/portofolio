@@ -2,7 +2,7 @@
   @apply pointer-events-none;
 
   .bar {
-    @apply fixed top-0 left-0 z-40 h-0.5 w-full bg-dark-background;
+    @apply fixed left-0 top-0 z-40 h-0.5 w-full bg-dark-background;
 
     .peg {
       $dark-background: theme('colors.dark-background');
@@ -10,7 +10,7 @@
       width: 100px;
       box-shadow: 0 0 10px $dark-background, 0 0 5px $dark-background;
 
-      @apply absolute right-0 block h-full translate-x-0 -translate-y-1 rotate-3 opacity-100;
+      @apply absolute right-0 block h-full -translate-y-1 translate-x-0 rotate-3 opacity-100;
     }
   }
 }

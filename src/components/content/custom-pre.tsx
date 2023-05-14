@@ -39,7 +39,7 @@ export function CustomPre({ children, ...rest }: CustomPreProps): JSX.Element {
       <pre {...rest} ref={preRef}>
         {mounted && (
           <button
-            className='main-border smooth-tab clickable absolute top-2 right-2 
+            className='main-border smooth-tab clickable absolute right-2 top-2 
                        grid rounded-md p-2 text-gray-600 dark:text-gray-300'
             onClick={handleCopied}
           >
