@@ -39,7 +39,7 @@ export function SpotifyCard(): JSX.Element {
                 width={64}
                 height={64}
               />
-              <div className='grid [&>p]:truncate [&>p>span]:text-gray-700 dark:[&>p>span]:text-gray-200'>
+              <div className='grid [&>p>span]:text-gray-700 dark:[&>p>span]:text-gray-200 [&>p]:truncate'>
                 <p className='text-sm font-medium' title={trackName}>
                   {trackName}
                 </p>
@@ -56,7 +56,7 @@ export function SpotifyCard(): JSX.Element {
                   on <span>{albumName}</span>
                 </p>
               </div>
-              <SiSpotify className='absolute right-4 bottom-4 text-lg text-[#1ed760]' />
+              <SiSpotify className='absolute bottom-4 right-4 text-lg text-[#1ed760]' />
             </UnstyledLink>
           </Tooltip>
         </motion.div>

@@ -92,7 +92,7 @@
         }
 
         .line {
-          @apply border-l-2 border-transparent py-0 px-5;
+          @apply border-l-2 border-transparent px-5 py-0;
 
           &.highlighted {
             background: rgba(200, 200, 255, 0.1);
