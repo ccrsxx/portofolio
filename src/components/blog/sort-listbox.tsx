@@ -84,7 +84,7 @@ export function SortListbox({
   );
 }
 
-export type SortOption = typeof sortOptions[number];
+export type SortOption = (typeof sortOptions)[number];
 
 export const sortOptions = ['date', 'views'] as const;
 

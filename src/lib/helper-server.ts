@@ -74,7 +74,7 @@ export function getOrigin(req: NextRequest): string | null {
   return originFromReferer;
 }
 
-type ValidContentTypes = typeof VALID_CONTENT_TYPES[number];
+type ValidContentTypes = (typeof VALID_CONTENT_TYPES)[number];
 
 export const VALID_CONTENT_TYPES = ['blog', 'projects'] as const;
 
