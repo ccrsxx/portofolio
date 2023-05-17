@@ -5,14 +5,16 @@ import { Accent } from '@components/ui/accent';
 import { BlogStats } from './blog-stats';
 import { BlogTag } from './blog-tag';
 import type { Blog } from '@lib/types/contents';
+import type { BlogWithViews } from '@lib/api';
 import type { CustomTag, ValidTag } from '@lib/types/helper';
 
-const DEFAULT_TAG = 'article' as const;
-
 type BlogCardProps<T extends ValidTag> = CustomTag<T> &
-  Blog & {
+  Blog &
+  Partial<Pick<BlogWithViews, 'views'>> & {
     isTagSelected?: (tag: string) => boolean;
   };
+
+const DEFAULT_TAG = 'article' as const;
 
 export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
   tag = DEFAULT_TAG,
@@ -21,12 +23,17 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
   title,
   banner,
   readTime,
+  bannerAlt,
   publishedAt,
   description,
+  views: _views,
+  bannerLink: _bannerLink,
   isTagSelected,
   ...rest
 }: BlogCardProps<T>): JSX.Element {
   const CustomTag: ValidTag = tag;
+
+  bannerAlt ??= title;
 
   const techTags = tags.split(',');
 
@@ -40,7 +47,8 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
           <Image
             className='h-36 rounded-t-md object-cover'
             src={banner}
-            alt={title}
+            alt={bannerAlt}
+            title={bannerAlt}
             placeholder='blur'
           />
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
