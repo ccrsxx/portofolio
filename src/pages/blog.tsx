@@ -8,7 +8,6 @@ import { SEO } from '@components/common/seo';
 import { BlogTag } from '@components/blog/blog-tag';
 import { SortListbox, sortOptions } from '@components/blog/sort-listbox';
 import { BlogCard } from '@components/blog/blog-card';
-import { SubscribeCard } from '@components/blog/subscribe-card';
 import { Accent } from '@components/ui/accent';
 import type { ChangeEvent } from 'react';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
@@ -155,9 +154,9 @@ export default function Blog({
           )}
         </AnimatePresence>
       </motion.section>
-      <motion.section className='mt-8' {...setTransition({ delayIn: 0.6 })}>
+      {/* <motion.section className='mt-8' {...setTransition({ delayIn: 0.6 })}>
         <SubscribeCard />
-      </motion.section>
+      </motion.section> */}
     </main>
   );
 }

@@ -11,7 +11,6 @@ import { BlogStats } from '@components/blog/blog-stats';
 import { ImagePreview } from '@components/modal/image-preview';
 import { ProjectStats } from '@components/project/project-stats';
 import { TableOfContents } from '@components/content/table-of-contents';
-import { SubscribeCard } from '@components/blog/subscribe-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { CustomLink } from '@components/link/custom-link';
 import { LikesCounter } from '@components/content/likes-counter';
@@ -113,11 +112,11 @@ export function ContentLayout({
               )}
         </section>
       </section>
-      {contentIsBlog && (
+      {/* {contentIsBlog && (
         <section className='mt-12'>
           <SubscribeCard />
         </section>
-      )}
+      )} */}
       <section className='mt-8 flex justify-between font-medium'>
         <CustomLink href={`/${type}`}>← Back to {type}</CustomLink>
         <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
