@@ -41,7 +41,7 @@ export default function Blog({
     });
 
     if (sortOrder === 'date') newFilteredPosts.sort();
-    else newFilteredPosts.sort((a, b) => (b?.views ?? 0) - (a?.views ?? 0));
+    else newFilteredPosts.sort((a, b) => b.views - a.views);
 
     setFilteredPosts(newFilteredPosts);
   }, [posts, search, sortOrder]);
@@ -67,8 +67,12 @@ export default function Blog({
 
   const filteredTags = getTags(filteredPosts);
 
-  const isTagSelected = (tag: string): boolean =>
-    filteredTags.includes(tag) && search.toLowerCase().split(' ').includes(tag);
+  const isTagSelected = (tag: string): boolean => {
+    const isInFilteredTags = filteredTags.includes(tag);
+    const isInSearch = search.toLowerCase().split(' ').includes(tag);
+
+    return isInFilteredTags && isInSearch;
+  };
 
   return (
     <main className='min-h-screen'>
