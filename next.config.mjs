@@ -17,7 +17,7 @@ const rehypePrettyCodeOptions = {
   },
 
   // Keep the background or use a custom background color?
-  keepBackground: true,
+  keepBackground: false,
 
   // Callback hooks to add custom logic to nodes when visiting
   // them.
