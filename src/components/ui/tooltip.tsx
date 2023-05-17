@@ -1,26 +1,28 @@
-import cn from 'clsx';
-import type { PropsWithChildren, ComponentPropsWithoutRef } from 'react';
+import { clsx } from 'clsx';
+import type { ValidTag, CustomTag } from '@lib/types/helper';
 
-type TooltipProps = PropsWithChildren<
-  ComponentPropsWithoutRef<'div'> & {
-    tip: string | JSX.Element;
-    tag?: keyof JSX.IntrinsicElements;
-    tooltipClassName?: string;
-  }
->;
+type TooltipProps<T extends ValidTag> = CustomTag<T> & {
+  tip: string | JSX.Element;
+  tooltipClassName?: string;
+};
 
-export function Tooltip({
+const DEFAULT_TAG = 'div' as const;
+
+export function Tooltip<T extends ValidTag = typeof DEFAULT_TAG>({
+  tag = DEFAULT_TAG,
   tip,
   children,
   className,
-  tag: Tag = 'div',
-  tooltipClassName = 'group-hover:-translate-y-16 peer-focus-visible:-translate-y-16'
-}: TooltipProps): JSX.Element {
+  tooltipClassName = 'group-hover:-translate-y-16 peer-focus-visible:-translate-y-16',
+  ...rest
+}: TooltipProps<T>): JSX.Element {
+  const CustomTag: ValidTag = tag;
+
   return (
-    <Tag className={cn('group relative', className)}>
+    <CustomTag className={clsx('group relative', className)} {...rest}>
       {children}
       <div
-        className={cn(
+        className={clsx(
           `main-border invisible absolute left-1/2 z-20 -translate-x-1/2 -translate-y-12 whitespace-nowrap
            rounded bg-white px-2 py-1 text-sm opacity-0 [transition:visibility_0ms_ease_300ms,300ms_ease] 
            group-hover:visible group-hover:opacity-100 peer-focus-visible:visible peer-focus-visible:opacity-100
@@ -30,6 +32,6 @@ export function Tooltip({
       >
         <span>{tip}</span>
       </div>
-    </Tag>
+    </CustomTag>
   );
 }
