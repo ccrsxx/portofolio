@@ -79,9 +79,9 @@ export default function About(): JSX.Element {
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              tooltipClassName='group-hover:!-translate-y-32 w-72 px-3 py-4 !-translate-y-28
+              tooltipClassName='group-hover:!-translate-y-36 w-72 px-3 py-4 !-translate-y-28
                                 text-center !whitespace-normal 2xl:!-translate-x-1/2
-                                peer-focus-visible:!-translate-y-32'
+                                peer-focus-visible:!-translate-y-36'
               tag='li'
               key={name}
               tip={
