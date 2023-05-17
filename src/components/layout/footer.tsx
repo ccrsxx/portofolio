@@ -83,21 +83,21 @@ const footerLinks: FooterLink[] = [
     href: '/design',
     tip: 'ccrsxx.me color palette'
   },
-  {
-    name: 'Analytics',
-    href: 'https://umami.ccrsxx.me',
-    tip: 'ccrsxx.me views and visitors analytics'
-  },
+  // {
+  //   name: 'Analytics',
+  //   href: 'https://umami.ccrsxx.me',
+  //   tip: 'ccrsxx.me views and visitors analytics'
+  // },
   {
     name: 'Statistics',
     href: '/statistics',
     tip: 'Blog & Projects statistics'
-  },
-  {
-    name: 'Subscribe',
-    href: '/subscribe',
-    tip: 'Get notified when I publish a new post'
   }
+  // {
+  //   name: 'Subscribe',
+  //   href: '/subscribe',
+  //   tip: 'Get notified when I publish a new post'
+  // }
 ];
 
 type SocialLink = {
