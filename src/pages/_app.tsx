@@ -6,6 +6,7 @@ import nProgress from 'nprogress';
 import { AnimatePresence } from 'framer-motion';
 import { Router, useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           </AnimatePresence>
         </Layout>
       </ThemeProvider>
+      <Analytics />
     </>
   );
 }
