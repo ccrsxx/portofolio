@@ -26,7 +26,7 @@ export default async function handler(
 
   return new ImageResponse(
     (
-      <div tw='flex h-full w-full bg-[#222222] p-8 text-white '>
+      <div tw='flex h-full w-full bg-black p-8 text-white '>
         {article ? (
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
