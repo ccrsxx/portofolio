@@ -8,7 +8,6 @@ module.exports = {
         inter: ['var(--font-inter)']
       },
       colors: {
-        'dark-background': '#222222',
         'accent-blue': '#60a5fa'
       }
     }
