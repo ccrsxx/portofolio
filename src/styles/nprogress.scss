@@ -2,13 +2,11 @@
   @apply pointer-events-none;
 
   .bar {
-    @apply fixed left-0 top-0 z-40 h-0.5 w-full bg-dark-background;
+    @apply fixed left-0 top-0 z-40 h-0.5 w-full bg-black;
 
     .peg {
-      $dark-background: theme('colors.dark-background');
-
       width: 100px;
-      box-shadow: 0 0 10px $dark-background, 0 0 5px $dark-background;
+      box-shadow: 0 0 10px black, 0 0 5px black;
 
       @apply absolute right-0 block h-full -translate-y-1 translate-x-0 rotate-3 opacity-100;
     }
