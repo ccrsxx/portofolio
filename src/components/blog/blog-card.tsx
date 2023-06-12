@@ -39,10 +39,7 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
 
   return (
     <CustomTag className='grid' {...rest}>
-      <Link
-        className='clickable bg-white dark:bg-dark-background'
-        href={`/blog/${slug}`}
-      >
+      <Link className='clickable' href={`/blog/${slug}`}>
         <div className='relative'>
           <Image
             className='h-36 rounded-t-md object-cover'

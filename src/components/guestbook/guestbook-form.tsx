@@ -57,8 +57,7 @@ export function GuestbookForm({
         {session ? (
           <Button
             type='submit'
-            className='custom-button clickable bg-white font-bold text-gray-600
-                       dark:bg-dark-background dark:text-gray-300'
+            className='custom-button clickable font-bold text-gray-600 dark:text-gray-300'
             loading={loading}
           >
             Sign
