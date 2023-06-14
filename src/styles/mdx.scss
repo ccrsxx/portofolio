@@ -76,7 +76,7 @@
       }
 
       &[data-theme='dark'] {
-        @apply hidden bg-dark-background dark:block;
+        @apply hidden bg-black dark:block;
       }
 
       code {

@@ -43,7 +43,7 @@ export function ImagePreview({
                          text-sm text-black/80 opacity-0 outline-none transition hover:!bg-accent-blue 
                          hover:text-white focus-visible:translate-y-0 focus-visible:!bg-accent-blue
                          focus-visible:text-white focus-visible:opacity-100 group-hover:translate-y-0 
-                         group-hover:opacity-100 dark:bg-dark-background/40 dark:text-white/80'
+                         group-hover:opacity-100 dark:bg-black/40 dark:text-white/80'
               href={customLink}
               target='_blank'
               rel='noreferrer'

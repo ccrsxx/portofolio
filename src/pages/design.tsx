@@ -64,9 +64,9 @@ const colorPalette = [
     className: 'bg-white'
   },
   {
-    title: 'Dark Background',
+    title: 'Black Background',
     hexCode: '#222222',
-    className: 'bg-dark-background'
+    className: 'bg-black'
   },
   {
     title: 'White Text',
@@ -74,7 +74,7 @@ const colorPalette = [
     className: 'bg-white'
   },
   {
-    title: 'Dark Text',
+    title: 'Black Text',
     hexCode: '#000000',
     className: 'bg-black'
   },

@@ -14,7 +14,7 @@
   }
 
   body {
-    @apply bg-white font-inter text-black transition-colors dark:bg-dark-background dark:text-white;
+    @apply bg-white font-inter transition-colors dark:bg-black;
   }
 
   main {
@@ -22,7 +22,7 @@
   }
 
   ::selection {
-    @apply bg-accent-blue text-black dark:text-white;
+    @apply bg-accent-blue text-white;
   }
 }
 
@@ -44,8 +44,7 @@
   }
 
   .custom-input {
-    @apply main-border rounded-md px-3 py-2 outline-none transition focus:border-accent-blue 
-           dark:bg-dark-background;
+    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-blue dark:bg-black;
   }
 
   .smooth-tab {
