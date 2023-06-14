@@ -44,7 +44,7 @@
   }
 
   .custom-input {
-    @apply main-border rounded-md px-3 py-2 outline-none transition focus:border-accent-blue dark:bg-black;
+    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-blue dark:bg-black;
   }
 
   .smooth-tab {
