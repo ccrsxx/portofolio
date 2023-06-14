@@ -19,7 +19,7 @@ export function Header(): JSX.Element {
       <header
         className={clsx(
           'sticky top-0 z-20 w-full bg-white/60 backdrop-blur-md transition dark:bg-black/60',
-          !inView && 'shadow-sm dark:shadow-gray-800'
+          !inView && 'shadow-sm dark:shadow-gray-900'
         )}
       >
         <div className='h-2 bg-gradient-to-r from-blue-400 to-green-300' />
