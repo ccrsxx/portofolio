@@ -50,7 +50,7 @@ export function Footer(): JSX.Element {
         </section>
       </section>
       <p className='text-center text-sm text-gray-600 dark:text-gray-300'>
-        &copy; Risal Amin 2022 •{' '}
+        &copy; Risal Amin 2023 •{' '}
         <UnstyledLink
           className='smooth-tab transition hover:text-gray-800 dark:hover:text-gray-100'
           href='https://github.com/ccrsxx/ccrsxx.me'
