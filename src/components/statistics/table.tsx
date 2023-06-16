@@ -93,7 +93,7 @@ export function Table({ data }: TableProps): JSX.Element {
                       key={id}
                     >
                       <div className='flex items-center justify-end gap-2'>
-                        <div className='-space-y-1 text-xs opacity-0 transition-opacity group-hover:opacity-100'>
+                        <div className='-space-y-1 text-xs'>
                           {sortDirections.map((sortDirection) => (
                             <SortIcon
                               isSorted={getIsSorted()}

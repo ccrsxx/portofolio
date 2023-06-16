@@ -15,12 +15,19 @@ export function SortIcon({
   const Icon = Icons[sortDirection];
 
   return (
-    <Icon
+    <div
       className={clsx(
-        'transition-colors',
-        arrowStyles[+(isSorted === sortDirection)]
+        'opacity-0 transition-opacity group-hover:opacity-100',
+        isSorted === false ? 'opacity-0' : 'opacity-100'
       )}
-    />
+    >
+      <Icon
+        className={clsx(
+          'transition-colors',
+          arrowStyles[+(isSorted === sortDirection)]
+        )}
+      />
+    </div>
   );
 }
 
