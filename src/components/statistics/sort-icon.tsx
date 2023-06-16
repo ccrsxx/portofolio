@@ -17,8 +17,8 @@ export function SortIcon({
   return (
     <div
       className={clsx(
-        'opacity-0 transition-opacity group-hover:opacity-100',
-        isSorted === false ? 'opacity-0' : 'opacity-100'
+        'transition-opacity group-hover:opacity-100',
+        isSorted ? 'opacity-100' : 'opacity-0'
       )}
     >
       <Icon
