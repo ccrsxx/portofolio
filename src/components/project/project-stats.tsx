@@ -50,7 +50,6 @@ export function ProjectStats({
           <HiEye className='h-4 w-4' />
           <p>{readTime}</p>
         </div>
-        <i>-</i>
         <div className='flex items-center gap-1'>
           <HiClock className='h-4 w-4' />
           <ViewsCounter slug={slug} increment={increment} />
@@ -58,15 +57,12 @@ export function ProjectStats({
         {projectLinks.map(
           ({ name, link, Icon }) =>
             link && (
-              <>
-                <i>-</i>
-                <div className='flex items-center gap-3'>
-                  <i>
-                    <Icon className='text-lg text-black dark:text-white' />
-                  </i>
-                  <CustomLink href={link}>{name}</CustomLink>
-                </div>
-              </>
+              <div className='flex items-center gap-3' key={name}>
+                <i>
+                  <Icon className='text-lg text-black dark:text-white' />
+                </i>
+                <CustomLink href={link}>{name}</CustomLink>
+              </div>
             )
         )}
       </div>
