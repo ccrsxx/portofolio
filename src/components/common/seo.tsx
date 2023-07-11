@@ -35,7 +35,7 @@ export function SEO({
   const { type, tags, banner, publishedAt, lastUpdatedAt } = article ?? {};
 
   if (article) {
-    ogImageQuery.set('type', type!);
+    ogImageQuery.set('type', type as string);
     ogImageQuery.set('article', 'true');
     ogImageQuery.set('image', PUBLIC_URL + (banner?.src as string));
   }
