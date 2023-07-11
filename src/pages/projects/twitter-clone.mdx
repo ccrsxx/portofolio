@@ -34,9 +34,8 @@ For this project, I chose to use the following technologies:
 - TypeScript for static type checking
 - Tailwind CSS for styling
 - Firebase for the backend (database, authentication, and hosting)
-- SWR for data fetching and caching
-- Headless UI for the design system and UI components
-- React Hot Toast for notification messages
+- Headless UI for the modal, menu, and popover components
+- React Hot Toast for interactive action notifications
 - Framer Motion for smooth animations
 
 ## Features
@@ -48,24 +47,24 @@ I wanted to make sure that my Twitter clone had all the basic features of the re
 - Like and unlike tweets
 - Follow and unfollow users
 - View user profiles and tweet lists
-- Real-time notifications for likes and follows
+- Real-time updates for likes, follows, and tweets
 - Infinite scroll for the home timeline and user tweet lists
 - Responsive design for mobile devices
-- The Development Process
 
 Building this project was a great learning experience for me. Here are some of the highlights:
 
-- I started by setting up a Next.js project with TypeScript and installing the necessary dependencies (including Firebase).``
-- I then set up the Firebase backend, including the Firestore database and authentication system. I also configured hosting on Firebase so that I could deploy my app easily.
-- Next, I worked on the user authentication flow, including sign up, log in, and log out. I used Firebase's built-in authentication functions to handle the logic, and Next.js's getServerSideProps to secure sensitive routes.
-- With the authentication system in place, I moved on to the main feature: tweeting. This involved creating a form for creating and editing tweets, as well as displaying a list of tweets on the home timeline and user profiles. I used SWR to fetch and cache the data from the Firestore database.
-- I then added the ability to like and unlike tweets, as well as follow and unfollow users. This required updating the data in the Firestore database and using real-time listeners to trigger notifications.
-- Finally, I worked on the design and polish of the app. I used Tailwind CSS for the basic styles, and Headless UI and Framer Motion for the design system and animations. I also added React Hot Toast for notification messages.
+- I started by setting up a Next.js project with TypeScript and installing the necessary dependencies (including Firebase).
+- I then set up the Firebase backend, including the Firestore database and authentication system.
+- Next, I worked on the user authentication flow for log in and log out. I used Firebase's built-in authentication functions to handle the logic.
+- With the authentication system in place, I moved on to the main feature: tweeting. This involved creating a form for creating and editing tweets, as well as displaying a list of tweets on the home timeline and user profiles. I used Firebase onSnapshot listeners to update the data in real time.
+- I then added the ability to like and unlike tweets, as well as follow and unfollow users. This required updating the data in the Firestore database and using real-time listeners to trigger updates on the frontend.
+- Next, I implemented profile page for user. This involved creating a new page for each user and displaying their tweets, likes, and followers.
+- Finally, I worked on the design and polish of the app. I used Tailwind CSS for the basic styles, and Headless UI and Framer Motion for the animations. I also added React Hot Toast for interactive notifications.
 
 ## Conclusion
 
 Overall, building this Twitter clone was a rewarding and educational experience. I learned a lot about using Next.js, TypeScript, and Firebase together, as well as various other tools and libraries.
 
-If you're interested in seeing the code or trying out the app, you can check out the repository on GitHub: https://github.com/ccrsxx/twitter-clone
+If you're interested in seeing the code or trying out the app, you can check out the repository on [GitHub](https://github.com/ccrsxx/twitter-clone).
 
 Thanks for reading!
