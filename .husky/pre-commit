@@ -4,6 +4,7 @@
 exec 1> /dev/tty
 
 npm run type-check
-npm run lint 
+npm run sort-imports 
+npm run lint
 
 npx lint-staged
