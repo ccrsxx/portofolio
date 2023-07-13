@@ -6,7 +6,7 @@
     "dev": "next dev -p 80",
     "build": "next build",
     "start": "next start",
-    "sort-imports": "npx eslint --fix .",
+    "sort-imports": "eslint --fix .",
     "type-check": "tsc --noEmit",
     "format": "prettier --check .",
     "lint": "next lint",
