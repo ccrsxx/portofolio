@@ -37,7 +37,7 @@ export function Table({ data }: TableProps): JSX.Element {
     data: data,
     state: { globalFilter, columnFilters, sorting },
     columns: columns,
-    sortDescFirst: true,
+    sortDescFirst: false,
     globalFilterFn: fuzzyFilter,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
