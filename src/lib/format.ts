@@ -42,12 +42,11 @@ type TimestampProps = Pick<Timestamp, 'seconds' | 'nanoseconds'>;
  */
 export function formatTimestamp(timestamp: TimestampProps): string {
   const date = getDateFromTimestamp(timestamp);
-  const relativeTime = getRelativeTime(date);
 
-  if (relativeTime === 'today')
+  if (dateIsToday(date))
     return `Today at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
 
-  if (relativeTime === 'yesterday')
+  if (dateIsYesterday(date))
     return `Yesterday at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
 
   return LONG_TIMESTAMP_FORMATTER.format(date);
@@ -85,24 +84,19 @@ function getDateFromTimestamp({ seconds, nanoseconds }: TimestampProps): Date {
   return date;
 }
 
-const DAY_MILLISECONDS = 24 * 60 * 60 * 1000;
-
-const RELATIVE_TIME_FORMATTER = new Intl.RelativeTimeFormat('en', {
-  numeric: 'auto'
-});
-
-type RelativeTime =
-  | 'yesterday'
-  | 'today'
-  | 'tomorrow'
-  | `${number} days ago`
-  | `in ${number} days`;
+/**
+ * Returns a boolean whether the given date is today.
+ */
+function dateIsToday(date: Date): boolean {
+  return new Date().toDateString() === date.toDateString();
+}
 
 /**
- * Returns a relative time from a date.
+ * Returns a boolean whether the given date is yesterday.
  */
-function getRelativeTime(date: Date): RelativeTime {
-  const daysDifference = Math.round((+date - Date.now()) / DAY_MILLISECONDS);
+function dateIsYesterday(date: Date): boolean {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
 
-  return RELATIVE_TIME_FORMATTER.format(daysDifference, 'day') as RelativeTime;
+  return yesterday.toDateString() === date.toDateString();
 }
