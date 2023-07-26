@@ -10,7 +10,7 @@ export type FullNowPlaying = {
 export type NowPlaying = NotPlaying | IsPlaying;
 
 export type IsPlaying = {
-  trackUrl: string;
+  trackUrl: string | null;
   trackName: string;
   albumName: string;
   isPlaying: boolean;

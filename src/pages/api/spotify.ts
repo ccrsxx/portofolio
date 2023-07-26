@@ -18,14 +18,14 @@ export default async function handler(
           name: trackName,
           album: { name: albumName },
           artists,
-          external_urls: { spotify: trackUrl }
+          is_local: isLocal
         },
         is_playing: isPlaying
       } = track;
 
-      const isLocalSong = track.item.is_local;
+      const trackUrl = isLocal ? null : track.item.external_urls.spotify;
 
-      const albumImageUrl = isLocalSong ? null : track.item.album.images[0].url;
+      const albumImageUrl = isLocal ? null : track.item.album.images[0].url;
 
       const artistName = artists.map(({ name }) => name).join(', ');
 
