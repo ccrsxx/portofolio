@@ -29,7 +29,7 @@ export function SpotifyCard(): JSX.Element {
           >
             <UnstyledLink
               className='clickable main-border peer relative flex w-72 gap-4 rounded-md p-4'
-              href={trackUrl}
+              href={trackUrl ?? '/'}
             >
               {albumImageUrl && (
                 <LazyImage
