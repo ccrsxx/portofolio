@@ -43,7 +43,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
-    "@types/node": "18.16.13",
+    "@types/node": "18.17.1",
     "@types/nodemailer": "^6.4.7",
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.2.8",
