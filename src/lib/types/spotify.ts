@@ -1,5 +1,6 @@
 export type FullNowPlaying = {
   item: Item;
+  is_local: boolean;
   timestamp: number;
   is_playing: boolean;
   progress_ms: number;
@@ -14,7 +15,7 @@ export type IsPlaying = {
   albumName: string;
   isPlaying: boolean;
   artistName: string;
-  albumImageUrl: string;
+  albumImageUrl: string | null;
 };
 
 type NotPlaying = {

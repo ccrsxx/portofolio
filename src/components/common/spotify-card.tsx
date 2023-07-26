@@ -31,14 +31,16 @@ export function SpotifyCard(): JSX.Element {
               className='clickable main-border peer relative flex w-72 gap-4 rounded-md p-4'
               href={trackUrl}
             >
-              <LazyImage
-                className='main-border rounded-md'
-                title={albumName}
-                src={albumImageUrl}
-                alt={albumName}
-                width={64}
-                height={64}
-              />
+              {albumImageUrl && (
+                <LazyImage
+                  className='main-border rounded-md'
+                  title={albumName}
+                  src={albumImageUrl}
+                  alt={albumName}
+                  width={64}
+                  height={64}
+                />
+              )}
               <div className='grid [&>p>span]:text-gray-700 dark:[&>p>span]:text-gray-200 [&>p]:truncate'>
                 <p className='text-sm font-medium' title={trackName}>
                   {trackName}
