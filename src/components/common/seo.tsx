@@ -86,9 +86,11 @@ export function SEO({
           <meta property='og:section' content='Programming' />
           <meta property='article:author' content='Risal Amin' />
           <meta property='article:published_time' content={publishedAt} />
-          {tags?.split(',').map((tag) => (
-            <meta property='article:tag' content={tag} key={tag} />
-          ))}
+          {tags
+            ?.split(',')
+            .map((tag) => (
+              <meta property='article:tag' content={tag} key={tag} />
+            ))}
           {lastUpdatedAt && (
             <meta property='article:modified_time' content={lastUpdatedAt} />
           )}

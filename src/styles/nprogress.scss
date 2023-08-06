@@ -6,7 +6,9 @@
 
     .peg {
       width: 100px;
-      box-shadow: 0 0 10px black, 0 0 5px black;
+      box-shadow:
+        0 0 10px black,
+        0 0 5px black;
 
       @apply absolute right-0 block h-full -translate-y-1 translate-x-0 rotate-3 opacity-100;
     }
