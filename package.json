@@ -23,7 +23,7 @@
     "@tanstack/react-table": "^8.7.9",
     "@vercel/analytics": "^1.0.1",
     "@vercel/og": "^0.5.1",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "firebase": "^10.0.0",
     "framer-motion": "^10.0.0",
     "next": "^13.1.4",
