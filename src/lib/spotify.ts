@@ -52,7 +52,7 @@ export async function getNowPlaying(): Promise<FullNowPlaying | null> {
     }
   );
 
-  if (!response.ok) return null;
+  if (!response.ok || response.status === 204) return null;
 
   const data = (await response.json()) as FullNowPlaying;
 
