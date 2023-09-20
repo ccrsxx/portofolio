@@ -53,7 +53,7 @@ export function Footer(): JSX.Element {
         &copy; Risal Amin 2023 •{' '}
         <UnstyledLink
           className='smooth-tab transition hover:text-gray-800 dark:hover:text-gray-100'
-          href='https://github.com/ccrsxx/ccrsxx.me'
+          href='https://github.com/ccrsxx/portofolio'
         >
           Got any feedback?
         </UnstyledLink>
@@ -71,7 +71,7 @@ type FooterLink = {
 const footerLinks: FooterLink[] = [
   {
     name: 'Source code',
-    href: 'https://github.com/ccrsxx/ccrsxx.me',
+    href: 'https://github.com/ccrsxx/portofolio',
     tip: (
       <>
         This website is <strong>open source!</strong>
@@ -81,13 +81,8 @@ const footerLinks: FooterLink[] = [
   {
     name: 'Design',
     href: '/design',
-    tip: 'ccrsxx.me color palette'
+    tip: 'risalamin.com color palette'
   },
-  // {
-  //   name: 'Analytics',
-  //   href: 'https://umami.ccrsxx.me',
-  //   tip: 'ccrsxx.me views and visitors analytics'
-  // },
   {
     name: 'Statistics',
     href: '/statistics',
@@ -110,8 +105,8 @@ type SocialLink = {
 const socialLinks: SocialLink[] = [
   {
     tip: 'Contact me at',
-    name: 'me@ccrsxx.me',
-    href: 'mailto:me@ccrsxx.me',
+    name: 'me@risalamin.com',
+    href: 'mailto:me@risalamin.com',
     Icon: HiEnvelope
   },
   {

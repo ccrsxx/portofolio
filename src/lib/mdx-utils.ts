@@ -42,7 +42,7 @@ export async function getContentLastUpdatedDate(
   slug: string
 ): Promise<string | null> {
   const response = await fetch(
-    `https://api.github.com/repos/ccrsxx/ccrsxx.me/commits?path=src/pages/${type}/${slug}.mdx`,
+    `https://api.github.com/repos/ccrsxx/portofolio/commits?path=src/pages/${type}/${slug}.mdx`,
     { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
   );
 

@@ -11,7 +11,7 @@ export default function Design(): JSX.Element {
 
   return (
     <main className='grid min-h-screen content-start gap-6'>
-      <SEO title='Design' description="ccrsxx.me's color palette" />
+      <SEO title='Design' description="risalamin.com's color palette" />
       <section className='grid gap-2'>
         <motion.h1
           className='text-5xl font-bold'
@@ -23,7 +23,7 @@ export default function Design(): JSX.Element {
           className='text-gray-600 dark:text-gray-300'
           {...setTransition({ delayIn: 0.2 })}
         >
-          ccrsxx.me&apos;s color palette.
+          risalamin.com&apos;s color palette.
         </motion.p>
       </section>
       <motion.section

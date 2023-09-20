@@ -78,7 +78,7 @@ export function SEO({
       <meta property='og:image:width' content='1200' />
       <meta property='og:image:height' content='600' />
       <meta property='og:locale' content='en_US' />
-      <meta property='og:site_name' content='ccrsxx.me' />
+      <meta property='og:site_name' content='risalamin.com' />
       <meta property='og:determiner' content='auto' />
       {article ? (
         <>

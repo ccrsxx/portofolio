@@ -16,7 +16,7 @@ export default function Subscribe(): JSX.Element {
           className='text-3xl font-bold md:text-5xl'
           {...setTransition({ delayIn: 0.1 })}
         >
-          <Accent>Subscribe to ccrsxx.me</Accent>
+          <Accent>Subscribe to risalamin.com</Accent>
         </motion.h1>
         <motion.p
           className='text-gray-600 dark:text-gray-300'
