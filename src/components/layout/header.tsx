@@ -22,13 +22,13 @@ export function Header(): JSX.Element {
           !inView && 'shadow-sm dark:shadow-gray-900'
         )}
       >
-        <div className='h-2 bg-gradient-to-r from-blue-400 to-green-300' />
+        <div className='h-2 bg-gradient-to-r from-accent-start to-accent-end' />
         <div className='layout flex items-center justify-between py-4'>
           <nav className='flex gap-4 font-medium'>
             {navLinks.map(({ name, href }) => (
               <Link
                 className={clsx(
-                  'smooth-tab text-xs hover:text-accent-blue hover:transition-colors md:text-base',
+                  'smooth-tab text-xs hover:text-accent-end hover:transition-colors md:text-base',
                   baseRoute === href && 'gradient-title !text-transparent'
                 )}
                 href={href}

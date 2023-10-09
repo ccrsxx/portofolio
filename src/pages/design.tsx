@@ -125,7 +125,7 @@ const colorPalette = [
   },
   {
     title: 'Gradient Color',
-    hexCode: '#60a5fa to #86efac',
-    className: 'bg-gradient-to-tr from-blue-400 to-green-300'
+    hexCode: '#a855f7 to #f472b6',
+    className: 'bg-gradient-to-tr from-accent-start to-accent-end'
   }
 ] as const;

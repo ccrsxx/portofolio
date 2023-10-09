@@ -22,7 +22,7 @@
   }
 
   ::selection {
-    @apply bg-accent-blue text-white;
+    @apply bg-accent-end text-white;
   }
 }
 
@@ -44,11 +44,11 @@
   }
 
   .custom-input {
-    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-blue dark:bg-black;
+    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-end dark:bg-black;
   }
 
   .smooth-tab {
-    @apply rounded-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue;
+    @apply rounded-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-end;
   }
 
   .clickable {
@@ -60,7 +60,7 @@
   }
 
   .gradient-title {
-    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-clip-text text-transparent;
   }
 
   .custom-underline {
@@ -72,7 +72,7 @@
     background-size: 0 2px;
     background-position: 0 100%;
 
-    @apply bg-gradient-to-r from-blue-400 to-green-300 bg-no-repeat pb-0.5 no-underline 
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-no-repeat pb-0.5 no-underline 
            outline-none transition-all duration-300;
 
     &.with-dots {

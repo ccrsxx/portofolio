@@ -40,7 +40,7 @@ export function Footer(): JSX.Element {
               key={name}
             >
               <UnstyledLink
-                className='smooth-tab peer grid transition-colors hover:text-accent-blue'
+                className='smooth-tab peer grid transition-colors hover:text-accent-end'
                 href={href}
               >
                 <Icon className='smooth-tab h-6 w-6' />

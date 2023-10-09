@@ -40,8 +40,8 @@ export function ImagePreview({
             />
             <a
               className='absolute bottom-0 right-0 mx-2 mb-2 translate-y-4 rounded-md bg-white/40 px-2 py-1 
-                         text-sm text-black/80 opacity-0 outline-none transition hover:!bg-accent-blue 
-                         hover:text-white focus-visible:translate-y-0 focus-visible:!bg-accent-blue
+                         text-sm text-black/80 opacity-0 outline-none transition hover:!bg-accent-end 
+                         hover:text-white focus-visible:translate-y-0 focus-visible:!bg-accent-end
                          focus-visible:text-white focus-visible:opacity-100 group-hover:translate-y-0 
                          group-hover:opacity-100 dark:bg-black/40 dark:text-white/80'
               href={customLink}

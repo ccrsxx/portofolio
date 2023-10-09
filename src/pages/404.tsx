@@ -35,7 +35,7 @@ export default function NotFound(): JSX.Element {
           <motion.span
             title={currentUrl ?? ''}
             className={clsx(
-              'text-main-accent inline-block max-w-[160px] truncate align-bottom font-semibold text-accent-blue',
+              'inline-block max-w-[160px] truncate align-bottom font-semibold text-accent-end',
               currentUrl ? 'opacity-0' : 'animate-pulse'
             )}
             {...(currentUrl && variants)}

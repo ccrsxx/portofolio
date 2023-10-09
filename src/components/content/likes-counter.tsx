@@ -57,13 +57,13 @@ function GradientHeart({ likes }: { likes: number }): JSX.Element {
               offset='0%'
               stopColor='currentColor'
               stopOpacity='1'
-              className='text-blue-400'
+              className='text-accent-start'
             />
             <stop
               offset='100%'
               stopColor='currentColor'
               stopOpacity='1'
-              className='text-green-300'
+              className='text-accent-end'
             />
           </linearGradient>
           <clipPath

@@ -1,3 +1,4 @@
+import colors from 'tailwindcss/colors';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -9,7 +10,8 @@ const config: Config = {
         inter: ['var(--font-inter)']
       },
       colors: {
-        'accent-blue': '#60a5fa'
+        'accent-start': colors.purple[500],
+        'accent-end': colors.pink[400]
       }
     }
   },
