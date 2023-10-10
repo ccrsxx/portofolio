@@ -71,7 +71,7 @@ export function ContentLayout({
           <div className='flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200'>
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
             <UnstyledLink
-              className='smooth-tab flex items-center gap-1 transition-colors hover:text-accent-end'
+              className='smooth-tab flex items-center gap-1 transition-colors hover:text-accent-main'
               href={githubCommitHistoryUrl}
             >
               <MdHistory className='text-lg' />

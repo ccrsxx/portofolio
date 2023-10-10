@@ -13,7 +13,7 @@ export function Loading({
   return (
     <i className={clsx('flex justify-center', className)}>
       <ImSpinner8
-        className={clsx('animate-spin text-accent-end', iconClassName)}
+        className={clsx('animate-spin text-accent-main', iconClassName)}
       />
     </i>
   );

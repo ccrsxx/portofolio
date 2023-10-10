@@ -22,7 +22,7 @@
   }
 
   ::selection {
-    @apply bg-accent-end text-white;
+    @apply bg-accent-main text-white;
   }
 }
 
@@ -44,11 +44,11 @@
   }
 
   .custom-input {
-    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-end dark:bg-black;
+    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-main dark:bg-black;
   }
 
   .smooth-tab {
-    @apply rounded-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-end;
+    @apply rounded-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-main;
   }
 
   .clickable {

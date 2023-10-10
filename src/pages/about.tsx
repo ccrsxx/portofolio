@@ -95,7 +95,7 @@ export default function About(): JSX.Element {
               }
             >
               <button className='smooth-tab peer'>
-                <Icon className='text-4xl transition-colors hover:text-accent-end' />
+                <Icon className='text-4xl transition-colors hover:text-accent-main' />
               </button>
             </Tooltip>
           ))}
