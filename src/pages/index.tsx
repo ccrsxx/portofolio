@@ -148,7 +148,7 @@ const socialLink: SocialLink[] = [
   {
     name: 'Resume',
     href: 'https://docs.google.com/document/d/1emlC1CdiKDE0sVVqkpoZWj5FSLdXoFUe2kIXAFxF8Kg/edit?usp=sharing',
-    iconHoverColor: 'group-hover:text-accent-blue',
+    iconHoverColor: 'group-hover:text-accent-main',
     Icon: HiDocumentText
   },
   {

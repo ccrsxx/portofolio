@@ -17,8 +17,8 @@ export function ThemeSwitch(): JSX.Element | null {
   return (
     <button
       className='relative overflow-hidden rounded-md border p-2 text-lg outline-none
-                 transition hover:!border-accent-blue hover:text-accent-blue
-                 focus-visible:!border-accent-blue focus-visible:text-accent-blue 
+                 transition hover:!border-accent-main hover:text-accent-main
+                 focus-visible:!border-accent-main focus-visible:text-accent-main 
                  dark:border-gray-600 md:text-xl [&>i]:block'
       type='button'
       onClick={flipTheme}
