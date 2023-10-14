@@ -10,9 +10,11 @@ const config: Config = {
         inter: ['var(--font-inter)']
       },
       colors: {
-        'accent-main': colors.pink[400],
-        'accent-start': colors.purple[500],
-        'accent-end': colors.pink[400]
+        accent: {
+          main: colors.pink[400],
+          start: colors.purple[500],
+          end: colors.pink[400]
+        }
       }
     }
   },
