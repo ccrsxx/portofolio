@@ -137,5 +137,5 @@ type GradientTitle = Pick<
 const gradientTitleStyles: GradientTitle = {
   color: 'transparent',
   backgroundClip: 'text',
-  backgroundImage: 'linear-gradient(to right, #60A5FA, #34D399)'
+  backgroundImage: 'linear-gradient(to right, #a855f7, #f472b6)'
 };
