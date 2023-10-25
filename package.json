@@ -6,10 +6,10 @@
     "dev": "next dev -p 80",
     "build": "next build",
     "start": "next start",
-    "sort-imports": "eslint --fix .",
+    "sort-imports": "next lint --fix .",
     "type-check": "tsc --noEmit",
     "format": "prettier --check .",
-    "lint": "next lint",
+    "lint": "next lint --max-warnings=0",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install"
