@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-
 import '@styles/globals.scss';
 
-import nProgress from 'nprogress';
+import { configure, start, done } from 'nprogress';
 import { AnimatePresence } from 'framer-motion';
 import { Router, useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -12,11 +10,11 @@ import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
 import type { AppProps } from 'next/app';
 
-nProgress.configure({ showSpinner: false });
+configure({ showSpinner: false });
 
-Router.events.on('routeChangeStart', nProgress.start);
-Router.events.on('routeChangeError', nProgress.done);
-Router.events.on('routeChangeComplete', nProgress.done);
+Router.events.on('routeChangeStart', start);
+Router.events.on('routeChangeError', done);
+Router.events.on('routeChangeComplete', done);
 
 const popAudio =
   typeof window !== 'undefined' ? new Audio('/assets/pop.mp3') : null;
