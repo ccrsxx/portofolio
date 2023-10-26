@@ -37,8 +37,8 @@
     "swr": "^2.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
     "@tailwindcss/typography": "^0.5.8",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
