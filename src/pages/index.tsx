@@ -61,16 +61,14 @@ export default function Home({
           {...setTransition({ delayIn: 0.4 })}
         >
           {socialLink.map(({ name, href, Icon }) => (
-          <UnstyledLink
+            <UnstyledLink
               className='smooth-tab group flex items-center gap-2 text-sm text-gray-600 transition
                          dark:text-gray-400 md:text-base [&>*]:transition-colors'
               href={href}
               key={name}
             >
               <Icon className='group-hover:text-accent-main' />{' '}
-              <p
-                className='group-hover:text-black dark:group-hover:text-white'
-              >
+              <p className='group-hover:text-black dark:group-hover:text-white'>
                 {name}
               </p>
             </UnstyledLink>
