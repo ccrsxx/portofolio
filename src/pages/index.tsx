@@ -1,7 +1,6 @@
-import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import { HiDocumentText } from 'react-icons/hi2';
-import { SiGithub, SiTwitter } from 'react-icons/si';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { initializeAllContents } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
 import { setTransition, fadeInWhenVisible } from '@lib/transition';
@@ -61,15 +60,19 @@ export default function Home({
           className='mt-8 flex gap-4'
           {...setTransition({ delayIn: 0.4 })}
         >
-          {socialLink.map(({ name, href, iconHoverColor, Icon }) => (
-            <UnstyledLink
+          {socialLink.map(({ name, href, Icon }) => (
+          <UnstyledLink
               className='smooth-tab group flex items-center gap-2 text-sm text-gray-600 transition
-                         hover:text-black dark:text-gray-400 dark:hover:text-white md:text-base'
+                         dark:text-gray-400 md:text-base [&>*]:transition-colors'
               href={href}
               key={name}
             >
-              <Icon className={clsx('transition-colors', iconHoverColor)} />{' '}
-              {name}
+              <Icon className='group-hover:text-accent-main' />{' '}
+              <p
+                className='group-hover:text-black dark:group-hover:text-white'
+              >
+                {name}
+              </p>
             </UnstyledLink>
           ))}
         </motion.section>
@@ -140,7 +143,6 @@ export async function getStaticProps(): Promise<
 type SocialLink = {
   name: string;
   href: string;
-  iconHoverColor?: string;
   Icon: IconType;
 };
 
@@ -148,14 +150,12 @@ const socialLink: SocialLink[] = [
   {
     name: 'Resume',
     href: 'https://docs.google.com/document/d/1emlC1CdiKDE0sVVqkpoZWj5FSLdXoFUe2kIXAFxF8Kg/edit?usp=sharing',
-    iconHoverColor: 'group-hover:text-accent-main',
     Icon: HiDocumentText
   },
   {
-    name: 'Twitter',
-    href: 'https://twitter.com/ccrsxx',
-    iconHoverColor: 'group-hover:text-[#1d9bf0]',
-    Icon: SiTwitter
+    name: 'LinkedIn',
+    href: 'https://linkedin.com/in/risalamin',
+    Icon: SiLinkedin
   },
   {
     name: 'GitHub',
