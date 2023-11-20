@@ -1,5 +1,5 @@
 import { HiEnvelope } from 'react-icons/hi2';
-import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { SiDiscord, SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { SpotifyCard } from '@components/common/spotify-card';
@@ -108,6 +108,12 @@ const socialLinks: SocialLink[] = [
     name: 'me@risalamin.com',
     href: 'mailto:me@risalamin.com',
     Icon: HiEnvelope
+  },
+  {
+    tip: "I'm also on",
+    name: 'Discord',
+    href: 'https://discord.com/users/414304208649453568',
+    Icon: SiDiscord
   },
   {
     tip: 'See my other projects on',
