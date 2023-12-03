@@ -47,11 +47,11 @@ export function ProjectStats({
     <>
       <div className='flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium text-gray-600 dark:text-gray-300'>
         <div className='flex items-center gap-1'>
-          <HiEye className='h-4 w-4' />
+          <HiClock className='h-4 w-4' />
           <p>{readTime}</p>
         </div>
         <div className='flex items-center gap-1'>
-          <HiClock className='h-4 w-4' />
+          <HiEye className='h-4 w-4' />
           <ViewsCounter slug={slug} increment={increment} />
         </div>
         {projectLinks.map(
