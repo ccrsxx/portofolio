@@ -33,7 +33,7 @@ export function Table({ data }: TableProps): JSX.Element {
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const { getHeaderGroups, getRowModel } = useReactTable({
+  const { getHeaderGroups, getRowModel } = useReactTable<ContentColumn>({
     data: data,
     state: { globalFilter, columnFilters, sorting },
     columns: columns,
@@ -144,8 +144,7 @@ function numericCellFormatter({
   return formatNumber(getValue());
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const columns: ColumnDef<ContentColumn, any>[] = [
+const columns: ColumnDef<ContentColumn>[] = [
   accessor('slug', { header: 'Post Slug' }),
   accessor('views', {
     header: 'Views',
