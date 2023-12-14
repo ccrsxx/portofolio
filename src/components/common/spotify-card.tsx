@@ -33,7 +33,7 @@ export function SpotifyCard(): JSX.Element {
             >
               {albumImageUrl && (
                 <LazyImage
-                  className='main-border rounded-md'
+                  className='main-border w-16 h-16 rounded-md'
                   title={albumName}
                   src={albumImageUrl}
                   alt={albumName}
