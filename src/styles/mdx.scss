@@ -52,12 +52,14 @@
   figure[data-rehype-pretty-code-figure] {
     @apply relative grid;
 
-    figcaption[data-rehype-pretty-code-title] {
-      @apply gradient-title main-border absolute left-6 z-10 block 
-             rounded-b-md border-t-0 px-2 font-medium mt-0 text-base;
+    @each $element in 'figcaption', 'div' {
+      #{$element}[data-rehype-pretty-code-title] {
+        @apply gradient-title main-border absolute left-6 z-10 block 
+               rounded-b-md border-t-0 px-2 font-medium mt-0 text-base;
 
-      & + div {
-        @apply hidden;
+        & + div {
+          @apply hidden;
+        }
       }
     }
 
