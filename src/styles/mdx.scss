@@ -49,19 +49,17 @@
     @include border-gradient(right);
   }
 
-  div[data-rehype-pretty-code-fragment] {
+  figure[data-rehype-pretty-code-figure] {
     @apply relative grid;
 
-    div[data-rehype-pretty-code-title] {
-      @apply hidden;
-
-      &:first-of-type {
+    @each $element in 'figcaption', 'div' {
+      #{$element}[data-rehype-pretty-code-title] {
         @apply gradient-title main-border absolute left-6 z-10 block 
-               rounded-b-md border-t-0 px-2 font-medium;
-      }
+               rounded-b-md border-t-0 px-2 font-medium mt-0 text-base;
 
-      & + pre > code {
-        @apply mt-8;
+        & + div {
+          @apply hidden;
+        }
       }
     }
 
@@ -71,18 +69,24 @@
 
       @apply main-border my-0;
 
-      &[data-theme='light'] {
-        @apply bg-white dark:hidden;
+      &[data-theme*=' '],
+      &[data-theme*=' '] span {
+        color: var(--shiki-light);
+        background-color: var(--shiki-light-bg);
       }
 
-      &[data-theme='dark'] {
-        @apply hidden bg-black dark:block;
+      @media (prefers-color-scheme: dark) {
+        &[data-theme*=' '],
+        &[data-theme*=' '] span {
+          color: var(--shiki-dark);
+          background-color: var(--shiki-dark-bg);
+        }
       }
 
       code {
         counter-reset: line;
 
-        @apply grid;
+        @apply mt-8;
 
         .word {
           background: rgba(200, 200, 255, 0.15);
