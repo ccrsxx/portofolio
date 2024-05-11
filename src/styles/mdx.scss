@@ -64,10 +64,9 @@
     }
 
     pre {
-      opacity: 0.98;
       padding: 0.75rem 0 !important;
 
-      @apply main-border my-0;
+      @apply main-border;
 
       &[data-theme*=' '],
       &[data-theme*=' '] span {
