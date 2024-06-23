@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String      @id @default(uuid()) @db.Uuid
+  role           Role        @default(GUEST)
+  name           String
+  image          String
+  email          String      @unique
+  Content        Content[]
+  guestbook      Guestbook[]
+  githubId       String?     @unique @map("github_id")
+  githubUsername String?     @unique @map("github_username")
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt      DateTime    @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("user")
+}
+
+model Guestbook {
+  id        String   @id @default(uuid()) @db.Uuid
+  text      String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("guestbook")
+}
+
+model Content {
+  id          String        @id @default(uuid()) @db.Uuid
+  type        ContentType   @default(BLOG)
+  User        User          @relation(fields: [userId], references: [id])
+  userId      String        @map("user_id") @db.Uuid
+  ContentLike ContentLike[]
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt   DateTime      @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("content")
+}
+
+model ContentLike {
+  id        String   @id @default(uuid()) @db.Uuid
+  ipAddress String   @map("ip_address")
+  content   Content  @relation(fields: [contentId], references: [id])
+  contentId String   @map("content_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@map("content_like")
+}
+
+enum Role {
+  GUEST
+  AUTHOR
+}
+
+enum ContentType {
+  BLOG
+  PROJECT
+}
