@@ -1,3 +1,0 @@
-# ccrsxx.me
-
-Coming soon...
