@@ -24,7 +24,7 @@
     "@vercel/analytics": "^1.0.1",
     "@vercel/og": "^0.6.0",
     "clsx": "^2.0.0",
-    "firebase": "^10.0.0",
+    "firebase": "^11.0.0",
     "framer-motion": "^11.0.0",
     "next": "^13.1.4",
     "next-auth": "^4.19.2",
