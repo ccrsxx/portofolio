@@ -1,3 +1,4 @@
+import { backendEnv } from './env-server';
 import type { FullNowPlaying } from './types/spotify';
 
 type AccessToken = {
@@ -7,20 +8,17 @@ type AccessToken = {
   access_token: string;
 };
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } =
-  process.env;
-
 /**
  * Returns the access token from the Spotify API.
  */
 export async function getAccessToken(): Promise<AccessToken> {
   const token = Buffer.from(
-    `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`
+    `${backendEnv.SPOTIFY_CLIENT_ID}:${backendEnv.SPOTIFY_CLIENT_SECRET}`
   ).toString('base64');
 
   const tokenBody = new URLSearchParams({
     grant_type: 'refresh_token',
-    refresh_token: SPOTIFY_REFRESH_TOKEN
+    refresh_token: backendEnv.SPOTIFY_REFRESH_TOKEN
   });
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
