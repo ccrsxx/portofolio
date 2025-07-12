@@ -1,10 +1,8 @@
-// @ts-check
-
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import { dirname } from 'path';
 import { FlatCompat } from '@eslint/eslintrc';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -20,13 +18,12 @@ export default tseslint.config([
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['*.js', '*.mjs']
+        },
         tsconfigRootDir: import.meta.dirname
       }
     }
-  },
-  {
-    ignores: ['**/*.js', '**/*.mjs']
   },
   {
     rules: {
@@ -86,7 +83,7 @@ export default tseslint.config([
         }
       ],
 
-      // TypeScript specific rules
+      // TypeScript plugin rules
       '@typescript-eslint/consistent-type-imports': 'warn',
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'warn',
