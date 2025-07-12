@@ -6,12 +6,11 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "sort-imports": "next lint --fix .",
     "type-check": "tsc --noEmit",
-    "format": "prettier --check .",
-    "lint": "next lint --max-warnings=0",
-    "test": "jest --watch",
-    "test:ci": "jest --ci",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "next lint --max-warnings=0 .",
+    "lint:fix": "next lint --fix .",
     "prepare": "husky"
   },
   "dependencies": {

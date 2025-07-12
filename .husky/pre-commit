@@ -1,5 +1,4 @@
 npm run type-check
-npm run sort-imports 
 npm run lint
 
 npx lint-staged
