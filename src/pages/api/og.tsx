@@ -9,10 +9,12 @@ import type { NextRequest } from 'next/server';
 export default async function handler(
   req: NextRequest
 ): Promise<ImageResponse> {
-  const [regularFontData, mediumFontData] = await Promise.all([
-    regularFont,
-    mediumFont
-  ]);
+  // const [regularFontData, mediumFontData] = await Promise.all([
+  //   regularFont,
+  //   mediumFont
+  // ]);
+
+  const regularFontData = await regularFont;
 
   const { searchParams } = req.nextUrl;
 
@@ -88,21 +90,11 @@ export default async function handler(
           name: 'Inter',
           data: regularFontData,
           weight: 400
-        },
-        {
-          name: 'Inter',
-          data: mediumFontData,
-          weight: 500
         }
         // {
         //   name: 'Inter',
-        //   data: semiBoldFontData,
-        //   weight: 600
-        // },
-        // {
-        //   name: 'Inter',
-        //   data: boldFontData,
-        //   weight: 700
+        //   data: mediumFontData,
+        //   weight: 500
         // }
       ]
     }
@@ -117,16 +109,8 @@ const regularFont = fetch(
   new URL('../../../public/assets/inter-regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const mediumFont = fetch(
-  new URL('../../../public/assets/inter-medium.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
-
-// const semiboldFont = fetch(
-//   new URL('../../../publicassets/inter-semibold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-// const boldFont = fetch(
-//   new URL('../../../publicassets/inter-bold.ttf', import.meta.url)
+// const mediumFont = fetch(
+//   new URL('../../../public/assets/inter-medium.ttf', import.meta.url)
 // ).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<
