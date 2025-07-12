@@ -1,3 +1,7 @@
+// @ts-check
+
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 import nextMDX from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -26,7 +30,7 @@ const rehypePrettyCodeOptions = {
 
   onVisitHighlightedLine(element) {
     // Add a custom class to each highlighted line
-    element.properties.className.push('highlighted');
+    element.properties.className?.push('highlighted');
   },
 
   onVisitHighlightedChars(element) {

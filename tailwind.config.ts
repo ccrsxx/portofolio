@@ -1,7 +1,8 @@
 import colors from 'tailwindcss/colors';
+import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 
-const config: Config = {
+export default {
   content: ['./src/pages/**/*.tsx', './src/components/**/*.tsx'],
   darkMode: 'class',
   theme: {
@@ -18,7 +19,5 @@ const config: Config = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography')]
-};
-
-export default config;
+  plugins: [typography]
+} satisfies Config;
