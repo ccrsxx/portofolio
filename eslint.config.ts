@@ -19,7 +19,11 @@ export default tseslint.config([
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['.prettierrc.mjs', 'postcss.config.mjs']
+          allowDefaultProject: [
+            'next.config.mjs',
+            '.prettierrc.mjs',
+            'postcss.config.mjs'
+          ]
         },
         tsconfigRootDir: import.meta.dirname
       }
