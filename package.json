@@ -30,8 +30,8 @@
     "next-themes": "^0.3.0",
     "nodemailer": "^6.9.1",
     "nprogress": "^0.2.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-icons": "^5.0.0",
     "swr": "^2.0.1",
     "zod": "^4.0.5"
