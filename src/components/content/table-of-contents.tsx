@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
-import { useHeadingData } from '@lib/hooks/useHeadingData';
-import { useActiveHeading } from '@lib/hooks/useActiveHeading';
+import { useHeadingData } from '@lib/hooks/use-heading-data';
+import { useActiveHeading } from '@lib/hooks/use-active-heading';
 import type { PropsWithChildren } from 'react';
 
 export function TableOfContents({

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getAllBlogWithViews } from '@lib/api';
 import { getTags, textIncludes } from '@lib/helper';
-import { useSessionStorage } from '@lib/hooks/useSessionStorage';
+import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { BlogTag } from '@components/blog/blog-tag';

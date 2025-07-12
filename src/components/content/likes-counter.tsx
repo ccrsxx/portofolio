@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
-import { useContentLikes } from '@lib/hooks/useContentLikes';
+import { useContentLikes } from '@lib/hooks/use-content-likes';
 import type { MotionProps } from 'framer-motion';
 import type { Content } from '@lib/types/contents';
 

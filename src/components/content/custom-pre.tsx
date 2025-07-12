@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { HiClipboard, HiClipboardDocumentCheck } from 'react-icons/hi2';
-import { useMounted } from '@lib/hooks/useMounted';
+import { useMounted } from '@lib/hooks/use-mounted';
 import type {
   CSSProperties,
   PropsWithChildren,

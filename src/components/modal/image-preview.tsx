@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { clsx } from 'clsx';
-import { useModal } from '@lib/hooks/useModal';
+import { useModal } from '@lib/hooks/use-modal';
 import { preventBubbling } from '@lib/helper';
 import { Modal } from './modal';
 import type { ImageProps, StaticImageData } from 'next/image';

@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth/next';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getGuestbook } from '@lib/api';
 import { setTransition } from '@lib/transition';
-import { useGuestbook } from '@lib/hooks/useGuestbook';
+import { useGuestbook } from '@lib/hooks/use-guestbook';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { GuestbookCard } from '@components/guestbook/guestbook-card';
