@@ -19,7 +19,7 @@ export default tseslint.config([
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['*.js', '*.mjs']
+          allowDefaultProject: ['.prettierrc.mjs', 'postcss.config.mjs']
         },
         tsconfigRootDir: import.meta.dirname
       }
