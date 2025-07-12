@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { GITHUB_TOKEN } from './env';
+import { backendEnv } from './env-server';
 import type { NextRequest } from 'next/server';
 import type { GithubUser } from './types/github';
 
@@ -8,7 +8,7 @@ import type { GithubUser } from './types/github';
  */
 export async function getGithubUsername(userId: string): Promise<string> {
   const response = await fetch(`https://api.github.com/user/${userId}`, {
-    headers: { Authorization: `Bearer ${GITHUB_TOKEN}` }
+    headers: { Authorization: `Bearer ${backendEnv.GITHUB_TOKEN}` }
   });
 
   const { login } = (await response.json()) as GithubUser;

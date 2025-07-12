@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { ImageResponse } from '@vercel/og';
-import { PUBLIC_URL } from '@lib/env';
+import { frontendEnv } from '@lib/env';
 import type { CSSProperties } from 'react';
 import type { PageConfig } from 'next';
 import type { NextRequest } from 'next/server';
@@ -9,11 +9,6 @@ import type { NextRequest } from 'next/server';
 export default async function handler(
   req: NextRequest
 ): Promise<ImageResponse> {
-  // const [regularFontData, mediumFontData] = await Promise.all([
-  //   regularFont,
-  //   mediumFont
-  // ]);
-
   const regularFontData = await regularFont;
 
   const { searchParams } = req.nextUrl;
@@ -44,7 +39,7 @@ export default async function handler(
                 <img
                   style={{ objectFit: 'cover' }}
                   tw='h-18 w-18 rounded-full'
-                  src={`${PUBLIC_URL}/assets/emilia.png`}
+                  src={`${frontendEnv.NEXT_PUBLIC_URL}/assets/emilia.png`}
                   alt='Emilia'
                 />
                 <div tw='ml-4 flex flex-col'>
@@ -65,7 +60,7 @@ export default async function handler(
           <div tw='flex w-full flex-col items-center justify-center'>
             <img
               tw='h-24 w-24'
-              src={`${PUBLIC_URL}/logo512.png`}
+              src={`${frontendEnv.NEXT_PUBLIC_URL}/logo512.png`}
               alt="risalamin.com's logo"
             />
             <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>

@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth/next';
 import GithubProvider from 'next-auth/providers/github';
+import { backendEnv } from '@lib/env-server';
 import { getGithubUsername } from '@lib/helper-server';
 import type { AuthOptions, Session } from 'next-auth';
 import type { CustomSession, AssertedUser } from '@lib/types/api';
@@ -7,8 +8,8 @@ import type { CustomSession, AssertedUser } from '@lib/types/api';
 export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET
+      clientId: backendEnv.GITHUB_ID,
+      clientSecret: backendEnv.GITHUB_SECRET
     })
   ],
   callbacks: {

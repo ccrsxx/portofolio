@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import { backendEnv } from './env-server';
 import type { NextApiRequest } from 'next';
 
 /**
@@ -12,7 +13,7 @@ export function getSessionId(req: NextApiRequest): string {
   const ipAddress = ipAddressFromHeaders ?? '127.0.0.1';
 
   const hashedIpAddress = createHash('md5')
-    .update(ipAddress + process.env.IP_ADDRESS_SALT)
+    .update(ipAddress + backendEnv.IP_ADDRESS_SALT)
     .digest('hex');
 
   return hashedIpAddress;

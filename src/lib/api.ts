@@ -12,6 +12,7 @@ import {
   contentsCollection,
   guestbookCollection
 } from './firebase/collections';
+import { backendEnv } from './env-server';
 import { getAllContents } from './mdx';
 import { getContentFiles } from './mdx-utils';
 import { VALID_CONTENT_TYPES } from './helper-server';
@@ -110,8 +111,8 @@ export async function sendEmail(
   const client = createTransport({
     service: 'Gmail',
     auth: {
-      user: process.env.EMAIL_ADDRESS,
-      pass: process.env.EMAIL_PASSWORD
+      user: backendEnv.EMAIL_ADDRESS,
+      pass: backendEnv.EMAIL_PASSWORD
     }
   });
 
@@ -120,8 +121,8 @@ export async function sendEmail(
   const emailHeader = `New guestbook from ${name} (${email})`;
 
   await client.sendMail({
-    from: process.env.EMAIL_ADDRESS,
-    to: process.env.EMAIL_TARGET,
+    from: backendEnv.EMAIL_ADDRESS,
+    to: backendEnv.EMAIL_TARGET,
     subject: emailHeader,
     text: text
   });

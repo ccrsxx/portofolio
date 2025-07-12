@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { PUBLIC_URL } from '@lib/env';
+import { frontendEnv } from '@lib/env';
 import type { Content, ContentType } from '@lib/types/contents';
 
 export type Article = Pick<
@@ -37,7 +37,10 @@ export function SEO({
   if (article) {
     ogImageQuery.set('type', type as string);
     ogImageQuery.set('article', 'true');
-    ogImageQuery.set('image', PUBLIC_URL + (banner?.src as string));
+    ogImageQuery.set(
+      'image',
+      frontendEnv.NEXT_PUBLIC_URL + (banner?.src as string)
+    );
   }
 
   const isHomepage = asPath === '/';
@@ -49,9 +52,9 @@ export function SEO({
     isHomepage ? 'Fullstack Developer' : 'Risal Amin'
   }`;
 
-  const ogImageUrl = `${PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
+  const ogImageUrl = `${frontendEnv.NEXT_PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
 
-  const ogUrl = `${PUBLIC_URL}${isHomepage ? '' : asPath}`;
+  const ogUrl = `${frontendEnv.NEXT_PUBLIC_URL}${isHomepage ? '' : asPath}`;
 
   return (
     <Head>

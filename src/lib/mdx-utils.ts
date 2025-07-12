@@ -1,7 +1,7 @@
 import { readFile, readdir } from 'fs/promises';
 import { join } from 'path';
 import readingTime from 'reading-time';
-import { GITHUB_TOKEN } from './env';
+import { backendEnv } from './env-server';
 import { getContentByFiles } from './mdx';
 import type { Blog, Project, ContentType } from './types/contents';
 import type { FileCommitHistory } from './types/github';
@@ -43,7 +43,7 @@ export async function getContentLastUpdatedDate(
 ): Promise<string | null> {
   const response = await fetch(
     `https://api.github.com/repos/ccrsxx/portofolio/commits?path=src/pages/${type}/${slug}.mdx`,
-    { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
+    { headers: { Authorization: `Bearer ${backendEnv.GITHUB_TOKEN}` } }
   );
 
   const commits = (await response.json()) as FileCommitHistory[];

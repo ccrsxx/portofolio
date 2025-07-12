@@ -1,4 +1,4 @@
-import { OWNER_BEARER_TOKEN } from './env';
+import { frontendEnv } from './env';
 import type { ValidApiEndpoints } from './types/api';
 
 /**
@@ -12,7 +12,7 @@ export async function fetcher<T>(
     ...init,
     headers: {
       ...init?.headers,
-      Authorization: `Bearer ${OWNER_BEARER_TOKEN}`
+      Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
     }
   });
 

@@ -36,6 +36,12 @@ export default tseslint.config([
           avoidEscape: true
         }
       ],
+      'prefer-const': [
+        'error',
+        {
+          destructuring: 'all'
+        }
+      ],
       'jsx-quotes': ['error', 'prefer-single'],
       'linebreak-style': ['error', 'unix'],
       'no-console': 'warn',
