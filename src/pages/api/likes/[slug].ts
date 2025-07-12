@@ -1,4 +1,4 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, increment, updateDoc } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
 import { getTotalLikes } from '@lib/helper-server';
 import { getSessionId } from '@lib/helper-server-node';
@@ -27,7 +27,7 @@ export default async function handler(
 
     if (!(sessionId in likesBy)) likesBy[sessionId] = 0;
 
-    let userLikes = likesBy[sessionId];
+    const userLikes = likesBy[sessionId];
 
     if (req.method === 'GET') {
       const likes = getTotalLikes(likesBy);
@@ -44,13 +44,11 @@ export default async function handler(
       if (userLikes >= 5)
         return res.status(422).json({ message: 'Likes limit reached' });
 
-      userLikes += 1;
-
       const likes = getTotalLikes(likesBy) + 1;
 
       await updateDoc(docRef, {
         likes,
-        [sessionIdFieldReference]: userLikes
+        [sessionIdFieldReference]: increment(1)
       });
 
       return res.status(201).json({ likes, userLikes });
