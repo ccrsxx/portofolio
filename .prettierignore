@@ -1,3 +1,6 @@
+# cache
+./mypy_cache
+
 # testing
 /coverage
 
