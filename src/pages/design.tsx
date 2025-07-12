@@ -6,7 +6,7 @@ import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { ThemeSwitch } from '@components/common/theme-switch';
 
-export default function Design(): JSX.Element {
+export default function Design(): React.JSX.Element {
   const { theme } = useTheme();
 
   return (

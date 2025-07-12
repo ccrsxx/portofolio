@@ -37,7 +37,7 @@ export function useContentViews(
 
     void registerViews();
 
-    return () => {
+    return (): void => {
       firstRender.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

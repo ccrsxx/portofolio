@@ -1,6 +1,7 @@
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { contentsCollection } from '@lib/firebase/collections';
-import { getSessionId, getTotalLikes } from '@lib/helper-server';
+import { getTotalLikes } from '@lib/helper-server';
+import { getSessionId } from '@lib/helper-server-node';
 import type { LikeStatus } from '@lib/types/meta';
 import type { APIResponse } from '@lib/types/helper';
 import type { NextApiRequest, NextApiResponse } from 'next';

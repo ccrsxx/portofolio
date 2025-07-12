@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import type { ValidTag, CustomTag } from '@lib/types/helper';
 
 type TooltipProps<T extends ValidTag> = CustomTag<T> & {
-  tip: string | JSX.Element;
+  tip: string | React.JSX.Element;
   tooltipClassName?: string;
 };
 
@@ -15,7 +15,7 @@ export function Tooltip<T extends ValidTag = typeof DEFAULT_TAG>({
   className,
   tooltipClassName = 'group-hover:-translate-y-16 peer-focus-visible:-translate-y-16',
   ...rest
-}: TooltipProps<T>): JSX.Element {
+}: TooltipProps<T>): React.JSX.Element {
   const CustomTag: ValidTag = tag;
 
   return (

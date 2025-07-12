@@ -7,7 +7,7 @@ import { SEO } from '@components/common/seo';
 import { CustomLink } from '@components/link/custom-link';
 import type { MotionProps } from 'framer-motion';
 
-export default function NotFound(): JSX.Element {
+export default function NotFound(): React.JSX.Element {
   const [currentUrl, setCurrentUrl] = useState<string | null>(null);
 
   const { asPath, isReady } = useRouter();
@@ -16,7 +16,7 @@ export default function NotFound(): JSX.Element {
     if (!isReady) return;
 
     const timeoutId = setTimeout(() => setCurrentUrl(asPath), 500);
-    return () => clearTimeout(timeoutId);
+    return (): void => clearTimeout(timeoutId);
   }, [asPath, isReady]);
 
   return (

@@ -9,7 +9,7 @@ import type { Project } from '@lib/types/contents';
 
 export default function Projects({
   projects
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <SEO

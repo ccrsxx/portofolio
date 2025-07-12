@@ -11,7 +11,7 @@ type SortIconProps = {
 export function SortIcon({
   isSorted,
   sortDirection
-}: SortIconProps): JSX.Element {
+}: SortIconProps): React.JSX.Element {
   const Icon = Icons[sortDirection];
 
   return (

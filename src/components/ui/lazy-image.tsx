@@ -10,7 +10,7 @@ export function LazyImage({
   height,
   className,
   ...rest
-}: ImageProps): JSX.Element {
+}: ImageProps): React.JSX.Element {
   const [loading, setLoading] = useState(true);
 
   const handleLoadingComplete = (): void => setLoading(false);

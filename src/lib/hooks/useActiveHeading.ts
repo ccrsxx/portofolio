@@ -53,7 +53,7 @@ export function useActiveHeading(): string | null {
       headingObserver.observe(headingElement)
     );
 
-    return () => headingObserver.disconnect();
+    return (): void => headingObserver.disconnect();
   }, []);
 
   return activeHeading;

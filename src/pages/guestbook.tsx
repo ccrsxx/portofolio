@@ -21,7 +21,7 @@ import type { Guestbook } from '@lib/types/guestbook';
 export default function Guestbook({
   session,
   guestbook: fallbackData
-}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+}: InferGetServerSidePropsType<typeof getServerSideProps>): React.JSX.Element {
   const { guestbook, registerGuestbook, unRegisterGuestbook } =
     useGuestbook(fallbackData);
 

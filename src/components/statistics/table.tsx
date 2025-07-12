@@ -27,7 +27,7 @@ type TableProps = {
   data: ContentColumn[];
 };
 
-export function Table({ data }: TableProps): JSX.Element {
+export function Table({ data }: TableProps): React.JSX.Element {
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
 

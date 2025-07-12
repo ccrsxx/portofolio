@@ -17,7 +17,7 @@ export function ImagePreview({
   className,
   customLink,
   wrapperClassName
-}: ImagePreviewProps): JSX.Element {
+}: ImagePreviewProps): React.JSX.Element {
   const { open, openModal, closeModal } = useModal();
 
   const { src: imageLink } = src;

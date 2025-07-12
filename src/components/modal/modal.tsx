@@ -19,7 +19,7 @@ export function Modal({
   modalClassName,
   closePanelOnClick,
   closeModal
-}: ModalProps): JSX.Element {
+}: ModalProps): React.JSX.Element {
   return (
     <AnimatePresence>
       {open && (

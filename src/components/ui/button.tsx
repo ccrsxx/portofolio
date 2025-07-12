@@ -12,7 +12,7 @@ export function Button({
   disabled,
   children,
   ...rest
-}: ButtonProps): JSX.Element {
+}: ButtonProps): React.JSX.Element {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const isDisabled = loading || disabled;
 

@@ -1,7 +1,9 @@
 import { Accent } from '@components/ui/accent';
 import type { PropsWithChildren } from 'react';
 
-export function GuestbookCard({ children }: PropsWithChildren): JSX.Element {
+export function GuestbookCard({
+  children
+}: PropsWithChildren): React.JSX.Element {
   return (
     <div className='main-border rounded-md p-4'>
       <h2 className='text-2xl font-bold md:text-4xl'>

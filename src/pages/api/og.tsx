@@ -114,19 +114,19 @@ export const config: PageConfig = {
 };
 
 const regularFont = fetch(
-  new URL('/public/assets/inter-regular.ttf', import.meta.url)
+  new URL('../../../public/assets/inter-regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const mediumFont = fetch(
-  new URL('/public/assets/inter-medium.ttf', import.meta.url)
+  new URL('../../../public/assets/inter-medium.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 // const semiboldFont = fetch(
-//   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
+//   new URL('../../../publicassets/inter-semibold.ttf', import.meta.url)
 // ).then((res) => res.arrayBuffer());
 
 // const boldFont = fetch(
-//   new URL('/public/assets/inter-bold.ttf', import.meta.url)
+//   new URL('../../../publicassets/inter-bold.ttf', import.meta.url)
 // ).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<

@@ -25,7 +25,7 @@ export function GuestbookEntry({
   createdAt,
   createdBy,
   unRegisterGuestbook
-}: GuestbookEntryProps): JSX.Element {
+}: GuestbookEntryProps): React.JSX.Element {
   const [loading, setLoading] = useState(false);
 
   const handleUnRegisterGuestbook = async (): Promise<void> => {

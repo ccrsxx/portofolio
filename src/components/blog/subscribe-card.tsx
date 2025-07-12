@@ -1,7 +1,7 @@
 import { Button } from '@components/ui/button';
 import { Accent } from '@components/ui/accent';
 
-export function SubscribeCard(): JSX.Element {
+export function SubscribeCard(): React.JSX.Element {
   return (
     <div className='main-border rounded-md p-4'>
       <h2 className='text-2xl font-bold md:text-4xl'>

@@ -13,10 +13,10 @@ type SortListboxProps = {
 export function SortListbox({
   sortOrder,
   onSortOrderChange
-}: SortListboxProps): JSX.Element {
+}: SortListboxProps): React.JSX.Element {
   return (
     <Listbox value={sortOrder} onChange={onSortOrderChange}>
-      {({ open }): JSX.Element => (
+      {({ open }): React.JSX.Element => (
         <div className='relative ml-auto w-52'>
           <Listbox.Button
             className={clsx(
@@ -53,7 +53,7 @@ export function SortListbox({
                     value={sortOption}
                     key={sortOption}
                   >
-                    {({ selected }): JSX.Element => (
+                    {({ selected }): React.JSX.Element => (
                       <>
                         <span
                           className={clsx(

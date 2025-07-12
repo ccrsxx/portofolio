@@ -38,6 +38,6 @@ type CustomEnvKeys =
 type CustomEnv = Record<CustomEnvKeys, string>;
 
 declare namespace NodeJS {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface ProcessEnv extends CustomEnv {}
 }

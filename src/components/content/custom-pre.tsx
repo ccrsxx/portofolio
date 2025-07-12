@@ -18,7 +18,10 @@ type PrettyCodeProps = PropsWithChildren<{
 type CustomPreProps = ComponentPropsWithoutRef<'pre'> &
   Partial<PrettyCodeProps>;
 
-export function CustomPre({ children, ...rest }: CustomPreProps): JSX.Element {
+export function CustomPre({
+  children,
+  ...rest
+}: CustomPreProps): React.JSX.Element {
   const [copied, setCopied] = useState(false);
   const mounted = useMounted();
 

@@ -4,7 +4,9 @@ import { useContentLikes } from '@lib/hooks/useContentLikes';
 import type { MotionProps } from 'framer-motion';
 import type { Content } from '@lib/types/contents';
 
-export function LikesCounter({ slug }: Pick<Content, 'slug'>): JSX.Element {
+export function LikesCounter({
+  slug
+}: Pick<Content, 'slug'>): React.JSX.Element {
   const { likeStatus, isLoading, registerLikes } = useContentLikes(slug);
 
   const { likes, userLikes } = likeStatus ?? {};
@@ -41,7 +43,7 @@ export function LikesCounter({ slug }: Pick<Content, 'slug'>): JSX.Element {
   );
 }
 
-function GradientHeart({ likes }: { likes: number }): JSX.Element {
+function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
   return (
     <>
       <motion.i

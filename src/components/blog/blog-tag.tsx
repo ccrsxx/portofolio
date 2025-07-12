@@ -8,7 +8,7 @@ export function BlogTag<T extends ValidTag = typeof DEFAULT_TAG>({
   children,
   className,
   ...rest
-}: CustomTag<T>): JSX.Element {
+}: CustomTag<T>): React.JSX.Element {
   const CustomTag: ValidTag = tag;
 
   return (

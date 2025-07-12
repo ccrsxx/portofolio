@@ -5,7 +5,7 @@ import type {
   ComponentPropsWithoutRef
 } from 'react';
 
-export type ValidTag = keyof JSX.IntrinsicElements;
+export type ValidTag = keyof React.JSX.IntrinsicElements;
 
 export type CustomTag<T extends ValidTag> = PropsWithChildren<
   {

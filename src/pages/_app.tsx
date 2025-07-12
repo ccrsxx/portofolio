@@ -19,7 +19,10 @@ Router.events.on('routeChangeComplete', done);
 const popAudio =
   typeof window !== 'undefined' ? new Audio('/assets/pop.mp3') : null;
 
-export default function App({ Component, pageProps }: AppProps): JSX.Element {
+export default function App({
+  Component,
+  pageProps
+}: AppProps): React.JSX.Element {
   const { pathname } = useRouter();
 
   useEffect(() => void popAudio?.play().catch(() => void 0), [pathname]);

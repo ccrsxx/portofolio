@@ -5,7 +5,7 @@ import { useInView } from 'framer-motion';
 import { clsx } from 'clsx';
 import { ThemeSwitch } from '@components/common/theme-switch';
 
-export function Header(): JSX.Element {
+export function Header(): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: '40px 0px 0px', amount: 'all' });
 

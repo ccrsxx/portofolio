@@ -19,7 +19,7 @@ import type { SortOption } from '@components/blog/sort-listbox';
 export default function Blog({
   tags,
   posts
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   const [sortOrder, setSortOrder] = useSessionStorage<SortOption>(
     'sortOrder',
     sortOptions[0]

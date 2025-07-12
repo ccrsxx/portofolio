@@ -54,7 +54,6 @@ const withMDX = nextMDX({
 
 export default withMDX({
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     domains: ['avatars.githubusercontent.com', 'i.scdn.co']
   },

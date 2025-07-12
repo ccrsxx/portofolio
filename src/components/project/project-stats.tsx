@@ -24,7 +24,7 @@ export function ProjectStats({
   readTime,
   category,
   increment
-}: ProjectStatsProps): JSX.Element {
+}: ProjectStatsProps): React.JSX.Element {
   const projectLinks: ProjectLinks[] = [
     {
       name: 'Repository',

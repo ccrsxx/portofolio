@@ -16,7 +16,7 @@ import type { Blog, Project } from '@lib/types/contents';
 export default function Home({
   featuredBlog,
   featuredProjects
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   return (
     <main className='grid gap-20'>
       <SEO

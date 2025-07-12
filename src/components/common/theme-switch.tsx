@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useMounted } from '@lib/hooks/useMounted';
 import type { MotionProps } from 'framer-motion';
 
-export function ThemeSwitch(): JSX.Element | null {
+export function ThemeSwitch(): React.JSX.Element | null {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
 

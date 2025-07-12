@@ -11,7 +11,7 @@ export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);
 
   const isValidOrigin = IS_DEVELOPMENT
-    ? [PUBLIC_URL, 'http://localhost'].includes(origin as string)
+    ? [PUBLIC_URL, 'http://localhost:3000'].includes(origin as string)
     : origin === PUBLIC_URL;
 
   if (!isValidOrigin) return generateNextResponse(403, 'Forbidden');

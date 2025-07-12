@@ -9,7 +9,7 @@ export function ProjectCard({
   title,
   banner,
   description
-}: Omit<Project, 'readTime' | 'publishedAt'>): JSX.Element {
+}: Omit<Project, 'readTime' | 'publishedAt'>): React.JSX.Element {
   return (
     <article className='grid' key={title}>
       <Link className='project-card clickable p-4' href={`/projects/${slug}`}>

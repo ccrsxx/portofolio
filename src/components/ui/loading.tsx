@@ -9,7 +9,7 @@ type LoadingProps = {
 export function Loading({
   className = 'p-4',
   iconClassName = 'h-7 w-7'
-}: LoadingProps): JSX.Element {
+}: LoadingProps): React.JSX.Element {
   return (
     <i className={clsx('flex justify-center', className)}>
       <ImSpinner8

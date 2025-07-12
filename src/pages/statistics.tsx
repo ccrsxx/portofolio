@@ -11,7 +11,7 @@ import type { ContentData, ContentStatistics } from '@lib/types/statistics';
 export default function Statistics({
   contentsData,
   contentsStatistics
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <SEO title='Statistics' description='A statistics page by Risal Amin.' />

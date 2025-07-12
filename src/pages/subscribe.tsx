@@ -4,7 +4,7 @@ import { SubscribeCard } from '@components/blog/subscribe-card';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 
-export default function Subscribe(): JSX.Element {
+export default function Subscribe(): React.JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6 py-12'>
       <SEO

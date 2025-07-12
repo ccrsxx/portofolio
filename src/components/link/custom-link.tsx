@@ -5,7 +5,7 @@ import type { UnstyledLinkProps } from './unstyled-link';
 export function CustomLink({
   children,
   ...rest
-}: UnstyledLinkProps): JSX.Element {
+}: UnstyledLinkProps): React.JSX.Element {
   return (
     <UnstyledLink className='animated-underline with-dots' {...rest}>
       <Accent>{children}</Accent>

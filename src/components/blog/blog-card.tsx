@@ -30,7 +30,7 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
   bannerLink: _bannerLink,
   isTagSelected,
   ...rest
-}: BlogCardProps<T>): JSX.Element {
+}: BlogCardProps<T>): React.JSX.Element {
   const CustomTag: ValidTag = tag;
 
   bannerAlt ??= title;

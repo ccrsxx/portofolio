@@ -1,11 +1,11 @@
 import { HiEnvelope } from 'react-icons/hi2';
-import { SiDiscord, SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { SiDiscord, SiGithub, SiLinkedin, SiX } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { SpotifyCard } from '@components/common/spotify-card';
 import type { IconType } from 'react-icons';
 
-export function Footer(): JSX.Element {
+export function Footer(): React.JSX.Element {
   return (
     <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
       <nav className='mt-6 flex flex-wrap justify-center gap-x-8 gap-y-4'>
@@ -65,7 +65,7 @@ export function Footer(): JSX.Element {
 type FooterLink = {
   name: string;
   href: string;
-  tip: string | JSX.Element;
+  tip: string | React.JSX.Element;
 };
 
 const footerLinks: FooterLink[] = [
@@ -129,8 +129,8 @@ const socialLinks: SocialLink[] = [
   },
   {
     tip: 'Follow me on',
-    name: 'Twitter',
-    href: 'https://twitter.com/ccrsxx',
-    Icon: SiTwitter
+    name: 'X',
+    href: 'https://x.com/ccrsxx',
+    Icon: SiX
   }
 ];

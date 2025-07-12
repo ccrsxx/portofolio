@@ -11,7 +11,7 @@ import type { FileCommitHistory } from './types/github';
  */
 export async function getContentFiles(type: ContentType): Promise<string[]> {
   const contentDirectory = join('src', 'pages', type);
-  const contentPosts = await readdir(contentDirectory);
+  const contentPosts = await readdir(contentDirectory).catch(() => []);
 
   return contentPosts;
 }
@@ -69,7 +69,7 @@ export async function getContentLastUpdatedDate(
 export async function getSuggestedContents(
   type: ContentType
 ): Promise<(Blog | Project)[]> {
-  const contentFiles = await getContentFiles(type);
+  const contentFiles = await getContentFiles(type).catch(() => []);
 
   const shuffledFiles = contentFiles
     .map((value) => ({ value, sort: Math.random() }))

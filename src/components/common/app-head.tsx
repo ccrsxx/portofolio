@@ -5,7 +5,7 @@ const inter = Inter({
   subsets: ['latin']
 });
 
-export function AppHead(): JSX.Element {
+export function AppHead(): React.JSX.Element {
   return (
     <>
       <Head>

@@ -12,7 +12,7 @@ import { Tooltip } from '@components/ui/tooltip';
 import { CustomLink } from '@components/link/custom-link';
 import type { IconType } from 'react-icons';
 
-export default function About(): JSX.Element {
+export default function About(): React.JSX.Element {
   return (
     <main className='layout min-h-screen'>
       <SEO title='About' description='Risal Amin is a web developer' />

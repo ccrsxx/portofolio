@@ -9,7 +9,7 @@ export function UnstyledLink({
   href = '',
   children,
   ...rest
-}: UnstyledLinkProps): JSX.Element {
+}: UnstyledLinkProps): React.JSX.Element {
   const openInNewTab = !href.startsWith('/');
 
   if (!openInNewTab)

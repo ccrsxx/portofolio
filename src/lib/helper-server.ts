@@ -1,26 +1,7 @@
-import { createHash } from 'crypto';
 import { NextResponse } from 'next/server';
 import { GITHUB_TOKEN } from './env';
-import type { NextApiRequest } from 'next';
 import type { NextRequest } from 'next/server';
 import type { GithubUser } from './types/github';
-
-/**
- * Returns a hashed session id from the user's IP address.
- */
-export function getSessionId(req: NextApiRequest): string {
-  const ipAddressFromHeaders = req.headers['x-forwarded-for'] as
-    | string
-    | undefined;
-
-  const ipAddress = ipAddressFromHeaders ?? '127.0.0.1';
-
-  const hashedIpAddress = createHash('md5')
-    .update(ipAddress + process.env.IP_ADDRESS_SALT)
-    .digest('hex');
-
-  return hashedIpAddress;
-}
 
 /**
  * Returns the username with the given user id from the GitHub API.

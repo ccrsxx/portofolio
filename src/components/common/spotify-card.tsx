@@ -7,7 +7,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { Tooltip } from '@components/ui/tooltip';
 import type { IsPlaying } from '@lib/types/spotify';
 
-export function SpotifyCard(): JSX.Element {
+export function SpotifyCard(): React.JSX.Element {
   const { track } = useNowPlayingTrack();
 
   const {

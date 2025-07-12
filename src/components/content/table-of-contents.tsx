@@ -3,7 +3,9 @@ import { useHeadingData } from '@lib/hooks/useHeadingData';
 import { useActiveHeading } from '@lib/hooks/useActiveHeading';
 import type { PropsWithChildren } from 'react';
 
-export function TableOfContents({ children }: PropsWithChildren): JSX.Element {
+export function TableOfContents({
+  children
+}: PropsWithChildren): React.JSX.Element {
   const headingData = useHeadingData();
   const activeHeadingId = useActiveHeading();
 

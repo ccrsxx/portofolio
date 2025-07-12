@@ -10,7 +10,7 @@ export function BlogStats({
   slug,
   readTime,
   increment
-}: BlogStatProps): JSX.Element {
+}: BlogStatProps): React.JSX.Element {
   return (
     <div className='flex gap-4 text-sm font-medium text-gray-600 dark:text-gray-300'>
       <div className='flex items-center gap-1'>

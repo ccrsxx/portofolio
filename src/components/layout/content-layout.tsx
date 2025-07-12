@@ -33,7 +33,7 @@ type ContentLayoutProps = {
 export function ContentLayout({
   meta,
   children
-}: ContentLayoutProps): JSX.Element {
+}: ContentLayoutProps): React.JSX.Element {
   const [
     { title, description, publishedAt, banner, bannerAlt, bannerLink, tags },
     { type, slug, readTime, lastUpdatedAt, suggestedContents }
