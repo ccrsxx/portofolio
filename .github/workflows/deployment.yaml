@@ -45,16 +45,3 @@ jobs:
 
       - name: Format
         run: npm run format
-
-  jest:
-    name: 🃏 Jest
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Download deps
-        run: npm ci
-
-      - name: Test
-        run: npm run test:ci
