@@ -55,6 +55,9 @@ const withMDX = nextMDX({
 
 export default withMDX({
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ['shiki']
+  },
   images: {
     domains: ['avatars.githubusercontent.com', 'i.scdn.co']
   },
