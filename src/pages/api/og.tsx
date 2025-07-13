@@ -9,7 +9,10 @@ import type { NextRequest } from 'next/server';
 export default async function handler(
   req: NextRequest
 ): Promise<ImageResponse> {
-  const regularFontData = await regularFont;
+  const [regularFontData, mediumFontData] = await Promise.all([
+    regularFont,
+    mediumFont
+  ]);
 
   const { searchParams } = req.nextUrl;
 
@@ -85,12 +88,12 @@ export default async function handler(
           name: 'Inter',
           data: regularFontData,
           weight: 400
+        },
+        {
+          name: 'Inter',
+          data: mediumFontData,
+          weight: 500
         }
-        // {
-        //   name: 'Inter',
-        //   data: mediumFontData,
-        //   weight: 500
-        // }
       ]
     }
   );
@@ -104,9 +107,9 @@ const regularFont = fetch(
   new URL('../../../public/assets/inter-regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-// const mediumFont = fetch(
-//   new URL('../../../public/assets/inter-medium.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
+const mediumFont = fetch(
+  new URL('../../../public/assets/inter-medium.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<
   CSSProperties,
