@@ -1,11 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import {
   getOrigin,
   getBearerToken,
   generateNextResponse
 } from '@lib/helper-server';
 import { frontendEnv, IS_DEVELOPMENT } from '@lib/env';
-import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);

@@ -1,6 +1,5 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { backendEnv } from './env-server';
-import type { NextRequest } from 'next/server';
 import type { GithubUser } from './types/github';
 
 /**

@@ -92,9 +92,11 @@ export default tseslint.config([
           ]
         }
       ],
+      'import/no-duplicates': ['warn', { 'prefer-inline': true }],
 
       // TypeScript plugin rules
       '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/consistent-type-exports': 'warn',
       '@typescript-eslint/prefer-nullish-coalescing': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-unused-vars': [

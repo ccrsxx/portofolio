@@ -1,11 +1,14 @@
-import { getServerSession } from 'next-auth';
-import { addDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
+import { getServerSession, type AuthOptions } from 'next-auth';
+import {
+  addDoc,
+  Timestamp,
+  serverTimestamp,
+  type WithFieldValue
+} from 'firebase/firestore';
 import { getGuestbook, sendEmail } from '@lib/api';
 import { guestbookCollection } from '@lib/firebase/collections';
 import { authOptions } from '../auth/[...nextauth]';
-import type { AuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { WithFieldValue } from 'firebase/firestore';
 import type { CustomSession } from '@lib/types/api';
 import type { APIResponse } from '@lib/types/helper';
 import type { Guestbook } from '@lib/types/guestbook';

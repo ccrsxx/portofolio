@@ -1,13 +1,13 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import {
+  useState,
+  useRef,
+  type CSSProperties,
+  type PropsWithChildren,
+  type ComponentPropsWithoutRef
+} from 'react';
 import { HiClipboard, HiClipboardDocumentCheck } from 'react-icons/hi2';
 import { useMounted } from '@lib/hooks/use-mounted';
-import type {
-  CSSProperties,
-  PropsWithChildren,
-  ComponentPropsWithoutRef
-} from 'react';
-import type { MotionProps } from 'framer-motion';
 
 type PrettyCodeProps = PropsWithChildren<{
   style: Pick<CSSProperties, 'backgroundColor'>;

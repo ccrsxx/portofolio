@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { clsx } from 'clsx';
 import {
   flexRender,
@@ -6,21 +6,18 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   createColumnHelper,
-  getFilteredRowModel
+  getFilteredRowModel,
+  type Row,
+  type ColumnDef,
+  type FilterMeta,
+  type CellContext,
+  type SortingState,
+  type SortDirection,
+  type ColumnFiltersState
 } from '@tanstack/react-table';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import { formatNumber } from '@lib/format';
 import { SortIcon } from './sort-icon';
-import type { ChangeEvent } from 'react';
-import type {
-  Row,
-  ColumnDef,
-  FilterMeta,
-  CellContext,
-  SortingState,
-  SortDirection,
-  ColumnFiltersState
-} from '@tanstack/react-table';
 import type { ContentColumn } from '@lib/types/statistics';
 
 type TableProps = {

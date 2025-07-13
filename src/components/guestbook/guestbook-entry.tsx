@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type MotionProps } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
 import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
 import { Tooltip } from '@components/ui/tooltip';
 import { LazyImage } from '@components/ui/lazy-image';
-import type { MotionProps } from 'framer-motion';
 import type { CustomSession } from '@lib/types/api';
 import type { Guestbook } from '@lib/types/guestbook';
 

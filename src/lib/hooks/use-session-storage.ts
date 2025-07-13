@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, type Dispatch, type SetStateAction } from 'react';
 
 /**
  * Get state from session storage.

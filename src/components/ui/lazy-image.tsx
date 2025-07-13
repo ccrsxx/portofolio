@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { clsx } from 'clsx';
-import Image from 'next/image';
-import type { ImageProps } from 'next/image';
+import Image, { type ImageProps } from 'next/image';
 
 export function LazyImage({
   src,

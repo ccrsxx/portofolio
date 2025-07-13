@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import { motion, type MotionProps } from 'framer-motion';
 import { clsx } from 'clsx';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { CustomLink } from '@components/link/custom-link';
-import type { MotionProps } from 'framer-motion';
 
 export default function NotFound(): React.JSX.Element {
   const [currentUrl, setCurrentUrl] = useState<string | null>(null);

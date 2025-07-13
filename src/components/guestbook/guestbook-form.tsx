@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { signIn, signOut } from 'next-auth/react';
 import { clsx } from 'clsx';
 import { SiGithub } from 'react-icons/si';
 import { Button } from '@components/ui/button';
 import type { Text } from '@lib/types/guestbook';
-import type { FormEvent } from 'react';
 import type { CustomSession } from '@lib/types/api';
 
 type GuestbookCardProps = {

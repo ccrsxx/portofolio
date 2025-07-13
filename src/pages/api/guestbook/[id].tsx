@@ -1,8 +1,7 @@
-import { getServerSession } from 'next-auth';
+import { getServerSession, type AuthOptions } from 'next-auth';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { guestbookCollection } from '@lib/firebase/collections';
 import { authOptions } from '../auth/[...nextauth]';
-import type { AuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { CustomSession } from '@lib/types/api';
 import type { APIResponse } from '@lib/types/helper';

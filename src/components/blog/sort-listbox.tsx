@@ -1,9 +1,8 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import { clsx } from 'clsx';
 import { Listbox } from '@headlessui/react';
 import { HiEye, HiCheck, HiCalendar, HiArrowsUpDown } from 'react-icons/hi2';
 import type { Dispatch, SetStateAction } from 'react';
-import type { MotionProps } from 'framer-motion';
 
 type SortListboxProps = {
   sortOrder: SortOption;

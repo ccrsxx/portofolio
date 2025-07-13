@@ -1,8 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import { clsx } from 'clsx';
 import type { PropsWithChildren } from 'react';
-import type { MotionProps } from 'framer-motion';
 
 type ModalProps = PropsWithChildren<{
   open: boolean;

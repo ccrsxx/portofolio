@@ -4,7 +4,7 @@ import { MdHistory } from 'react-icons/md';
 import { setTransition } from '@lib/transition';
 import { formatDate } from '@lib/format';
 import { components } from '@components/content/mdx-components';
-import { SEO } from '@components/common/seo';
+import { SEO, type Article } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { BlogStats } from '@components/blog/blog-stats';
@@ -18,7 +18,6 @@ import { Accent } from '@components/ui/accent';
 import type { ReactElement } from 'react';
 import type { Blog, Project, Content } from '@lib/types/contents';
 import type { ContentSlugProps } from '@lib/mdx';
-import type { Article } from '@components/common/seo';
 
 type ContentLayoutProps = {
   children: ReactElement<ContentSlugProps>;

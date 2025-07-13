@@ -1,6 +1,5 @@
-import Link from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
-import type { LinkProps } from 'next/link';
 
 export type UnstyledLinkProps = ComponentPropsWithoutRef<'a'> &
   Partial<LinkProps>;

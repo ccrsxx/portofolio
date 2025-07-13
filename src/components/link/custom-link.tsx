@@ -1,6 +1,5 @@
 import { Accent } from '@components/ui/accent';
-import { UnstyledLink } from './unstyled-link';
-import type { UnstyledLinkProps } from './unstyled-link';
+import { UnstyledLink, type UnstyledLinkProps } from './unstyled-link';
 
 export function CustomLink({
   children,
