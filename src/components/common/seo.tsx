@@ -52,9 +52,9 @@ export function SEO({
     isHomepage ? 'Fullstack Developer' : 'Risal Amin'
   }`;
 
-  const ogImageUrl = `${frontendEnv.NEXT_PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
+  const ogImageUrl = `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/api/og?${ogImageQuery.toString()}`;
 
-  const ogUrl = `${frontendEnv.NEXT_PUBLIC_URL}${isHomepage ? '' : asPath}`;
+  const ogUrl = `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}${isHomepage ? '' : asPath}`;
 
   return (
     <Head>

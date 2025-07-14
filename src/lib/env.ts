@@ -4,6 +4,7 @@ export const validStringSchema = z.string().trim().min(1);
 
 const envSchema = z.object({
   NEXT_PUBLIC_URL: validStringSchema,
+  NEXT_PUBLIC_BACKEND_URL: validStringSchema,
   NEXT_PUBLIC_OWNER_BEARER_TOKEN: validStringSchema
 });
 
@@ -12,6 +13,7 @@ type EnvSchema = z.infer<typeof envSchema>;
 function validateEnv(): EnvSchema {
   let { data, error } = envSchema.safeParse({
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+    NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
     NEXT_PUBLIC_OWNER_BEARER_TOKEN: process.env.NEXT_PUBLIC_OWNER_BEARER_TOKEN
   });
 
