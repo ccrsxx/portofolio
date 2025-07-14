@@ -7,6 +7,25 @@
 @tailwind utilities;
 
 @layer base {
+  /* 
+    TODO: Big refactor for global styles.
+
+    Make base rules for light and dark themes, so that the changes can be automatically applied
+    when the user switches between themes, without manually changing dark modifiers in the code.
+
+    For example, this color palette:
+
+    - background: for the background
+    - foreground: for the main text
+    - primary: for the first accent color
+    - secondary: for the second accent color
+    - muted: for the third accent color
+    - accent: for the main accent color
+
+    Make both colors for light and dark themes, so that the changes can be automatically applied
+    when the user switches between themes, without manually changing dark modifiers in the code.
+  */
+
   html {
     // ! use important as a workaround for nextjs@13.1.0 bug that prevents smooth scroll
     // * remove it when the bug is fixed
@@ -28,7 +47,7 @@
 
 @layer components {
   .layout {
-    @apply mx-auto w-11/12 max-w-6xl;
+    @apply mx-auto px-8 max-w-6xl;
   }
 
   .card-layout {
