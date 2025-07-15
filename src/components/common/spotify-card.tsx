@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { SiSpotify } from 'react-icons/si';
-import { useCurrentlyPlayingTrack } from '@lib/hooks/use-now-playing-track';
+import { useCurrentlyPlayingTrack } from '@lib/hooks/use-currently-playing-track';
 import { setTransition } from '@lib/transition';
 import { LazyImage } from '@components/ui/lazy-image';
 import { UnstyledLink } from '@components/link/unstyled-link';
