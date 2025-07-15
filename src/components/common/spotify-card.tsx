@@ -1,27 +1,24 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { SiSpotify } from 'react-icons/si';
-import { useNowPlayingTrack } from '@lib/hooks/use-now-playing-track';
+import { useCurrentlyPlayingTrack } from '@lib/hooks/use-now-playing-track';
 import { setTransition } from '@lib/transition';
 import { LazyImage } from '@components/ui/lazy-image';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Tooltip } from '@components/ui/tooltip';
-import type { IsPlaying } from '@lib/types/spotify';
 
 export function SpotifyCard(): React.JSX.Element {
-  const { track } = useNowPlayingTrack();
+  const { data } = useCurrentlyPlayingTrack();
 
-  const {
-    trackUrl,
-    albumName,
-    trackName,
-    isPlaying,
-    artistName,
-    albumImageUrl
-  } = (track as IsPlaying) ?? {};
+  const currentlyPlaying = data?.data ?? null;
+
+  const { isPlaying } = currentlyPlaying ?? {};
+
+  const { trackUrl, trackName, albumName, artistName, albumImageUrl } =
+    currentlyPlaying?.item ?? {};
 
   return (
     <AnimatePresence>
-      {!isPlaying ? null : (
+      {isPlaying && (
         <motion.div {...setTransition()}>
           <Tooltip
             tip='Currently playing on my Spotify'
@@ -36,7 +33,7 @@ export function SpotifyCard(): React.JSX.Element {
                   className='main-border w-16 h-16 rounded-md'
                   title={albumName}
                   src={albumImageUrl}
-                  alt={albumName}
+                  alt={albumName as string}
                   width={64}
                   height={64}
                 />

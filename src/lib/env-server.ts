@@ -23,12 +23,7 @@ const envSchema = z.object({
   PROJECT_ID: validStringSchema,
   STORAGE_BUCKET: validStringSchema,
   MESSAGING_SENDER_ID: validStringSchema,
-  APP_ID: validStringSchema,
-
-  // Spotify
-  SPOTIFY_CLIENT_ID: validStringSchema,
-  SPOTIFY_CLIENT_SECRET: validStringSchema,
-  SPOTIFY_REFRESH_TOKEN: validStringSchema
+  APP_ID: validStringSchema
 });
 
 type EnvSchema = z.infer<typeof envSchema>;

@@ -3,14 +3,33 @@ import type { ContentType } from './contents';
 
 type SlugEndPoints = 'views' | 'likes' | 'guestbook';
 
-type ApiEndpoints =
-  | 'spotify'
-  | 'contents'
-  | 'guestbook'
-  | `contents/${ContentType}`
-  | `${SlugEndPoints}/${string}`;
+type NextJsApiEndpoints =
+  | '/api/contents'
+  | '/api/guestbook'
+  | `/api/contents/${ContentType}`
+  | `/api/${SlugEndPoints}/${string}`;
 
-export type ValidApiEndpoints = `/api/${ApiEndpoints}`;
+type BackendApiEndpoints =
+  | `${string}/og`
+  | `${string}/spotify/currently-playing`;
+
+export type BackendSuccessApiResponse<T> = {
+  data: T | null;
+};
+
+export type BackendErrorApiResponse = {
+  error: {
+    id: string;
+    message: string;
+    details: string[];
+  };
+};
+
+export type BackendApiResponse<T = unknown> =
+  | BackendSuccessApiResponse<T>
+  | BackendErrorApiResponse;
+
+export type ValidApiEndpoints = NextJsApiEndpoints | BackendApiEndpoints;
 
 type DefaultUser = Required<Omit<User, 'id'>>;
 

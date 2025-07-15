@@ -1,24 +1,32 @@
 import useSWR from 'swr';
 import { fetcher } from '@lib/fetcher';
-import type { ValidApiEndpoints } from '@lib/types/api';
-import type { NowPlaying } from '@lib/types/spotify';
+import { frontendEnv } from '@lib/env';
+import type {
+  ValidApiEndpoints,
+  BackendSuccessApiResponse
+} from '@lib/types/api';
+import type { CurrentlyPlaying } from '@lib/types/spotify';
 
-type NowPlayingTrack = {
-  track?: NowPlaying;
+type CurrentlyPlayingTrack = {
+  data?: BackendSuccessApiResponse<CurrentlyPlaying>;
   isLoading: boolean;
 };
 
 /**
  * Get the current playing track from Spotify.
  */
-export function useNowPlayingTrack(): NowPlayingTrack {
-  const { data: track, isLoading } = useSWR<
-    NowPlaying,
+export function useCurrentlyPlayingTrack(): CurrentlyPlayingTrack {
+  const { data, isLoading } = useSWR<
+    BackendSuccessApiResponse<CurrentlyPlaying>,
     unknown,
     ValidApiEndpoints
-  >('/api/spotify', fetcher, {
-    refreshInterval: 5000
-  });
+  >(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/spotify/currently-playing`,
+    fetcher,
+    {
+      refreshInterval: 5000
+    }
+  );
 
-  return { track, isLoading };
+  return { data, isLoading };
 }
