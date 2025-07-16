@@ -24,7 +24,7 @@ export function LazyImage({
       alt={alt}
       width={width}
       height={height}
-      onLoadingComplete={handleLoadingComplete}
+      onLoad={handleLoadingComplete}
       {...rest}
     />
   );
