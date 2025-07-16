@@ -1,17 +1,19 @@
+// @ts-check
+
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 import nextMDX from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
-import rehypePrettyCode, {
-  type Options as RehypePrettyCodeOptions
-} from 'rehype-pretty-code';
-import rehypeAutolinkHeadings, {
-  type Options as RehypeAutolinkHeadingsOptions
-} from 'rehype-autolink-headings';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrettyCode from 'rehype-pretty-code';
 
-const rehypeAutolinkHeadingsOptions: RehypeAutolinkHeadingsOptions = {
+/** @type {import('rehype-autolink-headings').Options} */
+const rehypeAutolinkHeadingsOptions = {
   behavior: 'wrap'
 };
 
-const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
+/** @type {import('rehype-pretty-code').Options} */
+const rehypePrettyCodeOptions = {
   // Use one of Shiki's packaged themes
   theme: {
     light: 'light-plus',
