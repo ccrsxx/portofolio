@@ -68,5 +68,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "volta": {
+    "node": "24.4.0"
   }
 }
