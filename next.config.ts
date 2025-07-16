@@ -1,19 +1,17 @@
-// @ts-check
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-
 import nextMDX from '@next/mdx';
 import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrettyCode from 'rehype-pretty-code';
+import rehypePrettyCode, {
+  type Options as RehypePrettyCodeOptions
+} from 'rehype-pretty-code';
+import rehypeAutolinkHeadings, {
+  type Options as RehypeAutolinkHeadingsOptions
+} from 'rehype-autolink-headings';
 
-/** @type {import('rehype-autolink-headings').Options} */
-const rehypeAutolinkHeadingsOptions = {
+const rehypeAutolinkHeadingsOptions: RehypeAutolinkHeadingsOptions = {
   behavior: 'wrap'
 };
 
-/** @type {import('rehype-pretty-code').Options} */
-const rehypePrettyCodeOptions = {
+const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
   // Use one of Shiki's packaged themes
   theme: {
     light: 'light-plus',
@@ -59,7 +57,10 @@ const withMDX = nextMDX({
 export default withMDX({
   reactStrictMode: true,
   images: {
-    domains: ['avatars.githubusercontent.com', 'i.scdn.co']
+    remotePatterns: [
+      new URL('https://i.scdn.co/image/**'),
+      new URL('https://avatars.githubusercontent.com/u/**?v=4')
+    ]
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx']
 });

@@ -1,10 +1,7 @@
 // @ts-check
 
-/** @type {import("prettier").Config} */
-const config = {
+export default /** @satisfies {import('prettier').Config} */ ({
   singleQuote: true,
   jsxSingleQuote: true,
   trailingComma: 'none'
-};
-
-export default config;
+});

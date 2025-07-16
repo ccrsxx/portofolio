@@ -16,20 +16,16 @@ export default tseslint.config([
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
   {
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          allowDefaultProject: [
-            'next.config.mjs',
-            '.prettierrc.mjs',
-            'postcss.config.mjs'
-          ]
-        },
-        tsconfigRootDir: import.meta.dirname
-      }
-    }
+    ignores: ['*.mjs']
   },
   {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
+      }
+    },
     rules: {
       // General rules
       semi: ['error', 'always'],
