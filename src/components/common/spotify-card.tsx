@@ -67,7 +67,7 @@ export function SpotifyCard(): React.ReactNode {
   return (
     <div
       className={clsx(
-        'max-h-20 transition-[max-height]',
+        'max-h-20 transition-[max-height] duration-300',
         isPlaying && 'max-h-40'
       )}
     >
