@@ -43,8 +43,8 @@ export default function Home({
           {...setTransition({ delayIn: 0.2 })}
         >
           I&apos;m a self-taught Software Engineer turned Full Stack Developer.
-          I enjoy working TypeScript, React, and Node.js. I also love exploring
-          new technologies and learning new things.
+          I enjoy working with TypeScript, React, and Node.js. I also love
+          exploring new technologies and learning new things.
         </motion.p>
         <motion.section className='mt-6' {...setTransition({ delayIn: 0.3 })}>
           <SpotifyCard />
