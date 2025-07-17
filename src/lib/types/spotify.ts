@@ -1,4 +1,4 @@
-export type SpotifyTrack = {
+export type Track = {
   trackUrl: string | null;
   trackName: string;
   albumName: string;
@@ -8,7 +8,7 @@ export type SpotifyTrack = {
   albumImageUrl: string | null;
 };
 
-export type SpotifyCurrentlyPlaying = {
+export type CurrentlyPlaying = {
   isPlaying: boolean;
-  item: SpotifyTrack;
+  item: Track;
 };

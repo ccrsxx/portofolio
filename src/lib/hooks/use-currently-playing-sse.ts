@@ -2,18 +2,18 @@ import { useEffect } from 'react';
 import { frontendEnv } from '@lib/env';
 import { useLocalStorage } from './use-local-storage';
 import type { BackendSuccessApiResponse } from '@lib/types/api';
-import type { SpotifyCurrentlyPlaying } from '@lib/types/spotify';
+import type { CurrentlyPlaying } from '@lib/types/spotify';
 
-type CurrentlyPlayingSSE = {
-  currentlyPlaying: BackendSuccessApiResponse<SpotifyCurrentlyPlaying> | null;
+type UseCurrentlyPlayingSSE = {
+  currentlyPlaying: BackendSuccessApiResponse<CurrentlyPlaying> | null;
 };
 
 /**
  * Get the current playing track from Spotify.
  */
-export function useCurrentlyPlayingSSE(): CurrentlyPlayingSSE {
+export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
   const [data, setData] =
-    useLocalStorage<BackendSuccessApiResponse<SpotifyCurrentlyPlaying> | null>(
+    useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
       'spotify',
       null
     );
@@ -30,7 +30,7 @@ export function useCurrentlyPlayingSSE(): CurrentlyPlayingSSE {
     eventSource.onmessage = (event: MessageEvent<string>): void => {
       const data = JSON.parse(
         event.data
-      ) as BackendSuccessApiResponse<SpotifyCurrentlyPlaying>;
+      ) as BackendSuccessApiResponse<CurrentlyPlaying>;
 
       setData(data);
     };

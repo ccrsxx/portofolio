@@ -4,7 +4,7 @@ import { fetcher } from '@lib/fetcher';
 import type { ValidApiEndpoints } from '@lib/types/api';
 import type { Views } from '@lib/types/meta';
 
-type ContentViews = {
+type UseContentViews = {
   views?: Views;
   isLoading: boolean;
 };
@@ -15,7 +15,7 @@ type ContentViews = {
 export function useContentViews(
   slug: string,
   { increment }: { increment?: boolean } = {}
-): ContentViews {
+): UseContentViews {
   const {
     data: views,
     isLoading,

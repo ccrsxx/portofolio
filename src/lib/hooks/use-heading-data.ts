@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-type HeadingData = {
+type UseHeadingData = {
   id: string;
   title: string;
-  items: Omit<HeadingData, 'items'>[];
+  items: Omit<UseHeadingData, 'items'>[];
 };
 
 /**
  * Returns an array of heading data.
  */
-export function useHeadingData(): HeadingData[] {
-  const [headingData, setHeadingData] = useState<HeadingData[]>([]);
+export function useHeadingData(): UseHeadingData[] {
+  const [headingData, setHeadingData] = useState<UseHeadingData[]>([]);
 
   useEffect(() => {
     const headingElements: HTMLHeadingElement[] = Array.from(
@@ -28,7 +28,7 @@ export function useHeadingData(): HeadingData[] {
       }
 
       return acc;
-    }, [] as HeadingData[]);
+    }, [] as UseHeadingData[]);
 
     setHeadingData(newHeadingData);
   }, []);

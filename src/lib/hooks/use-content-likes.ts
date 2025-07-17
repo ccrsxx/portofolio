@@ -3,7 +3,7 @@ import { fetcher } from '@lib/fetcher';
 import type { ValidApiEndpoints } from '@lib/types/api';
 import type { LikeStatus } from '@lib/types/meta';
 
-type ContentLikes = {
+type UseContentLikes = {
   likeStatus?: LikeStatus;
   isLoading: boolean;
   registerLikes: () => Promise<void>;
@@ -12,7 +12,7 @@ type ContentLikes = {
 /**
  * Returns the likes of the content and a function to register likes.
  */
-export function useContentLikes(slug: string): ContentLikes {
+export function useContentLikes(slug: string): UseContentLikes {
   const {
     data: likeStatus,
     isLoading,

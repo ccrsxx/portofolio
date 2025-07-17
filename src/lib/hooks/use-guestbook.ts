@@ -3,7 +3,7 @@ import { fetcher } from '@lib/fetcher';
 import type { ValidApiEndpoints } from '@lib/types/api';
 import type { Guestbook, Text } from '@lib/types/guestbook';
 
-type ContentGuestbook = {
+type UseGuestbook = {
   guestbook?: Guestbook[];
   isLoading: boolean;
   registerGuestbook: (text: Text) => Promise<void>;
@@ -13,7 +13,7 @@ type ContentGuestbook = {
 /**
  * Returns the guestbook data and a function to register guestbook.
  */
-export function useGuestbook(fallbackData: Guestbook[]): ContentGuestbook {
+export function useGuestbook(fallbackData: Guestbook[]): UseGuestbook {
   const {
     data: guestbook,
     isLoading,
