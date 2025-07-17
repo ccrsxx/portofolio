@@ -30,8 +30,8 @@
   @mixin border-gradient($position) {
     border-image: linear-gradient(
         to $position,
-        theme('colors.blue.400'),
-        theme('colors.green.300')
+        theme('colors.accent.start'),
+        theme('colors.accent.end')
       )
       1;
   }
