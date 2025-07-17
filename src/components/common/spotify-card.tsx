@@ -25,14 +25,14 @@ export function SpotifyCard(): React.ReactNode {
 
     const { progressMs, durationMs } = item;
 
-    // 2. Record the time when we received this data from the backend.
+    // Record the time when we received this data from the backend.
     const fetchTime = Date.now();
 
     const interval = setInterval(() => {
-      // 3. Calculate how much time has passed since we fetched the data.
+      // Calculate how much time has passed since we fetched the data.
       const timePassedSinceFetch = Date.now() - fetchTime;
 
-      // 4. The new current time is the initial progress plus the time that has passed.
+      // The new current time is the initial progress plus the time that has passed.
       const elapsed = progressMs + timePassedSinceFetch;
 
       if (elapsed > durationMs) {
@@ -112,7 +112,7 @@ export function SpotifyCard(): React.ReactNode {
             <div className='grid gap-1'>
               <div className='relative h-1 rounded-full bg-gray-300 dark:bg-gray-600'>
                 <div
-                  className='gradient-background absolute h-1 rounded-full'
+                  className='gradient-background absolute h-1 rounded-full transition-[width] duration-300'
                   style={{ width: `${progress}%` }}
                 />
               </div>
