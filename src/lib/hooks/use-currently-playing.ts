@@ -5,19 +5,19 @@ import type {
   ValidApiEndpoints,
   BackendSuccessApiResponse
 } from '@lib/types/api';
-import type { CurrentlyPlaying } from '@lib/types/spotify';
+import type { SpotifyCurrentlyPlaying } from '@lib/types/spotify';
 
-type CurrentlyPlayingTrack = {
-  data?: BackendSuccessApiResponse<CurrentlyPlaying>;
+type CurrentlyPlaying = {
+  data?: BackendSuccessApiResponse<SpotifyCurrentlyPlaying>;
   isLoading: boolean;
 };
 
 /**
  * Get the current playing track from Spotify.
  */
-export function useCurrentlyPlayingTrack(): CurrentlyPlayingTrack {
+export function useCurrentlyPlaying(): CurrentlyPlaying {
   const { data, isLoading } = useSWR<
-    BackendSuccessApiResponse<CurrentlyPlaying>,
+    BackendSuccessApiResponse<SpotifyCurrentlyPlaying>,
     unknown,
     ValidApiEndpoints
   >(

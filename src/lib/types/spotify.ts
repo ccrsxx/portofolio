@@ -1,15 +1,14 @@
-import type { Types } from '@prequist/lanyard';
-
-export type Track = {
+export type SpotifyTrack = {
   trackUrl: string | null;
   trackName: string;
   albumName: string;
   artistName: string;
-  timestamps: Types.Spotify['timestamps'];
+  progressMs: number;
+  durationMs: number;
   albumImageUrl: string | null;
 };
 
-export type CurrentlyPlaying = {
+export type SpotifyCurrentlyPlaying = {
   isPlaying: boolean;
-  item: Track;
+  item: SpotifyTrack;
 };

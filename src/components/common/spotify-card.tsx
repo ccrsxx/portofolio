@@ -2,65 +2,58 @@ import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import { SiSpotify } from 'react-icons/si';
 import { useMounted } from '@lib/hooks/use-mounted';
-import { useLanyard } from '@lib/hooks/use-lanyard';
 import { formatMilisecondsToPlayback } from '@lib/format';
+import { useCurrentlyPlayingSSE } from '@lib/hooks/use-currently-playing-sse';
 import { LazyImage } from '@components/ui/lazy-image';
 import { UnstyledLink } from '@components/link/unstyled-link';
-import type { Types } from '@prequist/lanyard';
-import type { CurrentlyPlaying } from '@lib/types/spotify';
 
 export function SpotifyCard(): React.ReactNode {
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const lanyardData = useLanyard('414304208649453568');
-  const parsedLanyardData = parseLanyardToCurrentlyPlaying(lanyardData);
+  const { currentlyPlaying: currentPlaying } = useCurrentlyPlayingSSE();
 
   const mounted = useMounted();
 
-  const { isPlaying, item } = parsedLanyardData ?? {};
-  const {
-    trackUrl,
-    trackName,
-    albumName,
-    artistName,
-    timestamps,
-    albumImageUrl
-  } = item ?? {};
+  const { isPlaying, item } = currentPlaying?.data ?? {};
+
+  const { trackUrl, trackName, albumName, artistName, albumImageUrl } =
+    item ?? {};
 
   useEffect(() => {
-    if (!isPlaying || !timestamps) return;
+    if (!isPlaying || !item) return;
 
-    const { start, end } = timestamps;
+    const { progressMs, durationMs } = item;
 
-    // Set up an interval to update the current time and progress percentage
+    // 2. Record the time when we received this data from the backend.
+    const fetchTime = Date.now();
+
     const interval = setInterval(() => {
-      const elapsed = Date.now() - start;
-      const total = end - start;
+      // 3. Calculate how much time has passed since we fetched the data.
+      const timePassedSinceFetch = Date.now() - fetchTime;
 
-      // Stop the interval if the song has finished
-      if (elapsed > total) {
+      // 4. The new current time is the initial progress plus the time that has passed.
+      const elapsed = progressMs + timePassedSinceFetch;
+
+      if (elapsed > durationMs) {
         clearInterval(interval);
         return;
       }
 
       setCurrentTime(elapsed);
-      setProgress((elapsed / total) * 100);
+      setProgress((elapsed / durationMs) * 100);
     }, 1000);
 
-    // Set initial time immediately without waiting for the first interval
-    const initialElapsed = Date.now() - start;
-    const initialTotal = end - start;
-
-    setCurrentTime(initialElapsed);
-    setProgress((initialElapsed / initialTotal) * 100);
+    // Set initial time immediately based on the new format
+    setCurrentTime(progressMs);
+    setProgress((progressMs / durationMs) * 100);
 
     return (): void => clearInterval(interval);
-  }, [isPlaying, timestamps]);
+  }, [isPlaying, item]);
+
+  const totalDuration = item?.durationMs ?? 0;
 
   if (!mounted) return null;
-
-  const totalDuration = timestamps ? timestamps.end - timestamps.start : 0;
 
   const spotifyIcon = <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />;
 
@@ -138,24 +131,4 @@ export function SpotifyCard(): React.ReactNode {
       </UnstyledLink>
     </div>
   );
-}
-
-function parseLanyardToCurrentlyPlaying(
-  presence: Types.Presence | null
-): CurrentlyPlaying | null {
-  const spotify = presence?.spotify;
-
-  if (!spotify) return null;
-
-  return {
-    isPlaying: presence.listening_to_spotify,
-    item: {
-      trackUrl: `https://open.spotify.com/track/${spotify.track_id}`,
-      trackName: spotify.song,
-      albumName: spotify.album ?? '',
-      artistName: spotify.artist ?? '',
-      timestamps: spotify.timestamps,
-      albumImageUrl: spotify.album_art_url
-    }
-  };
 }
