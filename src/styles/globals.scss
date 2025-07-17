@@ -47,7 +47,7 @@
 
 @layer components {
   .layout {
-    @apply mx-auto px-6 max-w-6xl;
+    @apply mx-auto max-w-6xl px-6;
   }
 
   .card-layout {
@@ -80,6 +80,10 @@
 
   .gradient-title {
     @apply bg-gradient-to-r from-accent-start to-accent-end bg-clip-text text-transparent;
+  }
+
+  .gradient-background {
+    @apply bg-gradient-to-r from-accent-start to-accent-end;
   }
 
   .custom-underline {

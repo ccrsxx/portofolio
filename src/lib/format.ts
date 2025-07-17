@@ -52,6 +52,25 @@ export function formatTimestamp(timestamp: TimestampProps): string {
   return LONG_TIMESTAMP_FORMATTER.format(date);
 }
 
+/**
+ * Formats milliseconds to a playback time string in the format "M:SS".
+ *
+ * @param ms The number of milliseconds to format.
+ * @returns A formatted string representing the playback time.
+ */
+export function formatMilisecondsToPlayback(ms: number): string {
+  if (!ms || ms < 0) return '0:00';
+
+  const totalSeconds = Math.floor(ms / 1000);
+
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  const paddedSeconds = seconds.toString().padStart(2, '0');
+
+  return `${minutes}:${paddedSeconds}`;
+}
+
 const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
   weekday: 'short',
   day: 'numeric',

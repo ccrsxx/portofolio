@@ -2,7 +2,6 @@ import { HiEnvelope } from 'react-icons/hi2';
 import { SiDiscord, SiGithub, SiLinkedin, SiX } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
 import { UnstyledLink } from '@components/link/unstyled-link';
-import { SpotifyCard } from '@components/common/spotify-card';
 import type { IconType } from 'react-icons';
 
 export function Footer(): React.JSX.Element {
@@ -24,9 +23,6 @@ export function Footer(): React.JSX.Element {
           </Tooltip>
         ))}
       </nav>
-      <section className='grid justify-items-center'>
-        <SpotifyCard />
-      </section>
       <section className='grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
         <h2 className='font-medium'>Reach me out</h2>
         <section className='flex gap-4'>

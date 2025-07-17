@@ -22,7 +22,7 @@ export function Header(): React.JSX.Element {
           !inView && 'shadow-sm dark:shadow-gray-900'
         )}
       >
-        <div className='h-2 bg-gradient-to-r from-accent-start to-accent-end' />
+        <div className='gradient-background h-2' />
         <div className='layout flex items-center justify-between py-4'>
           <nav className='flex gap-4 font-medium'>
             {navLinks.map(({ name, href }) => (

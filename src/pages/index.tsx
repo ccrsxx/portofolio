@@ -8,6 +8,7 @@ import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
+import { SpotifyCard } from '@components/common/spotify-card';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
@@ -41,13 +42,16 @@ export default function Home({
                      md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
-          I&apos;m a self-taught developer, who&apos;s currently pursuing a
-          Full-Stack development to create stunning user experiences on the
-          front-end, scalable, and secure infrastructure on the backend.
+          I&apos;m a self-taught Software Engineer turned Full Stack Developer.
+          I enjoy working TypeScript, React, and Node.js. I also love exploring
+          new technologies and learning new things.
         </motion.p>
+        <motion.section className='mt-6' {...setTransition({ delayIn: 0.3 })}>
+          <SpotifyCard />
+        </motion.section>
         <motion.section
           className='mt-8 flex gap-4 text-sm md:text-base'
-          {...setTransition({ delayIn: 0.3 })}
+          {...setTransition({ delayIn: 0.4 })}
         >
           <UnstyledLink className='custom-button clickable' href='/blog'>
             Read my blog
