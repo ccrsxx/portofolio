@@ -112,7 +112,7 @@ export function SpotifyCard(): React.ReactNode {
             <div className='grid gap-1'>
               <div className='relative h-1 rounded-full bg-gray-300 dark:bg-gray-600'>
                 <div
-                  className='gradient-background absolute h-1 rounded-full transition-[width] duration-300'
+                  className='gradient-background h-1 rounded-full transition-[width] duration-300'
                   style={{ width: `${progress}%` }}
                 />
               </div>
