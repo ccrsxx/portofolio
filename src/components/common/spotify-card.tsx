@@ -8,14 +8,14 @@ import { LazyImage } from '@components/ui/lazy-image';
 import { UnstyledLink } from '@components/link/unstyled-link';
 
 export function SpotifyCard(): React.ReactNode {
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [progressPercentage, setProgressPercentage] = useState(0);
+  const [currentPlaybackTime, setCurrentPlaybackTime] = useState(0);
 
-  const { currentlyPlaying: currentPlaying } = useCurrentlyPlayingSSE();
+  const { currentlyPlaying } = useCurrentlyPlayingSSE();
 
   const mounted = useMounted();
 
-  const { isPlaying, item } = currentPlaying?.data ?? {};
+  const { isPlaying, item } = currentlyPlaying?.data ?? {};
 
   const { trackUrl, trackName, albumName, artistName, albumImageUrl } =
     item ?? {};
@@ -25,30 +25,28 @@ export function SpotifyCard(): React.ReactNode {
 
     const { progressMs, durationMs } = item;
 
-    // Record the time when we received this data from the backend.
-    const fetchTime = Date.now();
+    // Record the timestamp when this item data was received.
+    const lastDataUpdateTime = Date.now();
 
-    const interval = setInterval(() => {
-      // Calculate how much time has passed since we fetched the data.
-      const timePassedSinceFetch = Date.now() - fetchTime;
+    const progressIntervalId = setInterval(() => {
+      // Calculate how much time has passed since the last data update.
+      const timeSinceLastUpdate = Date.now() - lastDataUpdateTime;
 
-      // The new current time is the initial progress plus the time that has passed.
-      const elapsed = progressMs + timePassedSinceFetch;
+      // This is the total, un-looped progress of the item.
+      const unloopedProgressMs = progressMs + timeSinceLastUpdate;
 
-      if (elapsed > durationMs) {
-        clearInterval(interval);
-        return;
-      }
+      // Use the modulo operator to get the actual current progress, looping if necessary.
+      const currentProgressMs = unloopedProgressMs % durationMs;
 
-      setCurrentTime(elapsed);
-      setProgress((elapsed / durationMs) * 100);
+      setCurrentPlaybackTime(currentProgressMs);
+      setProgressPercentage((currentProgressMs / durationMs) * 100);
     }, 1000);
 
-    // Set initial time immediately based on the new format
-    setCurrentTime(progressMs);
-    setProgress((progressMs / durationMs) * 100);
+    // Immediately set the state based on the initial data received.
+    setCurrentPlaybackTime(progressMs);
+    setProgressPercentage((progressMs / durationMs) * 100);
 
-    return (): void => clearInterval(interval);
+    return (): void => clearInterval(progressIntervalId);
   }, [isPlaying, item]);
 
   const totalDuration = item?.durationMs ?? 0;
@@ -113,11 +111,11 @@ export function SpotifyCard(): React.ReactNode {
               <div className='relative h-1 rounded-full bg-gray-300 dark:bg-gray-600'>
                 <div
                   className='gradient-background h-1 rounded-full transition-[width] duration-300'
-                  style={{ width: `${progress}%` }}
+                  style={{ width: `${progressPercentage}%` }}
                 />
               </div>
               <div className='flex justify-between text-xs text-gray-600 dark:text-gray-400'>
-                <span>{formatMilisecondsToPlayback(currentTime)}</span>
+                <span>{formatMilisecondsToPlayback(currentPlaybackTime)}</span>
                 <span>{formatMilisecondsToPlayback(totalDuration)}</span>
               </div>
             </div>
