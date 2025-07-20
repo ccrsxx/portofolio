@@ -41,7 +41,6 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
 
     eventSource.addEventListener('error', (error: Event) => {
       console.error('Failed to connect to SSE', error);
-      eventSource.close();
     });
 
     return (): void => eventSource.close();
