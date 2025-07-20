@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import { SiSpotify } from 'react-icons/si';
+import { HiPause, HiPlay } from 'react-icons/hi2';
 import { useMounted } from '@lib/hooks/use-mounted';
 import { formatMilisecondsToPlayback } from '@lib/format';
 import { useCurrentlyPlayingSSE } from '@lib/hooks/use-currently-playing-sse';
@@ -21,52 +22,62 @@ export function SpotifyCard(): React.ReactNode {
     item ?? {};
 
   useEffect(() => {
-    if (!isPlaying || !item) return;
+    // If there's no song, reset everything to zero and stop.
+    if (!item) {
+      setCurrentPlaybackTime(0);
+      setProgressPercentage(0);
+      return;
+    }
 
     const { progressMs, durationMs } = item;
 
-    // Record the timestamp when this item data was received.
-    const lastDataUpdateTime = Date.now();
+    let progressIntervalId: NodeJS.Timeout;
 
-    const progressIntervalId = setInterval(() => {
-      // Calculate how much time has passed since the last data update.
-      const timeSinceLastUpdate = Date.now() - lastDataUpdateTime;
+    // Correctly handles all cases after the initial render.
+    if (isPlaying) {
+      // STATE 1: Song is playing. Start the live-updating interval.
+      const effectStartTime = Date.now();
 
-      // This is the total, un-looped progress of the item.
-      const unloopedProgressMs = progressMs + timeSinceLastUpdate;
+      const updateProgress = (): void => {
+        const timeElapsed = Date.now() - effectStartTime;
+        const currentProgressMs = (progressMs + timeElapsed) % durationMs;
 
-      // Use the modulo operator to get the actual current progress, looping if necessary.
-      const currentProgressMs = unloopedProgressMs % durationMs;
+        setCurrentPlaybackTime(currentProgressMs);
+        setProgressPercentage((currentProgressMs / durationMs) * 100);
+      };
 
-      setCurrentPlaybackTime(currentProgressMs);
-      setProgressPercentage((currentProgressMs / durationMs) * 100);
-    }, 1000);
+      updateProgress();
 
-    // Immediately set the state based on the initial data received.
-    setCurrentPlaybackTime(progressMs);
-    setProgressPercentage((progressMs / durationMs) * 100);
+      progressIntervalId = setInterval(updateProgress, 1000);
+    } else {
+      // STATE 2: Song is paused. Set the progress once from the API data.
+      setCurrentPlaybackTime(progressMs);
+      setProgressPercentage((progressMs / durationMs) * 100);
+    }
 
     return (): void => clearInterval(progressIntervalId);
-  }, [isPlaying, item]);
+  }, [isPlaying, item]); // Re-run when the song or its playing status changes.
 
-  const totalDuration = item?.durationMs ?? 0;
-
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   const spotifyIcon = <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />;
+
+  const totalDuration = item?.durationMs ?? 0;
 
   return (
     <div
       className={clsx(
         'max-h-20 transition-[max-height] duration-300',
-        isPlaying && 'max-h-40'
+        item && 'max-h-40'
       )}
     >
       <UnstyledLink
         className='main-border clickable peer flex w-80 items-center gap-4 rounded-md p-4 '
         href={trackUrl ?? '/'}
       >
-        {isPlaying ? (
+        {item ? (
           <div className='grid w-full gap-4'>
             <div className='flex gap-4'>
               {albumImageUrl && (
@@ -92,12 +103,19 @@ export function SpotifyCard(): React.ReactNode {
                     </p>
                     {spotifyIcon}
                   </div>
-                  <p
-                    className='truncate text-xs text-gray-600 dark:text-gray-300'
-                    title={artistName}
-                  >
-                    by <span>{artistName}</span>
-                  </p>
+                  <div className='mt-1 flex justify-between gap-2 truncate'>
+                    <p
+                      className='truncate text-xs text-gray-600 dark:text-gray-300'
+                      title={artistName}
+                    >
+                      by <span>{artistName}</span>
+                    </p>
+                    {isPlaying ? (
+                      <HiPause className='shrink-0 text-lg' />
+                    ) : (
+                      <HiPlay className='shrink-0 text-lg' />
+                    )}
+                  </div>
                   <p
                     className='w-10/12 truncate text-xs text-gray-600 dark:text-gray-300'
                     title={albumName}

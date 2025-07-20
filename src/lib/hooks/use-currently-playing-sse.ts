@@ -16,7 +16,7 @@ type UseCurrentlyPlayingSSE = {
 export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
   const [data, setData] =
     useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
-      'spotify',
+      'spotify-data',
       null
     );
 
