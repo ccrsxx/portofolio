@@ -28,7 +28,7 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
     const eventSource = new EventSource(url);
 
     eventSource.addEventListener('message', (_event: MessageEvent<string>) => {
-      console.info('Connected to SSE');
+      // TODO: do something with the generic message event
     });
 
     eventSource.addEventListener('spotify', (event: MessageEvent<string>) => {
