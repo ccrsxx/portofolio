@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { useEffect } from 'react';
 import { frontendEnv } from '@lib/env';
 import { useLocalStorage } from './use-local-storage';
@@ -19,30 +21,30 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
     );
 
   useEffect(() => {
-    const url = new URL(
-      `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/spotify/currently-playing/sse`
-    );
+    const url = new URL(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/sse`);
 
     url.searchParams.set('token', frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN);
 
     const eventSource = new EventSource(url);
 
-    eventSource.onmessage = (event: MessageEvent<string>): void => {
+    eventSource.addEventListener('message', (_event: MessageEvent<string>) => {
+      console.info('Connected to SSE');
+    });
+
+    eventSource.addEventListener('spotify', (event: MessageEvent<string>) => {
       const data = JSON.parse(
         event.data
       ) as BackendSuccessApiResponse<CurrentlyPlaying>;
 
       setData(data);
-    };
+    });
 
-    eventSource.onerror = (error: Event): void => {
-      // eslint-disable-next-line no-console
-      console.error('SSE error:', error);
-    };
-
-    return (): void => {
+    eventSource.addEventListener('error', (error: Event) => {
+      console.error('Failed to connect to SSE', error);
       eventSource.close();
-    };
+    });
+
+    return (): void => eventSource.close();
   }, [setData]);
 
   return {
