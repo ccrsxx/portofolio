@@ -1,3 +1,5 @@
+export type Platform = 'spotify' | 'jellyfin';
+
 export type Track = {
   trackUrl: string | null;
   trackName: string;
@@ -9,6 +11,7 @@ export type Track = {
 };
 
 export type CurrentlyPlaying = {
-  isPlaying: boolean;
   item: Track;
+  platform: Platform;
+  isPlaying: boolean;
 };

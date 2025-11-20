@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
-
 import { useEffect } from 'react';
 import { frontendEnv } from '@lib/env';
 import { useLocalStorage } from './use-local-storage';
 import type { BackendSuccessApiResponse } from '@lib/types/api';
-import type { CurrentlyPlaying } from '@lib/types/spotify';
+import type { CurrentlyPlaying } from '@lib/types/currently-playing';
 
 type UseCurrentlyPlayingSSE = {
   currentlyPlaying: BackendSuccessApiResponse<CurrentlyPlaying> | null;
@@ -14,9 +12,15 @@ type UseCurrentlyPlayingSSE = {
  * Get the current playing track from Spotify.
  */
 export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
-  const [data, setData] =
+  const [spotifyData, setSpotifyData] =
     useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
       'spotify',
+      null
+    );
+
+  const [jellyfinData, setJellyfinData] =
+    useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
+      'jellyfin',
       null
     );
 
@@ -36,17 +40,45 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
         event.data
       ) as BackendSuccessApiResponse<CurrentlyPlaying>;
 
-      setData(data);
+      setSpotifyData(data);
+    });
+
+    eventSource.addEventListener('jellyfin', (event: MessageEvent<string>) => {
+      const data = JSON.parse(
+        event.data
+      ) as BackendSuccessApiResponse<CurrentlyPlaying>;
+
+      setJellyfinData(data);
     });
 
     eventSource.addEventListener('error', (error: Event) => {
+      // eslint-disable-next-line no-console
       console.error('Failed to connect to SSE', error);
     });
 
     return (): void => eventSource.close();
-  }, [setData]);
+  }, [setSpotifyData, setJellyfinData]);
+
+  let parsedData: BackendSuccessApiResponse<CurrentlyPlaying> | null = null;
+
+  if (jellyfinData?.data?.item) {
+    parsedData = jellyfinData;
+  } else if (spotifyData?.data?.item) {
+    parsedData = spotifyData;
+  }
+
+  // If both platform item exist, but Jellyfin is paused while Spotify is playing, switch to Spotify
+  const shouldPreferSpotify =
+    jellyfinData?.data?.item &&
+    spotifyData?.data?.item &&
+    !jellyfinData?.data?.isPlaying &&
+    spotifyData?.data?.isPlaying;
+
+  if (shouldPreferSpotify) {
+    parsedData = spotifyData;
+  }
 
   return {
-    currentlyPlaying: data ?? null
+    currentlyPlaying: parsedData
   };
 }

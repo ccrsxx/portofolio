@@ -5,7 +5,7 @@ import type {
   ValidApiEndpoints,
   BackendSuccessApiResponse
 } from '@lib/types/api';
-import type { CurrentlyPlaying } from '@lib/types/spotify';
+import type { CurrentlyPlaying } from '@lib/types/currently-playing';
 
 type UseCurrentlyPlaying = {
   data?: BackendSuccessApiResponse<CurrentlyPlaying>;

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
-import { SiSpotify } from 'react-icons/si';
+import { SiSpotify, SiJellyfin, SiApplemusic } from 'react-icons/si';
 import { HiPause, HiPlay } from 'react-icons/hi2';
 import { useMounted } from '@lib/hooks/use-mounted';
 import { formatMilisecondsToPlayback } from '@lib/format';
@@ -16,7 +16,7 @@ export function SpotifyCard(): React.ReactNode {
 
   const mounted = useMounted();
 
-  const { isPlaying, item } = currentlyPlaying?.data ?? {};
+  const { platform, isPlaying, item } = currentlyPlaying?.data ?? {};
 
   const { trackUrl, trackName, albumName, artistName, albumImageUrl } =
     item ?? {};
@@ -62,7 +62,12 @@ export function SpotifyCard(): React.ReactNode {
     return null;
   }
 
-  const spotifyIcon = <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />;
+  const platformIcon =
+    platform === 'spotify' ? (
+      <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />
+    ) : (
+      <SiJellyfin className='shrink-0 text-lg text-accent-main' />
+    );
 
   const totalDuration = item?.durationMs ?? 0;
 
@@ -101,7 +106,7 @@ export function SpotifyCard(): React.ReactNode {
                     >
                       {trackName}
                     </p>
-                    {spotifyIcon}
+                    {platformIcon}
                   </div>
                   <div className='mt-1 flex justify-between gap-2 truncate'>
                     <p
@@ -141,7 +146,7 @@ export function SpotifyCard(): React.ReactNode {
         ) : (
           <div className='flex w-full items-center justify-between'>
             <p>No song is currently playing</p>
-            {spotifyIcon}
+            <SiApplemusic className='shrink-0 text-lg' />
           </div>
         )}
       </UnstyledLink>

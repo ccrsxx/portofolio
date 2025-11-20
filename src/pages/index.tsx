@@ -8,7 +8,7 @@ import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
-import { SpotifyCard } from '@components/common/spotify-card';
+import { SpotifyCard } from '@components/common/currently-playing-card';
 import { Accent } from '@components/ui/accent';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
