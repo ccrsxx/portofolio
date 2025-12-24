@@ -61,8 +61,8 @@ export default withMDX({
   images: {
     remotePatterns: [
       new URL('https://i.scdn.co/image/**'),
-      new URL('https://jellyfin.ccrsxx.com/Items/*/Images/Primary'),
-      new URL('https://avatars.githubusercontent.com/u/**?v=4')
+      new URL('https://avatars.githubusercontent.com/u/**?v=4'),
+      new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary')
     ]
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx']
