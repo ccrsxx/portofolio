@@ -63,8 +63,7 @@ export function GuestbookForm({
           </Button>
         ) : (
           <Button
-            className='custom-button clickable flex items-center gap-2
-                       whitespace-nowrap font-bold'
+            className='custom-button clickable flex items-center gap-2 font-bold whitespace-nowrap'
             onClick={handleSignIn}
           >
             <SiGithub className='h-5 w-5' />
@@ -74,8 +73,7 @@ export function GuestbookForm({
       </form>
       {session && (
         <button
-          className='smooth-tab mt-2 border-none text-sm font-medium text-secondary
-                     transition hover:text-foreground disabled:cursor-not-allowed disabled:brightness-50 md:text-base'
+          className='smooth-tab text-secondary hover:text-foreground mt-2 border-0 text-sm font-medium transition disabled:cursor-not-allowed disabled:brightness-50 md:text-base'
           onClick={handleSignOut}
           disabled={loading}
         >

@@ -18,8 +18,8 @@ export function Header(): React.JSX.Element {
       <div ref={ref} />
       <header
         className={clsx(
-          'sticky top-0 z-20 w-full bg-background/60 backdrop-blur-md transition',
-          !inView && 'shadow-sm'
+          'bg-background/60 sticky top-0 z-20 w-full backdrop-blur-md transition',
+          !inView && 'shadow-xs'
         )}
       >
         <div className='gradient-background h-2' />
@@ -28,8 +28,8 @@ export function Header(): React.JSX.Element {
             {navLinks.map(({ name, href }) => (
               <Link
                 className={clsx(
-                  'smooth-tab text-xs hover:text-accent-main hover:transition-colors md:text-base',
-                  baseRoute === href && 'gradient-title !text-transparent'
+                  'smooth-tab hover:text-accent-main text-xs hover:transition-colors md:text-base',
+                  baseRoute === href && 'gradient-title text-transparent!'
                 )}
                 href={href}
                 key={name}

@@ -73,15 +73,14 @@ export default function About(): React.JSX.Element {
           Favorite Tech Stack
         </motion.h2>
         <motion.ul
-          className='translate flex gap-4 [&>li:first-child>div]:-translate-x-4
-                     [&>li:nth-child(2)>div]:-translate-x-16 [&>li:nth-child(3)>div]:-translate-x-28'
+          className='translate flex gap-4 [&>li:first-child>div]:-translate-x-4 [&>li:nth-child(2)>div]:-translate-x-16 [&>li:nth-child(3)>div]:-translate-x-28'
           {...setTransition({ delayIn: 0.4 })}
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              tooltipClassName='group-hover:!-translate-y-36 w-72 px-3 py-4 !-translate-y-28
-                                text-center !whitespace-normal 2xl:!-translate-x-1/2
-                                peer-focus-visible:!-translate-y-36'
+              tooltipClassName='group-hover:-translate-y-36! w-72 px-3 py-4 -translate-y-28!
+                                text-center whitespace-normal! 2xl:-translate-x-1/2!
+                                peer-focus-visible:-translate-y-36!'
               tag='li'
               key={name}
               tip={
@@ -95,7 +94,7 @@ export default function About(): React.JSX.Element {
               }
             >
               <button className='smooth-tab peer'>
-                <Icon className='text-4xl transition-colors hover:text-accent-main' />
+                <Icon className='hover:text-accent-main text-4xl transition-colors' />
               </button>
             </Tooltip>
           ))}

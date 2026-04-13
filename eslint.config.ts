@@ -55,7 +55,7 @@ export default tseslint.config([
         {
           pathGroups: [
             {
-              pattern: '*.scss',
+              pattern: '*.css',
               group: 'builtin',
               position: 'before',
 

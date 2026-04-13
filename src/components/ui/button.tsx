@@ -21,7 +21,7 @@ export function Button({
       className={clsx(
         'smooth-tab',
         loading &&
-          'relative !text-transparent brightness-75 disabled:cursor-wait',
+          'relative text-transparent! brightness-75 disabled:cursor-wait',
         className
       )}
       type='button'
@@ -31,7 +31,7 @@ export function Button({
       {loading && (
         <Loading
           iconClassName='h-5 w-5'
-          className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
         />
       )}
       {children}

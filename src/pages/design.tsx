@@ -34,7 +34,7 @@ export default function Design(): React.JSX.Element {
           <h2 className='text-4xl font-bold capitalize'>{theme} Mode</h2>
           <ThemeSwitch />
         </div>
-        <p className='mt-2 text-secondary'>Font Family: Inter</p>
+        <p className='text-secondary mt-2'>Font Family: Inter</p>
         <ul className='mt-3 grid grid-cols-[repeat(auto-fit,minmax(256px,1fr))] gap-4'>
           {colorPalette.map(({ title, className, lightHex, darkHex }) => {
             let parsedHex: string;
@@ -55,7 +55,7 @@ export default function Design(): React.JSX.Element {
                 />
                 <div>
                   <h3>{title}</h3>
-                  <p className='text-sm text-muted'>{parsedHex}</p>
+                  <p className='text-muted text-sm'>{parsedHex}</p>
                 </div>
               </li>
             );
@@ -124,7 +124,7 @@ const colorPalette: ColorPalette[] = [
   },
   {
     title: 'Gradient color',
-    className: 'bg-gradient-to-tr from-accent-start to-accent-end',
+    className: 'bg-linear-to-tr from-accent-start to-accent-end',
     lightHex: '#a855f7 to #c084fc'
   }
 ];

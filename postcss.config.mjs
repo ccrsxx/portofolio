@@ -2,14 +2,13 @@
 
 /**
  * @typedef {Object} Config
- * @property {Record<'tailwindcss' | 'autoprefixer', Record<string, never>>} plugins
+ * @property {{ '@tailwindcss/postcss': Record<string, unknown>}} plugins
  */
 
 /** @type {Config} */
 const config = {
   plugins: {
-    tailwindcss: {},
-    autoprefixer: {}
+    '@tailwindcss/postcss': {}
   }
 };
 

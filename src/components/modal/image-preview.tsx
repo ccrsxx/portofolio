@@ -38,9 +38,7 @@ export function ImagePreview({
               placeholder={placeholder}
             />
             <a
-              className='absolute bottom-0 right-0 mx-2 mb-2 translate-y-4 rounded-md bg-background/40 px-2 py-1  text-sm text-foreground/80 opacity-0 
-                         outline-none transition  hover:!bg-accent-main hover:text-white focus-visible:translate-y-0 focus-visible:!bg-accent-main 
-                         focus-visible:text-white focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100'
+              className='bg-background/40 text-foreground/80 hover:bg-accent-main! focus-visible:bg-accent-main! absolute right-0 bottom-0 mx-2 mb-2 translate-y-4 rounded-md px-2 py-1 text-sm opacity-0 outline-hidden transition group-hover:translate-y-0 group-hover:opacity-100 hover:text-white focus-visible:translate-y-0 focus-visible:text-white focus-visible:opacity-100'
               href={customLink}
               target='_blank'
               rel='noreferrer'
@@ -50,8 +48,7 @@ export function ImagePreview({
             </a>
           </div>
           <a
-            className='absolute -bottom-7 left-0 font-medium text-foreground/80 underline decoration-transparent 
-                       underline-offset-2 outline-none transition-colors hover:text-foreground hover:decoration-foreground focus-visible:text-foreground focus-visible:decoration-inherit'
+            className='text-foreground/80 hover:text-foreground hover:decoration-foreground focus-visible:text-foreground absolute -bottom-7 left-0 font-medium underline decoration-transparent underline-offset-2 outline-hidden transition-colors focus-visible:decoration-inherit'
             href={customLink}
             target='_blank'
             rel='noreferrer'

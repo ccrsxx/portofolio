@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@import './nprogress.css';
+@import './table.css';
+@import './mdx.css';
+
+/* Use class-based dark mode for next-themes toggle support */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-primary: #111827;
+  --color-secondary: #1f2937;
+  --color-muted: #4b5563;
+  --color-border: #d1d5db;
+  --color-muted-background: #f3f4f6;
+  --color-accent-foreground: #9ca3af;
+
+  --color-accent-main: #f472b6;
+  --color-accent-start: #a855f7;
+  --color-accent-end: #f472b6;
+}
+
+.dark {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #f3f4f6;
+  --color-secondary: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-border: #374151;
+  --color-muted-background: #111827;
+  --color-accent-foreground: #4b5563;
+
+  --color-accent-main: #f472b6;
+  --color-accent-start: #a855f7;
+  --color-accent-end: #f472b6;
+}
+
+html {
+  /* workaround for nextjs smooth scroll */
+  scroll-behavior: smooth !important;
+}
+
+body {
+  @apply bg-background text-foreground transition-colors;
+  font-family: var(--font-inter);
+}
+
+main {
+  @apply mx-auto max-w-6xl px-6 md:pt-12;
+}
+
+::selection {
+  @apply bg-accent-main text-white;
+}
+
+@utility layout {
+  @apply mx-auto max-w-6xl px-6;
+}
+
+@utility card-layout {
+  @apply grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4;
+}
+
+@utility custom-button {
+  @apply px-4 py-2 font-bold;
+}
+
+@utility main-border {
+  @apply border-border border;
+}
+
+@utility custom-input {
+  @apply main-border bg-background focus:border-accent-main rounded-md px-3 py-2 outline-hidden transition;
+}
+
+@utility smooth-tab {
+  @apply focus-visible:ring-accent-main rounded-md transition-shadow focus-visible:ring-2 focus-visible:outline-hidden;
+}
+
+@utility clickable {
+  @apply smooth-tab main-border rounded-md shadow-xs transition hover:scale-[1.03] hover:shadow-md active:scale-[0.97];
+
+  &:focus-visible {
+    @apply scale-[1.03] shadow-md;
+  }
+}
+
+@utility gradient-title {
+  @apply from-accent-start to-accent-end bg-linear-to-r bg-clip-text text-transparent;
+}
+
+@utility gradient-background {
+  @apply from-accent-start to-accent-end bg-linear-to-r;
+}
+
+@utility custom-underline {
+  @apply underline decoration-transparent decoration-1 outline-hidden transition hover:decoration-inherit focus-visible:decoration-inherit;
+}
+
+@utility animated-underline {
+  background-size: 0 2px;
+  background-position: 0 100%;
+
+  @apply from-accent-start to-accent-end bg-linear-to-r bg-no-repeat pb-0.5 no-underline outline-hidden transition-all duration-300;
+
+  &.with-dots {
+    @apply border-foreground border-b border-dotted;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:has(+ div:hover),
+  .project-card:hover &,
+  .project-card:focus-visible & {
+    background-size: 100% 2px;
+
+    &.with-dots {
+      @apply border-transparent;
+    }
+  }
+}

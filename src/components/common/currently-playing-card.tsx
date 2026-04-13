@@ -66,7 +66,7 @@ export function SpotifyCard(): React.ReactNode {
     platform === 'spotify' ? (
       <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />
     ) : (
-      <SiJellyfin className='shrink-0 text-lg text-accent-main' />
+      <SiJellyfin className='text-accent-main shrink-0 text-lg' />
     );
 
   const totalDuration = item?.durationMs ?? 0;
@@ -79,14 +79,14 @@ export function SpotifyCard(): React.ReactNode {
       )}
     >
       <UnstyledLink
-        className='main-border clickable peer flex w-80 items-center gap-4 rounded-md p-4 '
+        className='main-border clickable peer flex w-80 items-center gap-4 rounded-md p-4'
         href={trackUrl ?? '/'}
       >
         {item ? (
           <div className='grid w-full gap-4'>
             <div className='flex gap-4'>
               {albumImageUrl && (
-                <div className='flex-shrink-0'>
+                <div className='shrink-0'>
                   <LazyImage
                     unoptimized
                     className='main-border h-16 w-16 overflow-hidden rounded-md'
@@ -99,7 +99,7 @@ export function SpotifyCard(): React.ReactNode {
                 </div>
               )}
               <div className='flex h-full min-w-0 flex-1 flex-col justify-between'>
-                <div className='grid h-full [&>p>span]:text-primary'>
+                <div className='grid h-full'>
                   <div className='flex justify-between gap-2 truncate'>
                     <p
                       className='truncate text-sm font-medium'
@@ -111,10 +111,10 @@ export function SpotifyCard(): React.ReactNode {
                   </div>
                   <div className='mt-1 flex justify-between gap-2 truncate'>
                     <p
-                      className='truncate text-xs text-muted'
+                      className='text-muted truncate text-xs'
                       title={artistName}
                     >
-                      by <span>{artistName}</span>
+                      by <span className='text-primary'>{artistName}</span>
                     </p>
                     {isPlaying ? (
                       <HiPause className='shrink-0 text-lg' />
@@ -123,22 +123,22 @@ export function SpotifyCard(): React.ReactNode {
                     )}
                   </div>
                   <p
-                    className='w-10/12 truncate text-xs text-muted'
+                    className='text-muted w-10/12 truncate text-xs'
                     title={albumName}
                   >
-                    on <span>{albumName}</span>
+                    on <span className='text-primary'>{albumName}</span>
                   </p>
                 </div>
               </div>
             </div>
             <div className='grid gap-1'>
-              <div className='relative h-1 rounded-full bg-border'>
+              <div className='bg-border relative h-1 rounded-full'>
                 <div
                   className='gradient-background h-1 rounded-full transition-[width] duration-300'
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
-              <div className='flex justify-between text-xs text-muted'>
+              <div className='text-muted flex justify-between text-xs'>
                 <span>{formatMilisecondsToPlayback(currentPlaybackTime)}</span>
                 <span>{formatMilisecondsToPlayback(totalDuration)}</span>
               </div>

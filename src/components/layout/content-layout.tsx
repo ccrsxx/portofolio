@@ -55,7 +55,7 @@ export function ContentLayout({
     <motion.main className='pt-0' {...setTransition({ distance: 25 })}>
       <SEO title={title} description={description} article={article} />
       <ImagePreview
-        className='max-h-[448px] object-cover'
+        className='max-h-112 object-cover'
         wrapperClassName='mt-0.5'
         src={banner}
         alt={bannerAlt ?? title}
@@ -63,14 +63,14 @@ export function ContentLayout({
       />
       <section className='mt-8 grid gap-2'>
         <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
-        <p className='text-sm text-secondary'>
+        <p className='text-secondary text-sm'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
         {lastUpdatedAt && (
-          <div className='flex items-center gap-2 text-sm text-primary'>
+          <div className='text-primary flex items-center gap-2 text-sm'>
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
             <UnstyledLink
-              className='smooth-tab flex items-center gap-1 transition-colors hover:text-accent-main'
+              className='smooth-tab hover:text-accent-main flex items-center gap-1 transition-colors'
               href={githubCommitHistoryUrl}
             >
               <MdHistory className='text-lg' />
@@ -86,9 +86,9 @@ export function ContentLayout({
           )}
         </section>
       </section>
-      <hr className='mt-4 border-border' />
-      <section className='mt-4 grid gap-8 lg:grid-cols-[auto,1fr]'>
-        <article id='mdx-article' className='prose max-w-4xl dark:prose-invert'>
+      <hr className='border-border mt-4' />
+      <section className='mt-4 grid gap-8 lg:grid-cols-[auto_1fr]'>
+        <article id='mdx-article' className='prose dark:prose-invert max-w-4xl'>
           <MDXProvider components={components}>{children}</MDXProvider>
         </article>
         <TableOfContents>

@@ -38,7 +38,7 @@ export function GuestbookEntry({
 
   return (
     <motion.article
-      className='main-border relative grid grid-cols-[auto,1fr] gap-3 rounded-md p-4'
+      className='main-border relative grid grid-cols-[auto_1fr] gap-3 rounded-md p-4'
       layout='position'
       {...variants}
     >
@@ -64,17 +64,16 @@ export function GuestbookEntry({
             className='whitespace-nowrap'
             tip={formatFullTimeStamp(createdAt)}
           >
-            <button className='custom-underline peer cursor-pointer text-sm text-muted'>
+            <button className='custom-underline peer text-muted cursor-pointer text-sm'>
               {formatTimestamp(createdAt)}
             </button>
           </Tooltip>
         </div>
-        <p className='break-words'>{text}</p>
+        <p className='wrap-break-word'>{text}</p>
       </div>
       {isOwner && (
         <Button
-          className='custom-underline main-border clickable !absolute right-2 top-2 
-                     rounded-md p-1.5 text-red-400'
+          className='custom-underline main-border clickable absolute! top-2 right-2 rounded-md p-1.5 text-red-400'
           loading={loading}
           type='button'
           onClick={handleUnRegisterGuestbook}

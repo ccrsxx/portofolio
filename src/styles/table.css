@@ -3,7 +3,7 @@ table {
 
   &,
   tbody {
-    @apply divide-y divide-border;
+    @apply divide-border divide-y;
   }
 
   & > :is(thead, tbody, tfoot) > tr > :is(th, td) {
@@ -11,7 +11,7 @@ table {
   }
 
   & > :is(thead, tfoot) > tr > :is(th, td) {
-    @apply uppercase tracking-wider text-primary;
+    @apply text-primary tracking-wider uppercase;
   }
 
   & > :is(tbody, tfoot) > tr > td {

@@ -1,4 +1,4 @@
-import '@styles/globals.scss';
+import '@styles/globals.css';
 
 import { configure, start, done } from 'nprogress';
 import { AnimatePresence } from 'framer-motion';

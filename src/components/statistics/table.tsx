@@ -65,7 +65,7 @@ export function Table({ data }: TableProps): React.JSX.Element {
         value={globalFilter}
         onChange={handleGlobalFilterChange}
       />
-      <div className='main-border relative max-w-full overflow-x-auto rounded-md shadow-sm'>
+      <div className='main-border relative max-w-full overflow-x-auto rounded-md shadow-xs'>
         <table>
           <thead>
             {getHeaderGroups().map(({ id, headers }) => (

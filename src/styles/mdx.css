@@ -10,8 +10,7 @@
       }
 
       &::after {
-        @apply gradient-title ml-2 inline-block opacity-0
-               transition-opacity duration-300 content-['#'];
+        @apply gradient-title ml-2 inline-block opacity-0 transition-opacity duration-300 content-['#'];
       }
 
       &:hover,
@@ -27,17 +26,13 @@
     @apply main-border rounded-md p-1;
   }
 
-  @mixin border-gradient($position) {
+  blockquote {
     border-image: linear-gradient(
-        to $position,
-        theme('colors.accent.start'),
-        theme('colors.accent.end')
+        to top,
+        var(--color-accent-start),
+        var(--color-accent-end)
       )
       1;
-  }
-
-  blockquote {
-    @include border-gradient(top);
 
     p:first-of-type::before,
     p:last-of-type::after {
@@ -46,20 +41,23 @@
   }
 
   hr {
-    @include border-gradient(right);
+    border-image: linear-gradient(
+        to right,
+        var(--color-accent-start),
+        var(--color-accent-end)
+      )
+      1;
   }
 
   figure[data-rehype-pretty-code-figure] {
     @apply relative grid;
 
-    @each $element in 'figcaption', 'div' {
-      #{$element}[data-rehype-pretty-code-title] {
-        @apply gradient-title main-border absolute left-6 z-10 mt-0 
-               block rounded-b-md border-t-0 px-2 text-base font-medium;
+    div[data-rehype-pretty-code-title],
+    figcaption[data-rehype-pretty-code-title] {
+      @apply gradient-title main-border absolute left-6 z-10 mt-0 block rounded-b-md border-t-0 px-2 text-base font-medium;
 
-        & + div {
-          @apply hidden;
-        }
+      & + div {
+        @apply hidden;
       }
     }
 
@@ -68,24 +66,22 @@
 
       @apply main-border;
 
-      &[data-theme*=' '],
-      &[data-theme*=' '] span {
+      &[data-theme],
+      &[data-theme] span {
         color: var(--shiki-light);
         background-color: var(--shiki-light-bg);
       }
 
-      @media (prefers-color-scheme: dark) {
-        &[data-theme*=' '],
-        &[data-theme*=' '] span {
-          color: var(--shiki-dark);
-          background-color: var(--shiki-dark-bg);
-        }
+      .dark &[data-theme],
+      .dark &[data-theme] span {
+        color: var(--shiki-dark);
+        background-color: var(--shiki-dark-bg);
       }
 
       code {
         counter-reset: line;
 
-        @apply mt-8;
+        @apply mt-4 border-0;
 
         .word {
           background: rgba(200, 200, 255, 0.15);
