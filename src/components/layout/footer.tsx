@@ -46,7 +46,7 @@ export function Footer(): React.JSX.Element {
         </section>
       </section>
       <p className='text-center text-sm text-muted'>
-        &copy; Risal Amin 2025 •{' '}
+        &copy; Risal Amin 2026 •{' '}
         <UnstyledLink
           className='smooth-tab transition hover:text-foreground'
           href='https://github.com/ccrsxx/portofolio'
