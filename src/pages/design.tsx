@@ -36,92 +36,95 @@ export default function Design(): React.JSX.Element {
         </div>
         <p className='mt-2 text-secondary'>Font Family: Inter</p>
         <ul className='mt-3 grid grid-cols-[repeat(auto-fit,minmax(256px,1fr))] gap-4'>
-          {colorPalette.map(({ title, hexCode, className }) => (
-            <li className='flex items-center gap-2' key={title}>
-              <div
-                className={clsx('main-border h-10 w-10 rounded-md', className)}
-              />
-              <div>
-                <h3>{title}</h3>
-                <p className='text-sm text-muted'>{hexCode}</p>
-              </div>
-            </li>
-          ))}
+          {colorPalette.map(({ title, className, lightHex, darkHex }) => {
+            let parsedHex: string;
+
+            if (!darkHex) parsedHex = lightHex;
+            else {
+              if (theme === 'dark') parsedHex = darkHex;
+              else parsedHex = lightHex;
+            }
+
+            return (
+              <li className='flex items-center gap-2' key={title}>
+                <div
+                  className={clsx(
+                    'main-border h-10 w-10 rounded-md',
+                    className
+                  )}
+                />
+                <div>
+                  <h3>{title}</h3>
+                  <p className='text-sm text-muted'>{parsedHex}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </motion.section>
     </main>
   );
 }
 
-const colorPalette = [
+type ColorPalette = {
+  title: string;
+  darkHex?: string;
+  lightHex: string;
+  className: string;
+};
+
+const colorPalette: ColorPalette[] = [
   {
-    title: 'White Background',
-    hexCode: '#ffffff',
-    className: 'bg-white'
+    title: 'Background',
+    className: 'bg-background',
+    lightHex: '#ffffff',
+    darkHex: '#000000'
   },
   {
-    title: 'Black Background',
-    hexCode: '#222222',
-    className: 'bg-black'
+    title: 'Foreground',
+    className: 'bg-foreground',
+    lightHex: '#000000',
+    darkHex: '#ffffff'
   },
   {
-    title: 'White Text',
-    hexCode: '#ffffff',
-    className: 'bg-white'
+    title: 'Primary',
+    className: 'bg-primary',
+    lightHex: '#111827',
+    darkHex: '#f3f4f6'
   },
   {
-    title: 'Black Text',
-    hexCode: '#000000',
-    className: 'bg-black'
+    title: 'Secondary',
+    className: 'bg-secondary',
+    lightHex: '#1f2937',
+    darkHex: '#e5e7eb'
   },
   {
-    title: 'Gray 100 Text',
-    hexCode: '#f3f4f6',
-    className: 'bg-gray-100'
+    title: 'Muted',
+    className: 'bg-muted',
+    lightHex: '#4b5563',
+    darkHex: '#9ca3af'
   },
   {
-    title: 'Gray 200 Text',
-    hexCode: '#e5e7eb',
-    className: 'bg-gray-200'
+    title: 'Border',
+    className: 'bg-border',
+    lightHex: '#d1d5db',
+    darkHex: '#374151'
   },
   {
-    title: 'Gray 300 Text',
-    hexCode: '#d1d5db',
-    className: 'bg-gray-300'
+    title: 'Muted background',
+    className: 'bg-muted-background',
+    lightHex: '#f3f4f6',
+    darkHex: '#111827'
   },
   {
-    title: 'Gray 400 Text',
-    hexCode: '#9ca3af',
-    className: 'bg-gray-400'
+    title: 'Accent foreground',
+    className: 'bg-accent-foreground',
+    lightHex: '#9ca3af',
+    darkHex: '#4b5563'
   },
   {
-    title: 'Gray 500 Text',
-    hexCode: '#6b7280',
-    className: 'bg-gray-500'
-  },
-  {
-    title: 'Gray 600 Text',
-    hexCode: '#4b5563',
-    className: 'bg-gray-600'
-  },
-  {
-    title: 'Gray 700 Text',
-    hexCode: '#374151',
-    className: 'bg-gray-700'
-  },
-  {
-    title: 'Gray 800 Text',
-    hexCode: '#1f2937',
-    className: 'bg-gray-800'
-  },
-  {
-    title: 'Gray 900 Text',
-    hexCode: '#111827',
-    className: 'bg-gray-900'
-  },
-  {
-    title: 'Gradient Color',
-    hexCode: '#a855f7 to #f472b6',
-    className: 'bg-gradient-to-tr from-accent-start to-accent-end'
+    title: 'Gradient color',
+    className: 'bg-gradient-to-tr from-accent-start to-accent-end',
+    lightHex: '#a855f7 to #c084fc'
   }
-] as const;
+];

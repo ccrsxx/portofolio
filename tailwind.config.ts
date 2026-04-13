@@ -1,4 +1,3 @@
-import colors from 'tailwindcss/colors';
 import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 
@@ -20,9 +19,9 @@ export default {
         'muted-background': 'rgb(var(--muted-background) / <alpha-value>)',
         'accent-foreground': 'rgb(var(--accent-foreground) / <alpha-value>)',
         accent: {
-          main: colors.pink[400],
-          start: colors.purple[500],
-          end: colors.pink[400]
+          main: 'rgb(var(--accent-main) / <alpha-value>)',
+          start: 'rgb(var(--accent-start) / <alpha-value>)',
+          end: 'rgb(var(--accent-end) / <alpha-value>)'
         }
       }
     }

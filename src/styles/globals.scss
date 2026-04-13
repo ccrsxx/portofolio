@@ -16,6 +16,10 @@
     --border: 209 213 219; /* gray-300 */
     --muted-background: 243 244 246; /* gray-100 */
     --accent-foreground: 156 163 175; /* gray-400 */
+
+    --accent-main: 244 114 182; /* pink-400 */
+    --accent-start: 168 85 247; /* purple-500 */
+    --accent-end: 244 114 182; /* pink-400 */
   }
 
   .dark {
@@ -27,12 +31,11 @@
     --border: 55 65 81; /* gray-700 */
     --muted-background: 17 24 39; /* gray-900 */
     --accent-foreground: 75 85 99; /* gray-600 */
-  }
 
-  /* 
-    Big refactor for global styles completed:
-    Utilizing CSS variables to handle light/dark mode changes seamlessly.
-  */
+    --accent-main: 244 114 182; /* pink-400 */
+    --accent-start: 168 85 247; /* purple-500 */
+    --accent-end: 244 114 182; /* pink-400 */
+  }
 
   html {
     // ! use important as a workaround for nextjs@13.1.0 bug that prevents smooth scroll
