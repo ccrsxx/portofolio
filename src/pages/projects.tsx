@@ -24,7 +24,7 @@ export default function Projects({
           <Accent>Projects</Accent>
         </motion.h1>
         <motion.p
-          className='text-gray-600 dark:text-gray-300'
+          className='text-secondary'
           {...setTransition({ delayIn: 0.1 })}
         >
           A showcase of my projects on the web development.

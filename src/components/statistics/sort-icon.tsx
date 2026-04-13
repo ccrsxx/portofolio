@@ -24,7 +24,7 @@ export function SortIcon({
       <Icon
         className={clsx(
           'transition-colors',
-          arrowStyles[+(isSorted === sortDirection)]
+          isSorted === sortDirection ? 'text-primary' : 'text-accent-foreground'
         )}
       />
     </div>
@@ -35,8 +35,3 @@ const Icons: Record<SortDirection, IconType> = {
   asc: HiChevronUp,
   desc: HiChevronDown
 };
-
-const arrowStyles = [
-  'text-gray-400 dark:text-gray-500',
-  'text-gray-700 dark:text-gray-200'
-] as const;

@@ -63,11 +63,11 @@ export function ContentLayout({
       />
       <section className='mt-8 grid gap-2'>
         <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
-        <p className='text-sm text-gray-600 dark:text-gray-300'>
+        <p className='text-sm text-secondary'>
           Written on {formatDate(publishedAt)} by Risal Amin
         </p>
         {lastUpdatedAt && (
-          <div className='flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200'>
+          <div className='flex items-center gap-2 text-sm text-primary'>
             <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
             <UnstyledLink
               className='smooth-tab flex items-center gap-1 transition-colors hover:text-accent-main'
@@ -86,7 +86,7 @@ export function ContentLayout({
           )}
         </section>
       </section>
-      <hr className='mt-4 dark:border-gray-600' />
+      <hr className='mt-4 border-border' />
       <section className='mt-4 grid gap-8 lg:grid-cols-[auto,1fr]'>
         <article id='mdx-article' className='prose max-w-4xl dark:prose-invert'>
           <MDXProvider components={components}>{children}</MDXProvider>

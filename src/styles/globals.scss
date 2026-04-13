@@ -7,23 +7,31 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --primary: 17 24 39; /* gray-900 */
+    --secondary: 31 41 55; /* gray-800 */
+    --muted: 75 85 99; /* gray-600 */
+    --border: 209 213 219; /* gray-300 */
+    --muted-background: 243 244 246; /* gray-100 */
+    --accent-foreground: 156 163 175; /* gray-400 */
+  }
+
+  .dark {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --primary: 243 244 246; /* gray-100 */
+    --secondary: 229 231 235; /* gray-200 */
+    --muted: 156 163 175; /* gray-400 */
+    --border: 55 65 81; /* gray-700 */
+    --muted-background: 17 24 39; /* gray-900 */
+    --accent-foreground: 75 85 99; /* gray-600 */
+  }
+
   /* 
-    TODO: Big refactor for global styles.
-
-    Make base rules for light and dark themes, so that the changes can be automatically applied
-    when the user switches between themes, without manually changing dark modifiers in the code.
-
-    For example, this color palette:
-
-    - background: for the background
-    - foreground: for the main text
-    - primary: for the first accent color
-    - secondary: for the second accent color
-    - muted: for the third accent color
-    - accent: for the main accent color
-
-    Make both colors for light and dark themes, so that the changes can be automatically applied
-    when the user switches between themes, without manually changing dark modifiers in the code.
+    Big refactor for global styles completed:
+    Utilizing CSS variables to handle light/dark mode changes seamlessly.
   */
 
   html {
@@ -33,7 +41,7 @@
   }
 
   body {
-    @apply bg-white font-inter transition-colors dark:bg-black;
+    @apply bg-background font-inter text-foreground transition-colors;
   }
 
   main {
@@ -59,11 +67,11 @@
   }
 
   .main-border {
-    @apply border border-gray-300 dark:border-gray-600;
+    @apply border border-border;
   }
 
   .custom-input {
-    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-main dark:bg-black;
+    @apply main-border rounded-md bg-background px-3 py-2 outline-none transition focus:border-accent-main;
   }
 
   .smooth-tab {
@@ -87,19 +95,17 @@
   }
 
   .custom-underline {
-    @apply underline decoration-transparent outline-none transition [text-decoration-thickness:1px] 
-           hover:decoration-inherit focus-visible:decoration-inherit;
+    @apply underline decoration-transparent outline-none transition [text-decoration-thickness:1px] hover:decoration-inherit focus-visible:decoration-inherit;
   }
 
   .animated-underline {
     background-size: 0 2px;
     background-position: 0 100%;
 
-    @apply bg-gradient-to-r from-accent-start to-accent-end bg-no-repeat pb-0.5 no-underline 
-           outline-none transition-all duration-300;
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-no-repeat pb-0.5 no-underline outline-none transition-all duration-300;
 
     &.with-dots {
-      @apply border-b border-dotted border-black dark:border-white;
+      @apply border-b border-dotted border-foreground;
     }
 
     &:hover,

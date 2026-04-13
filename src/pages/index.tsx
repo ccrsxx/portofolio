@@ -38,7 +38,7 @@ export default function Home({
           I&apos;m <Accent>Risal</Accent> - Full Stack Developer
         </motion.h1>
         <motion.p
-          className='mt-4 max-w-4xl leading-relaxed text-gray-700 transition-colors delay-[400ms] dark:text-gray-200 
+          className='mt-4 max-w-4xl leading-relaxed text-primary transition-colors delay-[400ms] 
                      md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
@@ -66,15 +66,13 @@ export default function Home({
         >
           {socialLink.map(({ name, href, Icon }) => (
             <UnstyledLink
-              className='smooth-tab group flex items-center gap-2 text-sm text-gray-600 transition
-                         dark:text-gray-400 md:text-base [&>*]:transition-colors'
+              className='smooth-tab group flex items-center gap-2 text-sm text-muted transition
+                         md:text-base [&>*]:transition-colors'
               href={href}
               key={name}
             >
               <Icon className='group-hover:text-accent-main' />{' '}
-              <p className='group-hover:text-black dark:group-hover:text-white'>
-                {name}
-              </p>
+              <p className='group-hover:text-foreground'>{name}</p>
             </UnstyledLink>
           ))}
         </motion.section>
@@ -83,7 +81,7 @@ export default function Home({
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
         </h2>
-        <p className='-mt-2 text-gray-600 dark:text-gray-300'>
+        <p className='-mt-2 text-secondary'>
           Check out my featured blog posts.
         </p>
         <section className='card-layout'>
@@ -92,7 +90,7 @@ export default function Home({
           ))}
         </section>
         <UnstyledLink
-          className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
+          className='custom-button clickable justify-self-center font-bold'
           href='/blog'
         >
           See more posts
@@ -102,7 +100,7 @@ export default function Home({
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Project</Accent>
         </h2>
-        <p className='-mt-2 text-gray-600 dark:text-gray-300'>
+        <p className='-mt-2 text-secondary'>
           Check out my featured blog posts.
         </p>
         <section className='card-layout'>
@@ -111,7 +109,7 @@ export default function Home({
           ))}
         </section>
         <UnstyledLink
-          className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
+          className='custom-button clickable justify-self-center font-bold'
           href='/projects'
         >
           See more projects

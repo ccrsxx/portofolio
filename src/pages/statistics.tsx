@@ -23,7 +23,7 @@ export default function Statistics({
           <Accent>Statistics</Accent>
         </motion.h1>
         <motion.p
-          className='text-gray-600 dark:text-gray-300'
+          className='text-secondary'
           {...setTransition({ delayIn: 0.1 })}
         >
           A statistics from blog and projects.

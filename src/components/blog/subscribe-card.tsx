@@ -17,14 +17,11 @@ export function SubscribeCard(): React.JSX.Element {
           type='email'
           placeholder='Email'
         />
-        <Button
-          className='custom-button clickable font-bold text-gray-600 
-                     dark:text-gray-300'
-        >
+        <Button className='custom-button clickable font-bold text-muted'>
           Subscribe
         </Button>
       </div>
-      <p className='mt-2 text-xs text-gray-600 dark:text-gray-300'>
+      <p className='mt-2 text-xs text-muted'>
         Join <Accent>69</Accent> other subscribers
       </p>
     </div>

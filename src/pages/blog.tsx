@@ -87,7 +87,7 @@ export default function Blog({
           <Accent>Blog</Accent>
         </motion.h1>
         <motion.p
-          className='text-gray-600 dark:text-gray-300'
+          className='text-secondary'
           {...setTransition({ delayIn: 0.1 })}
         >
           My thoughts on the web, tech, and everything in between.
@@ -107,9 +107,7 @@ export default function Blog({
           className='mt-2 flex flex-wrap items-center gap-2'
           {...setTransition({ delayIn: 0.3 })}
         >
-          <p className='text-sm font-medium text-gray-600 dark:text-gray-300'>
-            Choose topic:
-          </p>
+          <p className='text-sm font-medium text-secondary'>Choose topic:</p>
           {tags.map((tag) => (
             <BlogTag
               className='smooth-tab'

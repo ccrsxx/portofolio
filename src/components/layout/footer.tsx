@@ -15,7 +15,7 @@ export function Footer(): React.JSX.Element {
             key={name}
           >
             <UnstyledLink
-              className='animated-underline peer text-sm font-medium dark:text-gray-200'
+              className='animated-underline peer text-sm font-medium text-primary'
               href={href}
             >
               {name}
@@ -23,7 +23,7 @@ export function Footer(): React.JSX.Element {
           </Tooltip>
         ))}
       </nav>
-      <section className='grid justify-items-center gap-2 text-gray-600 dark:text-gray-300'>
+      <section className='grid justify-items-center gap-2 text-secondary'>
         <h2 className='font-medium'>Reach me out</h2>
         <section className='flex gap-4'>
           {socialLinks.map(({ tip, name, href, Icon }) => (
@@ -45,10 +45,10 @@ export function Footer(): React.JSX.Element {
           ))}
         </section>
       </section>
-      <p className='text-center text-sm text-gray-600 dark:text-gray-300'>
+      <p className='text-center text-sm text-muted'>
         &copy; Risal Amin 2025 •{' '}
         <UnstyledLink
-          className='smooth-tab transition hover:text-gray-800 dark:hover:text-gray-100'
+          className='smooth-tab transition hover:text-foreground'
           href='https://github.com/ccrsxx/portofolio'
         >
           Got any feedback?

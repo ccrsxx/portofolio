@@ -36,7 +36,7 @@ export function SortListbox({
               <Listbox.Options
                 as={motion.ul}
                 className='main-border smooth-tab absolute z-10 mt-2 max-h-60 w-full overflow-auto
-                           rounded-md bg-white text-sm shadow-lg dark:bg-black'
+                           rounded-md bg-background text-sm shadow-lg'
                 {...variants}
                 static
               >
@@ -45,8 +45,8 @@ export function SortListbox({
                     className={({ active }): string =>
                       clsx(
                         `relative cursor-pointer select-none py-2 pl-10 pr-4 transition-colors 
-                         hover:bg-blue-300/10 dark:hover:bg-blue-300/25`,
-                        active && 'bg-blue-300/10 dark:bg-blue-300/25'
+                         hover:bg-accent-main/10`,
+                        active && 'bg-accent-main/10'
                       )
                     }
                     value={sortOption}
@@ -65,7 +65,7 @@ export function SortListbox({
                         {selected && (
                           <i
                             className='absolute inset-y-0 left-0 flex items-center pl-3 
-                                       text-blue-500 dark:text-blue-300'
+                                       text-accent-main'
                           >
                             <HiCheck className='h-5 w-5' />
                           </i>

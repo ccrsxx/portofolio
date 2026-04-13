@@ -18,8 +18,8 @@ export function Header(): React.JSX.Element {
       <div ref={ref} />
       <header
         className={clsx(
-          'sticky top-0 z-20 w-full bg-white/60 backdrop-blur-md transition dark:bg-black/60',
-          !inView && 'shadow-sm dark:shadow-gray-900'
+          'sticky top-0 z-20 w-full bg-background/60 backdrop-blur-md transition',
+          !inView && 'shadow-sm'
         )}
       >
         <div className='gradient-background h-2' />

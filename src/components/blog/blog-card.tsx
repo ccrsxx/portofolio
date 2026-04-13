@@ -50,11 +50,7 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
           />
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
             {techTags.map((tag) => (
-              <BlogTag
-                className='bg-opacity-80 dark:bg-opacity-60'
-                tag='li'
-                key={tag}
-              >
+              <BlogTag className='opacity-80' tag='li' key={tag}>
                 {isTagSelected && isTagSelected(tag) ? (
                   <Accent>{tag}</Accent>
                 ) : (
@@ -65,16 +61,12 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
           </ul>
         </div>
         <section className='p-4 [&>div]:mt-1'>
-          <h3 className='text-lg font-bold text-gray-800 dark:text-gray-100'>
-            {title}
-          </h3>
+          <h3 className='text-lg font-bold text-primary'>{title}</h3>
           <BlogStats slug={slug} readTime={readTime} />
-          <p className='mt-4 text-sm font-bold text-gray-800 dark:text-gray-100'>
+          <p className='mt-4 text-sm font-bold text-primary'>
             {formatDate(publishedAt)}
           </p>
-          <p className='mt-2 text-sm text-gray-600 dark:text-gray-300'>
-            {description}
-          </p>
+          <p className='mt-2 text-sm text-secondary'>{description}</p>
         </section>
       </Link>
     </CustomTag>

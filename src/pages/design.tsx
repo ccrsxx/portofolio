@@ -20,7 +20,7 @@ export default function Design(): React.JSX.Element {
           <Accent>Design</Accent>
         </motion.h1>
         <motion.p
-          className='text-gray-600 dark:text-gray-300'
+          className='text-secondary'
           {...setTransition({ delayIn: 0.2 })}
         >
           risalamin.com&apos;s color palette.
@@ -34,9 +34,7 @@ export default function Design(): React.JSX.Element {
           <h2 className='text-4xl font-bold capitalize'>{theme} Mode</h2>
           <ThemeSwitch />
         </div>
-        <p className='mt-2 text-gray-600 dark:text-gray-300'>
-          Font Family: Inter
-        </p>
+        <p className='mt-2 text-secondary'>Font Family: Inter</p>
         <ul className='mt-3 grid grid-cols-[repeat(auto-fit,minmax(256px,1fr))] gap-4'>
           {colorPalette.map(({ title, hexCode, className }) => (
             <li className='flex items-center gap-2' key={title}>
@@ -45,9 +43,7 @@ export default function Design(): React.JSX.Element {
               />
               <div>
                 <h3>{title}</h3>
-                <p className='text-sm text-gray-600 dark:text-gray-400'>
-                  {hexCode}
-                </p>
+                <p className='text-sm text-muted'>{hexCode}</p>
               </div>
             </li>
           ))}

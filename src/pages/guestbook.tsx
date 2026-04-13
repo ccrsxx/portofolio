@@ -38,10 +38,7 @@ export default function Guestbook({
         >
           <Accent>Guestbook</Accent>
         </motion.h1>
-        <motion.p
-          className='text-gray-600 dark:text-gray-300'
-          {...setTransition({ delayIn: 0.1 })}
-        >
+        <motion.p className='text-muted' {...setTransition({ delayIn: 0.1 })}>
           Leave a comment below. It could be anything - appreciation,
           information, wisdom, or even humor. Surprise me!
         </motion.p>

@@ -12,7 +12,7 @@ export function BlogStats({
   increment
 }: BlogStatProps): React.JSX.Element {
   return (
-    <div className='flex gap-4 text-sm font-medium text-gray-600 dark:text-gray-300'>
+    <div className='flex gap-4 text-sm font-medium text-muted'>
       <div className='flex items-center gap-1'>
         <HiClock className='h-4 w-4' />
         <Accent>{readTime}</Accent>

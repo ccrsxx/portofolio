@@ -18,7 +18,7 @@ export function LazyImage({
     <Image
       className={clsx(
         className,
-        loading && 'animate-pulse bg-gray-600 dark:bg-gray-300'
+        loading && 'animate-pulse bg-muted-background'
       )}
       src={src}
       alt={alt}

@@ -46,7 +46,26 @@ export function SEO({
   const isHomepage = asPath === '/';
   const isDarkMode = theme === 'dark';
 
-  const { colorScheme, themeColor } = systemTheme[+isDarkMode];
+  type SystemTheme = {
+    themeColor: string;
+    colorScheme: 'dark' | 'light';
+  };
+
+  let systemTheme: SystemTheme;
+
+  if (isDarkMode) {
+    systemTheme = {
+      themeColor: '#222222',
+      colorScheme: 'dark'
+    };
+  } else {
+    systemTheme = {
+      themeColor: '#FFFFFF',
+      colorScheme: 'light'
+    };
+  }
+
+  const { themeColor, colorScheme } = systemTheme;
 
   const ogTitle = `${title} | ${
     isHomepage ? 'Fullstack Developer' : 'Risal Amin'
@@ -102,19 +121,3 @@ export function SEO({
     </Head>
   );
 }
-
-type SystemTheme = {
-  themeColor: string;
-  colorScheme: 'dark' | 'light';
-};
-
-const systemTheme: SystemTheme[] = [
-  {
-    themeColor: '#FFFFFF',
-    colorScheme: 'light'
-  },
-  {
-    themeColor: '#222222',
-    colorScheme: 'dark'
-  }
-];

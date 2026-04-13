@@ -11,7 +11,7 @@ export function GuestbookCard({
       </h2>
       <p className='mt-2'>Share a message for a future visitor of my site.</p>
       {children}
-      <p className='mt-2 text-xs text-gray-600 dark:text-gray-300'>
+      <p className='mt-2 text-xs text-muted'>
         Your information is only used to display your name, username, image, and
         reply by email.
       </p>

@@ -64,7 +64,7 @@ export function GuestbookEntry({
             className='whitespace-nowrap'
             tip={formatFullTimeStamp(createdAt)}
           >
-            <button className='custom-underline peer cursor-pointer text-sm text-gray-600 dark:text-gray-300'>
+            <button className='custom-underline peer cursor-pointer text-sm text-muted'>
               {formatTimestamp(createdAt)}
             </button>
           </Tooltip>

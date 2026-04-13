@@ -6,7 +6,7 @@
       border-bottom: 0 !important;
 
       span {
-        @apply text-black dark:text-white;
+        @apply text-foreground;
       }
 
       &::after {
@@ -112,7 +112,7 @@
           }
 
           .line.highlighted::before {
-            @apply text-slate-800 dark:text-slate-400;
+            @apply text-primary;
           }
         }
       }

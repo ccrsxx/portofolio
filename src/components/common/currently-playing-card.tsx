@@ -99,7 +99,7 @@ export function SpotifyCard(): React.ReactNode {
                 </div>
               )}
               <div className='flex h-full min-w-0 flex-1 flex-col justify-between'>
-                <div className='grid h-full [&>p>span]:text-gray-700 dark:[&>p>span]:text-gray-200'>
+                <div className='grid h-full [&>p>span]:text-primary'>
                   <div className='flex justify-between gap-2 truncate'>
                     <p
                       className='truncate text-sm font-medium'
@@ -111,7 +111,7 @@ export function SpotifyCard(): React.ReactNode {
                   </div>
                   <div className='mt-1 flex justify-between gap-2 truncate'>
                     <p
-                      className='truncate text-xs text-gray-600 dark:text-gray-300'
+                      className='truncate text-xs text-muted'
                       title={artistName}
                     >
                       by <span>{artistName}</span>
@@ -123,7 +123,7 @@ export function SpotifyCard(): React.ReactNode {
                     )}
                   </div>
                   <p
-                    className='w-10/12 truncate text-xs text-gray-600 dark:text-gray-300'
+                    className='w-10/12 truncate text-xs text-muted'
                     title={albumName}
                   >
                     on <span>{albumName}</span>
@@ -132,13 +132,13 @@ export function SpotifyCard(): React.ReactNode {
               </div>
             </div>
             <div className='grid gap-1'>
-              <div className='relative h-1 rounded-full bg-gray-300 dark:bg-gray-600'>
+              <div className='relative h-1 rounded-full bg-border'>
                 <div
                   className='gradient-background h-1 rounded-full transition-[width] duration-300'
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
-              <div className='flex justify-between text-xs text-gray-600 dark:text-gray-400'>
+              <div className='flex justify-between text-xs text-muted'>
                 <span>{formatMilisecondsToPlayback(currentPlaybackTime)}</span>
                 <span>{formatMilisecondsToPlayback(totalDuration)}</span>
               </div>

@@ -19,7 +19,7 @@ export default function Subscribe(): React.JSX.Element {
           <Accent>Subscribe to risalamin.com</Accent>
         </motion.h1>
         <motion.p
-          className='text-gray-600 dark:text-gray-300'
+          className='text-secondary'
           {...setTransition({ delayIn: 0.2 })}
         >
           Get notified when I publish a new post.

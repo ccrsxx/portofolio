@@ -3,7 +3,7 @@ table {
 
   &,
   tbody {
-    @apply divide-y divide-gray-300 dark:divide-gray-600;
+    @apply divide-y divide-border;
   }
 
   & > :is(thead, tbody, tfoot) > tr > :is(th, td) {
@@ -11,7 +11,7 @@ table {
   }
 
   & > :is(thead, tfoot) > tr > :is(th, td) {
-    @apply uppercase tracking-wider text-gray-500 dark:text-gray-200;
+    @apply uppercase tracking-wider text-primary;
   }
 
   & > :is(tbody, tfoot) > tr > td {
@@ -30,11 +30,11 @@ table {
 
   tbody > tr > td {
     &:first-child {
-      @apply text-gray-900 dark:text-gray-50;
+      @apply text-foreground;
     }
 
     &:not(:first-child) {
-      @apply text-gray-500 dark:text-gray-50;
+      @apply text-muted;
     }
   }
 }

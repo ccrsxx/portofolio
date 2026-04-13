@@ -21,8 +21,8 @@ export function LikesCounter({
       )}
     >
       <button
-        className='smooth-tab relative text-gray-400 transition-transform hover:scale-110
-                   focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed dark:text-gray-600'
+        className='smooth-tab relative transition-transform hover:scale-110 
+                   focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed'
         onClick={registerLikes}
         disabled={likesIsDisabled}
       >
@@ -31,9 +31,7 @@ export function LikesCounter({
       <p
         className={clsx(
           'text-lg font-medium transition-colors',
-          likesLimitReached
-            ? 'gradient-title'
-            : 'text-gray-400 dark:text-gray-500'
+          likesLimitReached ? 'gradient-title' : 'text-muted'
         )}
       >
         {isLoading ? '...' : likes}
@@ -77,7 +75,7 @@ function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
         <g clipPath='url(#clip-path)'>
           <rect
             fill='currentColor'
-            className='h-5 w-5 text-gray-400 dark:text-gray-600'
+            className='h-5 w-5 text-accent-foreground'
           />
           <rect
             fill='url(#gradient)'
