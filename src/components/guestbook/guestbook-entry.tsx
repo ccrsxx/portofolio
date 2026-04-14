@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { motion, type MotionProps } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
+import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
 import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
 import { Tooltip } from '@components/ui/tooltip';
 import { LazyImage } from '@components/ui/lazy-image';
-import type { CustomSession } from '@lib/types/api';
+import type { CustomSession } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
 
 type GuestbookEntryProps = Guestbook & {
   session: CustomSession | null;
-  unRegisterGuestbook: (id: string) => Promise<void>;
 };
 
 export function GuestbookEntry({
@@ -22,18 +22,27 @@ export function GuestbookEntry({
   session,
   username,
   createdAt,
-  createdBy,
-  unRegisterGuestbook
+  createdBy
 }: GuestbookEntryProps): React.JSX.Element {
-  const [loading, setLoading] = useState(false);
+  const { mutate, isPending } = useDeleteGuestbookEntry();
 
-  const handleUnRegisterGuestbook = async (): Promise<void> => {
-    setLoading(true);
-    await unRegisterGuestbook(id);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const isLoading = isPending || isDeleting;
+
+  const handleUnRegisterGuestbook = (): void => {
+    setIsDeleting(true);
+
+    mutate(id, {
+      onError: (error) => {
+        setIsDeleting(false);
+        // eslint-disable-next-line no-console
+        console.error('Failed to delete guestbook entry', error);
+      }
+    });
   };
 
   const isOwner = session?.user.id === createdBy || session?.user.admin;
-
   const githubProfileUrl = `https://github.com/${username}`;
 
   return (
@@ -69,12 +78,13 @@ export function GuestbookEntry({
             </button>
           </Tooltip>
         </div>
-        <p className='wrap-break-word'>{text}</p>
+        <p className='text-primary wrap-break-word'>{text}</p>
       </div>
       {isOwner && (
         <Button
           className='custom-underline main-border clickable absolute! top-2 right-2 rounded-md p-1.5 text-red-400'
-          loading={loading}
+          loading={isLoading}
+          disabled={isLoading}
           type='button'
           onClick={handleUnRegisterGuestbook}
         >

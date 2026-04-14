@@ -61,12 +61,12 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
           </ul>
         </div>
         <section className='p-4 [&>div]:mt-1'>
-          <h3 className='text-lg font-bold text-primary'>{title}</h3>
+          <h3 className='text-primary text-lg font-bold'>{title}</h3>
           <BlogStats slug={slug} readTime={readTime} />
-          <p className='mt-4 text-sm font-bold text-primary'>
+          <p className='text-primary mt-4 text-sm font-bold'>
             {formatDate(publishedAt)}
           </p>
-          <p className='mt-2 text-sm text-secondary'>{description}</p>
+          <p className='text-secondary mt-2 text-sm'>{description}</p>
         </section>
       </Link>
     </CustomTag>

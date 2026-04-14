@@ -3,7 +3,7 @@ import GithubProvider from 'next-auth/providers/github';
 import { backendEnv } from '@lib/env-server';
 import { getGithubUsername } from '@lib/helper-server';
 import type { AuthOptions, Session } from 'next-auth';
-import type { CustomSession, AssertedUser } from '@lib/types/api';
+import type { CustomSession, AssertedUser } from '@lib/types/auth';
 
 export const authOptions: AuthOptions = {
   providers: [

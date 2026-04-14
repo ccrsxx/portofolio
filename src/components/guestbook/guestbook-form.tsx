@@ -1,38 +1,39 @@
-import { useState, type FormEvent } from 'react';
+import { type FormEvent } from 'react';
 import { signIn, signOut } from 'next-auth/react';
 import { clsx } from 'clsx';
 import { SiGithub } from 'react-icons/si';
+import { useAddGuestbookEntry } from '@lib/hooks/use-guestbook';
 import { Button } from '@components/ui/button';
-import type { Text } from '@lib/types/guestbook';
-import type { CustomSession } from '@lib/types/api';
+import type { CustomSession } from '@lib/types/auth';
 
 type GuestbookCardProps = {
   session: CustomSession | null;
-  registerGuestbook: (text: Text) => Promise<void>;
 };
 
 export function GuestbookForm({
-  session,
-  registerGuestbook
+  session
 }: GuestbookCardProps): React.JSX.Element {
-  const [loading, setLoading] = useState(false);
+  const { mutate, isPending } = useAddGuestbookEntry();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    setLoading(true);
-
-    const input = e.currentTarget[0] as HTMLInputElement;
-
-    input.blur();
-
+    const form = e.currentTarget;
+    const input = form[0] as HTMLInputElement;
     const { value } = input;
 
-    await registerGuestbook(value);
+    if (!value.trim()) return;
 
-    input.value = '';
-
-    setLoading(false);
+    mutate(value, {
+      onSuccess: () => {
+        form.reset();
+        input.blur();
+      },
+      onError: (error) => {
+        // eslint-disable-next-line no-console
+        console.error('guestbook form add error', error);
+      }
+    });
   };
 
   return (
@@ -44,25 +45,26 @@ export function GuestbookForm({
         <input
           className={clsx(
             'custom-input w-full disabled:cursor-not-allowed',
-            loading && 'brightness-75'
+            isPending && 'brightness-75'
           )}
           type='text'
           placeholder={
             session ? 'Your message...' : 'Sign in to leave a message'
           }
-          disabled={loading || !session}
+          disabled={isPending || !session}
           required
         />
         {session ? (
           <Button
             type='submit'
             className='custom-button clickable font-bold'
-            loading={loading}
+            loading={isPending}
           >
             Sign
           </Button>
         ) : (
           <Button
+            type='button'
             className='custom-button clickable flex items-center gap-2 font-bold whitespace-nowrap'
             onClick={handleSignIn}
           >
@@ -73,9 +75,9 @@ export function GuestbookForm({
       </form>
       {session && (
         <button
-          className='smooth-tab text-secondary hover:text-foreground mt-2 border-0 text-sm font-medium transition disabled:cursor-not-allowed disabled:brightness-50 md:text-base'
+          className='smooth-tab text-secondary hover:text-foreground custom-underline mt-2 border-0 text-sm font-medium transition disabled:cursor-not-allowed disabled:brightness-50 md:text-base'
           onClick={handleSignOut}
-          disabled={loading}
+          disabled={isPending}
         >
           ← Sign out @{session.user.name}
         </button>

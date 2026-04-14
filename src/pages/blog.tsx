@@ -107,7 +107,7 @@ export default function Blog({
           className='mt-2 flex flex-wrap items-center gap-2'
           {...setTransition({ delayIn: 0.3 })}
         >
-          <p className='text-sm font-medium text-secondary'>Choose topic:</p>
+          <p className='text-secondary text-sm font-medium'>Choose topic:</p>
           {tags.map((tag) => (
             <BlogTag
               className='smooth-tab'

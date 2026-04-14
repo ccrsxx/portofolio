@@ -15,15 +15,14 @@ import type {
   InferGetServerSidePropsType
 } from 'next';
 import type { AuthOptions } from 'next-auth';
-import type { CustomSession } from '@lib/types/api';
+import type { CustomSession } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
 
 export default function Guestbook({
   session,
   guestbook: fallbackData
 }: InferGetServerSidePropsType<typeof getServerSideProps>): React.JSX.Element {
-  const { guestbook, registerGuestbook, unRegisterGuestbook } =
-    useGuestbook(fallbackData);
+  const { data: guestbook } = useGuestbook(fallbackData);
 
   return (
     <main className='grid min-h-screen content-start gap-6'>
@@ -45,10 +44,7 @@ export default function Guestbook({
       </section>
       <motion.section {...setTransition({ delayIn: 0.2 })}>
         <GuestbookCard>
-          <GuestbookForm
-            session={session}
-            registerGuestbook={registerGuestbook}
-          />
+          <GuestbookForm session={session} />
         </GuestbookCard>
       </motion.section>
       <motion.section
@@ -58,12 +54,7 @@ export default function Guestbook({
         <AnimatePresence>
           {guestbook?.length ? (
             guestbook.map((entry) => (
-              <GuestbookEntry
-                {...entry}
-                session={session}
-                unRegisterGuestbook={unRegisterGuestbook}
-                key={entry.id}
-              />
+              <GuestbookEntry {...entry} session={session} key={entry.id} />
             ))
           ) : (
             <motion.h2

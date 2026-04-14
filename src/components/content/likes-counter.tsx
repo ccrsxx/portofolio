@@ -1,29 +1,30 @@
 import { motion, type MotionProps } from 'framer-motion';
 import { clsx } from 'clsx';
-import { useContentLikes } from '@lib/hooks/use-content-likes';
+import { useContentLikes, useLikeContent } from '@lib/hooks/use-content-likes';
 import type { Content } from '@lib/types/contents';
 
 export function LikesCounter({
   slug
 }: Pick<Content, 'slug'>): React.JSX.Element {
-  const { likeStatus, isLoading, registerLikes } = useContentLikes(slug);
+  const { data: likeStatus, isPending: isQueryPending } = useContentLikes(slug);
+
+  const { mutate, isPending: isMutationPending } = useLikeContent();
 
   const { likes, userLikes } = likeStatus ?? {};
 
   const likesLimitReached = !!(userLikes !== undefined && userLikes >= 5);
-  const likesIsDisabled = !likeStatus || likesLimitReached;
+  const likesIsDisabled = !likeStatus || likesLimitReached || isMutationPending;
 
   return (
     <div
       className={clsx(
         'mt-4 flex items-center justify-center gap-4',
-        isLoading && 'animate-pulse'
+        isQueryPending && 'animate-pulse'
       )}
     >
       <button
-        className='smooth-tab relative transition-transform hover:scale-110 
-                   focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed'
-        onClick={registerLikes}
+        className='smooth-tab relative transition-transform hover:scale-110 focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed'
+        onClick={() => mutate(slug)}
         disabled={likesIsDisabled}
       >
         <GradientHeart likes={userLikes ?? 0} />
@@ -34,7 +35,7 @@ export function LikesCounter({
           likesLimitReached ? 'gradient-title' : 'text-muted'
         )}
       >
-        {isLoading ? '...' : likes}
+        {isQueryPending ? '...' : likes}
       </p>
     </div>
   );
@@ -75,7 +76,7 @@ function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
         <g clipPath='url(#clip-path)'>
           <rect
             fill='currentColor'
-            className='h-5 w-5 text-accent-foreground'
+            className='text-accent-foreground h-5 w-5'
           />
           <rect
             fill='url(#gradient)'

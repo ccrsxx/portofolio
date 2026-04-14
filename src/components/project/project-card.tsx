@@ -14,7 +14,7 @@ export function ProjectCard({
     <article className='grid' key={title}>
       <Link className='project-card clickable p-4' href={`/projects/${slug}`}>
         <h3 className='text-xl font-bold'>{title}</h3>
-        <p className='text-sm text-secondary'>{description}</p>
+        <p className='text-secondary text-sm'>{description}</p>
         <TechIcons tags={tags} />
         <Image
           className='mt-3 h-44 rounded object-cover'

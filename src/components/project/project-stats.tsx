@@ -45,7 +45,7 @@ export function ProjectStats({
 
   return (
     <>
-      <div className='flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium text-muted'>
+      <div className='text-muted flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium'>
         <div className='flex items-center gap-1'>
           <HiClock className='h-4 w-4' />
           <p>{readTime}</p>
@@ -59,14 +59,14 @@ export function ProjectStats({
             link && (
               <div className='flex items-center gap-3' key={name}>
                 <i>
-                  <Icon className='text-lg text-foreground' />
+                  <Icon className='text-foreground text-lg' />
                 </i>
                 <CustomLink href={link}>{name}</CustomLink>
               </div>
             )
         )}
       </div>
-      <div className='flex items-center gap-2 text-muted'>
+      <div className='text-muted flex items-center gap-2'>
         <i>
           <HiUser className='text-lg' />
         </i>

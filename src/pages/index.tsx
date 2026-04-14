@@ -38,8 +38,7 @@ export default function Home({
           I&apos;m <Accent>Risal</Accent> - Full Stack Developer
         </motion.h1>
         <motion.p
-          className='mt-4 max-w-4xl leading-relaxed text-primary transition-colors delay-[400ms] 
-                     md:mt-6 md:text-lg 2xl:text-xl'
+          className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
           I&apos;m a self-taught Software Engineer turned Full Stack Developer.
@@ -66,8 +65,7 @@ export default function Home({
         >
           {socialLink.map(({ name, href, Icon }) => (
             <UnstyledLink
-              className='smooth-tab group flex items-center gap-2 text-sm text-muted transition
-                         md:text-base [&>*]:transition-colors'
+              className='smooth-tab group text-muted flex items-center gap-2 text-sm transition *:transition-colors md:text-base'
               href={href}
               key={name}
             >
@@ -81,7 +79,7 @@ export default function Home({
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
         </h2>
-        <p className='-mt-2 text-secondary'>
+        <p className='text-secondary -mt-2'>
           Check out my featured blog posts.
         </p>
         <section className='card-layout'>
@@ -100,7 +98,7 @@ export default function Home({
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Project</Accent>
         </h2>
-        <p className='-mt-2 text-secondary'>
+        <p className='text-secondary -mt-2'>
           Check out my featured blog posts.
         </p>
         <section className='card-layout'>

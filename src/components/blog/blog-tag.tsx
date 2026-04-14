@@ -15,8 +15,7 @@ export function BlogTag<T extends ValidTag = typeof DEFAULT_TAG>({
     <CustomTag
       className={clsx(
         className,
-        `rounded-md bg-muted-background px-1.5 py-0.5 text-sm font-medium text-primary transition hover:text-foreground 
-         disabled:cursor-not-allowed disabled:opacity-50`
+        'bg-muted-background text-primary hover:text-foreground rounded-md px-1.5 py-0.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50'
       )}
       {...rest}
     >

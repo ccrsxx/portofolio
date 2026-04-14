@@ -28,7 +28,7 @@ export function TechIcons({ tags }: { tags: string }): React.JSX.Element {
 
         return (
           <Tooltip
-            className='text-xl text-primary'
+            className='text-primary text-xl'
             tooltipClassName='group-hover:-translate-y-[3.75rem]'
             tag='li'
             tip={name}

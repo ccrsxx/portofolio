@@ -3,7 +3,7 @@ import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { guestbookCollection } from '@lib/firebase/collections';
 import { authOptions } from '../auth/[...nextauth]';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { CustomSession } from '@lib/types/api';
+import type { CustomSession } from '@lib/types/auth';
 import type { APIResponse } from '@lib/types/helper';
 
 export default async function handler(

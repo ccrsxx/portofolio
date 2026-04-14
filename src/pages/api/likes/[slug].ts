@@ -51,7 +51,9 @@ export default async function handler(
         [sessionIdFieldReference]: increment(1)
       });
 
-      return res.status(201).json({ likes, userLikes });
+      const incrementedUserLIkes = userLikes + 1;
+
+      return res.status(201).json({ likes, userLikes: incrementedUserLIkes });
     }
   } catch (error) {
     if (error instanceof Error)

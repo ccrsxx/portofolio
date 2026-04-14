@@ -8,6 +8,14 @@
 /* Use class-based dark mode for next-themes toggle support */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Preserve cursor pointer behavior that gets remove on tailwind v4 */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 @theme {
   --color-background: #ffffff;
   --color-foreground: #000000;
@@ -81,7 +89,7 @@ main {
 }
 
 @utility clickable {
-  @apply smooth-tab main-border rounded-md shadow-xs transition hover:scale-[1.03] hover:shadow-md active:scale-[0.97];
+  @apply smooth-tab main-border rounded-md shadow-xs transition enabled:hover:scale-[1.03] enabled:hover:shadow-md enabled:active:scale-[0.97];
 
   &:focus-visible {
     @apply scale-[1.03] shadow-md;

@@ -1,36 +1,40 @@
-import useSWR from 'swr';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetcher } from '@lib/fetcher';
-import type { ValidApiEndpoints } from '@lib/types/api';
+import type { AppQueryResult, AppMutationResult } from '@lib/types/api';
 import type { LikeStatus } from '@lib/types/meta';
 
-type UseContentLikes = {
-  likeStatus?: LikeStatus;
-  isLoading: boolean;
-  registerLikes: () => Promise<void>;
+export const likesKeys = {
+  all: ['likes'] as const,
+  detail: (slug: string) => [...likesKeys.all, slug] as const
 };
 
 /**
- * Returns the likes of the content and a function to register likes.
+ * Returns the likes of the content.
  */
-export function useContentLikes(slug: string): UseContentLikes {
-  const {
-    data: likeStatus,
-    isLoading,
-    mutate
-  } = useSWR<LikeStatus, unknown, ValidApiEndpoints>(
-    `/api/likes/${slug}`,
-    fetcher
-  );
+export function useContentLikes(slug: string): AppQueryResult<LikeStatus> {
+  return useQuery({
+    queryKey: likesKeys.detail(slug),
+    queryFn: ({ signal }) =>
+      fetcher<LikeStatus>(`/api/likes/${slug}`, { signal })
+  });
+}
 
-  const registerLikes = async (): Promise<void> => {
-    if (!likeStatus || likeStatus.userLikes >= 5) return;
+/**
+ * Register a like for the content.
+ */
+export function useLikeContent(): AppMutationResult<LikeStatus, string> {
+  const queryClient = useQueryClient();
 
-    const likes = await fetcher<LikeStatus>(`/api/likes/${slug}`, {
-      method: 'POST'
-    });
-
-    await mutate(likes);
-  };
-
-  return { likeStatus, isLoading, registerLikes };
+  return useMutation({
+    mutationFn: (slug: string) =>
+      fetcher<LikeStatus>(`/api/likes/${slug}`, {
+        method: 'POST'
+      }),
+    onSuccess: (newLikeStatus, slug) => {
+      queryClient.setQueryData<LikeStatus>(
+        likesKeys.detail(slug),
+        newLikeStatus
+      );
+    }
+  });
 }

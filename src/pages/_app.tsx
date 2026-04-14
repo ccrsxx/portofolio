@@ -3,9 +3,10 @@ import '@styles/globals.css';
 import { configure, start, done } from 'nprogress';
 import { AnimatePresence } from 'framer-motion';
 import { Router, useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
 import type { AppProps } from 'next/app';
@@ -23,12 +24,14 @@ export default function App({
   Component,
   pageProps
 }: AppProps): React.JSX.Element {
+  const [queryClient] = useState(() => new QueryClient());
+
   const { pathname } = useRouter();
 
   useEffect(() => void popAudio?.play().catch(() => void 0), [pathname]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <AppHead />
       <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
         <Layout>
@@ -38,6 +41,6 @@ export default function App({
         </Layout>
       </ThemeProvider>
       <Analytics />
-    </>
+    </QueryClientProvider>
   );
 }

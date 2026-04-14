@@ -9,7 +9,7 @@ import { getGuestbook, sendEmail } from '@lib/api';
 import { guestbookCollection } from '@lib/firebase/collections';
 import { authOptions } from '../auth/[...nextauth]';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { CustomSession } from '@lib/types/api';
+import type { CustomSession } from '@lib/types/auth';
 import type { APIResponse } from '@lib/types/helper';
 import type { Guestbook } from '@lib/types/guestbook';
 

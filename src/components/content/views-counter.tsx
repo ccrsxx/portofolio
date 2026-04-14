@@ -6,7 +6,7 @@ export function ViewsCounter({
   slug,
   increment
 }: PropsForViews): React.JSX.Element {
-  const { views } = useContentViews(slug, { increment });
+  const { data: views } = useContentViews(slug, { increment });
 
   return <p>{typeof views === 'number' ? formatNumber(views) : '---'} views</p>;
 }

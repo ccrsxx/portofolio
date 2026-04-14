@@ -19,7 +19,7 @@ export function SortListbox({
         <div className='relative ml-auto w-52'>
           <Listbox.Button
             className={clsx(
-              'clickable relative w-full py-2 pl-3 pr-10 text-left text-sm',
+              'clickable relative w-full py-2 pr-10 pl-3 text-left text-sm',
               open && 'shadow-md'
             )}
           >
@@ -35,8 +35,7 @@ export function SortListbox({
             {open && (
               <Listbox.Options
                 as={motion.ul}
-                className='main-border smooth-tab absolute z-10 mt-2 max-h-60 w-full overflow-auto
-                           rounded-md bg-background text-sm shadow-lg'
+                className='main-border smooth-tab bg-background absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-md text-sm shadow-lg'
                 {...variants}
                 static
               >
@@ -44,8 +43,7 @@ export function SortListbox({
                   <Listbox.Option
                     className={({ active }): string =>
                       clsx(
-                        `relative cursor-pointer select-none py-2 pl-10 pr-4 transition-colors 
-                         hover:bg-accent-main/10`,
+                        'hover:bg-accent-main/10 relative cursor-pointer py-2 pr-4 pl-10 transition-colors select-none',
                         active && 'bg-accent-main/10'
                       )
                     }
@@ -63,10 +61,7 @@ export function SortListbox({
                           Sort by {sortOption}
                         </span>
                         {selected && (
-                          <i
-                            className='absolute inset-y-0 left-0 flex items-center pl-3 
-                                       text-accent-main'
-                          >
+                          <i className='text-accent-main absolute inset-y-0 left-0 flex items-center pl-3'>
                             <HiCheck className='h-5 w-5' />
                           </i>
                         )}

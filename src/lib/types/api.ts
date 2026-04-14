@@ -1,48 +1,34 @@
-import type { Session, User } from 'next-auth';
-import type { ContentType } from './contents';
-
-type SlugEndPoints = 'views' | 'likes' | 'guestbook';
-
-type NextJsApiEndpoints =
-  | '/api/contents'
-  | '/api/guestbook'
-  | `/api/contents/${ContentType}`
-  | `/api/${SlugEndPoints}/${string}`;
-
-type BackendApiEndpoints =
-  | `${string}/og`
-  | `${string}/spotify/currently-playing`;
+import { z } from 'zod';
+import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 
 export type BackendSuccessApiResponse<T> = {
   data: T | null;
 };
 
-export type BackendErrorApiResponse = {
-  error: {
-    id: string;
-    message: string;
-    details: string[];
-  };
-};
+export const BackendErrorSchema = z.object({
+  error: z.object({
+    id: z.string(),
+    message: z.string(),
+    details: z.array(z.string())
+  })
+});
 
-export type BackendApiResponse<T = unknown> =
-  | BackendSuccessApiResponse<T>
-  | BackendErrorApiResponse;
+export type BackendErrorApiResponse = z.infer<typeof BackendErrorSchema>;
 
-export type ValidApiEndpoints = NextJsApiEndpoints | BackendApiEndpoints;
+export class ApplicationError extends Error {
+  constructor(
+    public message: string,
+    public statusCode: number
+  ) {
+    super(message);
+    this.name = 'ApplicationError';
+  }
+}
 
-type DefaultUser = Required<Omit<User, 'id'>>;
+export type AppQueryResult<TData> = UseQueryResult<TData, ApplicationError>;
 
-export type AssertedUser = {
-  [K in keyof DefaultUser]: NonNullable<DefaultUser[K]>;
-};
-
-type CustomUser = AssertedUser & {
-  id: string;
-  admin: boolean;
-  username: string;
-};
-
-export type CustomSession = Session & {
-  user: CustomUser;
-};
+export type AppMutationResult<TData, TVariables = void> = UseMutationResult<
+  TData,
+  ApplicationError,
+  TVariables
+>;

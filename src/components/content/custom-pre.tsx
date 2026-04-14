@@ -42,8 +42,7 @@ export function CustomPre({
       <pre {...rest} ref={preRef}>
         {mounted && (
           <button
-            className='main-border smooth-tab clickable absolute right-2 top-2 
-                       grid rounded-md p-2 text-muted'
+            className='main-border smooth-tab clickable text-muted absolute top-2 right-2 grid rounded-md p-2'
             onClick={handleCopied}
           >
             <AnimatePresence mode='wait' initial={false}>

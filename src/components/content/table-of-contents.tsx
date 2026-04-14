@@ -12,7 +12,7 @@ export function TableOfContents({
   return (
     <aside className='sticky top-24 grid gap-4 self-start lg:w-64'>
       <section className='hidden gap-4 lg:grid'>
-        <h2 className='text-xl font-bold text-foreground'>Table of Contents</h2>
+        <h2 className='text-foreground text-xl font-bold'>Table of Contents</h2>
         <nav className='grid justify-items-start gap-2 text-sm font-medium'>
           {headingData.map(({ id, title, items }) => (
             <>

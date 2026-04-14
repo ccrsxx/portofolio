@@ -18,7 +18,7 @@ import { getContentFiles } from './mdx-utils';
 import { VALID_CONTENT_TYPES } from './helper-server';
 import { removeContentExtension } from './helper';
 import type { Blog, ContentType } from './types/contents';
-import type { CustomSession } from './types/api';
+import type { CustomSession } from './types/auth';
 import type { ContentMeta } from './types/meta';
 import type {
   ContentData,

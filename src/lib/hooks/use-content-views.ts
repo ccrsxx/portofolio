@@ -1,12 +1,12 @@
 import { useRef, useEffect } from 'react';
-import useSWR from 'swr';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetcher } from '@lib/fetcher';
-import type { ValidApiEndpoints } from '@lib/types/api';
+import type { AppQueryResult } from '@lib/types/api';
 import type { Views } from '@lib/types/meta';
 
-type UseContentViews = {
-  views?: Views;
-  isLoading: boolean;
+export const viewsKeys = {
+  all: ['views'] as const,
+  detail: (slug: string) => [...viewsKeys.all, slug] as const
 };
 
 /**
@@ -15,12 +15,15 @@ type UseContentViews = {
 export function useContentViews(
   slug: string,
   { increment }: { increment?: boolean } = {}
-): UseContentViews {
-  const {
-    data: views,
-    isLoading,
-    mutate
-  } = useSWR<Views, unknown, ValidApiEndpoints>(`/api/views/${slug}`, fetcher);
+): AppQueryResult<Views> {
+  const queryClient = useQueryClient();
+
+  const queryKey = viewsKeys.detail(slug);
+
+  const query: AppQueryResult<Views> = useQuery({
+    queryKey,
+    queryFn: ({ signal }) => fetcher<Views>(`/api/views/${slug}`, { signal })
+  });
 
   const firstRender = useRef(true);
 
@@ -28,11 +31,16 @@ export function useContentViews(
     if (!increment || !firstRender.current) return;
 
     const registerViews = async (): Promise<void> => {
-      const views = await fetcher<Views>(`/api/views/${slug}`, {
-        method: 'POST'
-      });
+      try {
+        const newViews = await fetcher<Views>(`/api/views/${slug}`, {
+          method: 'POST'
+        });
 
-      await mutate(views);
+        queryClient.setQueryData<Views>(queryKey, newViews);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('content views increment error', err);
+      }
     };
 
     void registerViews();
@@ -43,5 +51,5 @@ export function useContentViews(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { views, isLoading };
+  return query;
 }
