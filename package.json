@@ -9,8 +9,8 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "next lint --max-warnings=0 . .",
-    "lint:fix": "next lint --fix . .",
+    "lint": "eslint --max-warnings=0 .",
+    "lint:fix": "eslint --fix .",
     "prepare": "husky"
   },
   "dependencies": {

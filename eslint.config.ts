@@ -16,7 +16,7 @@ export default tseslint.config([
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
   {
-    ignores: ['*.mjs']
+    ignores: ['.next/', '*.mjs', 'next-env.d.ts']
   },
   {
     files: ['**/*.{ts,tsx}'],
