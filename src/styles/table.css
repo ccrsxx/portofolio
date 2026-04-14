@@ -30,11 +30,11 @@ table {
 
   tbody > tr > td {
     &:first-child {
-      @apply text-foreground;
+      @apply text-primary;
     }
 
     &:not(:first-child) {
-      @apply text-muted;
+      @apply text-secondary;
     }
   }
 }
