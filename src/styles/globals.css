@@ -89,7 +89,7 @@ main {
 }
 
 @utility clickable {
-  @apply smooth-tab main-border rounded-md shadow-xs transition enabled:hover:scale-[1.03] enabled:hover:shadow-md enabled:active:scale-[0.97];
+  @apply smooth-tab main-border rounded-md shadow-xs transition hover:scale-[1.03] hover:shadow-md active:scale-[0.97];
 
   &:focus-visible {
     @apply scale-[1.03] shadow-md;
