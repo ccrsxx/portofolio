@@ -35,9 +35,8 @@ export function GuestbookEntry({
 
     mutate(id, {
       onError: (error) => {
+        console.error('guestbook entry delete error', error);
         setIsDeleting(false);
-        // eslint-disable-next-line no-console
-        console.error('Failed to delete guestbook entry', error);
       }
     });
   };

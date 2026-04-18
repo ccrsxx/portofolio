@@ -1,5 +1,5 @@
 import type { SyntheticEvent } from 'react';
-import type { Blog } from './types/contents';
+import type { Blog, ContentType, PathContentType } from './types/contents';
 
 type PreventBubblingProps = {
   preventDefault?: boolean;
@@ -39,6 +39,13 @@ export function getTags(contents: Blog[]): string[] {
   const uniqueTags = Array.from(new Set(validTags));
 
   return uniqueTags;
+}
+
+export function convertPathContentToContentType(
+  pathContentType: PathContentType
+): ContentType {
+  if (pathContentType === 'projects') return 'project';
+  return 'blog';
 }
 
 /**

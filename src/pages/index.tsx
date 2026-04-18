@@ -6,7 +6,7 @@ import { getAllContents } from '@lib/mdx';
 import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { BlogCard } from '@components/blog/blog-card';
-import { ProjectCard } from '@components/project/project-card';
+import { ProjectCard } from '@components/projects/project-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { SpotifyCard } from '@components/common/currently-playing-card';
 import { Accent } from '@components/ui/accent';
@@ -108,7 +108,7 @@ export default function Home({
         </section>
         <UnstyledLink
           className='custom-button clickable justify-self-center font-bold'
-          href='/projects'
+          href='/project'
         >
           See more projects
         </UnstyledLink>

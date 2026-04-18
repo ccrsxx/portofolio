@@ -3,50 +3,92 @@ import { clsx } from 'clsx';
 import { useContentLikes, useLikeContent } from '@lib/hooks/use-content-likes';
 import type { Content } from '@lib/types/contents';
 
+const MAX_USER_LIKES = 5;
+const HEART_HEIGHT_PX = 20;
+
 export function LikesCounter({
   slug
 }: Pick<Content, 'slug'>): React.JSX.Element {
-  const { data: likeStatus, isPending: isQueryPending } = useContentLikes(slug);
+  const {
+    data: likeStatus,
+    error: likesError,
+    isPending: isLikesLoading
+  } = useContentLikes(slug);
 
-  const { mutate, isPending: isMutationPending } = useLikeContent();
+  const {
+    error: likeError,
+    isPending: isLiking,
+    mutate: likeContent
+  } = useLikeContent();
+
+  if (likesError) {
+    console.error('likes counter content like error', {
+      slug,
+      error: likesError
+    });
+  }
+
+  if (likeError) {
+    console.error('likes counter increment like error', {
+      slug,
+      error: likeError
+    });
+  }
 
   const { likes, userLikes } = likeStatus ?? {};
 
-  const likesLimitReached = !!(userLikes !== undefined && userLikes >= 5);
-  const likesIsDisabled = !likeStatus || likesLimitReached || isMutationPending;
+  const hasReachedLikeLimit =
+    userLikes !== undefined && userLikes >= MAX_USER_LIKES;
+
+  const isLikeButtonDisabled = !likeStatus || hasReachedLikeLimit || isLiking;
 
   return (
     <div
       className={clsx(
         'mt-4 flex items-center justify-center gap-4',
-        isQueryPending && 'animate-pulse'
+        isLikesLoading && 'animate-pulse'
       )}
     >
       <button
         className='smooth-tab relative transition-transform hover:scale-110 focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed'
-        onClick={() => mutate(slug)}
-        disabled={likesIsDisabled}
+        onClick={() => likeContent(slug)}
+        disabled={isLikeButtonDisabled}
+        aria-label={
+          hasReachedLikeLimit
+            ? 'Maximum likes reached'
+            : `Like this content (${userLikes ?? 0} of ${MAX_USER_LIKES})`
+        }
       >
-        <GradientHeart likes={userLikes ?? 0} />
+        <GradientHeart userLikes={userLikes ?? 0} />
       </button>
       <p
         className={clsx(
           'text-lg font-medium transition-colors',
-          likesLimitReached ? 'gradient-title' : 'text-muted'
+          hasReachedLikeLimit ? 'gradient-title' : 'text-muted'
         )}
       >
-        {isQueryPending ? '...' : likes}
+        {isLikesLoading ? '...' : likes}
       </p>
     </div>
   );
 }
 
-function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
+function GradientHeart({
+  userLikes
+}: {
+  userLikes: number;
+}): React.JSX.Element {
+  const hasMaxLikes = userLikes === MAX_USER_LIKES;
+
+  // How far (in px) to push the gradient rect down — 0 when full, HEART_HEIGHT_PX when empty
+  const gradientOffsetY =
+    HEART_HEIGHT_PX - (userLikes / MAX_USER_LIKES) * HEART_HEIGHT_PX;
+
   return (
     <>
       <motion.i
         className='absolute block w-full text-center text-2xl opacity-0'
-        {...(likes === 5 && animate)}
+        {...(hasMaxLikes && maxLikesAnimation)}
       >
         🥳
       </motion.i>
@@ -81,7 +123,7 @@ function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
           <rect
             fill='url(#gradient)'
             className='h-5 w-5 transition-transform'
-            style={{ transform: `translateY(${20 - likes * 4}px)` }}
+            style={{ transform: `translateY(${gradientOffsetY}px)` }}
           />
         </g>
       </svg>
@@ -89,12 +131,10 @@ function GradientHeart({ likes }: { likes: number }): React.JSX.Element {
   );
 }
 
-const animate: Pick<MotionProps, 'animate'> = {
+const maxLikesAnimation: Pick<MotionProps, 'animate'> = {
   animate: {
     opacity: [1, 1, 1, 0],
     y: -48,
-    transition: {
-      duration: 0.7
-    }
+    transition: { duration: 0.7 }
   }
 };

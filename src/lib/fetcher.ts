@@ -1,5 +1,9 @@
 import { frontendEnv } from './env';
-import { ApplicationError, BackendErrorSchema } from './types/api';
+import {
+  ApplicationError,
+  BackendErrorSchema,
+  BackendSuccessSchema
+} from './types/api';
 
 /**
  * A fetcher function that adds the owner bearer token to the request.
@@ -17,10 +21,12 @@ export async function fetcher<T>(
       }
     });
 
-    const data: unknown = await res.json();
+    const rawData: unknown = await res.json();
 
     if (!res.ok) {
-      const parsedData = BackendErrorSchema.safeParse(data);
+      console.error('fetcher error response', rawData);
+
+      const parsedData = BackendErrorSchema.safeParse(rawData);
 
       const message = parsedData.success
         ? parsedData.data.error.message
@@ -29,8 +35,20 @@ export async function fetcher<T>(
       throw new ApplicationError(message, res.status);
     }
 
-    return data as T;
+    const parsedData = BackendSuccessSchema.safeParse(rawData);
+
+    if (!parsedData.success) {
+      throw new ApplicationError('Invalid response data from backend', 500);
+    }
+
+    return parsedData.data.data as T;
   } catch (err) {
+    console.error('fetcher error', {
+      input,
+      init,
+      err
+    });
+
     if (err instanceof Error && err.name === 'AbortError') throw err;
 
     if (err instanceof ApplicationError) throw err;

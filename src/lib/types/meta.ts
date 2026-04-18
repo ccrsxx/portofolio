@@ -6,10 +6,11 @@ export type ContentMeta = {
   type: ContentType;
   views: number;
   likes: number;
-  likesBy: Record<string, number>;
 };
 
-export type Views = ContentMeta['views'];
+export type Views = {
+  views: number;
+};
 
 export type LikeStatus = {
   likes: number;

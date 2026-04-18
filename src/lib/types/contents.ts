@@ -23,4 +23,10 @@ export type Project = Content & {
   category?: string;
 };
 
-export type ContentType = 'blog' | 'projects';
+export const CONTENT_TYPES = ['blog', 'project'] as const;
+
+export type ContentType = (typeof CONTENT_TYPES)[number];
+
+export const PATH_CONTENT_TYPES = ['blog', 'projects'] as const;
+
+export type PathContentType = (typeof PATH_CONTENT_TYPES)[number];

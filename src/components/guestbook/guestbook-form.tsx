@@ -30,8 +30,7 @@ export function GuestbookForm({
         input.blur();
       },
       onError: (error) => {
-        // eslint-disable-next-line no-console
-        console.error('guestbook form add error', error);
+        console.error('guestbook form create error', error);
       }
     });
   };

@@ -10,6 +10,7 @@ const envSchema = z.object({
   // Secrets
   GITHUB_TOKEN: validStringSchema,
   IP_ADDRESS_SALT: validStringSchema,
+  PRIVATE_SECRET_KEY: validStringSchema,
 
   // NextAuth
   NEXTAUTH_URL: validStringSchema,

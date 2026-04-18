@@ -4,9 +4,18 @@ import {
   getSuggestedContents,
   getContentLastUpdatedDate
 } from './mdx-utils';
-import { removeContentExtension } from './helper';
+import {
+  convertPathContentToContentType,
+  removeContentExtension
+} from './helper';
 import type { GetStaticPropsResult } from 'next';
-import type { Blog, Project, Content, ContentType } from '@lib/types/contents';
+import type {
+  Blog,
+  Project,
+  Content,
+  ContentType,
+  PathContentType
+} from '@lib/types/contents';
 
 export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
   type: ContentType;
@@ -17,16 +26,18 @@ export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
 /**
  * Returns the MDX contents props.
  */
-export function getContentSlug(type: ContentType, slug: string) {
+export function getContentSlug(type: PathContentType, slug: string) {
   return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
     const lastUpdatedAt = await getContentLastUpdatedDate(type, slug);
     const suggestedContents = await getSuggestedContents(type);
 
     const readTime = await getContentReadTime(type, slug);
 
+    const parsedContentType = convertPathContentToContentType(type);
+
     return {
       props: {
-        type,
+        type: parsedContentType,
         slug,
         readTime,
         suggestedContents,
@@ -42,7 +53,7 @@ export function getContentSlug(type: ContentType, slug: string) {
 export async function getAllContents(type: 'blog'): Promise<Blog[]>;
 export async function getAllContents(type: 'projects'): Promise<Project[]>;
 export async function getAllContents(
-  type: ContentType
+  type: PathContentType
 ): Promise<(Blog | Project)[]> {
   const contentPosts = await getContentFiles(type);
 
@@ -59,7 +70,7 @@ export async function getAllContents(
  * @returns The contents from the files.
  */
 export async function getContentByFiles(
-  type: ContentType,
+  type: PathContentType,
   files: string[]
 ): Promise<(Blog | Project)[]> {
   const contentPromises = files.map(async (file) => {

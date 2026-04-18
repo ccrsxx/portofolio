@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetcher } from '@lib/fetcher';
+import { frontendEnv } from '@lib/env';
 import type { AppQueryResult, AppMutationResult } from '@lib/types/api';
 import type { LikeStatus } from '@lib/types/meta';
 
@@ -15,7 +16,10 @@ export function useContentLikes(slug: string): AppQueryResult<LikeStatus> {
   return useQuery({
     queryKey: likesKeys.detail(slug),
     queryFn: ({ signal }) =>
-      fetcher<LikeStatus>(`/api/likes/${slug}`, { signal })
+      fetcher<LikeStatus>(
+        `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/likes/${slug}`,
+        { signal }
+      )
   });
 }
 
@@ -27,9 +31,12 @@ export function useLikeContent(): AppMutationResult<LikeStatus, string> {
 
   return useMutation({
     mutationFn: (slug: string) =>
-      fetcher<LikeStatus>(`/api/likes/${slug}`, {
-        method: 'POST'
-      }),
+      fetcher<LikeStatus>(
+        `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/likes/${slug}`,
+        {
+          method: 'POST'
+        }
+      ),
     onSuccess: (newLikeStatus, slug) => {
       queryClient.setQueryData<LikeStatus>(
         likesKeys.detail(slug),

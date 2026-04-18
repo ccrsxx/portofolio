@@ -3,13 +3,15 @@ import { join } from 'path';
 import readingTime from 'reading-time';
 import { backendEnv } from './env-server';
 import { getContentByFiles } from './mdx';
-import type { Blog, Project, ContentType } from './types/contents';
+import type { Blog, Project, PathContentType } from './types/contents';
 import type { FileCommitHistory } from './types/github';
 
 /**
  * Returns the content files within the selected content directory.
  */
-export async function getContentFiles(type: ContentType): Promise<string[]> {
+export async function getContentFiles(
+  type: PathContentType
+): Promise<string[]> {
   const contentDirectory = join('src', 'pages', type);
   const contentPosts = await readdir(contentDirectory);
 
@@ -20,7 +22,7 @@ export async function getContentFiles(type: ContentType): Promise<string[]> {
  * Returns the content read time.
  */
 export async function getContentReadTime(
-  type: ContentType,
+  type: PathContentType,
   slug: string
 ): Promise<string> {
   const contentPath = join('src', 'pages', type, `${slug}.mdx`);
@@ -38,7 +40,7 @@ export async function getContentReadTime(
  * Returns the content last updated date from the GitHub API.
  */
 export async function getContentLastUpdatedDate(
-  type: ContentType,
+  type: PathContentType,
   slug: string
 ): Promise<string | null> {
   const response = await fetch(
@@ -67,7 +69,7 @@ export async function getContentLastUpdatedDate(
  * Returns three random suggested contents.
  */
 export async function getSuggestedContents(
-  type: ContentType
+  type: PathContentType
 ): Promise<(Blog | Project)[]> {
   const contentFiles = await getContentFiles(type);
 

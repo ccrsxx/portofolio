@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetcher } from '@lib/fetcher';
+import { frontendEnv } from '@lib/env';
 import type { AppQueryResult } from '@lib/types/api';
 import type { Views } from '@lib/types/meta';
 
@@ -22,7 +23,10 @@ export function useContentViews(
 
   const query: AppQueryResult<Views> = useQuery({
     queryKey,
-    queryFn: ({ signal }) => fetcher<Views>(`/api/views/${slug}`, { signal })
+    queryFn: ({ signal }) =>
+      fetcher<Views>(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/views/${slug}`, {
+        signal
+      })
   });
 
   const firstRender = useRef(true);
@@ -32,13 +36,15 @@ export function useContentViews(
 
     const registerViews = async (): Promise<void> => {
       try {
-        const newViews = await fetcher<Views>(`/api/views/${slug}`, {
-          method: 'POST'
-        });
+        const newViews = await fetcher<Views>(
+          `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/views/${slug}`,
+          {
+            method: 'POST'
+          }
+        );
 
         queryClient.setQueryData<Views>(queryKey, newViews);
       } catch (err) {
-        // eslint-disable-next-line no-console
         console.error('content views increment error', err);
       }
     };

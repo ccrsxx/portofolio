@@ -54,17 +54,6 @@ export function getOrigin(req: NextRequest): string | null {
   return originFromReferer;
 }
 
-type ValidContentTypes = (typeof VALID_CONTENT_TYPES)[number];
-
-export const VALID_CONTENT_TYPES = ['blog', 'projects'] as const;
-
-/**
- * Returns true if the content type is `blog` or `projects`.
- */
-export function isValidContentType(type: string): type is ValidContentTypes {
-  return VALID_CONTENT_TYPES.includes(type as ValidContentTypes);
-}
-
 /**
  * Returns a NextResponse with the given status and message.
  */

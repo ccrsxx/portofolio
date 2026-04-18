@@ -6,7 +6,14 @@ export function ViewsCounter({
   slug,
   increment
 }: PropsForViews): React.JSX.Element {
-  const { data: views } = useContentViews(slug, { increment });
+  const { data, isPending, error } = useContentViews(slug, { increment });
 
-  return <p>{typeof views === 'number' ? formatNumber(views) : '---'} views</p>;
+  if (isPending) return <p>---</p>;
+
+  if (error) {
+    console.error('views counter error', error);
+    return <p>---</p>;
+  }
+
+  return <p>{formatNumber(data.views)} views</p>;
 }

@@ -44,7 +44,7 @@ export default tseslint.config([
       ],
       'jsx-quotes': ['error', 'prefer-single'],
       'linebreak-style': ['error', 'unix'],
-      'no-console': 'warn',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
       'comma-dangle': ['error', 'never'],
       'no-unused-expressions': 'error',
       'no-constant-binary-expression': 'error',

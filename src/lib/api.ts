@@ -1,13 +1,5 @@
 import { createTransport } from 'nodemailer';
-import {
-  doc,
-  query,
-  where,
-  getDoc,
-  setDoc,
-  getDocs,
-  orderBy
-} from 'firebase/firestore';
+import { doc, query, getDoc, getDocs, orderBy } from 'firebase/firestore';
 import {
   contentsCollection,
   guestbookCollection
@@ -15,49 +7,56 @@ import {
 import { backendEnv } from './env-server';
 import { getAllContents } from './mdx';
 import { getContentFiles } from './mdx-utils';
-import { VALID_CONTENT_TYPES } from './helper-server';
-import { removeContentExtension } from './helper';
-import type { Blog, ContentType } from './types/contents';
-import type { CustomSession } from './types/auth';
-import type { ContentMeta } from './types/meta';
-import type {
-  ContentData,
-  ContentColumn,
-  ContentStatistics
-} from './types/statistics';
+import {
+  convertPathContentToContentType,
+  removeContentExtension
+} from './helper';
+import {
+  PATH_CONTENT_TYPES,
+  type Blog,
+  type ContentType,
+  type PathContentType
+} from './types/contents';
+import { frontendEnv } from './env';
 import type { Guestbook } from './types/guestbook';
+import type { ContentMeta } from './types/meta';
+import type { CustomSession } from './types/auth';
+import type { BackendSuccessApiResponse } from './types/api';
+import type { ContentColumn, ContentStatistics } from './types/statistics';
 
 /**
  * Initialize all blog and projects if not exists in firestore at build time.
  */
 export async function initializeAllContents(): Promise<void> {
-  const contentPromises = VALID_CONTENT_TYPES.map((type) =>
+  const contentPromises = PATH_CONTENT_TYPES.map((type) =>
     initializeContents(type)
   );
+
   await Promise.all(contentPromises);
 }
 
 /**
  * Initialize contents with selected content type.
  */
-export async function initializeContents(type: ContentType): Promise<void> {
+export async function initializeContents(type: PathContentType): Promise<void> {
   const contents = await getContentFiles(type);
 
   const contentPromises = contents.map(async (slug) => {
-    slug = removeContentExtension(slug);
+    const parsedSlug = removeContentExtension(slug);
 
-    const snapshot = await getDoc(doc(contentsCollection, slug));
+    const parsedContentType = convertPathContentToContentType(type);
 
-    if (snapshot.exists()) return;
-
-    const newContent: Omit<ContentMeta, 'slug'> = {
-      type,
-      views: 0,
-      likes: 0,
-      likesBy: {}
-    };
-
-    await setDoc(doc(contentsCollection, slug), newContent);
+    await fetch(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${backendEnv.PRIVATE_SECRET_KEY}`
+      },
+      body: JSON.stringify({
+        slug: parsedSlug,
+        type: parsedContentType
+      })
+    });
   });
 
   await Promise.all(contentPromises);
@@ -131,75 +130,32 @@ export async function sendEmail(
 /**
  * Returns the contents statistics with selected content type.
  */
-export async function getContentStatistics(
+export async function getContentsStatistics(
   type: ContentType
 ): Promise<ContentStatistics> {
-  const contentsSnapshot = await getDocs(
-    query(contentsCollection, where('type', '==', type))
+  const response = await fetch(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics?type=${type}`
   );
 
-  const contents = contentsSnapshot.docs.map((doc) => doc.data());
+  const data =
+    (await response.json()) as BackendSuccessApiResponse<ContentStatistics>;
 
-  const [totalPosts, totalViews, totalLikes] = contents.reduce(
-    ([accPosts, accViews, accLikes], { views, likes }) => [
-      accPosts + 1,
-      accViews + views,
-      accLikes + likes
-    ],
-    [0, 0, 0]
-  );
-
-  return { type, totalPosts, totalViews, totalLikes };
+  return data.data;
 }
 
 /**
- * Returns all the contents statistics.
+ * Returns the contents data with selected content type.
  */
-export async function getAllContentsStatistics(): Promise<ContentStatistics[]> {
-  const statisticsPromises = VALID_CONTENT_TYPES.map((type) =>
-    getContentStatistics(type)
+export async function getContentsDataByType(
+  type: ContentType
+): Promise<ContentColumn[]> {
+  const response = await fetch(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents?type=${type}`
   );
 
-  const statistics = await Promise.all(statisticsPromises);
+  const data = (await response.json()) as BackendSuccessApiResponse<
+    ContentColumn[]
+  >;
 
-  return statistics;
-}
-
-/**
- * Returns the content data with selected content type.
- */
-export async function getContentData(type: ContentType): Promise<ContentData> {
-  const contentsSnapshot = await getDocs(
-    query(contentsCollection, where('type', '==', type))
-  );
-
-  const contents = contentsSnapshot.docs.map((doc) => doc.data());
-
-  const filteredContents: ContentColumn[] = contents.map(
-    ({ slug, views, likes }) => ({
-      slug,
-      views,
-      likes
-    })
-  );
-
-  const contentData: ContentData = {
-    type,
-    data: filteredContents
-  };
-
-  return contentData;
-}
-
-/**
- * Returns all the content data.
- */
-export async function getAllContentsData(): Promise<ContentData[]> {
-  const contentDataPromises = VALID_CONTENT_TYPES.map((type) =>
-    getContentData(type)
-  );
-
-  const contentData = await Promise.all(contentDataPromises);
-
-  return contentData;
+  return data.data;
 }

@@ -7,7 +7,10 @@ export type ContentStatistics = Pick<ContentMeta, 'type'> & {
   totalLikes: number;
 };
 
-export type ContentColumn = Pick<ContentMeta, 'slug' | 'views' | 'likes'>;
+export type ContentColumn = Pick<
+  ContentMeta,
+  'type' | 'slug' | 'views' | 'likes'
+>;
 
 export type ContentData = {
   type: ContentType;

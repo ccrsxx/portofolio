@@ -51,9 +51,8 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
       setJellyfinData(data);
     });
 
-    eventSource.addEventListener('error', (error: Event) => {
-      // eslint-disable-next-line no-console
-      console.error('Failed to connect to SSE', error);
+    eventSource.addEventListener('error', (error) => {
+      console.error('sse error', error);
     });
 
     return (): void => eventSource.close();

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { TechIcons } from '@components/project/tech-icons';
+import { TechIcons } from '@components/projects/tech-icons';
 import type { Project } from '@lib/types/contents';
 
 export function ProjectCard({
