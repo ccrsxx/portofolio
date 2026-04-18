@@ -74,32 +74,11 @@ type StatisticsProps = {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<StatisticsProps>
 > {
-  let blogData: ContentColumn[] = [];
-  let projectsData: ContentColumn[] = [];
+  const blogData = await getContentsDataByType('blog');
+  const projectsData = await getContentsDataByType('project');
 
-  let blogStatistics: ContentStatistics = {
-    type: 'blog',
-    totalPosts: 0,
-    totalViews: 0,
-    totalLikes: 0
-  };
-
-  let projectsStatistics: ContentStatistics = {
-    type: 'project',
-    totalPosts: 0,
-    totalViews: 0,
-    totalLikes: 0
-  };
-
-  try {
-    blogData = await getContentsDataByType('blog');
-    projectsData = await getContentsDataByType('project');
-
-    blogStatistics = await getContentsStatistics('blog');
-    projectsStatistics = await getContentsStatistics('project');
-  } catch (err) {
-    console.error('Error fetching statistics:', err);
-  }
+  const blogStatistics = await getContentsStatistics('blog');
+  const projectsStatistics = await getContentsStatistics('project');
 
   return {
     props: {
