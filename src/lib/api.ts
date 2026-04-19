@@ -133,28 +133,18 @@ export async function sendEmail(
 export async function getContentsStatistics(
   type: ContentType
 ): Promise<ContentStatistics> {
-  try {
-    const response = await fetch(
-      `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics?type=${type}`
-    );
+  const response = await fetch(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics?type=${type}`
+  );
 
-    const responseStatus = response.status;
+  const responseStatus = response.status;
 
-    console.warn({ responseStatus });
+  console.warn({ responseStatus });
 
-    const data =
-      (await response.json()) as BackendSuccessApiResponse<ContentStatistics>;
+  const data =
+    (await response.json()) as BackendSuccessApiResponse<ContentStatistics>;
 
-    return data.data;
-  } catch (err) {
-    console.error(err);
-    return {
-      type: type,
-      totalLikes: 0,
-      totalPosts: 0,
-      totalViews: 0
-    };
-  }
+  return data.data;
 }
 
 /**
@@ -163,22 +153,13 @@ export async function getContentsStatistics(
 export async function getContentsDataByType(
   type: ContentType
 ): Promise<ContentColumn[]> {
-  try {
-    const response = await fetch(
-      `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents?type=${type}`
-    );
+  const response = await fetch(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents?type=${type}`
+  );
 
-    const responseStatus = response.status;
+  const data = (await response.json()) as BackendSuccessApiResponse<
+    ContentColumn[]
+  >;
 
-    console.warn({ responseStatus });
-
-    const data = (await response.json()) as BackendSuccessApiResponse<
-      ContentColumn[]
-    >;
-
-    return data.data;
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
+  return data.data;
 }
