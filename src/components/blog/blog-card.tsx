@@ -42,7 +42,7 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
       <Link className='clickable' href={`/blog/${slug}`}>
         <div className='relative'>
           <Image
-            className='h-36 rounded-t-md object-cover'
+            className='h-36 w-full rounded-t-md object-cover'
             src={banner}
             alt={bannerAlt}
             title={bannerAlt}

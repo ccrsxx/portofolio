@@ -17,7 +17,7 @@ export function ProjectCard({
         <p className='text-secondary text-sm'>{description}</p>
         <TechIcons tags={tags} />
         <Image
-          className='mt-3 h-44 rounded object-cover'
+          className='mt-3 h-44 w-full rounded object-cover'
           src={banner}
           alt={title}
           placeholder='blur'
