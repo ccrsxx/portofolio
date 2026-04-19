@@ -138,6 +138,10 @@ export async function getContentsStatistics(
       `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics?type=${type}`
     );
 
+    const responseStatus = response.status;
+
+    console.warn({ responseStatus });
+
     const data =
       (await response.json()) as BackendSuccessApiResponse<ContentStatistics>;
 
@@ -163,6 +167,10 @@ export async function getContentsDataByType(
     const response = await fetch(
       `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents?type=${type}`
     );
+
+    const responseStatus = response.status;
+
+    console.warn({ responseStatus });
 
     const data = (await response.json()) as BackendSuccessApiResponse<
       ContentColumn[]
