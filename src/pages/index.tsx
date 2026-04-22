@@ -128,7 +128,7 @@ export async function getStaticProps(): Promise<
   try {
     await initializeAllContents();
 
-    const featuredBlog = await getAllContents('projects');
+    const featuredBlog = await getAllContents('blog');
     const featuredProjects = await getAllContents('projects');
 
     return {

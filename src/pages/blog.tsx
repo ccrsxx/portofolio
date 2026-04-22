@@ -172,7 +172,7 @@ export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
   try {
-    const contents = await getContentsDataByType();
+    const contents = await getContentsDataByType('blog');
     const blog = await getAllBlogWithViews(contents);
 
     const tags = getTags(blog);
