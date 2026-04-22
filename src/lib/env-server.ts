@@ -2,29 +2,9 @@ import { z } from 'zod';
 import { validStringSchema } from './env';
 
 const envSchema = z.object({
-  // Email
-  EMAIL_TARGET: validStringSchema,
-  EMAIL_ADDRESS: validStringSchema,
-  EMAIL_PASSWORD: validStringSchema,
-
   // Secrets
   GITHUB_TOKEN: validStringSchema,
-  IP_ADDRESS_SALT: validStringSchema,
-  PRIVATE_SECRET_KEY: validStringSchema,
-
-  // NextAuth
-  NEXTAUTH_URL: validStringSchema,
-  NEXTAUTH_SECRET: validStringSchema,
-  GITHUB_ID: validStringSchema,
-  GITHUB_SECRET: validStringSchema,
-
-  // Firebase
-  API_KEY: validStringSchema,
-  AUTH_DOMAIN: validStringSchema,
-  PROJECT_ID: validStringSchema,
-  STORAGE_BUCKET: validStringSchema,
-  MESSAGING_SENDER_ID: validStringSchema,
-  APP_ID: validStringSchema
+  PRIVATE_SECRET_KEY: validStringSchema
 });
 
 type EnvSchema = z.infer<typeof envSchema>;
