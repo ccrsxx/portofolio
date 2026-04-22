@@ -1,9 +1,3 @@
-import { createTransport } from 'nodemailer';
-import { doc, query, getDoc, getDocs, orderBy } from 'firebase/firestore';
-import {
-  contentsCollection,
-  guestbookCollection
-} from './firebase/collections';
 import { backendEnv } from './env-server';
 import { getAllContents } from './mdx';
 import { getContentFiles } from './mdx-utils';
@@ -17,12 +11,12 @@ import {
   type ContentType,
   type PathContentType
 } from './types/contents';
+import { fetcher } from './fetcher';
 import { frontendEnv } from './env';
-import type { Guestbook } from './types/guestbook';
 import type { ContentMeta } from './types/meta';
-import type { CustomSession } from './types/auth';
-import type { BackendSuccessApiResponse } from './types/api';
 import type { ContentColumn, ContentStatistics } from './types/statistics';
+import type { Guestbook } from './types/guestbook';
+import type { AuthUser } from './types/auth';
 
 /**
  * Initialize all blog and projects if not exists in firestore at build time.
@@ -62,104 +56,90 @@ export async function initializeContents(type: PathContentType): Promise<void> {
   await Promise.all(contentPromises);
 }
 
+export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
+
 /**
- * Returns all the guestbook.
+ * Returns all the blog posts.
  */
 export async function getGuestbook(): Promise<Guestbook[]> {
-  const guestbookSnapshot = await getDocs(
-    query(guestbookCollection, orderBy('createdAt', 'desc'))
+  const response = await fetcher<Guestbook[]>(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/guestbook`
   );
 
-  const guestbook = guestbookSnapshot.docs.map((doc) => doc.data());
-
-  const parsedGuestbook = guestbook.map(({ createdAt, ...data }) => ({
-    ...data,
-    createdAt: createdAt.toJSON()
-  })) as Guestbook[];
-
-  return parsedGuestbook;
+  return response;
 }
 
-export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
+export async function getSession(token: string): Promise<AuthUser> {
+  const response = await fetcher<AuthUser>(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/me`,
+    {
+      headers: {
+        Cookie: `oauth-token=${token}`
+      }
+    }
+  );
+
+  return response;
+}
 
 /**
  * Returns all the blog posts with the views.
  */
-export async function getAllBlogWithViews(): Promise<BlogWithViews[]> {
+export async function getAllBlogWithViews(
+  contentColumns: ContentColumn[]
+): Promise<BlogWithViews[]> {
   const posts = await getAllContents('blog');
 
-  const postsPromises = posts.map(async (post) => {
-    const snapshot = await getDoc(doc(contentsCollection, post.slug));
-    const { views } = snapshot.data() as ContentMeta;
+  const blogWithViews = posts.map((post) => {
+    let views = 0;
+
+    for (const column of contentColumns) {
+      if (column.slug === post.slug) {
+        views = column.views;
+        break;
+      }
+    }
 
     return { ...post, views };
   });
 
-  const postsWithViews = await Promise.all(postsPromises);
-
-  return postsWithViews;
-}
-
-/**
- * Send email to my email address.
- */
-export async function sendEmail(
-  text: string,
-  session: CustomSession
-): Promise<void> {
-  const client = createTransport({
-    service: 'Gmail',
-    auth: {
-      user: backendEnv.EMAIL_ADDRESS,
-      pass: backendEnv.EMAIL_PASSWORD
-    }
-  });
-
-  const { name, email } = session.user;
-
-  const emailHeader = `New guestbook from ${name} (${email})`;
-
-  await client.sendMail({
-    from: backendEnv.EMAIL_ADDRESS,
-    to: backendEnv.EMAIL_TARGET,
-    subject: emailHeader,
-    text: text
-  });
+  return blogWithViews;
 }
 
 /**
  * Returns the contents statistics with selected content type.
  */
 export async function getContentsStatistics(
-  type: ContentType
+  type?: ContentType
 ): Promise<ContentStatistics> {
-  const response = await fetch(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics?type=${type}`
+  let queryParams = '';
+
+  if (type) {
+    queryParams = `?type=${type}`;
+  }
+
+  const response = await fetcher<ContentStatistics>(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics${queryParams}`
   );
 
-  const responseStatus = response.status;
-
-  console.warn({ responseStatus });
-
-  const data =
-    (await response.json()) as BackendSuccessApiResponse<ContentStatistics>;
-
-  return data.data;
+  return response;
 }
 
 /**
  * Returns the contents data with selected content type.
  */
 export async function getContentsDataByType(
-  type: ContentType
+  type?: ContentType
 ): Promise<ContentColumn[]> {
-  const response = await fetch(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents?type=${type}`
+  let queryParams = '';
+
+  if (type) {
+    queryParams = `?type=${type}`;
+  }
+
+  const response = await fetcher<ContentColumn[]>(
+    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents${queryParams}`
   );
 
-  const data = (await response.json()) as BackendSuccessApiResponse<
-    ContentColumn[]
-  >;
-
-  return data.data;
+  return response;
 }

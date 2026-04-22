@@ -1,5 +1,3 @@
-import type { Timestamp } from 'firebase/firestore';
-
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
 /**
@@ -32,16 +30,14 @@ const LONG_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
   dateStyle: 'short'
 });
 
-type TimestampProps = Pick<Timestamp, 'seconds' | 'nanoseconds'>;
-
 /**
- * Get a formatted date from a Firestore timestamp.
+ * Get a formatted date from a standard date string or Date object.
  *
- * @param timestampProps The timestamp to format.
+ * @param dateInput The date to format.
  * @returns A formatted date string.
  */
-export function formatTimestamp(timestamp: TimestampProps): string {
-  const date = getDateFromTimestamp(timestamp);
+export function formatTimestamp(dateInput: string | Date): string {
+  const date = new Date(dateInput);
 
   if (dateIsToday(date))
     return `Today at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
@@ -82,25 +78,14 @@ const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
 });
 
 /**
- * Get a full formatted date from a Firestore timestamp.
+ * Get a full formatted date from a standard date string or Date object.
  *
- * @param timestamp The timestamp to format.
+ * @param dateInput The date to format.
  * @returns A formatted date string.
  */
-export function formatFullTimeStamp(timestamp: TimestampProps): string {
-  const date = getDateFromTimestamp(timestamp);
-
+export function formatFullTimeStamp(dateInput: string | Date): string {
+  const date = new Date(dateInput);
   return FULL_TIMESTAMP_FORMATTER.format(date);
-}
-
-/**
- * Returns a converted date from a Firestore timestamp.
- */
-function getDateFromTimestamp({ seconds, nanoseconds }: TimestampProps): Date {
-  const miliseconds = seconds * 1000 + nanoseconds / 1_000_000;
-  const date = new Date(miliseconds);
-
-  return date;
 }
 
 /**

@@ -2,11 +2,14 @@ import Link, { type LinkProps } from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
 
 export type UnstyledLinkProps = ComponentPropsWithoutRef<'a'> &
-  Partial<LinkProps>;
+  Partial<LinkProps> & {
+    openInCurrentWindow?: boolean;
+  };
 
 export function UnstyledLink({
   href = '',
   children,
+  openInCurrentWindow,
   ...rest
 }: UnstyledLinkProps): React.JSX.Element {
   const openInNewTab = !href.startsWith('/');
@@ -20,10 +23,12 @@ export function UnstyledLink({
 
   const linkIsExternal = href.startsWith('http');
 
+  const shouldOpenInNewTab = openInCurrentWindow ? false : linkIsExternal;
+
   return (
     <a
       href={href}
-      {...(linkIsExternal && { target: '_blank', rel: 'noreferrer' })}
+      {...(shouldOpenInNewTab && { target: '_blank', rel: 'noreferrer' })}
       {...rest}
     >
       {children}

@@ -74,19 +74,24 @@ type StatisticsProps = {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<StatisticsProps>
 > {
-  const blogData = await getContentsDataByType('blog');
-  const projectsData = await getContentsDataByType('project');
+  try {
+    const blogData = await getContentsDataByType('blog');
+    const projectsData = await getContentsDataByType('project');
 
-  const blogStatistics = await getContentsStatistics('blog');
-  const projectsStatistics = await getContentsStatistics('project');
+    const blogStatistics = await getContentsStatistics('blog');
+    const projectsStatistics = await getContentsStatistics('project');
 
-  return {
-    props: {
-      blogData,
-      projectsData,
-      blogStatistics,
-      projectsStatistics
-    },
-    revalidate: 60
-  };
+    return {
+      props: {
+        blogData,
+        projectsData,
+        blogStatistics,
+        projectsStatistics
+      },
+      revalidate: 60
+    };
+  } catch (error) {
+    console.error('statistics ssr error', error);
+    throw error;
+  }
 }

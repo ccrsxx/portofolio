@@ -1,6 +1,10 @@
 import { useState, useEffect, type ChangeEvent } from 'react';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
-import { getAllBlogWithViews, type BlogWithViews } from '@lib/api';
+import {
+  getAllBlogWithViews,
+  getContentsDataByType,
+  type BlogWithViews
+} from '@lib/api';
 import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
@@ -18,20 +22,20 @@ import type { Blog } from '@lib/types/contents';
 
 export default function Blog({
   tags,
-  posts
+  blog
 }: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   const [sortOrder, setSortOrder] = useSessionStorage<SortOption>(
     'sortOrder',
     sortOptions[0]
   );
 
-  const [filteredPosts, setFilteredPosts] = useState<Blog[]>([]);
   const [search, setSearch] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState<BlogWithViews[]>([]);
 
   useEffect(() => {
     const splittedSearch = search.split(' ');
 
-    const newFilteredPosts = posts.filter(({ title, description, tags }) => {
+    const newFilteredPosts = blog.filter(({ title, description, tags }) => {
       const isTitleMatch = textIncludes(title, search);
       const isDescriptionMatch = textIncludes(description, search);
       const isTagsMatch = splittedSearch.every((tag) => tags.includes(tag));
@@ -43,7 +47,7 @@ export default function Blog({
     else newFilteredPosts.sort((a, b) => b.views - a.views);
 
     setFilteredPosts(newFilteredPosts);
-  }, [posts, search, sortOrder]);
+  }, [blog, search, sortOrder]);
 
   const handleSearchChange = ({
     target: { value }
@@ -160,23 +164,30 @@ export default function Blog({
 }
 
 type BlogProps = {
-  posts: BlogWithViews[];
+  blog: BlogWithViews[];
   tags: string[];
 };
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
-  const posts = await getAllBlogWithViews();
-  const tags = getTags(posts);
+  try {
+    const contents = await getContentsDataByType();
+    const blog = await getAllBlogWithViews(contents);
 
-  return {
-    props: {
-      posts,
-      tags
-    },
-    revalidate: 60
-  };
+    const tags = getTags(blog);
+
+    return {
+      props: {
+        blog,
+        tags
+      },
+      revalidate: 60
+    };
+  } catch (error) {
+    console.error('blog ssr error', error);
+    throw error;
+  }
 }
 
 const variants: MotionProps = {

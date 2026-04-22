@@ -125,17 +125,22 @@ type HomeProps = {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<HomeProps>
 > {
-  await initializeAllContents();
+  try {
+    await initializeAllContents();
 
-  const featuredBlog = await getAllContents('blog');
-  const featuredProjects = await getAllContents('projects');
+    const featuredBlog = await getAllContents('projects');
+    const featuredProjects = await getAllContents('projects');
 
-  return {
-    props: {
-      featuredBlog,
-      featuredProjects
-    }
-  };
+    return {
+      props: {
+        featuredBlog,
+        featuredProjects
+      }
+    };
+  } catch (error) {
+    console.error('home ssr error', error);
+    throw error;
+  }
 }
 
 type SocialLink = {

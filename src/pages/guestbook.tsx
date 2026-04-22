@@ -1,28 +1,27 @@
-import { getServerSession } from 'next-auth/next';
 import { AnimatePresence, motion } from 'framer-motion';
-import { getGuestbook } from '@lib/api';
 import { setTransition } from '@lib/transition';
 import { useGuestbook } from '@lib/hooks/use-guestbook';
+import { useSession } from '@lib/hooks/use-session';
+import { getGuestbook, getSession } from '@lib/api';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { GuestbookCard } from '@components/guestbook/guestbook-card';
 import { GuestbookForm } from '@components/guestbook/guestbook-form';
 import { GuestbookEntry } from '@components/guestbook/guestbook-entry';
-import { authOptions } from './api/auth/[...nextauth]';
 import type {
   GetServerSidePropsResult,
   GetServerSidePropsContext,
   InferGetServerSidePropsType
 } from 'next';
-import type { AuthOptions } from 'next-auth';
-import type { CustomSession } from '@lib/types/auth';
+import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
 
 export default function Guestbook({
-  session,
-  guestbook: fallbackData
+  session: fallbackSession,
+  guestbook: fallbackGuestbook
 }: InferGetServerSidePropsType<typeof getServerSideProps>): React.JSX.Element {
-  const { data: guestbook } = useGuestbook(fallbackData);
+  const { data: session } = useSession(fallbackSession);
+  const { data: guestbook } = useGuestbook(fallbackGuestbook);
 
   return (
     <main className='grid min-h-screen content-start gap-6'>
@@ -71,20 +70,29 @@ export default function Guestbook({
 }
 
 type GuestbookProps = {
-  session: CustomSession | null;
+  session: AuthUser | null;
   guestbook: Guestbook[];
 };
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<GetServerSidePropsResult<GuestbookProps>> {
-  const session = await getServerSession<AuthOptions, CustomSession>(
-    context.req,
-    context.res,
-    authOptions
-  );
+  const token = context.req.cookies['oauth-token'];
 
-  const guestbook = await getGuestbook();
+  let session: AuthUser | null = null;
+  let guestbook: Guestbook[] = [];
+
+  try {
+    if (token) session = await getSession(token);
+  } catch (error) {
+    console.error('guestbook ssr session error', error);
+  }
+
+  try {
+    guestbook = await getGuestbook();
+  } catch (error) {
+    console.error('guestbook ssr guestbook error', error);
+  }
 
   return {
     props: {

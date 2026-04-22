@@ -7,11 +7,11 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
 import { Tooltip } from '@components/ui/tooltip';
 import { LazyImage } from '@components/ui/lazy-image';
-import type { CustomSession } from '@lib/types/auth';
+import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
 
 type GuestbookEntryProps = Guestbook & {
-  session: CustomSession | null;
+  session: AuthUser | undefined;
 };
 
 export function GuestbookEntry({
@@ -21,8 +21,7 @@ export function GuestbookEntry({
   image,
   session,
   username,
-  createdAt,
-  createdBy
+  createdAt
 }: GuestbookEntryProps): React.JSX.Element {
   const { mutate, isPending } = useDeleteGuestbookEntry();
 
@@ -41,7 +40,7 @@ export function GuestbookEntry({
     });
   };
 
-  const isOwner = session?.user.id === createdBy || session?.user.admin;
+  const isOwner = session?.role === 'admin';
   const githubProfileUrl = `https://github.com/${username}`;
 
   return (

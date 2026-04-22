@@ -1,17 +1,12 @@
-import type { Session, User } from 'next-auth';
+export const AUTH_ROLE = ['admin', 'user'] as const;
 
-type DefaultUser = Required<Omit<User, 'id'>>;
+export type AuthRole = (typeof AUTH_ROLE)[number];
 
-export type AssertedUser = {
-  [K in keyof DefaultUser]: NonNullable<DefaultUser[K]>;
-};
-
-type CustomUser = AssertedUser & {
+export type AuthUser = {
   id: string;
-  admin: boolean;
+  name: string;
+  role: AuthRole;
+  image: string;
+  email: string;
   username: string;
-};
-
-export type CustomSession = Session & {
-  user: CustomUser;
 };

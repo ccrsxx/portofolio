@@ -18,8 +18,11 @@ export async function fetcher<T>(
       headers: {
         ...init?.headers,
         Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
-      }
+      },
+      credentials: 'include'
     });
+
+    if (res.status === 204) return null as unknown as T;
 
     const rawData: unknown = await res.json();
 

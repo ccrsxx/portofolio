@@ -1,19 +1,41 @@
 import { type FormEvent } from 'react';
-import { signIn, signOut } from 'next-auth/react';
 import { clsx } from 'clsx';
+import { useQueryClient } from '@tanstack/react-query';
 import { SiGithub } from 'react-icons/si';
+import { authKeys } from '@lib/hooks/use-session';
+import { fetcher } from '@lib/fetcher';
 import { useAddGuestbookEntry } from '@lib/hooks/use-guestbook';
+import { frontendEnv } from '@lib/env';
 import { Button } from '@components/ui/button';
-import type { CustomSession } from '@lib/types/auth';
+import type { AuthUser } from '@lib/types/auth';
 
 type GuestbookCardProps = {
-  session: CustomSession | null;
+  session: AuthUser | undefined;
 };
 
 export function GuestbookForm({
   session
 }: GuestbookCardProps): React.JSX.Element {
+  const queryClient = useQueryClient();
+
   const { mutate, isPending } = useAddGuestbookEntry();
+
+  const handleSignIn = (): void => {
+    window.location.href = `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`;
+  };
+
+  const handleSignOut = async (): Promise<void> => {
+    try {
+      await fetcher(
+        `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/github/logout`,
+        { method: 'POST' }
+      );
+
+      queryClient.setQueryData(authKeys.all, null);
+    } catch (error) {
+      console.error('guestbook form sign out error', error);
+    }
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -78,17 +100,9 @@ export function GuestbookForm({
           onClick={handleSignOut}
           disabled={isPending}
         >
-          ← Sign out @{session.user.name}
+          ← Sign out @{session.name}
         </button>
       )}
     </>
   );
-}
-
-function handleSignIn(): void {
-  void signIn('github');
-}
-
-function handleSignOut(): void {
-  void signOut();
 }
