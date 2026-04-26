@@ -64,5 +64,9 @@ export default withMDX({
       new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary')
     ]
   },
-  pageExtensions: ['ts', 'tsx', 'md', 'mdx']
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  outputFileTracingIncludes: {
+    '/blog': ['./src/pages/blog/**/*'],
+    '/projects': ['./src/pages/projects/**/*']
+  }
 });
