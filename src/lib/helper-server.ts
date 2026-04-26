@@ -1,26 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server';
-import { backendEnv } from './env-server';
-import type { GithubUser } from './types/github';
-
-/**
- * Returns the username with the given user id from the GitHub API.
- */
-export async function getGithubUsername(userId: string): Promise<string> {
-  const response = await fetch(`https://api.github.com/user/${userId}`, {
-    headers: { Authorization: `Bearer ${backendEnv.GITHUB_TOKEN}` }
-  });
-
-  const { login } = (await response.json()) as GithubUser;
-
-  return login;
-}
-
-/**
- * Returns total likes from the given likes object.
- */
-export function getTotalLikes(likes: Record<string, number>): number {
-  return Object.values(likes).reduce((accLikes, like) => accLikes + like, 0);
-}
+import { type NextRequest } from 'next/server';
 
 /**
  * Returns the bearer token from the request headers.
@@ -52,17 +30,4 @@ export function getOrigin(req: NextRequest): string | null {
   const originFromReferer = new URL(referer).origin;
 
   return originFromReferer;
-}
-
-/**
- * Returns a NextResponse with the given status and message.
- */
-export function generateNextResponse(
-  status: number,
-  message: string
-): NextResponse {
-  return new NextResponse(JSON.stringify({ message }), {
-    status,
-    headers: { 'content-type': 'application/json' }
-  });
 }

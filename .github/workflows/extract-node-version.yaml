@@ -1,0 +1,21 @@
+name: Extract Node version
+
+on:
+  workflow_call:
+    outputs:
+      node-version:
+        description: 'Node.js version from package.json'
+        value: ${{ jobs.extract.outputs.node-version }}
+
+jobs:
+  extract:
+    runs-on: self-hosted
+    outputs:
+      node-version: ${{ steps.extract.outputs.node-version }}
+    steps:
+      - uses: actions/checkout@v6
+      - id: extract
+        run: |
+          NODE_VERSION=$(jq -r '.volta.node' package.json)
+          echo "node-version=$NODE_VERSION" >> $GITHUB_OUTPUT
+          echo "Detected Node version: $NODE_VERSION"

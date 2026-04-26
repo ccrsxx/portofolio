@@ -1,0 +1,13 @@
+services:
+  portofolio:
+    image: ghcr.io/ccrsxx/portofolio:latest
+    container_name: portofolio
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NODE_ENV=production
+    ports:
+      - '3000:3000'
+    restart: unless-stopped

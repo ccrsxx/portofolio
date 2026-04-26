@@ -45,7 +45,7 @@ export async function getContentLastUpdatedDate(
 ): Promise<string | null> {
   const response = await fetch(
     `https://api.github.com/repos/ccrsxx/portofolio/commits?path=src/pages/${type}/${slug}.mdx`,
-    { headers: { Authorization: `Bearer ${backendEnv.GITHUB_TOKEN}` } }
+    { headers: { Authorization: `Bearer ${backendEnv.GH_TOKEN}` } }
   );
 
   const commits = (await response.json()) as FileCommitHistory[];

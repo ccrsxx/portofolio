@@ -12,7 +12,6 @@ import {
   type PathContentType
 } from './types/contents';
 import { fetcher } from './fetcher';
-import { frontendEnv } from './env';
 import type { ContentMeta } from './types/meta';
 import type { ContentColumn, ContentStatistics } from './types/statistics';
 import type { Guestbook } from './types/guestbook';
@@ -40,7 +39,7 @@ export async function initializeContents(type: PathContentType): Promise<void> {
 
     const parsedContentType = convertPathContentToContentType(type);
 
-    await fetch(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents`, {
+    await fetch(`${backendEnv.INTERNAL_BACKEND_URL}/contents`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +62,7 @@ export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
  */
 export async function getGuestbook(): Promise<Guestbook[]> {
   const response = await fetcher<Guestbook[]>(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/guestbook`
+    `${backendEnv.INTERNAL_BACKEND_URL}/guestbook`
   );
 
   return response;
@@ -71,7 +70,7 @@ export async function getGuestbook(): Promise<Guestbook[]> {
 
 export async function getSession(token: string): Promise<AuthUser> {
   const response = await fetcher<AuthUser>(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/me`,
+    `${backendEnv.INTERNAL_BACKEND_URL}/auth/me`,
     {
       headers: {
         Cookie: `oauth-token=${token}`
@@ -119,7 +118,7 @@ export async function getContentsStatistics(
   }
 
   const response = await fetcher<ContentStatistics>(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/statistics${queryParams}`
+    `${backendEnv.INTERNAL_BACKEND_URL}/statistics${queryParams}`
   );
 
   return response;
@@ -138,7 +137,7 @@ export async function getContentsDataByType(
   }
 
   const response = await fetcher<ContentColumn[]>(
-    `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contents${queryParams}`
+    `${backendEnv.INTERNAL_BACKEND_URL}/contents${queryParams}`
   );
 
   return response;

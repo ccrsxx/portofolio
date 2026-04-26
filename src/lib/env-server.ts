@@ -3,8 +3,9 @@ import { validStringSchema } from './env';
 
 const envSchema = z.object({
   // Secrets
-  GITHUB_TOKEN: validStringSchema,
-  PRIVATE_SECRET_KEY: validStringSchema
+  GH_TOKEN: validStringSchema,
+  PRIVATE_SECRET_KEY: validStringSchema,
+  INTERNAL_BACKEND_URL: validStringSchema
 });
 
 type EnvSchema = z.infer<typeof envSchema>;

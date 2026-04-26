@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-node-version:
+    uses: ./.github/workflows/extract-node-version.yaml
+
+  type-check:
+    name: Type check
+    runs-on: self-hosted
+
+    needs: setup-node-version
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup-node-version.outputs.node-version }}
+
+      - name: Download deps
+        run: npm ci
+
+      - name: Check types
+        run: npm run type-check
+
+  eslint:
+    name: ESLint
+    runs-on: self-hosted
+
+    needs: setup-node-version
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup-node-version.outputs.node-version }}
+
+      - name: Download deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+  prettier:
+    name: Prettier
+    runs-on: self-hosted
+
+    needs: setup-node-version
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup-node-version.outputs.node-version }}
+
+      - name: Download deps
+        run: npm ci
+
+      - name: Format
+        run: npm run format:check

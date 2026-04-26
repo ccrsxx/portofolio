@@ -1,47 +1,94 @@
-name: 🚀 Deployment
+name: Deployment
+
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Manual deploy / {0}', inputs.sha || github.sha) || format('Automatic deploy / {0}', github.event.head_commit.message) }}
 
 on:
   push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Commit SHA to deploy'
+        required: false
 
 jobs:
-  type-check:
-    name: ✅ Type Check
-    runs-on: ubuntu-latest
+  ci:
+    uses: ./.github/workflows/ci.yaml
+
+  extract-node-version:
+    uses: ./.github/workflows/extract-node-version.yaml
+
+  deploy:
+    name: Build and deploy via Docker on VPS
+    runs-on: self-hosted
+    environment: production
+
+    needs:
+      - ci
+      - extract-node-version
+
+    permissions:
+      packages: write
+
+    env:
+      SHA: ${{ inputs.sha || github.sha }}
+      LATEST_IMAGE: 'ghcr.io/${{ github.repository }}:latest'
+
+      CURRENT_IMAGE: ''
+
     steps:
-      - name: Checkout repo
+      - name: Set current image tag
+        run: |
+          echo "CURRENT_IMAGE=ghcr.io/${{ github.repository }}:${{ env.SHA }}" >> $GITHUB_ENV
+
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SHA }}
 
-      - name: Download deps
-        run: npm ci
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check types
-        run: npm run type-check
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-  eslint:
-    name: 🧪 ESLint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          tags: |
+            ${{ env.LATEST_IMAGE }}
+            ${{ env.CURRENT_IMAGE }}
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            NODE_VERSION=${{ needs.extract-node-version.outputs.node-version }}
+            NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
+            INTERNAL_BACKEND_URL=${{ secrets.INTERNAL_BACKEND_URL }}
+            NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}
+            NEXT_PUBLIC_OWNER_BEARER_TOKEN=${{ secrets.NEXT_PUBLIC_OWNER_BEARER_TOKEN }}
+          secrets: |
+            gh_token=${{ secrets.GH_TOKEN }}
+            private_secret_key=${{ secrets.PRIVATE_SECRET_KEY }}
+          push: true
+          cache-from: type=registry,ref=${{ env.LATEST_IMAGE }}
+          cache-to: type=inline
 
-      - name: Download deps
-        run: npm ci
+      - name: Setup env
+        run: |
+          echo "INTERNAL_BACKEND_URL=${{ secrets.INTERNAL_BACKEND_URL }}" >> .env
 
-      - name: Lint
-        run: npm run lint
+          echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}" >> .env
+          echo "NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}" >> .env
+          echo "NEXT_PUBLIC_OWNER_BEARER_TOKEN=${{ secrets.NEXT_PUBLIC_OWNER_BEARER_TOKEN }}" >> .env
 
-  prettier:
-    name: 🔍 Prettier
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+          echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> .env
+          echo "PRIVATE_SECRET_KEY=${{ secrets.PRIVATE_SECRET_KEY }}" >> .env
 
-      - name: Download deps
-        run: npm ci
-
-      - name: Format
-        run: npm run format:check
+      - name: Deploy with Docker Compose
+        run: |
+          docker compose pull
+          docker compose up -d
