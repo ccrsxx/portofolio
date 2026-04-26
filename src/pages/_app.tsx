@@ -4,7 +4,6 @@ import { configure, start, done } from 'nprogress';
 import { AnimatePresence } from 'framer-motion';
 import { Router, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Layout } from '@components/layout/layout';
@@ -40,7 +39,6 @@ export default function App({
           </AnimatePresence>
         </Layout>
       </ThemeProvider>
-      <Analytics />
     </QueryClientProvider>
   );
 }
