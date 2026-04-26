@@ -35,14 +35,14 @@ export default function Home({
           className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl'
           {...setTransition({ delayIn: 0.1 })}
         >
-          I&apos;m <Accent>Risal</Accent> - Full Stack Developer
+          I&apos;m <Accent>Risal</Accent> - Fullstack Developer
         </motion.h1>
         <motion.p
           className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
-          I&apos;m a self-taught Software Engineer turned Full Stack Developer.
-          I enjoy working with TypeScript, React, and Node.js. I also love
+          I&apos;m a self-taught Software Engineer turned Fullstack Developer. I
+          enjoy working with TypeScript, React, and Node.js. I also love
           exploring new technologies and learning new things.
         </motion.p>
         <motion.section className='mt-6' {...setTransition({ delayIn: 0.3 })}>
