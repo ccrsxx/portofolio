@@ -11,6 +11,7 @@ import { ProjectCard } from '@components/projects/project-card';
 import { ProjectStats } from '@components/projects/project-stats';
 import { Accent } from '@components/ui/accent';
 import { formatDate } from '@lib/format';
+import { convertContentTypeToPathContentType } from '@lib/helper';
 import type { ContentSlugProps } from '@lib/mdx';
 import { setTransition } from '@lib/transition';
 import type { Blog, Content, Project } from '@lib/types/contents';
@@ -38,13 +39,15 @@ export function ContentLayout({
     { type, slug, readTime, lastUpdatedAt, suggestedContents }
   ] = [meta, children.props];
 
+  const parsedType = convertContentTypeToPathContentType(type);
+
   const contentIsBlog = type === 'blog';
 
-  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/pages/${type}/${slug}.mdx`;
-  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/pages/${type}/${slug}.mdx`;
+  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/pages/${parsedType}/${slug}.mdx`;
+  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/pages/${parsedType}/${slug}.mdx`;
 
   const article: Article = {
-    type,
+    type: parsedType,
     tags,
     banner,
     publishedAt,
@@ -97,7 +100,9 @@ export function ContentLayout({
       </section>
       <section className='mt-20 grid gap-4'>
         <h2 className='text-2xl font-bold md:text-4xl'>
-          <Accent>Other {contentIsBlog ? 'posts' : type} you might like</Accent>
+          <Accent>
+            Other {contentIsBlog ? 'posts' : parsedType} you might like
+          </Accent>
         </h2>
         <section className='card-layout'>
           {contentIsBlog
@@ -111,13 +116,8 @@ export function ContentLayout({
               )}
         </section>
       </section>
-      {/* {contentIsBlog && (
-        <section className='mt-12'>
-          <SubscribeCard />
-        </section>
-      )} */}
       <section className='mt-8 flex justify-between font-medium'>
-        <CustomLink href={`/${type}`}>← Back to {type}</CustomLink>
+        <CustomLink href={`/${parsedType}`}>← Back to {parsedType}</CustomLink>
         <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
       </section>
     </motion.main>

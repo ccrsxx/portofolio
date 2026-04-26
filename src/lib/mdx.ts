@@ -29,6 +29,7 @@ export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
 export function getContentSlug(type: PathContentType, slug: string) {
   return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
     const lastUpdatedAt = await getContentLastUpdatedDate(type, slug);
+
     const suggestedContents = await getSuggestedContents(type);
 
     const readTime = await getContentReadTime(type, slug);

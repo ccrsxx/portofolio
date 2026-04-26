@@ -41,10 +41,23 @@ export function getTags(contents: Blog[]): string[] {
   return uniqueTags;
 }
 
+/**
+ * Returns the content type based on the path content type.
+ */
 export function convertPathContentToContentType(
   pathContentType: PathContentType
 ): ContentType {
   if (pathContentType === 'projects') return 'project';
+  return 'blog';
+}
+
+/**
+ * Returns the path content type based on the content type.
+ */
+export function convertContentTypeToPathContentType(
+  contentType: ContentType
+): PathContentType {
+  if (contentType === 'project') return 'projects';
   return 'blog';
 }
 

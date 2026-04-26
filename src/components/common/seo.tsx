@@ -1,5 +1,5 @@
 import { frontendEnv } from '@lib/env';
-import type { Content, ContentType } from '@lib/types/contents';
+import type { Content, PathContentType } from '@lib/types/contents';
 import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ export type Article = Pick<
   Content,
   'tags' | 'banner' | 'publishedAt' | 'lastUpdatedAt'
 > & {
-  type: ContentType;
+  type: PathContentType;
 };
 
 type MainLayoutProps = {
