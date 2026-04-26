@@ -54,7 +54,7 @@ export default function Statistics({
           className='text-2xl font-bold capitalize'
           {...setTransition({ delayIn: 0.3 + 1 / 10 })}
         >
-          Project
+          Projects
         </motion.h2>
         <motion.section {...setTransition({ delayIn: 0.4 + 1 / 10 })}>
           <Table data={projectsData} />
