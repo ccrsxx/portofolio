@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetcher } from '@lib/fetcher';
 import { frontendEnv } from '@lib/env';
+import { fetcher } from '@lib/fetcher';
 import type { AppQueryResult, BackendSuccessApiResponse } from '@lib/types/api';
 import type { CurrentlyPlaying } from '@lib/types/currently-playing';
+import { useQuery } from '@tanstack/react-query';
 
 export const spotifyKeys = {
   currentlyPlaying: ['spotify', 'currently-playing'] as const

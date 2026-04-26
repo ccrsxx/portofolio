@@ -1,6 +1,6 @@
+import type { Types } from '@prequist/lanyard';
 import { useEffect } from 'react';
 import { useLocalStorage } from './use-local-storage';
-import type { Types } from '@prequist/lanyard';
 
 export type Options = {
   /**

@@ -1,24 +1,24 @@
-import { useState, type ChangeEvent } from 'react';
-import { clsx } from 'clsx';
-import {
-  flexRender,
-  useReactTable,
-  getCoreRowModel,
-  getSortedRowModel,
-  createColumnHelper,
-  getFilteredRowModel,
-  type Row,
-  type ColumnDef,
-  type FilterMeta,
-  type CellContext,
-  type SortingState,
-  type SortDirection,
-  type ColumnFiltersState
-} from '@tanstack/react-table';
-import { rankItem } from '@tanstack/match-sorter-utils';
 import { formatNumber } from '@lib/format';
-import { SortIcon } from './sort-icon';
 import type { ContentColumn } from '@lib/types/statistics';
+import { rankItem } from '@tanstack/match-sorter-utils';
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type CellContext,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type FilterMeta,
+  type Row,
+  type SortDirection,
+  type SortingState
+} from '@tanstack/react-table';
+import { clsx } from 'clsx';
+import { useState, type ChangeEvent } from 'react';
+import { SortIcon } from './sort-icon';
 
 type TableProps = {
   data: ContentColumn[];

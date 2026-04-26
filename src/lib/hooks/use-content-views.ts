@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetcher } from '@lib/fetcher';
 import { frontendEnv } from '@lib/env';
+import { fetcher } from '@lib/fetcher';
 import type { AppQueryResult } from '@lib/types/api';
 import type { Views } from '@lib/types/meta';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
 
 export const viewsKeys = {
   all: ['views'] as const,

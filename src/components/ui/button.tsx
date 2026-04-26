@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
-import { Loading } from './loading';
 import type { ComponentProps } from 'react';
+import { Loading } from './loading';
 
 type ButtonProps = ComponentProps<'button'> & {
   loading?: boolean;

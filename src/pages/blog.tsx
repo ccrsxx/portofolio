@@ -1,5 +1,12 @@
-import { useState, useEffect, type ChangeEvent } from 'react';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { BlogCard } from '@components/blog/blog-card';
+import { BlogTag } from '@components/blog/blog-tag';
+import {
+  SortListbox,
+  sortOptions,
+  type SortOption
+} from '@components/blog/sort-listbox';
+import { SEO } from '@components/common/seo';
+import { Accent } from '@components/ui/accent';
 import {
   getAllBlogWithViews,
   getContentsDataByType,
@@ -8,17 +15,9 @@ import {
 import { getTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
-import { SEO } from '@components/common/seo';
-import { BlogTag } from '@components/blog/blog-tag';
-import {
-  SortListbox,
-  sortOptions,
-  type SortOption
-} from '@components/blog/sort-listbox';
-import { BlogCard } from '@components/blog/blog-card';
-import { Accent } from '@components/ui/accent';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
-import type { Blog } from '@lib/types/contents';
+import { useEffect, useState, type ChangeEvent } from 'react';
 
 export default function Blog({
   tags,

@@ -1,8 +1,8 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetcher } from '@lib/fetcher';
 import { frontendEnv } from '@lib/env';
-import type { AppQueryResult, AppMutationResult } from '@lib/types/api';
+import { fetcher } from '@lib/fetcher';
+import type { AppMutationResult, AppQueryResult } from '@lib/types/api';
 import type { LikeStatus } from '@lib/types/meta';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const likesKeys = {
   all: ['likes'] as const,

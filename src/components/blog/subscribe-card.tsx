@@ -1,5 +1,5 @@
-import { Button } from '@components/ui/button';
 import { Accent } from '@components/ui/accent';
+import { Button } from '@components/ui/button';
 
 export function SubscribeCard(): React.JSX.Element {
   return (

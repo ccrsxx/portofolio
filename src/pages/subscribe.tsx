@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { setTransition } from '@lib/transition';
 import { SubscribeCard } from '@components/blog/subscribe-card';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
+import { setTransition } from '@lib/transition';
+import { motion } from 'framer-motion';
 
 export default function Subscribe(): React.JSX.Element {
   return (

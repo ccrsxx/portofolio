@@ -1,21 +1,21 @@
-import {
-  getContentFiles,
-  getContentReadTime,
-  getSuggestedContents,
-  getContentLastUpdatedDate
-} from './mdx-utils';
+import type {
+  Blog,
+  Content,
+  ContentType,
+  PathContentType,
+  Project
+} from '@lib/types/contents';
+import type { GetStaticPropsResult } from 'next';
 import {
   convertPathContentToContentType,
   removeContentExtension
 } from './helper';
-import type { GetStaticPropsResult } from 'next';
-import type {
-  Blog,
-  Project,
-  Content,
-  ContentType,
-  PathContentType
-} from '@lib/types/contents';
+import {
+  getContentFiles,
+  getContentLastUpdatedDate,
+  getContentReadTime,
+  getSuggestedContents
+} from './mdx-utils';
 
 export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
   type: ContentType;

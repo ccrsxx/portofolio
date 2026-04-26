@@ -1,7 +1,7 @@
-import { clsx } from 'clsx';
-import { HiChevronUp, HiChevronDown } from 'react-icons/hi2';
-import type { IconType } from 'react-icons';
 import type { SortDirection } from '@tanstack/react-table';
+import { clsx } from 'clsx';
+import type { IconType } from 'react-icons';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
 
 type SortIconProps = {
   isSorted: false | SortDirection;

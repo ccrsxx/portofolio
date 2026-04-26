@@ -1,8 +1,8 @@
+import { UnstyledLink } from '@components/link/unstyled-link';
+import { Tooltip } from '@components/ui/tooltip';
+import type { IconType } from 'react-icons';
 import { HiEnvelope } from 'react-icons/hi2';
 import { SiDiscord, SiGithub, SiLinkedin, SiX } from 'react-icons/si';
-import { Tooltip } from '@components/ui/tooltip';
-import { UnstyledLink } from '@components/link/unstyled-link';
-import type { IconType } from 'react-icons';
 
 export function Footer(): React.JSX.Element {
   return (

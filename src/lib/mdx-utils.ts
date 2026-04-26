@@ -3,7 +3,7 @@ import { join } from 'path';
 import readingTime from 'reading-time';
 import { backendEnv } from './env-server';
 import { getContentByFiles } from './mdx';
-import type { Blog, Project, PathContentType } from './types/contents';
+import type { Blog, PathContentType, Project } from './types/contents';
 import type { FileCommitHistory } from './types/github';
 
 /**

@@ -1,18 +1,18 @@
-import { motion } from 'framer-motion';
-import { HiDocumentText } from 'react-icons/hi2';
-import { SiGithub, SiLinkedin } from 'react-icons/si';
+import { BlogCard } from '@components/blog/blog-card';
+import { SpotifyCard } from '@components/common/currently-playing-card';
+import { SEO } from '@components/common/seo';
+import { UnstyledLink } from '@components/link/unstyled-link';
+import { ProjectCard } from '@components/projects/project-card';
+import { Accent } from '@components/ui/accent';
 import { initializeAllContents } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
-import { setTransition, fadeInWhenVisible } from '@lib/transition';
-import { SEO } from '@components/common/seo';
-import { BlogCard } from '@components/blog/blog-card';
-import { ProjectCard } from '@components/projects/project-card';
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { SpotifyCard } from '@components/common/currently-playing-card';
-import { Accent } from '@components/ui/accent';
+import { fadeInWhenVisible, setTransition } from '@lib/transition';
+import type { Blog, Project } from '@lib/types/contents';
+import { motion } from 'framer-motion';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
-import type { Blog, Project } from '@lib/types/contents';
+import { HiDocumentText } from 'react-icons/hi2';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 
 export default function Home({
   featuredBlog,

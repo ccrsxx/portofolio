@@ -1,14 +1,14 @@
 import '@styles/globals.css';
 
-import { configure, start, done } from 'nprogress';
-import { AnimatePresence } from 'framer-motion';
-import { Router, useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { ThemeProvider } from 'next-themes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
+import { Layout } from '@components/layout/layout';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AnimatePresence } from 'framer-motion';
+import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
+import { Router, useRouter } from 'next/router';
+import { configure, done, start } from 'nprogress';
+import { useEffect, useState } from 'react';
 
 configure({ showSpinner: false });
 

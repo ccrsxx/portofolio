@@ -1,5 +1,5 @@
+import type { CustomTag, ValidTag } from '@lib/types/helper';
 import { clsx } from 'clsx';
-import type { ValidTag, CustomTag } from '@lib/types/helper';
 
 type TooltipProps<T extends ValidTag> = CustomTag<T> & {
   tip: string | React.JSX.Element;

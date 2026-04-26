@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { motion, type MotionProps } from 'framer-motion';
-import { HiTrash } from 'react-icons/hi2';
-import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
-import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
-import { Tooltip } from '@components/ui/tooltip';
 import { LazyImage } from '@components/ui/lazy-image';
+import { Tooltip } from '@components/ui/tooltip';
+import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
+import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
+import { motion, type MotionProps } from 'framer-motion';
+import { useState } from 'react';
+import { HiTrash } from 'react-icons/hi2';
 
 type GuestbookEntryProps = Guestbook & {
   session: AuthUser | undefined;

@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion';
-import { getAllContents } from '@lib/mdx';
-import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { ProjectCard } from '@components/projects/project-card';
 import { Accent } from '@components/ui/accent';
-import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
+import { getAllContents } from '@lib/mdx';
+import { setTransition } from '@lib/transition';
 import type { Project } from '@lib/types/contents';
+import { motion } from 'framer-motion';
+import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
 
 export default function Projects({
   projects

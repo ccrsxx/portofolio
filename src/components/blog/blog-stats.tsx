@@ -1,8 +1,8 @@
-import { HiEye, HiClock } from 'react-icons/hi2';
-import { Accent } from '@components/ui/accent';
 import { ViewsCounter } from '@components/content/views-counter';
+import { Accent } from '@components/ui/accent';
 import type { Blog } from '@lib/types/contents';
 import type { PropsForViews } from '@lib/types/helper';
+import { HiClock, HiEye } from 'react-icons/hi2';
 
 type BlogStatProps = PropsForViews<Pick<Blog, 'readTime'>>;
 

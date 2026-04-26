@@ -1,13 +1,13 @@
+import { useMounted } from '@lib/hooks/use-mounted';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import {
-  useState,
   useRef,
+  useState,
   type CSSProperties,
-  type PropsWithChildren,
-  type ComponentPropsWithoutRef
+  type ComponentPropsWithoutRef,
+  type PropsWithChildren
 } from 'react';
 import { HiClipboard, HiClipboardDocumentCheck } from 'react-icons/hi2';
-import { useMounted } from '@lib/hooks/use-mounted';
 
 type PrettyCodeProps = PropsWithChildren<{
   style: Pick<CSSProperties, 'backgroundColor'>;

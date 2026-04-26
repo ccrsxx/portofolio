@@ -1,20 +1,20 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { setTransition } from '@lib/transition';
+import { SEO } from '@components/common/seo';
+import { GuestbookCard } from '@components/guestbook/guestbook-card';
+import { GuestbookEntry } from '@components/guestbook/guestbook-entry';
+import { GuestbookForm } from '@components/guestbook/guestbook-form';
+import { Accent } from '@components/ui/accent';
+import { getGuestbook, getSession } from '@lib/api';
 import { useGuestbook } from '@lib/hooks/use-guestbook';
 import { useSession } from '@lib/hooks/use-session';
-import { getGuestbook, getSession } from '@lib/api';
-import { SEO } from '@components/common/seo';
-import { Accent } from '@components/ui/accent';
-import { GuestbookCard } from '@components/guestbook/guestbook-card';
-import { GuestbookForm } from '@components/guestbook/guestbook-form';
-import { GuestbookEntry } from '@components/guestbook/guestbook-entry';
-import type {
-  GetServerSidePropsResult,
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType
-} from 'next';
+import { setTransition } from '@lib/transition';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
+import { AnimatePresence, motion } from 'framer-motion';
+import type {
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+  InferGetServerSidePropsType
+} from 'next';
 
 export default function Guestbook({
   session: fallbackSession,

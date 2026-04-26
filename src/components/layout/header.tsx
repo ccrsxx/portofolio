@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { useRef } from 'react';
-import { useRouter } from 'next/router';
-import { useInView } from 'framer-motion';
-import { clsx } from 'clsx';
 import { ThemeSwitch } from '@components/common/theme-switch';
+import { clsx } from 'clsx';
+import { useInView } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useRef } from 'react';
 
 export function Header(): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);

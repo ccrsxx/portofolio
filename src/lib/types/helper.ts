@@ -1,9 +1,9 @@
-import type { Content } from './contents';
 import type {
+  ComponentPropsWithoutRef,
   HTMLAttributes,
-  PropsWithChildren,
-  ComponentPropsWithoutRef
+  PropsWithChildren
 } from 'react';
+import type { Content } from './contents';
 
 export type ValidTag = keyof React.JSX.IntrinsicElements;
 

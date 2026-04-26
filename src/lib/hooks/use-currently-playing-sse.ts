@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { frontendEnv } from '@lib/env';
-import { useLocalStorage } from './use-local-storage';
 import type { BackendSuccessApiResponse } from '@lib/types/api';
 import type { CurrentlyPlaying } from '@lib/types/currently-playing';
+import { useEffect } from 'react';
+import { useLocalStorage } from './use-local-storage';
 
 type UseCurrentlyPlayingSSE = {
   currentlyPlaying: BackendSuccessApiResponse<CurrentlyPlaying> | null;

@@ -1,16 +1,16 @@
+import { SEO } from '@components/common/seo';
+import { CustomLink } from '@components/link/custom-link';
+import { Accent } from '@components/ui/accent';
+import { Tooltip } from '@components/ui/tooltip';
+import { setTransition } from '@lib/transition';
 import { motion } from 'framer-motion';
+import type { IconType } from 'react-icons';
 import {
   SiFirebase,
   SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss
+  SiTailwindcss,
+  SiTypescript
 } from 'react-icons/si';
-import { setTransition } from '@lib/transition';
-import { SEO } from '@components/common/seo';
-import { Accent } from '@components/ui/accent';
-import { Tooltip } from '@components/ui/tooltip';
-import { CustomLink } from '@components/link/custom-link';
-import type { IconType } from 'react-icons';
 
 export default function About(): React.JSX.Element {
   return (

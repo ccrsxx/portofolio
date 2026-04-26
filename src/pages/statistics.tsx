@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { setTransition } from '@lib/transition';
-import { getContentsDataByType, getContentsStatistics } from '@lib/api';
 import { SEO } from '@components/common/seo';
-import { Accent } from '@components/ui/accent';
-import { Table } from '@components/statistics/table';
 import { StatisticsCard } from '@components/statistics/statistics-card';
-import type { InferGetStaticPropsType, GetStaticPropsResult } from 'next/types';
+import { Table } from '@components/statistics/table';
+import { Accent } from '@components/ui/accent';
+import { getContentsDataByType, getContentsStatistics } from '@lib/api';
+import { setTransition } from '@lib/transition';
 import type { ContentColumn, ContentStatistics } from '@lib/types/statistics';
+import { motion } from 'framer-motion';
+import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next/types';
 
 export default function Statistics({
   blogData,

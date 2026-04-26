@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { frontendEnv } from '@lib/env';
 import { fetcher } from '@lib/fetcher';
 import { ApplicationError, type AppQueryResult } from '@lib/types/api';
-import { frontendEnv } from '@lib/env';
 import type { AuthUser } from '@lib/types/auth'; // Map to your Go struct
+import { useQuery } from '@tanstack/react-query';
 
 export const authKeys = {
   all: ['session'] as const

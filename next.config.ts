@@ -1,11 +1,11 @@
 import nextMDX from '@next/mdx';
-import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings, {
   type Options as RehypeAutolinkHeadingsOptions
 } from 'rehype-autolink-headings';
 import rehypePrettyCode, {
   type Options as RehypePrettyCodeOptions
 } from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
 
 const rehypeAutolinkHeadingsOptions: RehypeAutolinkHeadingsOptions = {
   behavior: 'wrap'

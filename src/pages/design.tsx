@@ -1,10 +1,10 @@
+import { SEO } from '@components/common/seo';
+import { ThemeSwitch } from '@components/common/theme-switch';
+import { Accent } from '@components/ui/accent';
+import { setTransition } from '@lib/transition';
+import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { clsx } from 'clsx';
-import { setTransition } from '@lib/transition';
-import { SEO } from '@components/common/seo';
-import { Accent } from '@components/ui/accent';
-import { ThemeSwitch } from '@components/common/theme-switch';
 
 export default function Design(): React.JSX.Element {
   const { theme } = useTheme();

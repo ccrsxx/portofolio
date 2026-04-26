@@ -1,12 +1,12 @@
-import clsx from 'clsx';
-import { useState, useEffect } from 'react';
-import { SiSpotify, SiJellyfin, SiApplemusic } from 'react-icons/si';
-import { HiPause, HiPlay } from 'react-icons/hi2';
-import { useMounted } from '@lib/hooks/use-mounted';
+import { UnstyledLink } from '@components/link/unstyled-link';
+import { LazyImage } from '@components/ui/lazy-image';
 import { formatMilisecondsToPlayback } from '@lib/format';
 import { useCurrentlyPlayingSSE } from '@lib/hooks/use-currently-playing-sse';
-import { LazyImage } from '@components/ui/lazy-image';
-import { UnstyledLink } from '@components/link/unstyled-link';
+import { useMounted } from '@lib/hooks/use-mounted';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { HiPause, HiPlay } from 'react-icons/hi2';
+import { SiApplemusic, SiJellyfin, SiSpotify } from 'react-icons/si';
 
 export function SpotifyCard(): React.ReactNode {
   const [progressPercentage, setProgressPercentage] = useState(0);

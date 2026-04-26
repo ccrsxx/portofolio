@@ -1,5 +1,5 @@
+import type { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { z } from 'zod';
-import type { UseQueryResult, UseMutationResult } from '@tanstack/react-query';
 
 export const BackendSuccessSchema = z.object({
   data: z.any() // We don't validate the inside, we'll assert it as T later

@@ -1,8 +1,8 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useTheme } from 'next-themes';
 import { frontendEnv } from '@lib/env';
 import type { Content, ContentType } from '@lib/types/contents';
+import { useTheme } from 'next-themes';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export type Article = Pick<
   Content,

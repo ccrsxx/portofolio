@@ -1,8 +1,8 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
+import eslint from '@eslint/js';
+import { dirname } from 'path';
+import tseslint from 'typescript-eslint';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -50,44 +50,6 @@ export default tseslint.config([
       'no-constant-binary-expression': 'error',
 
       // Import plugin rules
-      'import/order': [
-        'warn',
-        {
-          pathGroups: [
-            {
-              pattern: '*.css',
-              group: 'builtin',
-              position: 'before',
-
-              patternOptions: {
-                matchBase: true
-              }
-            },
-            {
-              pattern: '@lib/**',
-              group: 'external',
-              position: 'after'
-            },
-            {
-              pattern: '@components/**',
-              group: 'external',
-              position: 'after'
-            }
-          ],
-          warnOnUnassignedImports: true,
-          pathGroupsExcludedImportTypes: ['type'],
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-            'object',
-            'type'
-          ]
-        }
-      ],
       'import/no-duplicates': ['warn', { 'prefer-inline': true }],
 
       // TypeScript plugin rules

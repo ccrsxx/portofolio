@@ -1,7 +1,7 @@
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
-import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi2';
-import { useTheme } from 'next-themes';
 import { useMounted } from '@lib/hooks/use-mounted';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
 
 export function ThemeSwitch(): React.JSX.Element | null {
   const { theme, setTheme } = useTheme();

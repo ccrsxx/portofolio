@@ -1,10 +1,10 @@
-import { HiEye, HiUser, HiClock, HiLink } from 'react-icons/hi2';
-import { SiGithub, SiYoutube } from 'react-icons/si';
-import { CustomLink } from '@components/link/custom-link';
 import { ViewsCounter } from '@components/content/views-counter';
-import type { IconType } from 'react-icons';
+import { CustomLink } from '@components/link/custom-link';
 import type { Project } from '@lib/types/contents';
 import type { PropsForViews } from '@lib/types/helper';
+import type { IconType } from 'react-icons';
+import { HiClock, HiEye, HiLink, HiUser } from 'react-icons/hi2';
+import { SiGithub, SiYoutube } from 'react-icons/si';
 
 type ProjectLinks = {
   name: string;

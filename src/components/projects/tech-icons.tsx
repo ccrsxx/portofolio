@@ -1,22 +1,22 @@
+import type { IconType } from 'react-icons';
 import { IoLogoVercel } from 'react-icons/io5';
 import {
-  SiGit,
-  SiSass,
-  SiReact,
-  SiNotion,
-  SiMongodb,
   SiFirebase,
-  SiMarkdown,
-  SiPrettier,
-  SiNodedotjs,
-  SiNextdotjs,
+  SiGit,
+  SiGoogleanalytics,
   SiJavascript,
-  SiTypescript,
+  SiMarkdown,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNotion,
+  SiPrettier,
+  SiReact,
+  SiSass,
   SiTailwindcss,
-  SiGoogleanalytics
+  SiTypescript
 } from 'react-icons/si';
 import { Tooltip } from '../ui/tooltip';
-import type { IconType } from 'react-icons';
 
 export function TechIcons({ tags }: { tags: string }): React.JSX.Element {
   const techsArray = tags.split(',');

@@ -1,7 +1,7 @@
-import Image, { type ImageProps, type StaticImageData } from 'next/image';
-import { clsx } from 'clsx';
-import { useModal } from '@lib/hooks/use-modal';
 import { preventBubbling } from '@lib/helper';
+import { useModal } from '@lib/hooks/use-modal';
+import { clsx } from 'clsx';
+import Image, { type ImageProps, type StaticImageData } from 'next/image';
 import { Modal } from './modal';
 
 type ImagePreviewProps = Omit<ImageProps, 'src'> & {
