@@ -16,7 +16,8 @@ export function useSession(
     initialData: fallbackData as AuthUser | undefined,
     queryFn: ({ signal }) =>
       fetcher<AuthUser>(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
-        signal
+        signal,
+        credentials: 'include'
       }),
     retry: (failureCount, error) => {
       if (error instanceof ApplicationError) {

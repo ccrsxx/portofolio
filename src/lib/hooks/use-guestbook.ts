@@ -27,9 +27,10 @@ export function useAddGuestbookEntry(): AppMutationResult<Guestbook, Text> {
   return useMutation({
     mutationFn: (text: Text) =>
       fetcher<Guestbook>(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/guestbook`, {
+        body: JSON.stringify({ text }),
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        credentials: 'include'
       }),
     onSuccess: (newEntry) => {
       queryClient.setQueryData<Guestbook[]>(
@@ -46,7 +47,8 @@ export function useDeleteGuestbookEntry(): AppMutationResult<void, string> {
   return useMutation({
     mutationFn: (id: string) =>
       fetcher<void>(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/guestbook/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        credentials: 'include'
       }),
     onSuccess: (_, deletedId) => {
       queryClient.setQueryData<Guestbook[]>(guestbookKeys.all, (oldGuestbook) =>

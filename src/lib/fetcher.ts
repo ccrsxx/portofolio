@@ -1,4 +1,3 @@
-import { frontendEnv } from './env';
 import {
   ApplicationError,
   BackendErrorSchema,
@@ -13,14 +12,7 @@ export async function fetcher<T>(
   init?: RequestInit
 ): Promise<T> {
   try {
-    const res = await fetch(input, {
-      ...init,
-      headers: {
-        ...init?.headers,
-        Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
-      },
-      credentials: 'include'
-    });
+    const res = await fetch(input, init);
 
     if (res.status === 204) return null as unknown as T;
 

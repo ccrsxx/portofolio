@@ -34,7 +34,10 @@ export function useLikeContent(): AppMutationResult<LikeStatus, string> {
       fetcher<LikeStatus>(
         `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/likes/${slug}`,
         {
-          method: 'POST'
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
+          }
         }
       ),
     onSuccess: (newLikeStatus, slug) => {

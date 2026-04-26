@@ -39,7 +39,10 @@ export function useContentViews(
         const newViews = await fetcher<Views>(
           `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/views/${slug}`,
           {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
+            }
           }
         );
 
