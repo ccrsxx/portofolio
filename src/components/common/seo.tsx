@@ -68,7 +68,7 @@ export function SEO({
   const { themeColor, colorScheme } = systemTheme;
 
   const ogTitle = `${title} | ${
-    isHomepage ? 'Fullstack Developer' : 'Risal Amin'
+    isHomepage ? 'Full Stack Developer' : 'Risal Amin'
   }`;
 
   const ogImageUrl = `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/og?${ogImageQuery.toString()}`;

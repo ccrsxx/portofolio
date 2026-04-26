@@ -52,7 +52,7 @@ export default function About(): React.JSX.Element {
             <CustomLink href='https://theodinproject.com'>
               The Odin Project
             </CustomLink>{' '}
-            to learn fullstack development. I&apos;m always motivated to learn
+            to learn Full Stack Development. I&apos;m always motivated to learn
             new technologies and techniques, and I enjoy getting feedback to
             help me improve.
           </p>
