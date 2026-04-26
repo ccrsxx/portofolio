@@ -63,7 +63,7 @@ jobs:
           tags: |
             ${{ env.LATEST_IMAGE }}
             ${{ env.CURRENT_IMAGE }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           build-args: |
             NODE_VERSION=${{ needs.extract-node-version.outputs.node-version }}
             NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
