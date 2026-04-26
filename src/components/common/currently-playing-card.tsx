@@ -88,7 +88,6 @@ export function SpotifyCard(): React.ReactNode {
               {albumImageUrl && (
                 <div className='shrink-0'>
                   <LazyImage
-                    unoptimized
                     className='main-border h-16 w-16 overflow-hidden rounded-md'
                     title={albumName}
                     src={albumImageUrl}
