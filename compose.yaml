@@ -11,3 +11,7 @@ services:
     ports:
       - '3000:3000'
     restart: unless-stopped
+    cap_drop:
+      - ALL
+    security_opt:
+      - 'no-new-privileges:true'
