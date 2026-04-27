@@ -1,8 +1,9 @@
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Tooltip } from '@components/ui/tooltip';
 import type { IconType } from 'react-icons';
+import { FaLinkedin } from 'react-icons/fa';
 import { HiEnvelope } from 'react-icons/hi2';
-import { SiDiscord, SiGithub, SiLinkedin, SiX } from 'react-icons/si';
+import { SiDiscord, SiGithub, SiX } from 'react-icons/si';
 
 export function Footer(): React.JSX.Element {
   return (
@@ -121,7 +122,7 @@ const socialLinks: SocialLink[] = [
     tip: 'Find me on',
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/risalamin',
-    Icon: SiLinkedin
+    Icon: FaLinkedin
   },
   {
     tip: 'Follow me on',

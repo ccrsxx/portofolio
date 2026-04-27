@@ -18,8 +18,7 @@ export function useHeadingData(): UseHeadingData[] {
     );
 
     const newHeadingData = headingElements.reduce((acc, heading) => {
-      const { id, nodeName, textContent } = heading;
-      const title = textContent as string;
+      const { id, nodeName, textContent: title } = heading;
 
       if (nodeName === 'H2') acc.push({ id, title, items: [] });
       else if (nodeName === 'H3' && acc.length) {
