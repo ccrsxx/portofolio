@@ -145,7 +145,7 @@ const favoriteTechStack: FavoriteTechStack[] = [
     Icon: SiTailwindcss
   },
   {
-    tip: 'a powerful, open source object-relational database system with a strong reputation for reliability and data integrity.',
+    tip: 'a powerful, open source object-relational database system with a strong reliability and data integrity.',
     name: 'PostgreSQL',
     href: 'https://postgresql.org',
     Icon: SiPostgresql
