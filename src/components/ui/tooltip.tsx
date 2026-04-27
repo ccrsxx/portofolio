@@ -23,7 +23,10 @@ export function Tooltip<T extends ValidTag = typeof DEFAULT_TAG>({
       {children}
       <div
         className={clsx(
-          'main-border bg-background invisible absolute left-1/2 z-20 -translate-x-1/2 -translate-y-12 rounded-md px-2 py-1 text-sm whitespace-nowrap opacity-0 [transition:visibility_0ms_ease_300ms,300ms_ease] group-hover:visible group-hover:opacity-100 peer-focus-visible:visible peer-focus-visible:opacity-100',
+          `main-border bg-background invisible absolute left-1/2 z-20 -translate-x-1/2
+           -translate-y-12 rounded-md px-2 py-1 text-sm whitespace-nowrap opacity-0
+           [transition:visibility_0ms_ease_300ms,300ms_ease] group-hover:visible
+           group-hover:opacity-100 peer-focus-visible:visible peer-focus-visible:opacity-100`,
           tooltipClassName
         )}
       >

@@ -6,8 +6,10 @@ import { setTransition } from '@lib/transition';
 import { motion } from 'framer-motion';
 import type { IconType } from 'react-icons';
 import {
-  SiFirebase,
+  SiGo,
   SiNextdotjs,
+  SiPostgresql,
+  SiReact,
   SiTailwindcss,
   SiTypescript
 } from 'react-icons/si';
@@ -78,9 +80,9 @@ export default function About(): React.JSX.Element {
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              tooltipClassName='group-hover:-translate-y-36! w-72 px-3 py-4 -translate-y-28!
+              tooltipClassName='group-hover:-translate-y-38! w-72 px-3 py-4 -translate-y-32!
                                 text-center whitespace-normal! 2xl:-translate-x-1/2!
-                                peer-focus-visible:-translate-y-36!'
+                                peer-focus-visible:-translate-y-38!'
               tag='li'
               key={name}
               tip={
@@ -113,27 +115,39 @@ type FavoriteTechStack = {
 
 const favoriteTechStack: FavoriteTechStack[] = [
   {
+    tip: 'a strongly typed language that builds on JavaScript, giving you better tooling at any scale.',
+    name: 'TypeScript',
+    href: 'https://typescriptlang.org',
+    Icon: SiTypescript
+  },
+  {
+    tip: 'an open-source programming language that makes it easy to build simple, reliable, and efficient software.',
+    name: 'Go',
+    href: 'https://go.dev',
+    Icon: SiGo
+  },
+  {
+    tip: 'a JavaScript library for building user interfaces, allowing you to create reusable UI components.',
+    name: 'React',
+    href: 'https://reactjs.org',
+    Icon: SiReact
+  },
+  {
     tip: 'a React framework that makes it easy to build static and server-side rendered applications.',
     name: 'Next.js',
     href: 'https://nextjs.org',
     Icon: SiNextdotjs
   },
   {
-    tip: 'a strongly typed language that builds on JavaScript, giving you better tooling at any scale.',
-    name: 'TypeScript',
-    href: 'https://www.typescriptlang.org',
-    Icon: SiTypescript
-  },
-  {
-    tip: 'an app development platform that helps you build and grow apps and games users love.',
-    name: 'Firebase',
-    href: 'https://firebase.google.com',
-    Icon: SiFirebase
-  },
-  {
     tip: 'a utility-first CSS framework that helps you build custom designs without ever leaving your JSX.',
     name: 'Tailwind CSS',
     href: 'https://tailwindcss.com',
     Icon: SiTailwindcss
+  },
+  {
+    tip: 'a powerful, open source object-relational database system with a strong reputation for reliability and data integrity.',
+    name: 'PostgreSQL',
+    href: 'https://postgresql.org',
+    Icon: SiPostgresql
   }
 ];
