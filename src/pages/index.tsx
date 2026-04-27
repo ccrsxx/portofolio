@@ -11,8 +11,9 @@ import type { Blog, Project } from '@lib/types/contents';
 import { motion } from 'framer-motion';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import type { IconType } from 'react-icons';
+import { FaLinkedin } from 'react-icons/fa';
 import { HiDocumentText } from 'react-icons/hi2';
-import { SiGithub, SiLinkedin } from 'react-icons/si';
+import { SiGithub } from 'react-icons/si';
 
 export default function Home({
   featuredBlog,
@@ -158,7 +159,7 @@ const socialLink: SocialLink[] = [
   {
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/risalamin',
-    Icon: SiLinkedin
+    Icon: FaLinkedin
   },
   {
     name: 'GitHub',
