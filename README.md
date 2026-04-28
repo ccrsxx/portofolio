@@ -8,10 +8,11 @@ Currently available features/pages:
 
 - Light and Dark mode support.
 - Fully responsive design and animations.
-- Content statistics, views, and likes tracking.
-- Guestbook authenticated via custom GitHub OAuth.
-- Real-time Spotify and Jellyfin currently playing status.
 - MDX-powered blog and project showcases with syntax highlighting.
+- Several dynamic features are powered by a [custom Go API backend](https://github.com/ccrsxx/api), including:
+  - Content statistics, views, and likes tracking.
+  - Guestbook authenticated via custom GitHub OAuth.
+  - Real-time Spotify and Jellyfin currently playing status.
 
 ## Development
 
