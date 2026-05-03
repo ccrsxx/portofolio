@@ -28,7 +28,7 @@ export function GuestbookForm({
     try {
       await fetcher(
         `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/github/logout`,
-        { method: 'POST' }
+        { method: 'POST', credentials: 'include' }
       );
 
       queryClient.setQueryData(authKeys.all, null);
