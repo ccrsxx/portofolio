@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 # check=skip=InvalidDefaultArgInFrom
 
-ARG NODE_VERSION
-
 # ---
+
+ARG NODE_VERSION
 
 FROM node:${NODE_VERSION}-alpine AS builder
 
