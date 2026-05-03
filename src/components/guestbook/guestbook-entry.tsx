@@ -86,7 +86,7 @@ export function GuestbookEntry({
           type='button'
           onClick={handleUnRegisterGuestbook}
         >
-          <HiTrash className='h-5 w-5' />
+          <HiTrash className='text-lg' />
         </Button>
       )}
     </motion.article>

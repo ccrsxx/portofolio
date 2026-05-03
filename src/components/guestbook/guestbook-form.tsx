@@ -89,7 +89,7 @@ export function GuestbookForm({
             className='custom-button clickable flex items-center gap-2 font-bold whitespace-nowrap'
             onClick={handleSignIn}
           >
-            <SiGithub className='h-5 w-5' />
+            <SiGithub className='text-lg' />
             Sign in
           </Button>
         )}

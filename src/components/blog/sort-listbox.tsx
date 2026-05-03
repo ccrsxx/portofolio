@@ -29,11 +29,15 @@ export function SortListbox({
             )}
           >
             <span className='flex items-center gap-2 truncate'>
-              {sortOrder === 'date' ? <HiCalendar /> : <HiEye />}
+              {sortOrder === 'date' ? (
+                <HiCalendar className='text-lg' />
+              ) : (
+                <HiEye className='text-lg' />
+              )}
               Sort by {sortOrder}
             </span>
             <i className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
-              <HiArrowsUpDown className='h-5 w-5 text-gray-400' />
+              <HiArrowsUpDown className='text-lg text-gray-400' />
             </i>
           </ListboxButton>
           <AnimatePresence mode='wait'>
@@ -51,7 +55,7 @@ export function SortListbox({
                     >
                       {({ selected }): React.JSX.Element => (
                         <>
-                          <i className='text-accent-main flex items-center h-5 w-5'>
+                          <i className='text-accent-main flex items-center w-5 h-5'>
                             {selected && <HiCheck className='text-lg' />}
                           </i>
                           <span
