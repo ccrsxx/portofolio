@@ -50,7 +50,7 @@ export function LikesCounter({
       )}
     >
       <button
-        className='smooth-tab relative transition-transform hover:scale-110 focus-visible:scale-110 active:scale-95 disabled:cursor-not-allowed'
+        className='clickable relative disabled:cursor-not-allowed border-0'
         onClick={() => likeContent(slug)}
         disabled={isLikeButtonDisabled}
         aria-label={

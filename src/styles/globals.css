@@ -89,11 +89,7 @@ main {
 }
 
 @utility clickable {
-  @apply smooth-tab main-border rounded-md shadow-xs transition hover:scale-[1.03] hover:shadow-md active:scale-[0.97];
-
-  &:focus-visible {
-    @apply scale-[1.03] shadow-md;
-  }
+  @apply smooth-tab main-border rounded-md shadow-xs transition-transform hover:scale-105 hover:shadow-md focus-visible:scale-105 focus-visible:shadow-md active:scale-95;
 }
 
 @utility gradient-title {

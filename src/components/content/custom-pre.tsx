@@ -1,4 +1,5 @@
 import { useMounted } from '@lib/hooks/use-mounted';
+import clsx from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import {
   useRef,
@@ -39,7 +40,11 @@ export function CustomPre({
   return (
     <>
       {mounted && <div data-rehype-pretty-code-title>{dataLanguage}</div>}
-      <pre {...rest} ref={preRef}>
+      <pre
+        {...rest}
+        ref={preRef}
+        className={clsx(rest.className, 'smooth-tab')}
+      >
         {mounted && (
           <button
             className='main-border smooth-tab clickable text-muted absolute top-2 right-2 grid rounded-md p-2'
@@ -48,7 +53,7 @@ export function CustomPre({
             <AnimatePresence mode='wait' initial={false}>
               {copied ? (
                 <motion.i {...variants} key='copied'>
-                  <HiClipboardDocumentCheck className='text-lg text-green-400' />
+                  <HiClipboardDocumentCheck className='text-lg text-accent-main' />
                 </motion.i>
               ) : (
                 <motion.i {...variants} key='not-copied'>
