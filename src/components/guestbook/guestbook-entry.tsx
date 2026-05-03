@@ -7,7 +7,6 @@ import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
 import { motion, type MotionProps } from 'framer-motion';
-import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi2';
 
 type GuestbookEntryProps = Guestbook & {
@@ -23,19 +22,14 @@ export function GuestbookEntry({
   username,
   createdAt
 }: GuestbookEntryProps): React.JSX.Element {
-  const { mutate, isPending } = useDeleteGuestbookEntry();
+  const { isPending, isSuccess, mutate } = useDeleteGuestbookEntry();
 
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const isLoading = isPending || isDeleting;
+  const isLoading = isPending || isSuccess;
 
   const handleUnRegisterGuestbook = (): void => {
-    setIsDeleting(true);
-
     mutate(id, {
       onError: (error) => {
         console.error('guestbook entry delete error', error);
-        setIsDeleting(false);
       }
     });
   };
