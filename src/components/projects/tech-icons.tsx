@@ -22,14 +22,13 @@ export function TechIcons({ tags }: { tags: string }): React.JSX.Element {
   const techsArray = tags.split(',');
 
   return (
-    <ul className='mt-2 flex gap-2 [&>li:first-child>div]:-translate-x-1/3'>
+    <ul className='mt-2 flex gap-2 [&>li:first-child>div]:[position-area:top_span-right]'>
       {techsArray.map((tech) => {
         const { name, Icon } = techList[tech];
 
         return (
           <Tooltip
             className='text-primary text-xl'
-            tooltipClassName='group-hover:-translate-y-[3.75rem]'
             tag='li'
             tip={name}
             key={name}

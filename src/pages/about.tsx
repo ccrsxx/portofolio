@@ -75,14 +75,12 @@ export default function About(): React.JSX.Element {
           Favorite Tech Stack
         </motion.h2>
         <motion.ul
-          className='translate flex gap-4 [&>li:first-child>div]:-translate-x-4 [&>li:nth-child(2)>div]:-translate-x-16 [&>li:nth-child(3)>div]:-translate-x-28'
+          className='translate flex gap-4 [&>li:nth-child(-n+3)>div]:[position-area:top_span-right]'
           {...setTransition({ delayIn: 0.4 })}
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              tooltipClassName='group-hover:-translate-y-38! w-72 px-3 py-4 -translate-y-32!
-                                text-center whitespace-normal! 2xl:-translate-x-1/2!
-                                peer-focus-visible:-translate-y-38!'
+              tooltipClassName='w-72 px-3 py-4 mb-4 text-center'
               tag='li'
               key={name}
               tip={

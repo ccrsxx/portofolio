@@ -10,11 +10,7 @@ export function Footer(): React.JSX.Element {
     <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
       <nav className='mt-6 flex flex-wrap justify-center gap-x-8 gap-y-4'>
         {footerLinks.map(({ name, href, tip }) => (
-          <Tooltip
-            tooltipClassName='hidden sm:block group-hover:-translate-y-16 peer-focus-visible:-translate-y-16'
-            tip={tip}
-            key={name}
-          >
+          <Tooltip tip={tip} key={name}>
             <UnstyledLink
               className='animated-underline peer text-primary text-sm font-medium'
               href={href}

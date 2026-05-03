@@ -68,10 +68,10 @@ export function GuestbookEntry({
             {name}
           </UnstyledLink>
           <Tooltip
-            className='whitespace-nowrap'
             tip={formatFullTimeStamp(createdAt)}
+            tooltipClassName='[position-try-fallbacks:none] group-hover:-translate-y-4! -translate-y-2!'
           >
-            <button className='custom-underline peer text-muted cursor-pointer text-sm'>
+            <button className='custom-underline text-muted cursor-pointer text-sm'>
               {formatTimestamp(createdAt)}
             </button>
           </Tooltip>

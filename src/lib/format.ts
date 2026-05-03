@@ -1,3 +1,5 @@
+const DEFAULT_LOCALE = 'en-GB';
+
 const NUMBER_FORMATTER = new Intl.NumberFormat();
 
 /**
@@ -7,7 +9,7 @@ export function formatNumber(numberValue: number): string {
   return NUMBER_FORMATTER.format(numberValue);
 }
 
-const DATE_FORMATTER = new Intl.DateTimeFormat(undefined, {
+const DATE_FORMATTER = new Intl.DateTimeFormat(DEFAULT_LOCALE, {
   dateStyle: 'long'
 });
 
@@ -22,11 +24,11 @@ export function formatDate(dateString: string): string {
   return DATE_FORMATTER.format(date);
 }
 
-const SHORT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
+const SHORT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(DEFAULT_LOCALE, {
   timeStyle: 'short'
 });
 
-const LONG_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
+const LONG_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(DEFAULT_LOCALE, {
   dateStyle: 'short'
 });
 

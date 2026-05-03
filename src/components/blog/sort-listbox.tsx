@@ -38,19 +38,22 @@ export function SortListbox({
           </ListboxButton>
           <AnimatePresence mode='wait'>
             {open && (
-              <ListboxOptions as={Fragment} anchor='bottom end' static>
+              <ListboxOptions as={Fragment} anchor='bottom' static>
                 <motion.ul
-                  className='main-border smooth-tab bg-background z-10 max-h-60 w-52 overflow-auto rounded-md text-sm shadow-lg [--anchor-gap:8px]'
+                  className='main-border smooth-tab bg-background z-10 max-h-60 w-(--button-width) overflow-auto rounded-md text-sm shadow-lg [--anchor-gap:8px]'
                   {...variants}
                 >
                   {sortOptions.map((sortOption) => (
                     <ListboxOption
-                      className='hover:bg-accent-main/10 data-focus:bg-accent-main/10 relative cursor-pointer py-2 pr-4 pl-10 transition-colors select-none'
+                      className='hover:bg-accent-main/10 data-focus:bg-accent-main/10 cursor-pointer py-2 px-4 transition-colors select-none flex gap-2'
                       value={sortOption}
                       key={sortOption}
                     >
                       {({ selected }): React.JSX.Element => (
                         <>
+                          <i className='text-accent-main flex items-center h-5 w-5'>
+                            {selected && <HiCheck className='text-lg' />}
+                          </i>
                           <span
                             className={clsx(
                               'block truncate',
@@ -59,11 +62,6 @@ export function SortListbox({
                           >
                             Sort by {sortOption}
                           </span>
-                          {selected && (
-                            <i className='text-accent-main absolute inset-y-0 left-0 flex items-center pl-3'>
-                              <HiCheck className='h-5 w-5' />
-                            </i>
-                          )}
                         </>
                       )}
                     </ListboxOption>
