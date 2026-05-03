@@ -80,7 +80,7 @@ export function GuestbookEntry({
       </div>
       {isOwner && (
         <Button
-          className='main-border clickable absolute top-2 right-2 rounded-md p-1.5 text-accent-main'
+          className='main-border clickable absolute! top-2 right-2 rounded-md p-1.5 text-accent-main'
           loading={isLoading}
           disabled={isLoading}
           type='button'
