@@ -1,7 +1,12 @@
-import { Listbox } from '@headlessui/react';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions
+} from '@headlessui/react';
 import { clsx } from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
-import type { Dispatch, SetStateAction } from 'react';
+import { Fragment, type Dispatch, type SetStateAction } from 'react';
 import { HiArrowsUpDown, HiCalendar, HiCheck, HiEye } from 'react-icons/hi2';
 
 type SortListboxProps = {
@@ -16,8 +21,8 @@ export function SortListbox({
   return (
     <Listbox value={sortOrder} onChange={onSortOrderChange}>
       {({ open }): React.JSX.Element => (
-        <div className='relative ml-auto w-52'>
-          <Listbox.Button
+        <div className='ml-auto w-52'>
+          <ListboxButton
             className={clsx(
               'clickable relative w-full py-2 pr-10 pl-3 text-left text-sm',
               open && 'shadow-md'
@@ -30,46 +35,41 @@ export function SortListbox({
             <i className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
               <HiArrowsUpDown className='h-5 w-5 text-gray-400' />
             </i>
-          </Listbox.Button>
+          </ListboxButton>
           <AnimatePresence mode='wait'>
             {open && (
-              <Listbox.Options
-                as={motion.ul}
-                className='main-border smooth-tab bg-background absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-md text-sm shadow-lg'
-                {...variants}
-                static
-              >
-                {sortOptions.map((sortOption) => (
-                  <Listbox.Option
-                    className={({ active }): string =>
-                      clsx(
-                        'hover:bg-accent-main/10 relative cursor-pointer py-2 pr-4 pl-10 transition-colors select-none',
-                        active && 'bg-accent-main/10'
-                      )
-                    }
-                    value={sortOption}
-                    key={sortOption}
-                  >
-                    {({ selected }): React.JSX.Element => (
-                      <>
-                        <span
-                          className={clsx(
-                            'block truncate',
-                            selected ? 'font-medium' : 'font-normal'
+              <ListboxOptions as={Fragment} anchor='bottom end' static>
+                <motion.ul
+                  className='main-border smooth-tab bg-background z-10 max-h-60 w-52 overflow-auto rounded-md text-sm shadow-lg [--anchor-gap:8px]'
+                  {...variants}
+                >
+                  {sortOptions.map((sortOption) => (
+                    <ListboxOption
+                      className='hover:bg-accent-main/10 data-focus:bg-accent-main/10 relative cursor-pointer py-2 pr-4 pl-10 transition-colors select-none'
+                      value={sortOption}
+                      key={sortOption}
+                    >
+                      {({ selected }): React.JSX.Element => (
+                        <>
+                          <span
+                            className={clsx(
+                              'block truncate',
+                              selected ? 'font-medium' : 'font-normal'
+                            )}
+                          >
+                            Sort by {sortOption}
+                          </span>
+                          {selected && (
+                            <i className='text-accent-main absolute inset-y-0 left-0 flex items-center pl-3'>
+                              <HiCheck className='h-5 w-5' />
+                            </i>
                           )}
-                        >
-                          Sort by {sortOption}
-                        </span>
-                        {selected && (
-                          <i className='text-accent-main absolute inset-y-0 left-0 flex items-center pl-3'>
-                            <HiCheck className='h-5 w-5' />
-                          </i>
-                        )}
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
+                        </>
+                      )}
+                    </ListboxOption>
+                  ))}
+                </motion.ul>
+              </ListboxOptions>
             )}
           </AnimatePresence>
         </div>

@@ -1,7 +1,7 @@
-import { Dialog } from '@headlessui/react';
+import { Dialog, DialogPanel } from '@headlessui/react';
 import { clsx } from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
-import type { PropsWithChildren } from 'react';
+import { Fragment, type PropsWithChildren } from 'react';
 
 type ModalProps = PropsWithChildren<{
   open: boolean;
@@ -34,14 +34,15 @@ export function Modal({
             {...backdrop}
           />
           <div className={clsx('fixed inset-0 overflow-y-auto p-4', className)}>
-            <Dialog.Panel
-              className={modalClassName}
-              as={motion.div}
-              onClick={closePanelOnClick ? closeModal : undefined}
-              {...modal}
-            >
-              {children}
-            </Dialog.Panel>
+            <DialogPanel as={Fragment}>
+              <motion.div
+                className={modalClassName}
+                onClick={closePanelOnClick ? closeModal : undefined}
+                {...modal}
+              >
+                {children}
+              </motion.div>
+            </DialogPanel>
           </div>
         </Dialog>
       )}
