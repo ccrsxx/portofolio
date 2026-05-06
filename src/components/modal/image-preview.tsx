@@ -48,7 +48,7 @@ export function ImagePreview({
           <div className='relative mx-2'>
             <div className='group relative'>
               {imageFromStringURL ? (
-                <LazyImage
+                <Image
                   className='w-fit rounded-md object-contain max-h-[80vh]'
                   src={src}
                   alt={alt}
@@ -93,7 +93,7 @@ export function ImagePreview({
       </Modal>
       <button
         className={clsx(
-          'grid transition [&:hover,.group:hover_&]:brightness-75',
+          'grid transition [&:hover,.group:hover_&]:brightness-75 smooth-tab',
           wrapperClassName
         )}
         tabIndex={tabIndex}

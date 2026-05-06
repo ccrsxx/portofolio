@@ -20,7 +20,13 @@ export function LazyImage({
 
   return (
     <Image
-      className={clsx(className, loading && 'bg-accent-main/20 animate-pulse')}
+      className={clsx(
+        className,
+        'transition duration-500',
+        loading
+          ? 'animate-pulse blur-md scale-110 bg-border'
+          : 'blur-0 scale-100 bg-transparent'
+      )}
       src={src}
       alt={alt}
       width={width}

@@ -40,7 +40,7 @@ export function BookmarkCard({
           height={height}
           tabIndex={-1}
           customLink={pixivUrl}
-          wrapperClassName='w-full block'
+          wrapperClassName='w-full'
           className='transition-transform duration-500 group-hover:scale-110 object-cover w-full h-auto'
         />
         <UnstyledLink
