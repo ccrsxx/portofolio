@@ -2,6 +2,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { ImagePreview } from '@components/modal/image-preview';
 import { Accent } from '@components/ui/accent';
 import { ContentTag } from '@components/ui/content-tag';
+import { formatDate } from '@lib/format';
 import { preventBubbling } from '@lib/helper';
 import type { Bookmark } from '@lib/types/bookmarks';
 import { HiArrowTopRightOnSquare } from 'react-icons/hi2';
@@ -17,6 +18,7 @@ export function BookmarkCard({
   height,
   imageUrl,
   pixivUrl,
+  createdAt,
   artistName,
   aiGenerated,
   selectedTags
@@ -59,10 +61,11 @@ export function BookmarkCard({
           <h2 className='text-foreground text-lg font-bold line-clamp-1'>
             {title}
           </h2>
-          <p className='text-secondary mb-2 text-sm'>
+          <p className='text-secondary text-sm'>
             by <cite className='font-medium not-italic'>{artistName}</cite>
           </p>
-          <ul className='mt-1 flex flex-wrap gap-2 items-center m-0 p-0 list-none'>
+          <p className='mt-1 text-secondary text-xs'>{formatDate(createdAt)}</p>
+          <ul className='mt-2 flex flex-wrap gap-2 items-center'>
             {aiGenerated && (
               <ContentTag
                 tag='li'

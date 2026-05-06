@@ -7,6 +7,7 @@ export type Bookmark = {
   artistId: string;
   imageUrl: string;
   pixivUrl: string;
+  createdAt: string;
   artistName: string;
   aiGenerated: boolean;
 };
