@@ -53,6 +53,15 @@ export function BookmarkCard({
         >
           <HiArrowTopRightOnSquare className='text-lg' />
         </UnstyledLink>
+        {aiGenerated && (
+          <ContentTag
+            tag='p'
+            className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-100 
+                       focus-visible:opacity-100 opacity-0 transition-opacity duration-300'
+          >
+            AI Generated
+          </ContentTag>
+        )}
         <figcaption
           className='pointer-events-none absolute inset-0 flex flex-col justify-end bg-linear-to-t 
                      from-background/80 via-background/20 to-transparent p-4 opacity-0 
@@ -66,14 +75,6 @@ export function BookmarkCard({
           </p>
           <p className='mt-1 text-secondary text-xs'>{formatDate(createdAt)}</p>
           <ul className='mt-2 flex flex-wrap gap-2 items-center'>
-            {aiGenerated && (
-              <ContentTag
-                tag='li'
-                className='text-xs gradient-background text-white'
-              >
-                AI Generated
-              </ContentTag>
-            )}
             {displayTags.map((tag) => (
               <ContentTag
                 tag='li'
