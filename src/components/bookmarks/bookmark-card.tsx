@@ -29,7 +29,7 @@ export function BookmarkCard({
   ].slice(0, 3);
 
   return (
-    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-xl shadow-sm group'>
+    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm group'>
       <figure className='relative w-full group'>
         <ImagePreview
           src={imageUrl}
@@ -56,9 +56,9 @@ export function BookmarkCard({
                      from-background/80 via-background/20 to-transparent p-4 opacity-0 
                      transition-opacity duration-300 group-hover:opacity-100'
         >
-          <h3 className='text-foreground text-lg font-bold line-clamp-1'>
+          <h2 className='text-foreground text-lg font-bold line-clamp-1'>
             {title}
-          </h3>
+          </h2>
           <p className='text-secondary mb-2 text-sm'>
             by <cite className='font-medium not-italic'>{artistName}</cite>
           </p>

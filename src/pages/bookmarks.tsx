@@ -89,12 +89,12 @@ export default function Bookmarks({
   );
 }
 
-type PixivProps = {
+type BookmarksProps = {
   bookmarks: Bookmark[];
 };
 
 export async function getStaticProps(): Promise<
-  GetStaticPropsResult<PixivProps>
+  GetStaticPropsResult<BookmarksProps>
 > {
   try {
     const bookmarks = await getBookmarks();
