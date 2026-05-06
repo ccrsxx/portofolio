@@ -60,6 +60,7 @@ export default withMDX({
   images: {
     remotePatterns: [
       new URL('https://i.scdn.co/image/**'),
+      new URL('https://pixiv.ccrsxx.com/**'),
       new URL('https://avatars.githubusercontent.com/u/**?v=4'),
       new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary')
     ]

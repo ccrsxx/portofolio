@@ -1,4 +1,5 @@
 import type { SyntheticEvent } from 'react';
+import type { Bookmark } from './types/bookmarks';
 import type { Blog, ContentType, PathContentType } from './types/contents';
 
 type PreventBubblingProps = {
@@ -31,14 +32,29 @@ export function removeContentExtension(content: string): string {
 /**
  * Returns an array of unique tags from the contents.
  */
-export function getTags(contents: Blog[]): string[] {
+export function getContentTags(contents: Blog[]): string[] {
   const validTags = contents.flatMap(({ tags }) =>
     tags.split(',').map((tag) => tag.trim())
   );
 
   const uniqueTags = Array.from(new Set(validTags));
 
-  return uniqueTags;
+  const sortedTags = uniqueTags.toSorted();
+
+  return sortedTags;
+}
+
+/**
+ * Returns an array of unique tags from the bookmarks.
+ */
+export function getBookmarksTags(bookmarks: Bookmark[]): string[] {
+  const validTags = bookmarks.flatMap(({ tags }) => tags);
+
+  const uniqueTags = Array.from(new Set(validTags));
+
+  const sortedTags = uniqueTags.toSorted();
+
+  return sortedTags;
 }
 
 /**

@@ -1,5 +1,4 @@
 import { BlogCard } from '@components/blog/blog-card';
-import { BlogTag } from '@components/blog/blog-tag';
 import {
   SortListbox,
   sortOptions,
@@ -7,12 +6,13 @@ import {
 } from '@components/blog/sort-listbox';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
+import { ContentTag } from '@components/ui/content-tag';
 import {
   getAllBlogWithViews,
   getContentsDataByType,
   type BlogWithViews
 } from '@lib/api';
-import { getTags, textIncludes } from '@lib/helper';
+import { getContentTags as getBlogTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
@@ -67,7 +67,7 @@ export default function Blog({
     }
   };
 
-  const filteredTags = getTags(filteredPosts);
+  const filteredTags = getBlogTags(filteredPosts);
 
   const isTagSelected = (tag: string): boolean => {
     const isInFilteredTags = filteredTags.includes(tag);
@@ -112,17 +112,17 @@ export default function Blog({
         >
           <p className='text-secondary text-sm font-medium'>Choose topic:</p>
           {tags.map((tag) => (
-            <BlogTag
+            <ContentTag
               className='smooth-tab'
               disabled={!filteredTags.includes(tag)}
               onClick={handleTagClick(tag)}
               key={tag}
             >
               {isTagSelected(tag) ? <Accent>{tag}</Accent> : tag}
-            </BlogTag>
+            </ContentTag>
           ))}
         </motion.section>
-        <motion.section className='mt-6' {...setTransition({ delayIn: 0.4 })}>
+        <motion.section className='mt-4' {...setTransition({ delayIn: 0.4 })}>
           <SortListbox sortOrder={sortOrder} onSortOrderChange={setSortOrder} />
         </motion.section>
       </section>
@@ -155,9 +155,6 @@ export default function Blog({
           )}
         </AnimatePresence>
       </motion.section>
-      {/* <motion.section className='mt-8' {...setTransition({ delayIn: 0.6 })}>
-        <SubscribeCard />
-      </motion.section> */}
     </main>
   );
 }
@@ -174,7 +171,7 @@ export async function getStaticProps(): Promise<
     const contents = await getContentsDataByType('blog');
     const blog = await getAllBlogWithViews(contents);
 
-    const tags = getTags(blog);
+    const tags = getBlogTags(blog);
 
     return {
       props: {

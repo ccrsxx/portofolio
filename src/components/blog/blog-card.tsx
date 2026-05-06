@@ -5,8 +5,8 @@ import type { Blog } from '@lib/types/contents';
 import type { CustomTag, ValidTag } from '@lib/types/helper';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ContentTag } from '../ui/content-tag';
 import { BlogStats } from './blog-stats';
-import { BlogTag } from './blog-tag';
 
 type BlogCardProps<T extends ValidTag> = CustomTag<T> &
   Blog &
@@ -50,13 +50,13 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
           />
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
             {techTags.map((tag) => (
-              <BlogTag className='opacity-80' tag='li' key={tag}>
+              <ContentTag className='opacity-80' tag='li' key={tag}>
                 {isTagSelected && isTagSelected(tag) ? (
                   <Accent>{tag}</Accent>
                 ) : (
                   tag
                 )}
-              </BlogTag>
+              </ContentTag>
             ))}
           </ul>
         </div>

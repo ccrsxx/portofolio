@@ -16,7 +16,7 @@ import {
 
 export default function About(): React.JSX.Element {
   return (
-    <main className='layout min-h-screen'>
+    <main className='min-h-screen'>
       <SEO title='About' description='Risal Amin is a web developer' />
       <section className='grid gap-2'>
         <motion.h2

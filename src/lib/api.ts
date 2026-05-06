@@ -7,6 +7,7 @@ import {
 import { getAllContents } from './mdx';
 import { getContentFiles } from './mdx-utils';
 import type { AuthUser } from './types/auth';
+import type { Bookmark } from './types/bookmarks';
 import {
   PATH_CONTENT_TYPES,
   type Blog,
@@ -57,12 +58,22 @@ export async function initializeContents(type: PathContentType): Promise<void> {
 
 export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
 
-/**
- * Returns all the blog posts.
- */
 export async function getGuestbook(): Promise<Guestbook[]> {
   const response = await fetcher<Guestbook[]>(
     `${backendEnv.INTERNAL_BACKEND_URL}/guestbook`
+  );
+
+  return response;
+}
+
+export async function getBookmarks(): Promise<Bookmark[]> {
+  const response = await fetcher<Bookmark[]>(
+    `${backendEnv.INTERNAL_BACKEND_URL}/pixiv/bookmarks/all`,
+    {
+      headers: {
+        Authorization: `Bearer ${backendEnv.PRIVATE_SECRET_KEY}`
+      }
+    }
   );
 
   return response;

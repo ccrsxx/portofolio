@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 const DEFAULT_TAG = 'button' as const;
 
-export function BlogTag<T extends ValidTag = typeof DEFAULT_TAG>({
+export function ContentTag<T extends ValidTag = typeof DEFAULT_TAG>({
   tag = DEFAULT_TAG,
   children,
   className,
@@ -14,8 +14,9 @@ export function BlogTag<T extends ValidTag = typeof DEFAULT_TAG>({
   return (
     <CustomTag
       className={clsx(
-        className,
-        'bg-muted-background text-primary hover:text-foreground rounded-md px-1.5 py-0.5 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50'
+        `bg-muted-background text-primary hover:text-foreground rounded-md px-1.5 py-0.5 
+          text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50`,
+        className
       )}
       {...rest}
     >

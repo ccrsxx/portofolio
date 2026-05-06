@@ -57,7 +57,7 @@ body {
 }
 
 main {
-  @apply mx-auto max-w-6xl px-6 md:pt-12;
+  @apply layout md:pt-12;
 }
 
 ::selection {
