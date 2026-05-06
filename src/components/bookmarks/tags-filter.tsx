@@ -63,7 +63,7 @@ export function TagsFilter({
         onClose={handleComboboxClose}
       >
         {({ open }) => (
-          <div>
+          <>
             <div className='relative flex items-center'>
               <ComboboxInput
                 className='custom-input w-full pr-16'
@@ -127,7 +127,7 @@ export function TagsFilter({
                 </ComboboxOptions>
               )}
             </AnimatePresence>
-          </div>
+          </>
         )}
       </Combobox>
     </div>
