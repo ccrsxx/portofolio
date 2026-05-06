@@ -103,7 +103,7 @@ export async function getStaticProps(): Promise<
       props: {
         bookmarks
       },
-      revalidate: 60 * 60 // Revalidate every hour
+      revalidate: 60
     };
   } catch (error) {
     console.error('bookmarks ssr error', error);
