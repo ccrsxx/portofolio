@@ -40,7 +40,6 @@ export function TagsFilter({
 
   const handleComboboxChange = (val: string[]): void => {
     onSelectTags(val);
-    setQuery('');
   };
 
   const handleComboboxClose = (): void => {
