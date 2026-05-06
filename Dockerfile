@@ -51,7 +51,7 @@ USER node
 
 ENTRYPOINT ["node", "server.js"]
 
-EXPOSE 4000
+EXPOSE 3000
 
 LABEL org.opencontainers.image.authors="ami@ccrsxx.com" \
     org.opencontainers.image.source="https://github.com/ccrsxx/portofolio" \
