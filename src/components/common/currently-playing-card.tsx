@@ -113,7 +113,10 @@ export function SpotifyCard(): React.ReactNode {
                       className='text-muted truncate text-xs'
                       title={artistName}
                     >
-                      by <span className='text-primary'>{artistName}</span>
+                      by{' '}
+                      <cite className='not-italic text-primary'>
+                        {artistName}
+                      </cite>
                     </p>
                     {isPlaying ? (
                       <HiPause className='shrink-0 text-lg' />
@@ -125,7 +128,8 @@ export function SpotifyCard(): React.ReactNode {
                     className='text-muted w-10/12 truncate text-xs'
                     title={albumName}
                   >
-                    on <span className='text-primary'>{albumName}</span>
+                    on{' '}
+                    <cite className='not-italic text-primary'>{albumName}</cite>
                   </p>
                 </div>
               </div>
