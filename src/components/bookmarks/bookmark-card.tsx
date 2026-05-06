@@ -29,7 +29,7 @@ export function BookmarkCard({
   ].slice(0, 3);
 
   return (
-    <div className='bg-muted-background break-inside-avoid relative overflow-hidden mb-4 rounded-xl shadow-sm group'>
+    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-xl shadow-sm group'>
       <figure className='relative w-full group'>
         <ImagePreview
           src={imageUrl}
@@ -72,7 +72,11 @@ export function BookmarkCard({
               </ContentTag>
             )}
             {displayTags.map((tag) => (
-              <ContentTag tag='li' className='text-xs line-clamp-1' key={tag}>
+              <ContentTag
+                tag='li'
+                className='text-xs line-clamp-1 opacity-80'
+                key={tag}
+              >
                 {isSelected(tag) ? <Accent>{tag}</Accent> : tag}
               </ContentTag>
             ))}
