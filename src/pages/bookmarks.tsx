@@ -3,7 +3,7 @@ import { BookmarkMeta } from '@components/bookmarks/bookmark-meta';
 import { TagsFilter } from '@components/bookmarks/tags-filter';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
-import { getBookmarks } from '@lib/api';
+import { getAllBookmarks } from '@lib/api';
 import { getBookmarksTags } from '@lib/helper';
 import { setTransition } from '@lib/transition';
 import type { Bookmark } from '@lib/types/bookmarks';
@@ -97,7 +97,7 @@ export async function getStaticProps(): Promise<
   GetStaticPropsResult<BookmarksProps>
 > {
   try {
-    const bookmarks = await getBookmarks();
+    const bookmarks = await getAllBookmarks();
 
     return {
       props: {

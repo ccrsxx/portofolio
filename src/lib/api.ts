@@ -66,7 +66,7 @@ export async function getGuestbook(): Promise<Guestbook[]> {
   return response;
 }
 
-export async function getBookmarks(): Promise<Bookmark[]> {
+export async function getAllBookmarks(): Promise<Bookmark[]> {
   const response = await fetcher<Bookmark[]>(
     `${backendEnv.INTERNAL_BACKEND_URL}/pixiv/bookmarks/all`,
     {
