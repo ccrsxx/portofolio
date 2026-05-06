@@ -29,7 +29,7 @@ export function BookmarkCard({
   ].slice(0, 3);
 
   return (
-    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm group'>
+    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm hover:shadow-md group'>
       <figure className='relative w-full group'>
         <ImagePreview
           src={imageUrl}
