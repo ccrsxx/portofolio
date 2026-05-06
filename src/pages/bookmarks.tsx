@@ -4,7 +4,7 @@ import { TagsFilter } from '@components/bookmarks/tags-filter';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { getAllBookmarks } from '@lib/api';
-import { getBookmarksTags } from '@lib/helper';
+import { getBookmarksTagsWithCount } from '@lib/helper';
 import { setTransition } from '@lib/transition';
 import type { Bookmark } from '@lib/types/bookmarks';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
@@ -16,7 +16,7 @@ export default function Bookmarks({
 }: InferGetStaticPropsType<typeof getStaticProps>): React.JSX.Element {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const bookmarksTags = getBookmarksTags(bookmarks);
+  const bookmarksTags = getBookmarksTagsWithCount(bookmarks);
 
   const filteredBookmarks = selectedTags.length
     ? bookmarks.filter((b) => selectedTags.some((tag) => b.tags.includes(tag)))

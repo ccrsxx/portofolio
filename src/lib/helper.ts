@@ -39,22 +39,33 @@ export function getContentTags(contents: Blog[]): string[] {
 
   const uniqueTags = Array.from(new Set(validTags));
 
-  const sortedTags = uniqueTags.toSorted();
-
-  return sortedTags;
+  return uniqueTags;
 }
+
+export type BookmarkTagWithCount = {
+  tag: string;
+  count: number;
+};
 
 /**
  * Returns an array of unique tags from the bookmarks.
  */
-export function getBookmarksTags(bookmarks: Bookmark[]): string[] {
+export function getBookmarksTagsWithCount(
+  bookmarks: Bookmark[]
+): BookmarkTagWithCount[] {
   const validTags = bookmarks.flatMap(({ tags }) => tags);
 
-  const uniqueTags = Array.from(new Set(validTags));
+  const tagCountMap: Record<string, number> = {};
 
-  const sortedTags = uniqueTags.toSorted();
+  for (const tag of validTags) {
+    tagCountMap[tag] = (tagCountMap[tag] ?? 0) + 1;
+  }
 
-  return sortedTags;
+  const tagsWithCountSorted = Object.entries(tagCountMap)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+
+  return tagsWithCountSorted;
 }
 
 /**

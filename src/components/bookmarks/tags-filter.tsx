@@ -5,13 +5,14 @@ import {
   ComboboxOption,
   ComboboxOptions
 } from '@headlessui/react';
+import type { BookmarkTagWithCount } from '@lib/helper';
 import { clsx } from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import { Fragment, useState } from 'react';
 import { HiCheck, HiChevronUpDown, HiXMark } from 'react-icons/hi2';
 
 type TagsFilterProps = {
-  tags: string[];
+  tags: BookmarkTagWithCount[];
   selectedTags: string[];
   onSelectTags: (tags: string[]) => void;
 };
@@ -26,7 +27,9 @@ export function TagsFilter({
   const filteredTags =
     query === ''
       ? tags
-      : tags.filter((tag) => tag.toLowerCase().includes(query.toLowerCase()));
+      : tags.filter(({ tag }) =>
+          tag.toLowerCase().includes(query.toLowerCase())
+        );
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value);
@@ -98,7 +101,7 @@ export function TagsFilter({
                         Nothing found.
                       </div>
                     ) : (
-                      filteredTags.map((tag) => (
+                      filteredTags.map(({ tag, count }) => (
                         <ComboboxOption
                           className='data-focus:bg-accent-main/10 data-selected:text-accent-main 
                                       rounded-md px-4 py-2 transition-colors flex items-center gap-2'
@@ -110,14 +113,19 @@ export function TagsFilter({
                               <i className='text-accent-main flex items-center w-5 h-5 shrink-0'>
                                 {selected && <HiCheck className='text-lg' />}
                               </i>
-                              <span
-                                className={clsx(
-                                  'block truncate',
-                                  selected ? 'font-medium' : 'font-normal'
-                                )}
-                              >
-                                {tag}
-                              </span>
+                              <div className='flex items-center gap-1'>
+                                <span
+                                  className={clsx(
+                                    'block truncate',
+                                    selected ? 'font-medium' : 'font-normal'
+                                  )}
+                                >
+                                  {tag}
+                                </span>
+                                <span className='text-xs text-muted shrink-0'>
+                                  ({count})
+                                </span>
+                              </div>
                             </>
                           )}
                         </ComboboxOption>
