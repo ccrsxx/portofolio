@@ -45,7 +45,7 @@ export function ImagePreview({
         {loading ? (
           <Loading />
         ) : (
-          <div className='relative mx-6'>
+          <div className='relative mx-2'>
             <div className='group relative'>
               {imageFromStringURL ? (
                 <LazyImage
