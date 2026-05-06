@@ -81,7 +81,7 @@
       code {
         counter-reset: line;
 
-        @apply mt-6 border-0;
+        @apply mt-8 border-0;
 
         .word {
           background: rgba(200, 200, 255, 0.15);
