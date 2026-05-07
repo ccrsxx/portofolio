@@ -107,14 +107,14 @@ const colorPalette: ColorPalette[] = [
   {
     title: 'Border',
     className: 'bg-border',
-    lightHex: '#d1d5db',
-    darkHex: '#374151'
+    lightHex: '#e4e4e7',
+    darkHex: '#27272a'
   },
   {
     title: 'Muted background',
     className: 'bg-muted-background',
-    lightHex: '#f3f4f6',
-    darkHex: '#111827'
+    lightHex: '#f4f4f5',
+    darkHex: '#18181b'
   },
   {
     title: 'Accent foreground',
