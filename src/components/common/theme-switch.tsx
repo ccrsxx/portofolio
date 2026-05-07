@@ -21,13 +21,13 @@ export function ThemeSwitch(): React.JSX.Element | null {
     >
       <AnimatePresence mode='popLayout' initial={false}>
         {isDarkMode ? (
-          <motion.i {...moonVariants} key='dark'>
+          <motion.span {...moonVariants} key='dark'>
             <HiOutlineMoon />
-          </motion.i>
+          </motion.span>
         ) : (
-          <motion.i {...sunVariants} key='light'>
+          <motion.span {...sunVariants} key='light'>
             <HiOutlineSun />
-          </motion.i>
+          </motion.span>
         )}
       </AnimatePresence>
     </button>

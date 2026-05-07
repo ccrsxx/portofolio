@@ -48,13 +48,13 @@ export function CustomPre({
           >
             <AnimatePresence mode='wait' initial={false}>
               {copied ? (
-                <motion.i {...variants} key='copied'>
+                <motion.span {...variants} key='copied'>
                   <HiClipboardDocumentCheck className='text-accent-main text-lg' />
-                </motion.i>
+                </motion.span>
               ) : (
-                <motion.i {...variants} key='not-copied'>
+                <motion.span {...variants} key='not-copied'>
                   <HiClipboard className='text-lg' />
-                </motion.i>
+                </motion.span>
               )}
             </AnimatePresence>
           </button>

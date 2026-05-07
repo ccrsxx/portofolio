@@ -11,10 +11,10 @@ export function Loading({
   iconClassName = 'h-7 w-7'
 }: LoadingProps): React.JSX.Element {
   return (
-    <i className={clsx('flex justify-center', className)}>
+    <span className={clsx('flex justify-center', className)}>
       <ImSpinner8
         className={clsx('text-accent-main animate-spin', iconClassName)}
       />
-    </i>
+    </span>
   );
 }

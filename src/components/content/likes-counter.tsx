@@ -50,7 +50,7 @@ export function LikesCounter({
       )}
     >
       <button
-        className='clickable relative disabled:cursor-not-allowed border-0'
+        className='clickable relative disabled:cursor-not-allowed shadow-none'
         onClick={() => likeContent(slug)}
         disabled={isLikeButtonDisabled}
         aria-label={
@@ -86,12 +86,12 @@ function GradientHeart({
 
   return (
     <>
-      <motion.i
+      <motion.span
         className='absolute block w-full text-center text-2xl opacity-0'
         {...(hasMaxLikes && maxLikesAnimation)}
       >
         🥳
-      </motion.i>
+      </motion.span>
       <svg viewBox='0 0 20 20' className='h-12 w-12'>
         <defs>
           <linearGradient id='gradient' x2='0%' y2='100%'>

@@ -36,9 +36,9 @@ export function SortListbox({
               )}
               Sort by {sortOrder}
             </span>
-            <i className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
+            <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
               <HiArrowsUpDown className='text-lg text-gray-400' />
-            </i>
+            </span>
           </ListboxButton>
           <AnimatePresence mode='wait'>
             {open && (
@@ -55,9 +55,9 @@ export function SortListbox({
                     >
                       {({ selected }): React.JSX.Element => (
                         <>
-                          <i className='text-accent-main flex items-center w-5 h-5'>
+                          <span className='text-accent-main flex items-center w-5 h-5'>
                             {selected && <HiCheck className='text-lg' />}
-                          </i>
+                          </span>
                           <span
                             className={clsx(
                               'block truncate',

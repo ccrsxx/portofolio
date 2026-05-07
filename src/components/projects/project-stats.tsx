@@ -58,18 +58,14 @@ export function ProjectStats({
           ({ name, link, Icon }) =>
             link && (
               <div className='flex items-center gap-3' key={name}>
-                <i>
-                  <Icon className='text-foreground text-lg' />
-                </i>
+                <Icon className='text-foreground text-lg' />
                 <CustomLink href={link}>{name}</CustomLink>
               </div>
             )
         )}
       </div>
       <div className='text-muted flex items-center gap-2'>
-        <i>
-          <HiUser className='text-lg' />
-        </i>
+        <HiUser className='text-lg' />
         <p className='text-sm'>{category}</p>
       </div>
     </>
