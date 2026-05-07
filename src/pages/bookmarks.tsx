@@ -7,6 +7,7 @@ import { getAllBookmarks } from '@lib/api';
 import { getBookmarksTagsWithCount } from '@lib/helper';
 import { setTransition } from '@lib/transition';
 import type { Bookmark } from '@lib/types/bookmarks';
+import clsx from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
 import { useState } from 'react';
@@ -62,29 +63,34 @@ export default function Bookmarks({
           />
         </motion.div>
       </motion.section>
-      <motion.section className='mt-4' {...setTransition({ delayIn: 0.4 })}>
+      <motion.ul
+        className={clsx(
+          'mt-4',
+          filteredBookmarks.length &&
+            'columns-2 gap-4 md:columns-3 lg:columns-4'
+        )}
+        {...setTransition({ delayIn: 0.4 })}
+      >
         <AnimatePresence mode='popLayout'>
           {filteredBookmarks.length ? (
             <AnimatePresence>
-              <ul className='columns-2 gap-4 m-0 md:columns-3 lg:columns-4 list-none p-0'>
-                {filteredBookmarks.map((bookmark) => (
-                  <motion.li {...variants} layout='position' key={bookmark.id}>
-                    <BookmarkCard {...bookmark} selectedTags={selectedTags} />
-                  </motion.li>
-                ))}
-              </ul>
+              {filteredBookmarks.map((bookmark) => (
+                <motion.li {...variants} layout='position' key={bookmark.id}>
+                  <BookmarkCard {...bookmark} selectedTags={selectedTags} />
+                </motion.li>
+              ))}
             </AnimatePresence>
           ) : (
-            <motion.p
+            <motion.li
               className='text-center text-3xl font-bold'
               {...setTransition({ delayIn: 0.2 })}
               key='no-results'
             >
               <Accent>No artworks found for these tags.</Accent>
-            </motion.p>
+            </motion.li>
           )}
         </AnimatePresence>
-      </motion.section>
+      </motion.ul>
     </main>
   );
 }
