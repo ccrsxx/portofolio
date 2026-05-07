@@ -55,12 +55,12 @@ export function SEO({
 
   if (isDarkMode) {
     systemTheme = {
-      themeColor: '#222222',
+      themeColor: '#000000',
       colorScheme: 'dark'
     };
   } else {
     systemTheme = {
-      themeColor: '#FFFFFF',
+      themeColor: '#ffffff',
       colorScheme: 'light'
     };
   }
