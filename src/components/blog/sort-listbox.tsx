@@ -24,8 +24,8 @@ export function SortListbox({
         <div className='ml-auto w-52'>
           <ListboxButton
             className={clsx(
-              'clickable relative w-full py-2 pr-10 pl-3 text-left text-sm',
-              open && 'shadow-md'
+              'relative w-full py-2 pr-10 pl-3 text-left text-sm main-border smooth-tab',
+              open && 'shadow-md border-accent-main'
             )}
           >
             <span className='flex items-center gap-2 truncate'>

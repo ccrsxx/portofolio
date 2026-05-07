@@ -15,7 +15,10 @@ export function ThemeSwitch(): React.JSX.Element | null {
 
   return (
     <button
-      className='border-border hover:border-accent-main! hover:text-accent-main focus-visible:border-accent-main! focus-visible:text-accent-main relative overflow-hidden rounded-md border p-2 text-lg outline-hidden transition md:text-xl [&>i]:block'
+      className='border-border hover:border-accent-main! hover:text-accent-main 
+                 focus-visible:border-accent-main! focus-visible:text-accent-main 
+                   relative overflow-hidden rounded-md border p-2 text-lg outline-hidden 
+                   transition md:text-xl [&>span]:block'
       type='button'
       onClick={flipTheme}
     >
