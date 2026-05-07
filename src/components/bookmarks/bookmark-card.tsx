@@ -57,7 +57,7 @@ export function BookmarkCard({
           <ContentTag
             tag='p'
             className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-80 
-                       focus-visible:opacity-80 opacity-0 transition-opacity duration-300'
+                       focus-visible:opacity-80 opacity-0 transition-opacity duration-300 pointer-events-none'
           >
             AI Generated
           </ContentTag>
