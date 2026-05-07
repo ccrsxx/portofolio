@@ -90,7 +90,7 @@ export default function Home({
         </p>
         <ul className='card-layout'>
           {featuredBlog.map((blog) => (
-            <li key={blog.slug}>
+            <li className='grid' key={blog.slug}>
               <BlogCard {...blog} />
             </li>
           ))}

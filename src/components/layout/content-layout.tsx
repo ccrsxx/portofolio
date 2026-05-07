@@ -113,7 +113,7 @@ export function ContentLayout({
           <ul className='card-layout'>
             {contentIsBlog
               ? (suggestedContents as Blog[]).map((suggestedContent) => (
-                  <li key={suggestedContent.slug}>
+                  <li className='grid' key={suggestedContent.slug}>
                     <BlogCard {...suggestedContent} />
                   </li>
                 ))
