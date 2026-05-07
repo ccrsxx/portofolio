@@ -47,7 +47,7 @@ export function BookmarkCard({
           href={pixivUrl}
           className='smooth-tab bg-background/50 hover:bg-background/80 text-foreground absolute 
                      top-4 right-4 z-10 rounded-md p-2 opacity-0 transition-opacity duration-300 
-                     group-hover:opacity-100 focus-visible:opacity-100'
+                     group-hover:opacity-80 focus-visible:opacity-80'
           onClick={preventBubbling()}
           tabIndex={-1}
         >
@@ -56,8 +56,8 @@ export function BookmarkCard({
         {aiGenerated && (
           <ContentTag
             tag='p'
-            className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-100 
-                       focus-visible:opacity-100 opacity-0 transition-opacity duration-300'
+            className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-80 
+                       focus-visible:opacity-80 opacity-0 transition-opacity duration-300'
           >
             AI Generated
           </ContentTag>
@@ -65,7 +65,7 @@ export function BookmarkCard({
         <figcaption
           className='pointer-events-none absolute inset-0 flex flex-col justify-end bg-linear-to-t 
                      from-background/80 via-background/20 to-transparent p-4 opacity-0 
-                     transition-opacity duration-300 group-hover:opacity-100'
+                     transition-opacity duration-300 group-hover:opacity-80'
         >
           <h2 className='text-foreground text-lg font-bold line-clamp-1'>
             {title}
