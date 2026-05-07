@@ -20,12 +20,15 @@ export function LazyImage({
 
   return (
     <Image
+      style={{
+        transitionProperty: 'filter, scale, background-color'
+      }}
       className={clsx(
         className,
-        'transition duration-500',
+        'duration-500',
         loading
-          ? 'animate-pulse blur-md scale-110 bg-border'
-          : 'blur-0 scale-100 bg-transparent'
+          ? 'blur-md scale-110 bg-border animate-pulse'
+          : 'blur-none scale-100 bg-transparent'
       )}
       src={src}
       alt={alt}
