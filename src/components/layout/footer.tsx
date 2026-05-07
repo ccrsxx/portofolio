@@ -6,6 +6,8 @@ import { HiEnvelope } from 'react-icons/hi2';
 import { SiDiscord, SiGithub, SiX } from 'react-icons/si';
 
 export function Footer(): React.JSX.Element {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
       <nav className='mt-6'>
@@ -48,7 +50,7 @@ export function Footer(): React.JSX.Element {
         </nav>
       </section>
       <p className='text-muted text-center text-sm'>
-        &copy; Risal Amin 2026 •{' '}
+        &copy; Risal Amin {currentYear} •{' '}
         <UnstyledLink
           className='smooth-tab hover:text-foreground transition'
           href='https://github.com/ccrsxx/portofolio'
