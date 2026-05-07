@@ -11,22 +11,19 @@ export function StatisticsCard({
   const parsedType = convertContentTypeToPathContentType(type);
 
   return (
-    <article
-      className='main-border grid gap-2 rounded-md p-4 text-center'
-      key={type}
-    >
-      <h2 className='text-2xl font-bold capitalize'>{parsedType}</h2>
-      <div className='grid gap-1 [&>p>span]:text-lg [&>p>span]:font-semibold'>
-        <p>
+    <li className='main-border grid gap-2 rounded-md p-4 text-center'>
+      <p className='text-2xl font-bold capitalize'>{parsedType}</p>
+      <ul className='grid gap-1 [&>p>span]:text-lg [&>p>span]:font-semibold'>
+        <li>
           <span>{formatNumber(totalPosts)}</span> Posts
-        </p>
-        <p>
+        </li>
+        <li>
           <span>{formatNumber(totalViews)}</span> views
-        </p>
-        <p>
+        </li>
+        <li>
           <span>{formatNumber(totalLikes)}</span> likes
-        </p>
-      </div>
-    </article>
+        </li>
+      </ul>
+    </li>
   );
 }

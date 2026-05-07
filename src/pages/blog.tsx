@@ -82,7 +82,7 @@ export default function Blog({
         title='Blog'
         description='A blog by Risal Amin. My thoughts on the web, tech, and everything in between.'
       />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition()}
@@ -95,9 +95,9 @@ export default function Blog({
         >
           My thoughts on the web, tech, and everything in between.
         </motion.p>
-      </section>
+      </header>
       <section className='mt-2'>
-        <motion.section {...setTransition({ delayIn: 0.2 })}>
+        <motion.div {...setTransition({ delayIn: 0.2 })}>
           <input
             className='custom-input mt-2 w-full'
             type='text'
@@ -105,56 +105,59 @@ export default function Blog({
             placeholder='Search blog...'
             onChange={handleSearchChange}
           />
-        </motion.section>
-        <motion.section
+        </motion.div>
+        <motion.div
           className='mt-2 flex flex-wrap items-center gap-2'
           {...setTransition({ delayIn: 0.3 })}
         >
           <p className='text-secondary text-sm font-medium'>Choose topic:</p>
-          {tags.map((tag) => (
-            <ContentTag
-              className='smooth-tab'
-              disabled={!filteredTags.includes(tag)}
-              onClick={handleTagClick(tag)}
-              key={tag}
-            >
-              {isTagSelected(tag) ? <Accent>{tag}</Accent> : tag}
-            </ContentTag>
-          ))}
-        </motion.section>
-        <motion.section className='mt-4' {...setTransition({ delayIn: 0.4 })}>
+          <ul className='flex flex-wrap items-center gap-2'>
+            {tags.map((tag) => (
+              <li key={tag}>
+                <ContentTag
+                  className='smooth-tab'
+                  disabled={!filteredTags.includes(tag)}
+                  onClick={handleTagClick(tag)}
+                >
+                  {isTagSelected(tag) ? <Accent>{tag}</Accent> : tag}
+                </ContentTag>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+        <motion.div className='mt-4' {...setTransition({ delayIn: 0.4 })}>
           <SortListbox sortOrder={sortOrder} onSortOrderChange={setSortOrder} />
-        </motion.section>
+        </motion.div>
       </section>
-      <motion.section
-        className='card-layout mt-4'
+      <motion.ul
+        className='mt-4 card-layout'
         {...setTransition({ delayIn: 0.5 })}
       >
         <AnimatePresence mode='popLayout'>
           {filteredPosts.length ? (
             <AnimatePresence>
               {filteredPosts.map((post) => (
-                <motion.article
+                <motion.li
                   {...variants}
                   className='grid'
                   layout='position'
                   key={post.title}
                 >
-                  <BlogCard {...post} tag='div' isTagSelected={isTagSelected} />
-                </motion.article>
+                  <BlogCard {...post} isTagSelected={isTagSelected} />
+                </motion.li>
               ))}
             </AnimatePresence>
           ) : (
-            <motion.h2
-              className='col-span-full text-center text-3xl font-bold'
+            <motion.li
+              className='text-center text-3xl font-bold col-span-full'
               {...setTransition({ delayIn: 0.2 })}
               key='not-found'
             >
               <Accent>Sorry, not found :&#40;</Accent>
-            </motion.h2>
+            </motion.li>
           )}
         </AnimatePresence>
-      </motion.section>
+      </motion.ul>
     </main>
   );
 }

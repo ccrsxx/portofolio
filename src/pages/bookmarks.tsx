@@ -32,7 +32,7 @@ export default function Bookmarks({
         title='Bookmarks'
         description='A collection of artworks that I have bookmarked on Pixiv.'
       />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition()}
@@ -45,22 +45,22 @@ export default function Bookmarks({
         >
           A collection of artworks that I have bookmarked on Pixiv.
         </motion.p>
-      </section>
+      </header>
       <motion.section className='mt-2' {...setTransition({ delayIn: 0.2 })}>
-        <motion.section {...setTransition({ delayIn: 0.2 })}>
+        <motion.div {...setTransition({ delayIn: 0.2 })}>
           <TagsFilter
             tags={bookmarksTags}
             selectedTags={selectedTags}
             onSelectTags={setSelectedTags}
           />
-        </motion.section>
-        <motion.section className='mt-2' {...setTransition({ delayIn: 0.3 })}>
+        </motion.div>
+        <motion.div className='mt-2' {...setTransition({ delayIn: 0.3 })}>
           <BookmarkMeta
             total={filteredBookmarks.length}
             selectedTags={selectedTags}
             onRemoveTag={handleRemoveTag}
           />
-        </motion.section>
+        </motion.div>
       </motion.section>
       <motion.section className='mt-4' {...setTransition({ delayIn: 0.4 })}>
         <AnimatePresence mode='popLayout'>
@@ -75,13 +75,13 @@ export default function Bookmarks({
               </ul>
             </AnimatePresence>
           ) : (
-            <motion.h2
-              className='py-12 text-center text-secondary'
+            <motion.p
+              className='text-center text-3xl font-bold'
               {...setTransition({ delayIn: 0.2 })}
               key='no-results'
             >
               <Accent>No artworks found for these tags.</Accent>
-            </motion.h2>
+            </motion.p>
           )}
         </AnimatePresence>
       </motion.section>

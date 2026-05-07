@@ -11,7 +11,7 @@ export default function Subscribe(): React.JSX.Element {
         title='Subscribe'
         description='Get notified when I publish new post'
       />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition({ delayIn: 0.1 })}
@@ -24,7 +24,7 @@ export default function Subscribe(): React.JSX.Element {
         >
           Get notified when I publish a new post.
         </motion.p>
-      </section>
+      </header>
       <motion.section {...setTransition({ delayIn: 0.3 })}>
         <SubscribeCard />
       </motion.section>

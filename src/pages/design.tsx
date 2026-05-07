@@ -12,7 +12,7 @@ export default function Design(): React.JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <SEO title='Design' description="risalamin.com's color palette" />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-5xl font-bold'
           {...setTransition({ delayIn: 0.1 })}
@@ -25,7 +25,7 @@ export default function Design(): React.JSX.Element {
         >
           risalamin.com&apos;s color palette.
         </motion.p>
-      </section>
+      </header>
       <motion.section
         className='main-border rounded-md border-2 border-dashed p-4'
         {...setTransition({ delayIn: 0.3 })}
@@ -54,7 +54,7 @@ export default function Design(): React.JSX.Element {
                   )}
                 />
                 <div>
-                  <h3>{title}</h3>
+                  <p>{title}</p>
                   <p className='text-muted text-sm'>{parsedHex}</p>
                 </div>
               </li>

@@ -6,7 +6,6 @@ import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
-import { motion, type MotionProps } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
 
 type GuestbookEntryProps = Guestbook & {
@@ -38,11 +37,7 @@ export function GuestbookEntry({
   const githubProfileUrl = `https://github.com/${username}`;
 
   return (
-    <motion.article
-      className='main-border relative grid grid-cols-[auto_1fr] gap-3 rounded-md p-4'
-      layout='position'
-      {...variants}
-    >
+    <article className='main-border relative grid grid-cols-[auto_1fr] gap-3 rounded-md p-4'>
       <UnstyledLink className='smooth-tab' href={githubProfileUrl}>
         <LazyImage
           className='main-border rounded-full transition hover:brightness-75'
@@ -83,12 +78,6 @@ export function GuestbookEntry({
           <HiTrash className='text-lg' />
         </Button>
       )}
-    </motion.article>
+    </article>
   );
 }
-
-const variants: MotionProps = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.8 } },
-  exit: { opacity: 0, transition: { duration: 0.2 } }
-};

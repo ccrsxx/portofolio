@@ -64,62 +64,73 @@ export function ContentLayout({
         alt={bannerAlt ?? title}
         customLink={bannerLink}
       />
-      <section className='mt-8 grid gap-2'>
-        <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
-        <p className='text-secondary text-sm'>
-          Written on {formatDate(publishedAt)} by Risal Amin
-        </p>
-        {lastUpdatedAt && (
-          <div className='text-primary flex items-center gap-2 text-sm'>
-            <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
-            <UnstyledLink
-              className='smooth-tab hover:text-accent-main flex items-center gap-1 transition-colors'
-              href={githubCommitHistoryUrl}
-            >
-              <MdHistory className='text-lg' />
-              View history
-            </UnstyledLink>
-          </div>
-        )}
-        <section className='mt-4 grid gap-2'>
-          {contentIsBlog ? (
-            <BlogStats slug={slug} readTime={readTime} increment />
-          ) : (
-            <ProjectStats slug={slug} readTime={readTime} increment {...meta} />
+      <article>
+        <header className='mt-8 grid gap-2'>
+          <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
+          <p className='text-secondary text-sm'>
+            Written on {formatDate(publishedAt)} by Risal Amin
+          </p>
+          {lastUpdatedAt && (
+            <div className='text-primary flex items-center gap-2 text-sm'>
+              <p>Last updated on {formatDate(lastUpdatedAt)}.</p>
+              <UnstyledLink
+                className='smooth-tab hover:text-accent-main flex items-center gap-1 transition-colors'
+                href={githubCommitHistoryUrl}
+              >
+                <MdHistory className='text-lg' />
+                View history
+              </UnstyledLink>
+            </div>
           )}
+          <div className='mt-4 grid gap-2'>
+            {contentIsBlog ? (
+              <BlogStats slug={slug} readTime={readTime} increment />
+            ) : (
+              <ProjectStats
+                slug={slug}
+                readTime={readTime}
+                increment
+                {...meta}
+              />
+            )}
+          </div>
+        </header>
+        <hr className='border-border mt-4' />
+        <section className='mt-4 grid gap-8 lg:grid-cols-[auto_1fr]'>
+          <div id='mdx-article' className='prose dark:prose-invert max-w-4xl'>
+            <MDXProvider components={components}>{children}</MDXProvider>
+          </div>
+          <TableOfContents>
+            <LikesCounter slug={slug} />
+          </TableOfContents>
         </section>
-      </section>
-      <hr className='border-border mt-4' />
-      <section className='mt-4 grid gap-8 lg:grid-cols-[auto_1fr]'>
-        <article id='mdx-article' className='prose dark:prose-invert max-w-4xl'>
-          <MDXProvider components={components}>{children}</MDXProvider>
-        </article>
-        <TableOfContents>
-          <LikesCounter slug={slug} />
-        </TableOfContents>
-      </section>
-      <section className='mt-20 grid gap-4'>
-        <h2 className='text-2xl font-bold md:text-4xl'>
-          <Accent>
-            Other {contentIsBlog ? 'posts' : parsedType} you might like
-          </Accent>
-        </h2>
-        <section className='card-layout'>
-          {contentIsBlog
-            ? (suggestedContents as Blog[]).map((suggestedContent, index) => (
-                <BlogCard {...suggestedContent} key={index} />
-              ))
-            : (suggestedContents as Project[]).map(
-                (suggestedContent, index) => (
-                  <ProjectCard {...suggestedContent} key={index} />
-                )
-              )}
+        <section className='mt-20 grid gap-4'>
+          <h2 className='text-2xl font-bold md:text-4xl'>
+            <Accent>
+              Other {contentIsBlog ? 'posts' : parsedType} you might like
+            </Accent>
+          </h2>
+          <ul className='card-layout'>
+            {contentIsBlog
+              ? (suggestedContents as Blog[]).map((suggestedContent) => (
+                  <li key={suggestedContent.slug}>
+                    <BlogCard {...suggestedContent} />
+                  </li>
+                ))
+              : (suggestedContents as Project[]).map((suggestedContent) => (
+                  <li key={suggestedContent.slug}>
+                    <ProjectCard {...suggestedContent} />
+                  </li>
+                ))}
+          </ul>
         </section>
-      </section>
-      <section className='mt-8 flex justify-between font-medium'>
-        <CustomLink href={`/${parsedType}`}>← Back to {parsedType}</CustomLink>
-        <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
-      </section>
+        <nav className='mt-8 flex justify-between font-medium'>
+          <CustomLink href={`/${parsedType}`}>
+            ← Back to {parsedType}
+          </CustomLink>
+          <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
+        </nav>
+      </article>
     </motion.main>
   );
 }

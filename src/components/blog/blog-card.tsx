@@ -2,22 +2,17 @@ import { Accent } from '@components/ui/accent';
 import type { BlogWithViews } from '@lib/api';
 import { formatDate } from '@lib/format';
 import type { Blog } from '@lib/types/contents';
-import type { CustomTag, ValidTag } from '@lib/types/helper';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContentTag } from '../ui/content-tag';
 import { BlogStats } from './blog-stats';
 
-type BlogCardProps<T extends ValidTag> = CustomTag<T> &
-  Blog &
+type BlogCardProps = Blog &
   Partial<Pick<BlogWithViews, 'views'>> & {
     isTagSelected?: (tag: string) => boolean;
   };
 
-const DEFAULT_TAG = 'article' as const;
-
-export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
-  tag = DEFAULT_TAG,
+export function BlogCard({
   slug,
   tags,
   title,
@@ -28,17 +23,14 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
   description,
   views: _views,
   bannerLink: _bannerLink,
-  isTagSelected,
-  ...rest
-}: BlogCardProps<T>): React.JSX.Element {
-  const CustomTag: ValidTag = tag;
-
+  isTagSelected
+}: BlogCardProps): React.JSX.Element {
   bannerAlt ??= title;
 
   const techTags = tags.split(',');
 
   return (
-    <CustomTag className='grid' {...rest}>
+    <article className='grid'>
       <Link className='clickable' href={`/blog/${slug}`}>
         <div className='relative'>
           <Image
@@ -60,15 +52,15 @@ export function BlogCard<T extends ValidTag = typeof DEFAULT_TAG>({
             ))}
           </ul>
         </div>
-        <section className='p-4 [&>div]:mt-1'>
-          <h3 className='text-primary text-lg font-bold'>{title}</h3>
+        <div className='p-4 [&>div]:mt-1'>
+          <p className='text-primary text-lg font-bold'>{title}</p>
           <BlogStats slug={slug} readTime={readTime} />
           <p className='text-primary mt-4 text-sm font-bold'>
             {formatDate(publishedAt)}
           </p>
           <p className='text-secondary mt-2 text-sm'>{description}</p>
-        </section>
+        </div>
       </Link>
-    </CustomTag>
+    </article>
   );
 }

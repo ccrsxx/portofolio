@@ -25,13 +25,13 @@ export default function Home({
         title='Risal Amin'
         description='An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.'
       />
-      <section className='-mt-20 grid min-h-screen content-center'>
-        <motion.h2
+      <header className='-mt-20 grid min-h-screen content-center'>
+        <motion.p
           className='text-2xl font-bold transition-colors delay-100 md:text-4xl 2xl:text-5xl'
           {...setTransition()}
         >
           Hi!
-        </motion.h2>
+        </motion.p>
         <motion.h1
           className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl'
           {...setTransition({ delayIn: 0.1 })}
@@ -39,43 +39,48 @@ export default function Home({
           I&apos;m <Accent>Risal</Accent> - Full Stack Developer
         </motion.h1>
         <motion.p
-          className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 md:text-lg 2xl:text-xl'
+          className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 
+                       md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
           I&apos;m a self-taught Software Engineer turned Full Stack Developer.
           I enjoy working with TypeScript, React, Node.js, and recently Go. I
           also love exploring new technologies and learning new things.
         </motion.p>
-        <motion.section className='mt-6' {...setTransition({ delayIn: 0.3 })}>
+        <motion.div className='mt-6' {...setTransition({ delayIn: 0.3 })}>
           <SpotifyCard />
-        </motion.section>
-        <motion.section
-          className='mt-8 flex gap-4 text-sm md:text-base'
-          {...setTransition({ delayIn: 0.4 })}
-        >
-          <UnstyledLink className='custom-button clickable' href='/blog'>
-            Read my blog
-          </UnstyledLink>
-          <UnstyledLink className='custom-button clickable' href='/about'>
-            Learn more about me
-          </UnstyledLink>
-        </motion.section>
-        <motion.section
-          className='mt-8 flex gap-4'
-          {...setTransition({ delayIn: 0.4 })}
-        >
-          {socialLink.map(({ name, href, Icon }) => (
-            <UnstyledLink
-              className='smooth-tab group text-muted flex items-center gap-2 text-sm transition *:transition-colors md:text-base'
-              href={href}
-              key={name}
-            >
-              <Icon className='group-hover:text-accent-main' />{' '}
-              <p className='group-hover:text-foreground'>{name}</p>
-            </UnstyledLink>
-          ))}
-        </motion.section>
-      </section>
+        </motion.div>
+        <motion.nav className='mt-8 ' {...setTransition({ delayIn: 0.4 })}>
+          <ul className='flex gap-4 text-sm md:text-base'>
+            <li>
+              <UnstyledLink className='custom-button clickable' href='/blog'>
+                Read my blog
+              </UnstyledLink>
+            </li>
+            <li>
+              <UnstyledLink className='custom-button clickable' href='/about'>
+                Learn more about me
+              </UnstyledLink>
+            </li>
+          </ul>
+        </motion.nav>
+        <motion.nav className='mt-8 ' {...setTransition({ delayIn: 0.4 })}>
+          <ul className='flex gap-4'>
+            {socialLink.map(({ name, href, Icon }) => (
+              <li key={name}>
+                <UnstyledLink
+                  className='smooth-tab group text-muted flex items-center gap-2 text-sm transition 
+                           *:transition-colors md:text-base'
+                  href={href}
+                >
+                  <Icon className='group-hover:text-accent-main' />{' '}
+                  <span className='group-hover:text-foreground'>{name}</span>
+                </UnstyledLink>
+              </li>
+            ))}
+          </ul>
+        </motion.nav>
+      </header>
       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
@@ -83,11 +88,13 @@ export default function Home({
         <p className='text-secondary -mt-2'>
           Check out my featured blog posts.
         </p>
-        <section className='card-layout'>
-          {featuredBlog.map((blog, index) => (
-            <BlogCard {...blog} key={index} />
+        <ul className='card-layout'>
+          {featuredBlog.map((blog) => (
+            <li key={blog.slug}>
+              <BlogCard {...blog} />
+            </li>
           ))}
-        </section>
+        </ul>
         <UnstyledLink
           className='custom-button clickable justify-self-center font-bold'
           href='/blog'
@@ -99,14 +106,14 @@ export default function Home({
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Project</Accent>
         </h2>
-        <p className='text-secondary -mt-2'>
-          Check out my featured blog posts.
-        </p>
-        <section className='card-layout'>
-          {featuredProjects.map((project, index) => (
-            <ProjectCard {...project} key={index} />
+        <p className='text-secondary -mt-2'>Check out my featured projects.</p>
+        <ul className='card-layout'>
+          {featuredProjects.map((project) => (
+            <li key={project.slug}>
+              <ProjectCard {...project} />
+            </li>
           ))}
-        </section>
+        </ul>
         <UnstyledLink
           className='custom-button clickable justify-self-center font-bold'
           href='/project'

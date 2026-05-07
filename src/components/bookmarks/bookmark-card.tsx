@@ -67,9 +67,9 @@ export function BookmarkCard({
                      from-background/80 via-background/20 to-transparent p-4 opacity-0 
                      transition-opacity duration-300 group-hover:opacity-80'
         >
-          <h2 className='text-foreground text-lg font-bold line-clamp-1'>
+          <p className='text-foreground text-lg font-bold line-clamp-1'>
             {title}
-          </h2>
+          </p>
           <p className='text-secondary text-sm'>
             by <cite className='font-medium not-italic'>{artistName}</cite>
           </p>

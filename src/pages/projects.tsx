@@ -16,7 +16,7 @@ export default function Projects({
         title='Projects'
         description='A showcase of my projects on the web development.'
       />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition()}
@@ -29,15 +29,14 @@ export default function Projects({
         >
           A showcase of my projects on the web development.
         </motion.p>
-      </section>
-      <motion.section
-        className='card-layout'
-        {...setTransition({ delayIn: 0.2 })}
-      >
-        {projects.map((post) => (
-          <ProjectCard {...post} key={post.title} />
+      </header>
+      <motion.ul className='card-layout' {...setTransition({ delayIn: 0.2 })}>
+        {projects.map((project) => (
+          <li key={project.slug}>
+            <ProjectCard {...project} />
+          </li>
         ))}
-      </motion.section>
+      </motion.ul>
     </main>
   );
 }

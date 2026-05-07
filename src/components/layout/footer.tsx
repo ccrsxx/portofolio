@@ -8,39 +8,44 @@ import { SiDiscord, SiGithub, SiX } from 'react-icons/si';
 export function Footer(): React.JSX.Element {
   return (
     <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
-      <nav className='mt-6 flex flex-wrap justify-center gap-x-8 gap-y-4'>
-        {footerLinks.map(({ name, href, tip }) => (
-          <Tooltip tip={tip} key={name}>
-            <UnstyledLink
-              className='animated-underline peer text-primary text-sm font-medium'
-              href={href}
-            >
-              {name}
-            </UnstyledLink>
-          </Tooltip>
-        ))}
-      </nav>
-      <section className='text-secondary grid justify-items-center gap-2'>
-        <h2 className='font-medium'>Reach me out</h2>
-        <section className='flex gap-4'>
-          {socialLinks.map(({ tip, name, href, Icon }) => (
-            <Tooltip
-              tip={
-                <>
-                  {tip} {name}
-                </>
-              }
-              key={name}
-            >
+      <nav className='mt-6'>
+        <ul className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
+          {footerLinks.map(({ name, href, tip }) => (
+            <Tooltip tag='li' tip={tip} key={name}>
               <UnstyledLink
-                className='smooth-tab peer hover:text-accent-main grid transition-colors'
+                className='animated-underline peer text-primary text-sm font-medium'
                 href={href}
               >
-                <Icon className='smooth-tab h-6 w-6' />
+                {name}
               </UnstyledLink>
             </Tooltip>
           ))}
-        </section>
+        </ul>
+      </nav>
+      <section className='text-secondary grid justify-items-center gap-2'>
+        <h2 className='font-medium'>Reach me out</h2>
+        <nav>
+          <ul className='flex gap-4'>
+            {socialLinks.map(({ tip, name, href, Icon }) => (
+              <Tooltip
+                tag='li'
+                tip={
+                  <>
+                    {tip} {name}
+                  </>
+                }
+                key={name}
+              >
+                <UnstyledLink
+                  className='smooth-tab peer hover:text-accent-main grid transition-colors'
+                  href={href}
+                >
+                  <Icon className='smooth-tab h-6 w-6' />
+                </UnstyledLink>
+              </Tooltip>
+            ))}
+          </ul>
+        </nav>
       </section>
       <p className='text-muted text-center text-sm'>
         &copy; Risal Amin 2026 •{' '}
@@ -81,11 +86,6 @@ const footerLinks: FooterLink[] = [
     href: '/statistics',
     tip: 'Blog & Projects statistics'
   }
-  // {
-  //   name: 'Subscribe',
-  //   href: '/subscribe',
-  //   tip: 'Get notified when I publish a new post'
-  // }
 ];
 
 type SocialLink = {

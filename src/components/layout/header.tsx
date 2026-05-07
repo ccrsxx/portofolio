@@ -23,7 +23,7 @@ export function Header(): React.JSX.Element {
         )}
       >
         <div className='gradient-background h-2' />
-        <div className='layout flex items-center justify-between py-4'>
+        <section className='layout flex items-center justify-between py-4'>
           <nav className='flex gap-4 font-medium'>
             {navLinks.map(({ name, href }) => (
               <Link
@@ -39,7 +39,7 @@ export function Header(): React.JSX.Element {
             ))}
           </nav>
           <ThemeSwitch />
-        </div>
+        </section>
       </header>
     </>
   );

@@ -18,55 +18,51 @@ export default function About(): React.JSX.Element {
   return (
     <main className='min-h-screen'>
       <SEO title='About' description='Risal Amin is a web developer' />
-      <section className='grid gap-2'>
-        <motion.h2
+      <header className='grid gap-2'>
+        <motion.h1
           className='text-xl font-bold md:text-3xl'
           {...setTransition()}
         >
           About
-        </motion.h2>
-        <motion.h1
+        </motion.h1>
+        <motion.h2
           className='text-2xl font-bold md:text-4xl'
           {...setTransition({ delayIn: 0.1 })}
         >
           <Accent>Risal Amin</Accent>
-        </motion.h1>
-      </section>
-      <section className='mt-4'>
-        <motion.article
-          className='prose dark:prose-invert'
-          {...setTransition({ delayIn: 0.2 })}
-        >
-          <p>
-            Hi, I&apos;m Risal. I started learning web development in November
-            2021, after building my first web app with{' '}
-            <CustomLink href='https://python.org'>Python</CustomLink> and the{' '}
-            <CustomLink href='https://streamlit.io'>Streamlit</CustomLink>{' '}
-            module. Since then, I&apos;ve been dedicated to learning as much as
-            I can about web development.
-          </p>
-          <p>
-            I began my journey by completing the front-end course on{' '}
-            <CustomLink href='https://freecodecamp.org'>
-              FreeCodeCamp
-            </CustomLink>{' '}
-            and then moved on to{' '}
-            <CustomLink href='https://theodinproject.com'>
-              The Odin Project
-            </CustomLink>{' '}
-            to learn Full Stack Development. I&apos;m always motivated to learn
-            new technologies and techniques, and I enjoy getting feedback to
-            help me improve.
-          </p>
-          <p>
-            On this website, I&apos;ll be sharing my projects and writing about
-            what I&apos;ve learned. I believe that writing helps me better
-            understand and retain new information, and I&apos;m always happy to
-            share my knowledge with others. If you have any questions or want to
-            connect, don&apos;t hesitate to reach out!
-          </p>
-        </motion.article>
-      </section>
+        </motion.h2>
+      </header>
+      <motion.section
+        className='prose dark:prose-invert mt-4'
+        {...setTransition({ delayIn: 0.2 })}
+      >
+        <p>
+          Hi, I&apos;m Risal. I started learning web development in November
+          2021, after building my first web app with{' '}
+          <CustomLink href='https://python.org'>Python</CustomLink> and the{' '}
+          <CustomLink href='https://streamlit.io'>Streamlit</CustomLink> module.
+          Since then, I&apos;ve been dedicated to learning as much as I can
+          about web development.
+        </p>
+        <p>
+          I began my journey by completing the front-end course on{' '}
+          <CustomLink href='https://freecodecamp.org'>FreeCodeCamp</CustomLink>{' '}
+          and then moved on to{' '}
+          <CustomLink href='https://theodinproject.com'>
+            The Odin Project
+          </CustomLink>{' '}
+          to learn Full Stack Development. I&apos;m always motivated to learn
+          new technologies and techniques, and I enjoy getting feedback to help
+          me improve.
+        </p>
+        <p>
+          On this website, I&apos;ll be sharing my projects and writing about
+          what I&apos;ve learned. I believe that writing helps me better
+          understand and retain new information, and I&apos;m always happy to
+          share my knowledge with others. If you have any questions or want to
+          connect, don&apos;t hesitate to reach out!
+        </p>
+      </motion.section>
       <section className='mt-12 grid gap-4'>
         <motion.h2
           className='text-xl font-bold md:text-3xl'

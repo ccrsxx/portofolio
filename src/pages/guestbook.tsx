@@ -9,7 +9,7 @@ import { useSession } from '@lib/hooks/use-session';
 import { setTransition } from '@lib/transition';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import type {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
@@ -29,7 +29,7 @@ export default function Guestbook({
         title='Guestbook'
         description='Sign my digital guestbook and share some wisdom.'
       />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition()}
@@ -40,31 +40,30 @@ export default function Guestbook({
           Leave a comment below. It could be anything - appreciation,
           information, wisdom, or even humor. Surprise me!
         </motion.p>
-      </section>
+      </header>
       <motion.section {...setTransition({ delayIn: 0.2 })}>
         <GuestbookCard>
           <GuestbookForm session={session} />
         </GuestbookCard>
       </motion.section>
-      <motion.section
-        className='grid gap-4'
-        {...setTransition({ delayIn: 0.3 })}
-      >
+      <motion.ul className='grid gap-4' {...setTransition({ delayIn: 0.3 })}>
         <AnimatePresence>
           {guestbook?.length ? (
             guestbook.map((entry) => (
-              <GuestbookEntry {...entry} session={session} key={entry.id} />
+              <motion.li {...variants} layout='position' key={entry.id}>
+                <GuestbookEntry {...entry} session={session} />
+              </motion.li>
             ))
           ) : (
-            <motion.h2
+            <motion.li
               className='text-center text-3xl font-bold'
               {...setTransition({ delayIn: 0.2 })}
             >
               <Accent>Sorry, Guestbook is currently empty :&#40;</Accent>
-            </motion.h2>
+            </motion.li>
           )}
         </AnimatePresence>
-      </motion.section>
+      </motion.ul>
     </main>
   );
 }
@@ -101,3 +100,9 @@ export async function getServerSideProps(
     }
   };
 }
+
+const variants: MotionProps = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.8 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } }
+};

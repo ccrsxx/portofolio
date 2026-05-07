@@ -17,7 +17,7 @@ export default function Statistics({
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <SEO title='Statistics' description='A statistics page by Risal Amin.' />
-      <section className='grid gap-2'>
+      <header className='grid gap-2'>
         <motion.h1
           className='text-3xl font-bold md:text-5xl'
           {...setTransition()}
@@ -30,14 +30,14 @@ export default function Statistics({
         >
           A statistics from blog and projects.
         </motion.p>
-      </section>
-      <motion.section
+      </header>
+      <motion.ul
         className='grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4'
         {...setTransition({ delayIn: 0.2 })}
       >
         <StatisticsCard {...blogStatistics} />
         <StatisticsCard {...projectsStatistics} />
-      </motion.section>
+      </motion.ul>
       <motion.section className='grid gap-4'>
         <motion.h2
           className='text-2xl font-bold capitalize'
@@ -45,9 +45,9 @@ export default function Statistics({
         >
           Blog
         </motion.h2>
-        <motion.section {...setTransition({ delayIn: 0.4 + 0 / 10 })}>
+        <motion.div {...setTransition({ delayIn: 0.4 + 0 / 10 })}>
           <Table data={blogData} />
-        </motion.section>
+        </motion.div>
       </motion.section>
       <motion.section className='grid gap-4'>
         <motion.h2
@@ -56,9 +56,9 @@ export default function Statistics({
         >
           Projects
         </motion.h2>
-        <motion.section {...setTransition({ delayIn: 0.4 + 1 / 10 })}>
+        <motion.div {...setTransition({ delayIn: 0.4 + 1 / 10 })}>
           <Table data={projectsData} />
-        </motion.section>
+        </motion.div>
       </motion.section>
     </main>
   );
