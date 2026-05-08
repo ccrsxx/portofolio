@@ -35,27 +35,27 @@ export default function Design(): React.JSX.Element {
           <ThemeSwitch />
         </div>
         <p className='text-secondary mt-2'>Font Family: Inter</p>
-        <ul className='mt-3 grid grid-cols-[repeat(auto-fit,minmax(256px,1fr))] gap-4'>
-          {colorPalette.map(({ title, className, lightHex, darkHex }) => {
-            let parsedHex: string;
+        <ul className='mt-3 card-layout'>
+          {colorPalette.map(({ title, className, darkColor, lightColor }) => {
+            let parsedColor: string;
 
-            if (!darkHex) parsedHex = lightHex;
+            if (!darkColor) parsedColor = lightColor;
             else {
-              if (theme === 'dark') parsedHex = darkHex;
-              else parsedHex = lightHex;
+              if (theme === 'dark') parsedColor = darkColor;
+              else parsedColor = lightColor;
             }
 
             return (
               <li className='flex items-center gap-2' key={title}>
                 <div
                   className={clsx(
-                    'main-border h-10 w-10 rounded-md',
+                    'main-border h-10 w-10 rounded-md shrink-0',
                     className
                   )}
                 />
                 <div>
                   <p>{title}</p>
-                  <p className='text-muted text-sm'>{parsedHex}</p>
+                  <p className='text-muted text-sm'>{parsedColor}</p>
                 </div>
               </li>
             );
@@ -68,63 +68,63 @@ export default function Design(): React.JSX.Element {
 
 type ColorPalette = {
   title: string;
-  darkHex?: string;
-  lightHex: string;
   className: string;
+  darkColor?: string;
+  lightColor: string;
 };
 
 const colorPalette: ColorPalette[] = [
   {
     title: 'Background',
     className: 'bg-background',
-    lightHex: '#ffffff',
-    darkHex: '#000000'
+    darkColor: '#000000',
+    lightColor: '#ffffff'
   },
   {
     title: 'Foreground',
     className: 'bg-foreground',
-    lightHex: '#000000',
-    darkHex: '#ffffff'
+    darkColor: '#ffffff',
+    lightColor: '#000000'
   },
   {
     title: 'Primary',
     className: 'bg-primary',
-    lightHex: '#111827',
-    darkHex: '#f3f4f6'
+    darkColor: '#f3f4f6',
+    lightColor: '#111827'
   },
   {
     title: 'Secondary',
     className: 'bg-secondary',
-    lightHex: '#1f2937',
-    darkHex: '#e5e7eb'
+    darkColor: '#e5e7eb',
+    lightColor: '#1f2937'
   },
   {
     title: 'Muted',
     className: 'bg-muted',
-    lightHex: '#4b5563',
-    darkHex: '#9ca3af'
+    darkColor: '#9ca3af',
+    lightColor: '#4b5563'
   },
   {
     title: 'Border',
     className: 'bg-border',
-    lightHex: '#e4e4e7',
-    darkHex: '#27272a'
+    darkColor: '#3f3f46',
+    lightColor: '#e4e4e7'
   },
   {
     title: 'Muted background',
     className: 'bg-muted-background',
-    lightHex: '#f4f4f5',
-    darkHex: '#18181b'
+    darkColor: '#27272a',
+    lightColor: '#f4f4f5'
   },
   {
     title: 'Accent foreground',
     className: 'bg-accent-foreground',
-    lightHex: '#9ca3af',
-    darkHex: '#4b5563'
+    darkColor: '#4b5563',
+    lightColor: '#9ca3af'
   },
   {
     title: 'Gradient color',
     className: 'bg-linear-to-tr from-accent-start to-accent-end',
-    lightHex: '#a855f7 to #c084fc'
+    lightColor: '#a855f7 to #ec4899'
   }
 ];
