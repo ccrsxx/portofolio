@@ -116,7 +116,7 @@ export default function Home({
         </ul>
         <UnstyledLink
           className='custom-button clickable justify-self-center font-bold'
-          href='/project'
+          href='/projects'
         >
           See more projects
         </UnstyledLink>
