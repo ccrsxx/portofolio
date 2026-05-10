@@ -24,19 +24,22 @@ export function Header(): React.JSX.Element {
       >
         <div className='gradient-background h-2' />
         <section className='layout flex items-center justify-between py-4'>
-          <nav className='flex gap-4 font-medium'>
-            {navLinks.map(({ name, href }) => (
-              <Link
-                className={clsx(
-                  'smooth-tab hover:text-accent-main text-xs hover:transition-colors md:text-base',
-                  baseRoute === href && 'gradient-title text-transparent!'
-                )}
-                href={href}
-                key={name}
-              >
-                {name}
-              </Link>
-            ))}
+          <nav>
+            <ul className='flex gap-4 font-medium'>
+              {navLinks.map(({ name, href }) => (
+                <li key={name}>
+                  <Link
+                    href={href}
+                    className={clsx(
+                      'smooth-tab hover:text-accent-main text-xs hover:transition-colors md:text-base',
+                      baseRoute === href && 'gradient-title text-transparent!'
+                    )}
+                  >
+                    {name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
           <ThemeSwitch />
         </section>

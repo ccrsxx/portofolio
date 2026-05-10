@@ -124,11 +124,19 @@ export function ContentLayout({
                 ))}
           </ul>
         </section>
-        <nav className='mt-8 flex justify-between font-medium'>
-          <CustomLink href={`/${parsedType}`}>
-            ← Back to {parsedType}
-          </CustomLink>
-          <CustomLink href={githubContentUrl}>Edit this on GitHub</CustomLink>
+        <nav>
+          <ul className='mt-8 flex justify-between font-medium'>
+            <li>
+              <CustomLink href={`/${parsedType}`}>
+                ← Back to {parsedType}
+              </CustomLink>
+            </li>
+            <li>
+              <CustomLink href={githubContentUrl}>
+                Edit this on GitHub
+              </CustomLink>
+            </li>
+          </ul>
         </nav>
       </article>
     </motion.main>
