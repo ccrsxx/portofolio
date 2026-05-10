@@ -25,7 +25,7 @@ export function LazyImage({
       }}
       className={clsx(
         className,
-        'duration-500',
+        'duration-500 hover:duration-300',
         loading
           ? 'blur-md scale-110 bg-border animate-pulse'
           : 'blur-none scale-100 bg-transparent'

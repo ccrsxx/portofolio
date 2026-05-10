@@ -31,7 +31,7 @@ export function BookmarkCard({
   ].slice(0, 3);
 
   return (
-    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm hover:shadow-md group'>
+    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm hover:shadow-md'>
       <figure className='relative w-full group'>
         <ImagePreview
           src={imageUrl}
@@ -40,8 +40,8 @@ export function BookmarkCard({
           height={height}
           tabIndex={-1}
           customLink={pixivUrl}
-          wrapperClassName='w-full'
-          className='transition-transform duration-500 group-hover:scale-110 object-cover w-full h-auto'
+          wrapperClassName='w-full group-hover:brightness-75'
+          className='transition-transform hover:duration-500 group-hover:scale-110 object-cover w-full h-auto'
         />
         <UnstyledLink
           href={pixivUrl}

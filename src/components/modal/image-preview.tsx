@@ -93,7 +93,7 @@ export function ImagePreview({
       </Modal>
       <button
         className={clsx(
-          'grid transition [&:hover,.group:hover_&]:brightness-75 smooth-tab',
+          'grid transition hover:brightness-75 smooth-tab',
           wrapperClassName
         )}
         tabIndex={tabIndex}
