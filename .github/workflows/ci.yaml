@@ -27,6 +27,9 @@ jobs:
       - name: Download deps
         run: npm ci
 
+      - name: Run next type gen
+        run: npm run typegen
+
       - name: Check types
         run: npm run type-check
 
@@ -46,6 +49,9 @@ jobs:
 
       - name: Download deps
         run: npm ci
+
+      - name: Run next type gen
+        run: npm run typegen
 
       - name: Lint
         run: npm run lint
