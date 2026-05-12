@@ -48,14 +48,16 @@ const withMDX = nextMDX({
       rehypeSlug,
       [rehypeAutolinkHeadings, rehypeAutolinkHeadingsOptions],
       [rehypePrettyCode, rehypePrettyCodeOptions]
-    ],
-    // If you use `MDXProvider`, uncomment the following line.
-    providerImportSource: '@mdx-js/react'
+    ]
   }
 });
 
 export default withMDX({
   output: 'standalone',
+  allowedDevOrigins: ['dev-frontend.ccrsxx.my.id'],
+  experimental: {
+    viewTransition: true
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -67,7 +69,7 @@ export default withMDX({
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   outputFileTracingIncludes: {
-    '/blog': ['./src/pages/blog/**/*'],
-    '/projects': ['./src/pages/projects/**/*']
+    '/blog': ['./src/content/blog/**/*'],
+    '/projects': ['./src/content/projects/**/*']
   }
 });

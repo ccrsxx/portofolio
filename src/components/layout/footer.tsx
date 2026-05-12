@@ -9,7 +9,10 @@ export function Footer(): React.JSX.Element {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'>
+    <footer
+      style={{ viewTransitionName: 'site-footer' }}
+      className='main-border layout mt-12 grid gap-8 border-0 border-t pb-2'
+    >
       <nav className='mt-6'>
         <ul className='flex flex-wrap justify-center gap-x-8 gap-y-4'>
           {footerLinks.map(({ name, href, tip }) => (

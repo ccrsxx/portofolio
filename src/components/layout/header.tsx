@@ -1,15 +1,17 @@
+'use client';
+
 import { ThemeSwitch } from '@components/common/theme-switch';
 import { clsx } from 'clsx';
 import { useInView } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
 
 export function Header(): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: '40px 0px 0px', amount: 'all' });
 
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   const baseRoute = '/' + pathname.split('/')[1];
 
@@ -17,6 +19,7 @@ export function Header(): React.JSX.Element {
     <>
       <div ref={ref} />
       <header
+        style={{ viewTransitionName: 'site-header' }}
         className={clsx(
           'bg-background/60 sticky top-0 z-20 w-full backdrop-blur-md transition',
           !inView && 'shadow-xs'

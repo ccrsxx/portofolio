@@ -5,7 +5,6 @@ import type {
   PathContentType,
   Project
 } from '@lib/types/contents';
-import type { GetStaticPropsResult } from 'next';
 import {
   convertPathContentToContentType,
   removeContentExtension
@@ -24,43 +23,81 @@ export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
 };
 
 /**
- * Returns the MDX contents props.
+ * Returns the MDX contents props for a given content slug.
  */
-export function getContentSlug(type: PathContentType, slug: string) {
-  return async (): Promise<GetStaticPropsResult<ContentSlugProps>> => {
-    const lastUpdatedAt = await getContentLastUpdatedDate(type, slug);
+export async function getContentSlugProps(
+  type: PathContentType,
+  slug: string
+): Promise<ContentSlugProps> {
+  const lastUpdatedAt = await getContentLastUpdatedDate(type, slug);
 
-    const suggestedContents = await getSuggestedContents(type);
+  const suggestedContents = await getSuggestedContents(type, [slug]);
 
-    const readTime = await getContentReadTime(type, slug);
+  const readTime = await getContentReadTime(type, slug);
 
-    const parsedContentType = convertPathContentToContentType(type);
+  const parsedContentType = convertPathContentToContentType(type);
 
-    return {
-      props: {
-        type: parsedContentType,
-        slug,
-        readTime,
-        suggestedContents,
-        ...(lastUpdatedAt && { lastUpdatedAt })
-      }
-    };
+  return {
+    type: parsedContentType,
+    slug,
+    readTime,
+    suggestedContents,
+    ...(lastUpdatedAt && { lastUpdatedAt })
   };
 }
 
 /**
  * Returns all the contents within the selected content directory.
  */
-export async function getAllContents(type: 'blog'): Promise<Blog[]>;
-export async function getAllContents(type: 'projects'): Promise<Project[]>;
-export async function getAllContents(
-  type: PathContentType
-): Promise<(Blog | Project)[]> {
-  const contentPosts = await getContentFiles(type);
+export async function getAllContents<T extends PathContentType>(
+  type: T,
+  ignoreFiles?: string[]
+): Promise<(T extends 'blog' ? Blog : Project)[]> {
+  const contentPosts = await getContentFiles(type, ignoreFiles);
 
   const contents = await getContentByFiles(type, contentPosts);
 
   return contents;
+}
+
+export type SlugContentMeta = Omit<Content, 'slug' | 'readTime'>;
+
+export type SlugContentMarkdown = () => React.JSX.Element;
+
+export type SlugContent = {
+  meta: SlugContentMeta;
+  Markdown: SlugContentMarkdown;
+};
+
+export async function getSlugContent(
+  type: PathContentType,
+  slug: string
+): Promise<SlugContent> {
+  if (type === 'blog') {
+    const { meta } = (await import(`@content/blog/${slug}`)) as {
+      meta: SlugContentMeta;
+    };
+
+    const { default: Markdown } = (await import(
+      `@content/blog/${slug}.mdx`
+    )) as {
+      default: SlugContentMarkdown;
+    };
+
+    return { meta, Markdown };
+  } else {
+    const { meta } = (await import(`@content/projects/${slug}`)) as {
+      meta: SlugContentMeta;
+    };
+
+    const { default: Markdown } = (await import(
+      `@content/projects/${slug}.mdx`
+    )) as {
+      default: SlugContentMarkdown;
+    };
+
+    return { meta, Markdown };
+  }
 }
 
 /**
@@ -75,13 +112,10 @@ export async function getContentByFiles(
   files: string[]
 ): Promise<(Blog | Project)[]> {
   const contentPromises = files.map(async (file) => {
-    const { meta } = (await import(`../pages/${type}/${file}`)) as {
-      meta:
-        | Omit<Blog, 'slug' | 'readTime'>
-        | Omit<Project, 'slug' | 'readTime'>;
-    };
-
     const slug = removeContentExtension(file);
+
+    const { meta } = await getSlugContent(type, slug);
+
     const readTime = await getContentReadTime(type, slug);
 
     return { ...meta, slug, readTime };

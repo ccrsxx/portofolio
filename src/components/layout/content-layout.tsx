@@ -1,27 +1,26 @@
+'use client';
+
 import { BlogCard } from '@components/blog/blog-card';
 import { BlogStats } from '@components/blog/blog-stats';
-import { SEO, type Article } from '@components/common/seo';
 import { LikesCounter } from '@components/content/likes-counter';
-import { components } from '@components/content/mdx-components';
 import { TableOfContents } from '@components/content/table-of-contents';
 import { CustomLink } from '@components/link/custom-link';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { ImagePreview } from '@components/modal/image-preview';
 import { ProjectCard } from '@components/projects/project-card';
 import { ProjectStats } from '@components/projects/project-stats';
+import { MorphTransition } from '@components/transitions/morph-transition';
 import { Accent } from '@components/ui/accent';
 import { formatDate } from '@lib/format';
 import { convertContentTypeToPathContentType } from '@lib/helper';
 import type { ContentSlugProps } from '@lib/mdx';
-import { setTransition } from '@lib/transition';
 import type { Blog, Content, Project } from '@lib/types/contents';
-import { MDXProvider } from '@mdx-js/react';
-import { motion } from 'framer-motion';
-import type { ReactElement } from 'react';
+import { type ReactNode } from 'react';
 import { MdHistory } from 'react-icons/md';
 
 type ContentLayoutProps = {
-  children: ReactElement<ContentSlugProps>;
+  children: ReactNode;
+  contentSlugProps: ContentSlugProps;
   meta: Pick<
     Content,
     'title' | 'tags' | 'publishedAt' | 'description' | 'banner'
@@ -32,38 +31,31 @@ type ContentLayoutProps = {
 
 export function ContentLayout({
   meta,
-  children
+  children,
+  contentSlugProps
 }: ContentLayoutProps): React.JSX.Element {
-  const [
-    { title, description, publishedAt, banner, bannerAlt, bannerLink, tags },
-    { type, slug, readTime, lastUpdatedAt, suggestedContents }
-  ] = [meta, children.props];
+  const { title, publishedAt, banner, bannerAlt, bannerLink } = meta;
+  const { type, slug, readTime, lastUpdatedAt, suggestedContents } =
+    contentSlugProps;
 
   const parsedType = convertContentTypeToPathContentType(type);
 
   const contentIsBlog = type === 'blog';
 
-  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/pages/${parsedType}/${slug}.mdx`;
-  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/pages/${parsedType}/${slug}.mdx`;
-
-  const article: Article = {
-    type: parsedType,
-    tags,
-    banner,
-    publishedAt,
-    lastUpdatedAt
-  };
+  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/content/${parsedType}/${slug}.mdx`;
+  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/content/${parsedType}/${slug}.mdx`;
 
   return (
-    <motion.main className='pt-0' {...setTransition({ distance: 25 })}>
-      <SEO title={title} description={description} article={article} />
-      <ImagePreview
-        className='max-h-112 object-cover'
-        wrapperClassName='mt-0.5'
-        src={banner}
-        alt={bannerAlt ?? title}
-        customLink={bannerLink}
-      />
+    <main className='pt-0'>
+      <MorphTransition name={`post-image-${slug}`}>
+        <ImagePreview
+          className='max-h-112 object-cover'
+          wrapperClassName='mt-0.5'
+          src={banner}
+          alt={bannerAlt ?? title}
+          customLink={bannerLink}
+        />
+      </MorphTransition>
       <article>
         <header className='mt-8 grid gap-2'>
           <h1 className='text-2xl font-bold md:text-4xl'>{title}</h1>
@@ -98,32 +90,34 @@ export function ContentLayout({
         <hr className='border-border mt-4' />
         <section className='mt-4 grid gap-8 lg:grid-cols-[auto_1fr]'>
           <div id='mdx-article' className='prose dark:prose-invert max-w-4xl'>
-            <MDXProvider components={components}>{children}</MDXProvider>
+            {children}
           </div>
           <TableOfContents>
             <LikesCounter slug={slug} />
           </TableOfContents>
         </section>
-        <section className='mt-20 grid gap-4'>
-          <h2 className='text-2xl font-bold md:text-4xl'>
-            <Accent>
-              Other {contentIsBlog ? 'posts' : parsedType} you might like
-            </Accent>
-          </h2>
-          <ul className='card-layout'>
-            {contentIsBlog
-              ? (suggestedContents as Blog[]).map((suggestedContent) => (
-                  <li className='grid' key={suggestedContent.slug}>
-                    <BlogCard {...suggestedContent} />
-                  </li>
-                ))
-              : (suggestedContents as Project[]).map((suggestedContent) => (
-                  <li key={suggestedContent.slug}>
-                    <ProjectCard {...suggestedContent} />
-                  </li>
-                ))}
-          </ul>
-        </section>
+        {!!suggestedContents.length && (
+          <section className='mt-20 grid gap-4'>
+            <h2 className='text-2xl font-bold md:text-4xl'>
+              <Accent>
+                Other {contentIsBlog ? 'posts' : parsedType} you might like
+              </Accent>
+            </h2>
+            <ul className='card-layout'>
+              {contentIsBlog
+                ? (suggestedContents as Blog[]).map((suggestedContent) => (
+                    <li className='grid' key={suggestedContent.slug}>
+                      <BlogCard {...suggestedContent} />
+                    </li>
+                  ))
+                : (suggestedContents as Project[]).map((suggestedContent) => (
+                    <li key={suggestedContent.slug}>
+                      <ProjectCard {...suggestedContent} />
+                    </li>
+                  ))}
+            </ul>
+          </section>
+        )}
         <nav>
           <ul className='mt-8 flex justify-between font-medium'>
             <li>
@@ -139,6 +133,6 @@ export function ContentLayout({
           </ul>
         </nav>
       </article>
-    </motion.main>
+    </main>
   );
 }

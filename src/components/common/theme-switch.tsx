@@ -3,11 +3,9 @@ import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
 
-export function ThemeSwitch(): React.JSX.Element | null {
+export function ThemeSwitch(): React.JSX.Element {
   const { theme, setTheme } = useTheme();
   const mounted = useMounted();
-
-  if (!mounted) return null;
 
   const isDarkMode = theme === 'dark';
 
@@ -21,18 +19,25 @@ export function ThemeSwitch(): React.JSX.Element | null {
                    transition md:text-xl [&>span]:block'
       type='button'
       onClick={flipTheme}
+      aria-label='Toggle theme'
     >
-      <AnimatePresence mode='popLayout' initial={false}>
-        {isDarkMode ? (
-          <motion.span {...moonVariants} key='dark'>
-            <HiOutlineMoon />
-          </motion.span>
-        ) : (
-          <motion.span {...sunVariants} key='light'>
-            <HiOutlineSun />
-          </motion.span>
-        )}
-      </AnimatePresence>
+      {mounted ? (
+        <AnimatePresence mode='popLayout' initial={false}>
+          {isDarkMode ? (
+            <motion.span {...moonVariants} key='dark'>
+              <HiOutlineMoon />
+            </motion.span>
+          ) : (
+            <motion.span {...sunVariants} key='light'>
+              <HiOutlineSun />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      ) : (
+        <span className='invisible'>
+          <HiOutlineSun />
+        </span>
+      )}
     </button>
   );
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import { frontendEnv } from '@lib/env';
 import { fetcher } from '@lib/fetcher';
 import type { AppQueryResult } from '@lib/types/api';

@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-@import './nprogress.css';
-@import './table.css';
 @import './mdx.css';
+@import './table.css';
+@import './transitions.css';
 
 /* Use class-based dark mode for next-themes toggle support */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -17,6 +17,10 @@
 }
 
 @theme {
+  --color-accent-main: oklch(0.718 0.202 349.761); /* Pink 400 */
+  --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
+  --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
+
   --color-background: oklch(1 0 0); /* White */
   --color-foreground: oklch(0 0 0); /* Black */
   --color-primary: oklch(0.208 0.042 265.755); /* Gray 900 */
@@ -25,10 +29,6 @@
   --color-accent-foreground: oklch(0.704 0.04 256.788); /* Gray 400 */
   --color-muted-background: oklch(0.929 0.006 286.286); /* Zinc 200 */
   --color-border: oklch(0.869 0.008 286.286); /* Zinc 300 */
-
-  --color-accent-main: oklch(0.718 0.202 349.761); /* Pink 400 */
-  --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
-  --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
 }
 
 .dark {
@@ -40,15 +40,6 @@
   --color-accent-foreground: oklch(0.446 0.043 257.281); /* Gray 600 */
   --color-muted-background: oklch(0.274 0.006 286.033); /* Zinc 800 */
   --color-border: oklch(0.371 0.008 286.033); /* Zinc 700 */
-
-  --color-accent-main: oklch(0.718 0.202 349.761); /* Pink 400 */
-  --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
-  --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
-}
-
-html {
-  /* workaround for nextjs smooth scroll */
-  scroll-behavior: smooth !important;
 }
 
 body {
@@ -102,6 +93,10 @@ main {
 
 @utility custom-underline {
   @apply underline decoration-transparent decoration-1 outline-hidden transition hover:decoration-inherit focus-visible:decoration-inherit;
+}
+
+@utility animate-fade-up-delay-* {
+  animation-delay: calc(--value(integer) * 100ms);
 }
 
 @utility animated-underline {

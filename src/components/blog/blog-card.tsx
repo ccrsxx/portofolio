@@ -1,3 +1,4 @@
+import { MorphTransition } from '@components/transitions/morph-transition';
 import { Accent } from '@components/ui/accent';
 import type { BlogWithViews } from '@lib/api';
 import { formatDate } from '@lib/format';
@@ -33,13 +34,15 @@ export function BlogCard({
     <article className='grid'>
       <Link className='clickable' href={`/blog/${slug}`}>
         <div className='relative'>
-          <Image
-            className='h-36 w-full rounded-t-md object-cover'
-            src={banner}
-            alt={bannerAlt}
-            title={bannerAlt}
-            placeholder='blur'
-          />
+          <MorphTransition name={`post-image-${slug}`}>
+            <Image
+              className='h-36 w-full rounded-t-md object-cover'
+              src={banner}
+              alt={bannerAlt}
+              title={bannerAlt}
+              placeholder='blur'
+            />
+          </MorphTransition>
           <ul className='absolute bottom-0 flex w-full justify-end gap-2 p-2'>
             {techTags.map((tag) => (
               <ContentTag className='opacity-80' tag='li' key={tag}>

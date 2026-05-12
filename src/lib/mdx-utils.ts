@@ -10,10 +10,20 @@ import type { FileCommitHistory } from './types/github';
  * Returns the content files within the selected content directory.
  */
 export async function getContentFiles(
-  type: PathContentType
+  type: PathContentType,
+  ignoreFiles?: string[]
 ): Promise<string[]> {
-  const contentDirectory = join('src', 'pages', type);
-  const contentPosts = await readdir(contentDirectory);
+  const contentDirectory = join('src', 'content', type);
+
+  let allFiles = await readdir(contentDirectory);
+
+  if (ignoreFiles) {
+    allFiles = allFiles.filter(
+      (file) => !ignoreFiles.some((ignore) => file.startsWith(ignore))
+    );
+  }
+
+  const contentPosts = allFiles.filter((file) => file.endsWith('.mdx'));
 
   return contentPosts;
 }
@@ -25,13 +35,11 @@ export async function getContentReadTime(
   type: PathContentType,
   slug: string
 ): Promise<string> {
-  const contentPath = join('src', 'pages', type, `${slug}.mdx`);
+  const contentPath = join('src', 'content', type, `${slug}.mdx`);
 
-  const rawContent = await readFile(contentPath, 'utf8');
+  const fileContent = await readFile(contentPath, 'utf8');
 
-  const actualContent = rawContent.split('{/* content start */}')[1].trim();
-
-  const { text } = readingTime(actualContent);
+  const { text } = readingTime(fileContent);
 
   return text;
 }
@@ -69,9 +77,10 @@ export async function getContentLastUpdatedDate(
  * Returns three random suggested contents.
  */
 export async function getSuggestedContents(
-  type: PathContentType
+  type: PathContentType,
+  ignoreFiles?: string[]
 ): Promise<(Blog | Project)[]> {
-  const contentFiles = await getContentFiles(type);
+  const contentFiles = await getContentFiles(type, ignoreFiles);
 
   const shuffledFiles = contentFiles
     .map((value) => ({ value, sort: Math.random() }))
