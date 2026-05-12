@@ -13,7 +13,7 @@ export async function getContentFiles(
   type: PathContentType,
   ignoreFiles?: string[]
 ): Promise<string[]> {
-  const contentDirectory = join('src', 'content', type);
+  const contentDirectory = join('src', 'contents', type);
 
   let allFiles = await readdir(contentDirectory);
 
@@ -35,7 +35,7 @@ export async function getContentReadTime(
   type: PathContentType,
   slug: string
 ): Promise<string> {
-  const contentPath = join('src', 'content', type, `${slug}.mdx`);
+  const contentPath = join('src', 'contents', type, `${slug}.mdx`);
 
   const fileContent = await readFile(contentPath, 'utf8');
 

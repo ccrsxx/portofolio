@@ -74,24 +74,24 @@ export async function getSlugContent(
   slug: string
 ): Promise<SlugContent> {
   if (type === 'blog') {
-    const { meta } = (await import(`@content/blog/${slug}`)) as {
+    const { meta } = (await import(`@contents/blog/${slug}`)) as {
       meta: SlugContentMeta;
     };
 
     const { default: Markdown } = (await import(
-      `@content/blog/${slug}.mdx`
+      `@contents/blog/${slug}.mdx`
     )) as {
       default: SlugContentMarkdown;
     };
 
     return { meta, Markdown };
   } else {
-    const { meta } = (await import(`@content/projects/${slug}`)) as {
+    const { meta } = (await import(`@contents/projects/${slug}`)) as {
       meta: SlugContentMeta;
     };
 
     const { default: Markdown } = (await import(
-      `@content/projects/${slug}.mdx`
+      `@contents/projects/${slug}.mdx`
     )) as {
       default: SlugContentMarkdown;
     };

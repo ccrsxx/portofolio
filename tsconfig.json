@@ -19,7 +19,7 @@
       "@components/*": ["src/components/*"],
       "@lib/*": ["src/lib/*"],
       "@styles/*": ["src/styles/*"],
-      "@content/*": ["src/content/*"]
+      "@contents/*": ["src/contents/*"]
     },
     "plugins": [
       {
