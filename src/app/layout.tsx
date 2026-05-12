@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>): React.JSX.Element {
+}): React.JSX.Element {
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.variable}>
