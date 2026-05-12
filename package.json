@@ -11,7 +11,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky"
+    "prepare": "husky && next typegen"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
