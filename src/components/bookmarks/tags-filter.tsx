@@ -56,10 +56,7 @@ export function TagsFilter({
   }
 
   return (
-    <div
-      style={{ viewTransitionName: 'site-tags-filter' }}
-      className='grid gap-2'
-    >
+    <div className='grid gap-2'>
       <Combobox
         multiple
         as='div'
