@@ -1,4 +1,4 @@
-import Banner from '../../../public/assets/blog/custom-layout-in-nextjs/banner.jpg';
+import Banner from '/public/assets/blog/custom-layout-in-nextjs/banner.jpg';
 
 export const meta = {
   title: 'Creating Custom Layouts in Next.js',
