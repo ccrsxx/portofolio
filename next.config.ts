@@ -69,7 +69,7 @@ export default withMDX({
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   outputFileTracingIncludes: {
-    '/blog': ['./src/content/blog/**/*'],
-    '/projects': ['./src/content/projects/**/*']
+    '/blog': ['./src/contents/blog/**/*'],
+    '/projects': ['./src/contents/projects/**/*']
   }
 });
