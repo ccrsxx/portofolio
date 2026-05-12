@@ -1,4 +1,4 @@
-import Banner from '/public/assets/blog/hello-world/banner.jpg';
+import Banner from '../../../public/assets/blog/hello-world/banner.jpg';
 
 export const meta = {
   title: '"Hello World" - A New Beginning',

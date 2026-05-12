@@ -1,4 +1,4 @@
-import Banner from '/public/assets/blog/data-fetching-in-nextjs/banner.jpg';
+import Banner from '../../../public/assets/blog/data-fetching-in-nextjs/banner.jpg';
 
 export const meta = {
   title: 'Data Fetching in Next.js',
