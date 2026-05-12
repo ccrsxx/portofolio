@@ -2,8 +2,8 @@
 
 import { BlogCard } from '@components/blog/blog-card';
 import { BlogStats } from '@components/blog/blog-stats';
-import { LikesCounter } from '@components/content/likes-counter';
-import { TableOfContents } from '@components/content/table-of-contents';
+import { LikesCounter } from '@components/contents/likes-counter';
+import { TableOfContents } from '@components/contents/table-of-contents';
 import { CustomLink } from '@components/link/custom-link';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { ImagePreview } from '@components/modal/image-preview';

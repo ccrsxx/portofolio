@@ -1,4 +1,4 @@
-import { ViewsCounter } from '@components/content/views-counter';
+import { ViewsCounter } from '@components/contents/views-counter';
 import { Accent } from '@components/ui/accent';
 import type { Blog } from '@lib/types/contents';
 import type { PropsForViews } from '@lib/types/helper';

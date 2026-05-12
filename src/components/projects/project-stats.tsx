@@ -1,4 +1,4 @@
-import { ViewsCounter } from '@components/content/views-counter';
+import { ViewsCounter } from '@components/contents/views-counter';
 import { CustomLink } from '@components/link/custom-link';
 import type { Project } from '@lib/types/contents';
 import type { PropsForViews } from '@lib/types/helper';
