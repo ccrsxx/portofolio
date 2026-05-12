@@ -9,7 +9,7 @@ import { useSession } from '@lib/hooks/use-session';
 import { setTransition } from '@lib/transition';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 
 type GuestbookClientProps = {
   session: AuthUser | null;

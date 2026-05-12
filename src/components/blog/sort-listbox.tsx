@@ -5,7 +5,7 @@ import {
   ListboxOptions
 } from '@headlessui/react';
 import { clsx } from 'clsx';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { Fragment, type Dispatch, type SetStateAction } from 'react';
 import { HiArrowsUpDown, HiCalendar, HiCheck, HiEye } from 'react-icons/hi2';
 

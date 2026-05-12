@@ -12,7 +12,7 @@ import type { BlogWithViews } from '@lib/api';
 import { getContentTags as getBlogTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { useState, type ChangeEvent } from 'react';
 
 type BlogClientProps = {

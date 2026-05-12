@@ -8,7 +8,7 @@ import { getBookmarksTagsWithCount } from '@lib/helper';
 import { setTransition } from '@lib/transition';
 import type { Bookmark } from '@lib/types/bookmarks';
 import clsx from 'clsx';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { useState } from 'react';
 
 type BookmarksClientProps = {

@@ -1,7 +1,7 @@
 import { useContentLikes, useLikeContent } from '@lib/hooks/use-content-likes';
 import type { Content } from '@lib/types/contents';
 import { clsx } from 'clsx';
-import { motion, type MotionProps } from 'framer-motion';
+import { motion, type MotionProps } from 'motion/react';
 
 const MAX_USER_LIKES = 5;
 const HEART_HEIGHT_PX = 20;

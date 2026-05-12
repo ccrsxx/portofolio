@@ -7,7 +7,7 @@ import {
 } from '@headlessui/react';
 import type { BookmarkTagWithCount } from '@lib/helper';
 import { clsx } from 'clsx';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { Fragment, useState } from 'react';
 import { HiCheck, HiChevronUpDown, HiXMark } from 'react-icons/hi2';
 

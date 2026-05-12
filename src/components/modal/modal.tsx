@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { clsx } from 'clsx';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { Fragment, type PropsWithChildren } from 'react';
 
 type ModalProps = PropsWithChildren<{

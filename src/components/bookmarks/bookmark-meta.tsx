@@ -1,5 +1,5 @@
 import { Accent } from '@components/ui/accent';
-import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { HiXMark } from 'react-icons/hi2';
 
 type BookmarkMetaProps = {

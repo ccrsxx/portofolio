@@ -1,4 +1,4 @@
-import type { MotionProps, Transition } from 'framer-motion';
+import type { MotionProps, Transition } from 'motion/react';
 
 type SetTransition = Pick<MotionProps, 'initial' | 'animate' | 'exit'>;
 type TransitionType = 'spring' | 'tween' | 'inertia';

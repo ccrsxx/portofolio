@@ -2,7 +2,7 @@
 
 import { ThemeSwitch } from '@components/common/theme-switch';
 import { clsx } from 'clsx';
-import { useInView } from 'framer-motion';
+import { useInView } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRef } from 'react';
