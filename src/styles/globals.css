@@ -95,10 +95,6 @@ main {
   @apply underline decoration-transparent decoration-1 outline-hidden transition hover:decoration-inherit focus-visible:decoration-inherit;
 }
 
-@utility animate-fade-up-delay-* {
-  animation-delay: calc(--value(integer) * 100ms);
-}
-
 @utility animated-underline {
   background-size: 0 2px;
   background-position: 0 100%;
