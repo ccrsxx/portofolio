@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { PageTransition } from '@components/transitions/page-transition';
 import {
   getAllBlogWithViews,
@@ -26,9 +28,13 @@ export default async function Blog(): Promise<React.JSX.Element> {
     const contents = await getContentsDataByType('blog');
     blog = await getAllBlogWithViews(contents);
     tags = getBlogTags(blog);
+
+    console.log({ contents, blog, tags });
   } catch (error) {
     console.error('blog ssr error', error);
   }
+
+  console.log({ blog, tags });
 
   return (
     <PageTransition>
