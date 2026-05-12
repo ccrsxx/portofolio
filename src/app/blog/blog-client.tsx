@@ -13,7 +13,7 @@ import { getContentTags as getBlogTags, textIncludes } from '@lib/helper';
 import { useSessionStorage } from '@lib/hooks/use-session-storage';
 import { setTransition } from '@lib/transition';
 import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
-import { startTransition, useState, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent } from 'react';
 
 type BlogClientProps = {
   tags: string[];
@@ -41,7 +41,7 @@ export function BlogClient({ tags, blog }: BlogClientProps): React.JSX.Element {
   const handleSearchChange = ({
     target: { value }
   }: ChangeEvent<HTMLInputElement>): void => {
-    startTransition(() => setSearch(value));
+    setSearch(value);
   };
 
   const handleTagClick = (tag: string) => (): void => {
@@ -60,7 +60,7 @@ export function BlogClient({ tags, blog }: BlogClientProps): React.JSX.Element {
       newSearch = appendedTagSearch;
     }
 
-    startTransition(() => setSearch(newSearch));
+    setSearch(newSearch);
   };
 
   if (sortOrder === 'date') filteredPosts.sort();

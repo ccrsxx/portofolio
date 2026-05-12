@@ -3,12 +3,13 @@
 import { BookmarkCard } from '@components/bookmarks/bookmark-card';
 import { BookmarkMeta } from '@components/bookmarks/bookmark-meta';
 import { TagsFilter } from '@components/bookmarks/tags-filter';
-import { ListTransition } from '@components/transitions/list-transition';
 import { Accent } from '@components/ui/accent';
 import { getBookmarksTagsWithCount } from '@lib/helper';
+import { setTransition } from '@lib/transition';
 import type { Bookmark } from '@lib/types/bookmarks';
 import clsx from 'clsx';
-import { startTransition, useState } from 'react';
+import { AnimatePresence, motion, type MotionProps } from 'framer-motion';
+import { useState } from 'react';
 
 type BookmarksClientProps = {
   bookmarks: Bookmark[];
@@ -26,9 +27,7 @@ export function BookmarksClient({
     : bookmarks;
 
   const handleRemoveTag = (tagToRemove: string): void => {
-    startTransition(() =>
-      setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove))
-    );
+    setSelectedTags(selectedTags.filter((tag) => tag !== tagToRemove));
   };
 
   return (
@@ -64,23 +63,41 @@ export function BookmarksClient({
             'columns-2 gap-4 md:columns-3 lg:columns-4'
         )}
       >
-        {filteredBookmarks.length ? (
-          filteredBookmarks.map((bookmark) => (
-            <ListTransition
-              name={`bookmark-card-${bookmark.id}`}
-              key={bookmark.id}
+        <AnimatePresence mode='popLayout'>
+          {filteredBookmarks.length ? (
+            <AnimatePresence>
+              {filteredBookmarks.map((bookmark) => (
+                <motion.li {...variants} layout='position' key={bookmark.id}>
+                  <BookmarkCard {...bookmark} selectedTags={selectedTags} />
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          ) : (
+            <motion.li
+              className='text-center text-3xl font-bold'
+              {...setTransition({ delayIn: 0.2 })}
+              key='no-results'
             >
-              <li>
-                <BookmarkCard {...bookmark} selectedTags={selectedTags} />
-              </li>
-            </ListTransition>
-          ))
-        ) : (
-          <li className='text-center text-3xl font-bold'>
-            <Accent>No artworks found for these tags.</Accent>
-          </li>
-        )}
+              <Accent>No artworks found for these tags.</Accent>
+            </motion.li>
+          )}
+        </AnimatePresence>
       </ul>
     </main>
   );
 }
+
+const variants: MotionProps = {
+  initial: {
+    scale: 0.9,
+    opacity: 0
+  },
+  animate: {
+    scale: 1,
+    opacity: 1
+  },
+  exit: {
+    scale: 0.9,
+    opacity: 0
+  }
+};
