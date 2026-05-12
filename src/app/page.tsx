@@ -15,7 +15,7 @@ import { HiDocumentText } from 'react-icons/hi2';
 import { SiGithub } from 'react-icons/si';
 
 const { title: _, ...homeMetadata } = generatePageMetadata({
-  title: 'Risal Amin | Full Stack Developer',
+  title: 'Risal Amin',
   description:
     'An online portfolio and blog by Risal Amin. Showcase some of my past projects and some of my thoughts on the world of web development.',
   pathname: '/'
