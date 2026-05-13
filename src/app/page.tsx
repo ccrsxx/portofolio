@@ -53,7 +53,7 @@ export default async function Home(): Promise<React.JSX.Element> {
             Full Stack Developer
           </p>
           <p
-            className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-300 md:mt-6 
+            className='text-primary mt-4 max-w-2xl leading-relaxed transition-colors delay-300 md:mt-6 
                        md:text-lg 2xl:text-xl animate-enter-y animate-enter-delay-200'
           >
             A software engineer who loves building things with TypeScript,

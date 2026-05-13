@@ -1,8 +1,8 @@
 import '@styles/globals.css';
 
-import { ThemeMeta } from '@components/common/theme-meta';
 import { Footer } from '@components/layout/footer';
 import { Header } from '@components/layout/header';
+import { ThemeProvider } from '@wrksz/themes/next';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers';
@@ -31,14 +31,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }): React.JSX.Element {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={inter.variable}>
-        <ThemeMeta />
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <ThemeProvider
+          attribute='class'
+          themeColor={{
+            light: '#ffffff',
+            dark: '#000000'
+          }}
+          enableSystem
+          defaultTheme='system'
+        >
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

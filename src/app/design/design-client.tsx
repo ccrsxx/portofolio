@@ -2,8 +2,8 @@
 
 import { ThemeSwitch } from '@components/common/theme-switch';
 import { Accent } from '@components/ui/accent';
+import { useTheme } from '@wrksz/themes/client';
 import { clsx } from 'clsx';
-import { useTheme } from 'next-themes';
 
 export function DesignClient(): React.JSX.Element {
   const { theme } = useTheme();
