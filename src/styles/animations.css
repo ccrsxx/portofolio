@@ -68,9 +68,9 @@
   --enter-distance: calc(--value(integer) * 1px);
 }
 
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   [class*='enter-'] {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
   }
-} */
+}

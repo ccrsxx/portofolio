@@ -65,28 +65,25 @@
 }
 
 /* Header/footer isolation */
-::view-transition-group(site-header),
-::view-transition-group(site-footer) {
+::view-transition-group(site-header) {
   animation: none;
   z-index: 100;
 }
 
-::view-transition-old(site-header),
-::view-transition-old(site-footer) {
+::view-transition-old(site-header) {
   display: none;
 }
 
-::view-transition-new(site-header),
-::view-transition-new(site-footer) {
+::view-transition-new(site-header) {
   animation: none;
 }
 
 /* Reduced motion */
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   ::view-transition-old(*),
   ::view-transition-new(*),
   ::view-transition-group(*) {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
   }
-} */
+}
