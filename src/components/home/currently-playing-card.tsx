@@ -4,7 +4,6 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { LazyImage } from '@components/ui/lazy-image';
 import { formatMilisecondsToPlayback } from '@lib/format';
 import { useCurrentlyPlayingSSE } from '@lib/hooks/use-currently-playing-sse';
-import { useMounted } from '@lib/hooks/use-mounted';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { HiPause, HiPlay } from 'react-icons/hi2';
@@ -15,8 +14,6 @@ export function CurrentlyPlayingCard(): React.ReactNode {
   const [currentPlaybackTime, setCurrentPlaybackTime] = useState(0);
 
   const { currentlyPlaying } = useCurrentlyPlayingSSE();
-
-  const mounted = useMounted();
 
   const { platform, isPlaying, item } = currentlyPlaying?.data ?? {};
 
@@ -59,10 +56,6 @@ export function CurrentlyPlayingCard(): React.ReactNode {
 
     return (): void => clearInterval(progressIntervalId);
   }, [isPlaying, item]); // Re-run when the song or its playing status changes.
-
-  if (!mounted) {
-    return null;
-  }
 
   const defaultPlatform = <SiApplemusic className='shrink-0 text-lg' />;
 
