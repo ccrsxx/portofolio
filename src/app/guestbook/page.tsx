@@ -1,4 +1,3 @@
-import { PageTransition } from '@components/transitions/page-transition';
 import { getGuestbook, getSession } from '@lib/api';
 import { generatePageMetadata } from '@lib/metadata';
 import type { AuthUser } from '@lib/types/auth';
@@ -34,9 +33,5 @@ export default async function Guestbook(): Promise<React.JSX.Element> {
     console.error('guestbook ssr guestbook error', error);
   }
 
-  return (
-    <PageTransition>
-      <GuestbookClient session={session} guestbook={guestbook} />
-    </PageTransition>
-  );
+  return <GuestbookClient session={session} guestbook={guestbook} />;
 }
