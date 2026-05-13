@@ -41,7 +41,7 @@ export function BookmarksClient({
         </p>
       </header>
       <section className='mt-2'>
-        <div className='animate-enter-y animate-enter-delay-200'>
+        <div className='animate-enter-y animate-enter-delay-200 relative z-10'>
           <TagsFilter
             tags={bookmarksTags}
             selectedTags={selectedTags}
