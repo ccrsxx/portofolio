@@ -39,8 +39,8 @@ export default function RootLayout({
             light: '#ffffff',
             dark: '#000000'
           }}
-          enableSystem
-          defaultTheme='system'
+          enableSystem={false}
+          defaultTheme='dark'
         >
           <Header />
           <Providers>{children}</Providers>
