@@ -40,21 +40,17 @@ export function BookmarksClient({
           A collection of artworks that I have bookmarked on Pixiv.
         </p>
       </header>
-      <section className='mt-2'>
-        <div>
-          <TagsFilter
-            tags={bookmarksTags}
-            selectedTags={selectedTags}
-            onSelectTags={setSelectedTags}
-          />
-        </div>
-        <div className='mt-2'>
-          <BookmarkMeta
-            total={filteredBookmarks.length}
-            selectedTags={selectedTags}
-            onRemoveTag={handleRemoveTag}
-          />
-        </div>
+      <section className='mt-2 grid gap-2'>
+        <TagsFilter
+          tags={bookmarksTags}
+          selectedTags={selectedTags}
+          onSelectTags={setSelectedTags}
+        />
+        <BookmarkMeta
+          total={filteredBookmarks.length}
+          selectedTags={selectedTags}
+          onRemoveTag={handleRemoveTag}
+        />
       </section>
       <ul
         className={clsx(

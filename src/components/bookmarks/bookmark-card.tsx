@@ -65,7 +65,7 @@ export function BookmarkCard({
         </ContentTag>
       )}
       <figcaption
-        className='pointer-events-none absolute inset-0 flex flex-col justify-end bg-linear-to-t 
+        className='pointer-events-none absolute inset-0 grid bg-linear-to-t content-end
                    from-background/80 via-background/20 to-transparent p-4 opacity-0 
                    transition-opacity duration-300 group-hover:opacity-80'
       >
