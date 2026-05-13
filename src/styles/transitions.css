@@ -1,6 +1,6 @@
 :root {
   --duration-exit: 150ms;
-  --duration-enter: 210ms;
+  --duration-enter: 300ms;
   --duration-move: 400ms;
 }
 
