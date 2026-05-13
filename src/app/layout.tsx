@@ -42,11 +42,9 @@ export default function RootLayout({
           enableSystem
           defaultTheme='system'
         >
-          <Providers>
-            <Header />
-            {children}
-            <Footer />
-          </Providers>
+          <Header />
+          <Providers>{children}</Providers>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
