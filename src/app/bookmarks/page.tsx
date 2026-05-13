@@ -1,4 +1,3 @@
-import { PageTransition } from '@components/transitions/page-transition';
 import { getAllBookmarks } from '@lib/api';
 import { generatePageMetadata } from '@lib/metadata';
 import type { Bookmark } from '@lib/types/bookmarks';
@@ -22,9 +21,5 @@ export default async function Bookmarks(): Promise<React.JSX.Element> {
     console.error('bookmarks ssr error', error);
   }
 
-  return (
-    <PageTransition>
-      <BookmarksClient bookmarks={bookmarks} />
-    </PageTransition>
-  );
+  return <BookmarksClient bookmarks={bookmarks} />;
 }
