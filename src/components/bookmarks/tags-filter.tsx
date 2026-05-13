@@ -57,7 +57,9 @@ export function TagsFilter({
 
   return (
     <Combobox
+      as='div'
       multiple
+      className='z-10 relative'
       value={selectedTags}
       onChange={handleComboboxChange}
       onClose={handleComboboxClose}

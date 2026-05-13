@@ -146,7 +146,6 @@ export function BlogClient({ tags, blog }: BlogClientProps): React.JSX.Element {
 }
 
 const variants: MotionProps = {
-  // initial: { opacity: 0 },
   animate: {
     scale: 1,
     opacity: 1
