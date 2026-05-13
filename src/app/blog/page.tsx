@@ -31,7 +31,7 @@ export default async function Blog(): Promise<React.JSX.Element> {
   }
 
   return (
-    <PageTransition>
+    <PageTransition enter='slide-up'>
       <BlogClient blog={blog} tags={tags} />
     </PageTransition>
   );

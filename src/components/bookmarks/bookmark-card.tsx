@@ -31,62 +31,63 @@ export function BookmarkCard({
   ].slice(0, 3);
 
   return (
-    <div className='break-inside-avoid relative overflow-hidden mb-4 rounded-md shadow-sm hover:shadow-md'>
-      <figure className='relative w-full group'>
-        <ImagePreview
-          src={imageUrl}
-          alt={`Artwork by ${artistName}`}
-          width={width}
-          height={height}
-          tabIndex={-1}
-          customLink={pixivUrl}
-          wrapperClassName='w-full group-hover:brightness-75'
-          className='transition-transform hover:duration-500 group-hover:scale-110 object-cover w-full h-auto'
-        />
-        <UnstyledLink
-          href={pixivUrl}
-          className='smooth-tab bg-background/50 hover:bg-background/80 text-foreground absolute 
-                     top-4 right-4 z-10 rounded-md p-2 opacity-0 transition-opacity duration-300 
-                     group-hover:opacity-80 focus-visible:opacity-80'
-          onClick={preventBubbling()}
-          tabIndex={-1}
+    <figure
+      className='w-full group break-inside-avoid relative overflow-hidden mb-4 
+                 rounded-md shadow-sm hover:shadow-md'
+    >
+      <ImagePreview
+        src={imageUrl}
+        alt={`Artwork by ${artistName}`}
+        width={width}
+        height={height}
+        tabIndex={-1}
+        customLink={pixivUrl}
+        wrapperClassName='w-full group-hover:brightness-75'
+        className='transition-transform hover:duration-500 group-hover:scale-110 object-cover w-full h-auto'
+      />
+      <UnstyledLink
+        href={pixivUrl}
+        className='smooth-tab bg-background/50 hover:bg-background/80 text-foreground absolute 
+                   top-4 right-4 z-10 rounded-md p-2 opacity-0 transition-opacity duration-300 
+                   group-hover:opacity-80 focus-visible:opacity-80'
+        onClick={preventBubbling()}
+        tabIndex={-1}
+      >
+        <HiArrowTopRightOnSquare className='text-lg' />
+      </UnstyledLink>
+      {aiGenerated && (
+        <ContentTag
+          tag='p'
+          className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-80 
+                     focus-visible:opacity-80 opacity-0 transition-opacity duration-300 pointer-events-none'
         >
-          <HiArrowTopRightOnSquare className='text-lg' />
-        </UnstyledLink>
-        {aiGenerated && (
-          <ContentTag
-            tag='p'
-            className='text-xs gradient-background text-white absolute top-4 left-4 group-hover:opacity-80 
-                       focus-visible:opacity-80 opacity-0 transition-opacity duration-300 pointer-events-none'
-          >
-            AI Generated
-          </ContentTag>
-        )}
-        <figcaption
-          className='pointer-events-none absolute inset-0 flex flex-col justify-end bg-linear-to-t 
-                     from-background/80 via-background/20 to-transparent p-4 opacity-0 
-                     transition-opacity duration-300 group-hover:opacity-80'
-        >
-          <p className='text-foreground text-lg font-bold line-clamp-1'>
-            {title}
-          </p>
-          <p className='text-secondary text-sm'>
-            by <cite className='font-medium not-italic'>{artistName}</cite>
-          </p>
-          <p className='mt-1 text-secondary text-xs'>{formatDate(createdAt)}</p>
-          <ul className='mt-2 flex flex-wrap gap-2 items-center'>
-            {displayTags.map((tag) => (
-              <ContentTag
-                tag='li'
-                className='text-xs line-clamp-1 opacity-80'
-                key={tag}
-              >
-                {isSelected(tag) ? <Accent>{tag}</Accent> : tag}
-              </ContentTag>
-            ))}
-          </ul>
-        </figcaption>
-      </figure>
-    </div>
+          AI Generated
+        </ContentTag>
+      )}
+      <figcaption
+        className='pointer-events-none absolute inset-0 flex flex-col justify-end bg-linear-to-t 
+                   from-background/80 via-background/20 to-transparent p-4 opacity-0 
+                   transition-opacity duration-300 group-hover:opacity-80'
+      >
+        <p className='text-foreground text-lg font-bold line-clamp-1'>
+          {title}
+        </p>
+        <p className='text-secondary text-sm'>
+          by <cite className='font-medium not-italic'>{artistName}</cite>
+        </p>
+        <p className='mt-1 text-secondary text-xs'>{formatDate(createdAt)}</p>
+        <ul className='mt-2 flex flex-wrap gap-2 items-center'>
+          {displayTags.map((tag) => (
+            <ContentTag
+              tag='li'
+              className='text-xs line-clamp-1 opacity-80'
+              key={tag}
+            >
+              {isSelected(tag) ? <Accent>{tag}</Accent> : tag}
+            </ContentTag>
+          ))}
+        </ul>
+      </figcaption>
+    </figure>
   );
 }

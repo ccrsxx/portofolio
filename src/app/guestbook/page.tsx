@@ -15,7 +15,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 export const dynamic = 'force-dynamic';
 
-export default async function GuestbookPage(): Promise<React.JSX.Element> {
+export default async function Guestbook(): Promise<React.JSX.Element> {
   const cookieStore = await cookies();
   const token = cookieStore.get('oauth-token')?.value;
 

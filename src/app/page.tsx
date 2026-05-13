@@ -40,25 +40,30 @@ export default async function Home(): Promise<React.JSX.Element> {
     <PageTransition>
       <main className='grid gap-20'>
         <header className='-mt-20 grid min-h-screen content-center'>
-          <p className='text-2xl font-bold transition-colors delay-100 md:text-4xl 2xl:text-5xl'>
-            Hi!
-          </p>
-          <h1 className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl'>
-            I&apos;m <Accent>Risal</Accent> - Full Stack Developer
+          <h1
+            className='mt-1 text-3xl font-bold transition-colors delay-100 md:text-5xl 2xl:text-6xl 
+                       animate-enter-y'
+          >
+            Hi, I&apos;m <Accent>Risal Amin</Accent>
           </h1>
           <p
-            className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 
-                       md:text-lg 2xl:text-xl'
+            className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl 
+                       animate-enter-y animate-enter-delay-100'
           >
-            I&apos;m a self-taught Software Engineer turned Full Stack
-            Developer. I enjoy working with TypeScript, React, Node.js, and
-            recently Go. I also love exploring new technologies and learning new
+            Full Stack Developer
+          </p>
+          <p
+            className='text-primary mt-4 max-w-4xl leading-relaxed transition-colors delay-400 md:mt-6 
+                       md:text-lg 2xl:text-xl animate-enter-y animate-enter-delay-200'
+          >
+            A software engineer who loves building things with TypeScript,
+            React, Node.js, and recently Go. Always exploring and learning new
             things.
           </p>
-          <div className='mt-6'>
+          <div className='mt-6 animate-enter-y animate-enter-delay-300'>
             <CurrentlyPlayingCard />
           </div>
-          <nav className='mt-8 '>
+          <nav className='mt-8 animate-enter-y animate-enter-delay-400'>
             <ul className='flex gap-4 text-sm md:text-base'>
               <li>
                 <UnstyledLink className='custom-button clickable' href='/blog'>
@@ -72,7 +77,7 @@ export default async function Home(): Promise<React.JSX.Element> {
               </li>
             </ul>
           </nav>
-          <nav className='mt-8 '>
+          <nav className='mt-8 animate-enter-y animate-enter-delay-500'>
             <ul className='flex gap-4'>
               {socialLink.map(({ name, href, Icon }) => (
                 <li key={name}>

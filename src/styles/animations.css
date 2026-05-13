@@ -1,0 +1,76 @@
+:root {
+  --enter-delay: 0ms;
+  --enter-duration: 360ms;
+  --enter-distance: 50px;
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes enter-slide-y {
+  from {
+    transform: translateY(var(--enter-distance));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes enter-slide-x {
+  from {
+    transform: translateX(var(--enter-distance));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@utility animate-enter {
+  animation-duration: var(--enter-duration);
+  animation-delay: var(--enter-delay);
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+
+  animation-name: enter-fade;
+}
+
+@utility animate-enter-x {
+  animation-duration: var(--enter-duration);
+  animation-delay: var(--enter-delay);
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+
+  animation-name: enter-fade, enter-slide-x;
+}
+
+@utility animate-enter-y {
+  animation-duration: var(--enter-duration);
+  animation-delay: var(--enter-delay);
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+
+  animation-name: enter-fade, enter-slide-y;
+}
+
+@utility animate-enter-delay-* {
+  --enter-delay: calc(--value(integer) * 1ms);
+}
+
+@utility animate-enter-distance-* {
+  --enter-distance: calc(--value(integer) * 1px);
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+  [class*='enter-'] {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+} */

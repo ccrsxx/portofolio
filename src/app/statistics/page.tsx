@@ -44,22 +44,27 @@ export default async function Statistics(): Promise<React.JSX.Element> {
     <PageTransition>
       <main className='grid min-h-screen content-start gap-6'>
         <header className='grid gap-2'>
-          <h1 className='text-3xl font-bold md:text-5xl'>
+          <h1 className='text-3xl font-bold md:text-5xl animate-enter-y'>
             <Accent>Statistics</Accent>
           </h1>
-          <p className='text-secondary'>A statistics from blog and projects.</p>
+          <p className='text-secondary animate-enter-y animate-enter-delay-100'>
+            A statistics from blog and projects.
+          </p>
         </header>
-        <ul className='grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4'>
+        <ul
+          className='grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4 
+                     animate-enter-y animate-enter-delay-200'
+        >
           <StatisticsCard {...blogStatistics} />
           <StatisticsCard {...projectsStatistics} />
         </ul>
-        <section className='grid gap-4'>
+        <section className='grid gap-4 animate-enter-y animate-enter-delay-200'>
           <h2 className='text-2xl font-bold capitalize'>Blog</h2>
           <div>
             <Table data={blogData} />
           </div>
         </section>
-        <section className='grid gap-4'>
+        <section className='grid gap-4 animate-enter-y animate-enter-delay-300'>
           <h2 className='text-2xl font-bold capitalize'>Projects</h2>
           <div>
             <Table data={projectsData} />

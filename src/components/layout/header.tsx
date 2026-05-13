@@ -17,7 +17,7 @@ export function Header(): React.JSX.Element {
 
   return (
     <>
-      <div ref={ref} />
+      <div aria-hidden='true' ref={ref} />
       <header
         style={{ viewTransitionName: 'site-header' }}
         className={clsx(
@@ -25,7 +25,7 @@ export function Header(): React.JSX.Element {
           !inView && 'shadow-xs'
         )}
       >
-        <div className='gradient-background h-2' />
+        <div className='gradient-background h-2' aria-hidden='true' />
         <section className='layout flex items-center justify-between py-4'>
           <nav>
             <ul className='flex gap-4 font-medium'>

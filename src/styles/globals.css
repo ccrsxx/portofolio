@@ -1,45 +1,22 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-@import './mdx.css';
-@import './table.css';
+@import './colors.css';
+@import './utils.css';
+
+@import './animations.css';
 @import './transitions.css';
 
-/* Use class-based dark mode for next-themes toggle support */
+@import './mdx.css';
+@import './table.css';
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Preserve cursor pointer behavior that gets remove on tailwind v4 */
 @layer base {
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
-}
-
-@theme {
-  --color-accent-main: oklch(0.718 0.202 349.761); /* Pink 400 */
-  --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
-  --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
-
-  --color-background: oklch(1 0 0); /* White */
-  --color-foreground: oklch(0 0 0); /* Black */
-  --color-primary: oklch(0.208 0.042 265.755); /* Gray 900 */
-  --color-secondary: oklch(0.279 0.041 260.031); /* Gray 800 */
-  --color-muted: oklch(0.446 0.043 257.281); /* Gray 600 */
-  --color-accent-foreground: oklch(0.704 0.04 256.788); /* Gray 400 */
-  --color-muted-background: oklch(0.929 0.006 286.286); /* Zinc 200 */
-  --color-border: oklch(0.869 0.008 286.286); /* Zinc 300 */
-}
-
-.dark {
-  --color-background: oklch(0 0 0); /* Black */
-  --color-foreground: oklch(1 0 0); /* White */
-  --color-primary: oklch(0.968 0.007 247.896); /* Gray 100 */
-  --color-secondary: oklch(0.929 0.013 255.508); /* Gray 200 */
-  --color-muted: oklch(0.704 0.04 256.788); /* Gray 400 */
-  --color-accent-foreground: oklch(0.446 0.043 257.281); /* Gray 600 */
-  --color-muted-background: oklch(0.274 0.006 286.033); /* Zinc 800 */
-  --color-border: oklch(0.371 0.008 286.033); /* Zinc 700 */
 }
 
 body {
@@ -53,67 +30,4 @@ main {
 
 ::selection {
   @apply bg-accent-main text-white;
-}
-
-@utility layout {
-  @apply mx-auto max-w-6xl px-6;
-}
-
-@utility card-layout {
-  @apply grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4;
-}
-
-@utility custom-button {
-  @apply inline-block px-4 py-2 font-bold;
-}
-
-@utility main-border {
-  @apply border-border border;
-}
-
-@utility custom-input {
-  @apply main-border bg-background focus:border-accent-main rounded-md px-3 py-2 outline-hidden transition;
-}
-
-@utility smooth-tab {
-  @apply focus-visible:ring-accent-main rounded-md transition-shadow focus-visible:ring-2 focus-visible:outline-hidden;
-}
-
-@utility clickable {
-  @apply smooth-tab main-border rounded-md shadow-xs transition-transform hover:scale-105 hover:shadow-md focus-visible:scale-105 focus-visible:shadow-md active:scale-95;
-}
-
-@utility gradient-title {
-  @apply from-accent-start to-accent-end bg-linear-to-r bg-clip-text text-transparent;
-}
-
-@utility gradient-background {
-  @apply from-accent-start to-accent-end bg-linear-to-r;
-}
-
-@utility custom-underline {
-  @apply underline decoration-transparent decoration-1 outline-hidden transition hover:decoration-inherit focus-visible:decoration-inherit;
-}
-
-@utility animated-underline {
-  background-size: 0 2px;
-  background-position: 0 100%;
-
-  @apply from-accent-start to-accent-end bg-linear-to-r bg-no-repeat pb-0.5 no-underline outline-hidden transition-all duration-300;
-
-  &.with-dots {
-    @apply border-foreground border-b border-dotted;
-  }
-
-  &:hover,
-  &:focus-visible,
-  &:has(+ div:hover),
-  .project-card:hover &,
-  .project-card:focus-visible & {
-    background-size: 100% 2px;
-
-    &.with-dots {
-      @apply border-transparent;
-    }
-  }
 }

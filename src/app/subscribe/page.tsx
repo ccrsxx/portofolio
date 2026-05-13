@@ -15,14 +15,14 @@ export default function Subscribe(): React.JSX.Element {
     <PageTransition>
       <main className='grid min-h-screen content-start gap-6 py-12'>
         <header className='grid gap-2'>
-          <h1 className='text-3xl font-bold md:text-5xl'>
+          <h1 className='text-3xl font-bold md:text-5xl animate-enter-y'>
             <Accent>Subscribe to risalamin.com</Accent>
           </h1>
-          <p className='text-secondary'>
+          <p className='text-secondary animate-enter-y animate-enter-delay-100'>
             Get notified when I publish a new post.
           </p>
         </header>
-        <section>
+        <section className='animate-enter-y animate-enter-delay-200'>
           <SubscribeCard />
         </section>
       </main>

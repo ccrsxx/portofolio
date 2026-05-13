@@ -33,22 +33,22 @@ export function BookmarksClient({
   return (
     <main className='min-h-screen'>
       <header className='grid gap-2'>
-        <h1 className='text-3xl font-bold md:text-5xl'>
+        <h1 className='text-3xl font-bold md:text-5xl animate-enter-y'>
           <Accent>Bookmarks</Accent>
         </h1>
-        <p className='text-secondary'>
+        <p className='text-secondary animate-enter-y animate-enter-delay-100'>
           A collection of artworks that I have bookmarked on Pixiv.
         </p>
       </header>
       <section className='mt-2'>
-        <div>
+        <div className='animate-enter-y animate-enter-delay-200'>
           <TagsFilter
             tags={bookmarksTags}
             selectedTags={selectedTags}
             onSelectTags={setSelectedTags}
           />
         </div>
-        <div className='mt-2'>
+        <div className='mt-2 animate-enter-y animate-enter-delay-300'>
           <BookmarkMeta
             total={filteredBookmarks.length}
             selectedTags={selectedTags}
@@ -58,7 +58,7 @@ export function BookmarksClient({
       </section>
       <ul
         className={clsx(
-          'mt-4',
+          'mt-4 animate-enter-y animate-enter-delay-400',
           filteredBookmarks.length &&
             'columns-2 gap-4 md:columns-3 lg:columns-4'
         )}

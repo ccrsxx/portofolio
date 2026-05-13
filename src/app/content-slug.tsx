@@ -1,4 +1,5 @@
 import { ContentLayout } from '@components/layout/content-layout';
+import { PageTransition } from '@components/transitions/page-transition';
 import { removeContentExtension } from '@lib/helper';
 import { getContentSlugProps, getSlugContent } from '@lib/mdx';
 import { getContentFiles } from '@lib/mdx-utils';
@@ -53,8 +54,10 @@ export async function SlugPage({
   const contentSlugProps = await getContentSlugProps(type, slug);
 
   return (
-    <ContentLayout meta={meta} contentSlugProps={contentSlugProps}>
-      <Markdown />
-    </ContentLayout>
+    <PageTransition enter='slide-up'>
+      <ContentLayout meta={meta} contentSlugProps={contentSlugProps}>
+        <Markdown />
+      </ContentLayout>
+    </PageTransition>
   );
 }

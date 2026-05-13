@@ -1,0 +1,25 @@
+@theme {
+  --color-accent-main: oklch(0.718 0.202 349.761); /* Pink 400 */
+  --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
+  --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
+
+  --color-background: oklch(1 0 0); /* White */
+  --color-foreground: oklch(0 0 0); /* Black */
+  --color-primary: oklch(0.208 0.042 265.755); /* Gray 900 */
+  --color-secondary: oklch(0.279 0.041 260.031); /* Gray 800 */
+  --color-muted: oklch(0.446 0.043 257.281); /* Gray 600 */
+  --color-accent-foreground: oklch(0.704 0.04 256.788); /* Gray 400 */
+  --color-muted-background: oklch(0.929 0.006 286.286); /* Zinc 200 */
+  --color-border: oklch(0.869 0.008 286.286); /* Zinc 300 */
+}
+
+.dark {
+  --color-background: oklch(0 0 0); /* Black */
+  --color-foreground: oklch(1 0 0); /* White */
+  --color-primary: oklch(0.968 0.007 247.896); /* Gray 100 */
+  --color-secondary: oklch(0.929 0.013 255.508); /* Gray 200 */
+  --color-muted: oklch(0.704 0.04 256.788); /* Gray 400 */
+  --color-accent-foreground: oklch(0.446 0.043 257.281); /* Gray 600 */
+  --color-muted-background: oklch(0.274 0.006 286.033); /* Zinc 800 */
+  --color-border: oklch(0.371 0.008 286.033); /* Zinc 700 */
+}

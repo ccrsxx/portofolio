@@ -15,7 +15,7 @@ export default async function Projects(): Promise<React.JSX.Element> {
   const projects = await getAllContents('projects');
 
   return (
-    <PageTransition>
+    <PageTransition enter='slide-up'>
       <main className='grid min-h-screen content-start gap-6'>
         <header className='grid gap-2'>
           <h1 className='text-3xl font-bold md:text-5xl'>

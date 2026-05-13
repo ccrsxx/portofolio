@@ -64,14 +64,6 @@
   animation-name: via-blur;
 }
 
-::view-transition-old(.fade-out) {
-  animation: var(--duration-exit) ease-in fade reverse;
-}
-
-::view-transition-new(.fade-in) {
-  animation: var(--duration-enter) ease-out var(--duration-exit) both fade;
-}
-
 /* Header/footer isolation */
 ::view-transition-group(site-header),
 ::view-transition-group(site-footer) {
@@ -90,11 +82,11 @@
 }
 
 /* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(*),
   ::view-transition-new(*),
   ::view-transition-group(*) {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
   }
-}
+} */

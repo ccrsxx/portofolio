@@ -26,20 +26,20 @@ export function GuestbookClient({
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <header className='grid gap-2'>
-        <h1 className='text-3xl font-bold md:text-5xl'>
+        <h1 className='text-3xl font-bold md:text-5xl animate-enter-y'>
           <Accent>Guestbook</Accent>
         </h1>
-        <p className='text-secondary'>
+        <p className='text-secondary animate-enter-y animate-enter-delay-100'>
           Leave a comment below. It could be anything - appreciation,
           information, wisdom, or even humor. Surprise me!
         </p>
       </header>
-      <section>
+      <section className='animate-enter-y animate-enter-delay-200'>
         <GuestbookCard>
           <GuestbookForm session={session} />
         </GuestbookCard>
       </section>
-      <ul className='grid gap-4'>
+      <ul className='grid gap-4 animate-enter-y animate-enter-delay-300'>
         <AnimatePresence>
           {guestbook?.length ? (
             guestbook.map((entry) => (

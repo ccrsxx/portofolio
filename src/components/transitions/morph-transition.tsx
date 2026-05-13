@@ -1,8 +1,8 @@
-import { type ReactNode, ViewTransition } from 'react';
+import { ViewTransition } from 'react';
 
 type MorphTransitionProps = {
   name: string;
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export function MorphTransition({

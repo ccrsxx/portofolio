@@ -15,11 +15,10 @@ import { formatDate } from '@lib/format';
 import { convertContentTypeToPathContentType } from '@lib/helper';
 import type { ContentSlugProps } from '@lib/mdx';
 import type { Blog, Content, Project } from '@lib/types/contents';
-import { type ReactNode } from 'react';
 import { MdHistory } from 'react-icons/md';
 
 type ContentLayoutProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   contentSlugProps: ContentSlugProps;
   meta: Pick<
     Content,

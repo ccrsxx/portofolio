@@ -1,12 +1,18 @@
-import { ViewTransition } from 'react';
+import { ViewTransition, type ViewTransitionClass } from 'react';
+
+type PageTransitionProps = {
+  enter?: ViewTransitionClass;
+  exit?: ViewTransitionClass;
+  children: React.ReactNode;
+};
 
 export function PageTransition({
+  enter = 'none', // default to none
+  exit = 'slide-down',
   children
-}: {
-  children: React.ReactNode;
-}): React.JSX.Element {
+}: PageTransitionProps): React.JSX.Element {
   return (
-    <ViewTransition enter='slide-up' exit='slide-down' default='none'>
+    <ViewTransition enter={enter} exit={exit} default='none'>
       {children}
     </ViewTransition>
   );

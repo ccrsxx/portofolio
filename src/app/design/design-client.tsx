@@ -11,12 +11,17 @@ export function DesignClient(): React.JSX.Element {
   return (
     <main className='grid min-h-screen content-start gap-6'>
       <header className='grid gap-2'>
-        <h1 className='text-5xl font-bold'>
+        <h1 className='text-5xl font-bold animate-enter-y'>
           <Accent>Design</Accent>
         </h1>
-        <p className='text-secondary'>risalamin.com&apos;s color palette.</p>
+        <p className='text-secondary animate-enter-y animate-enter-delay-100'>
+          risalamin.com&apos;s color palette.
+        </p>
       </header>
-      <section className='main-border rounded-md border-2 border-dashed p-4'>
+      <section
+        className='main-border rounded-md border-2 border-dashed p-4 
+                   animate-enter-y animate-enter-delay-100'
+      >
         <div className='flex justify-between'>
           <h2 className='text-4xl font-bold capitalize'>{theme} Mode</h2>
           <ThemeSwitch />

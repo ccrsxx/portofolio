@@ -25,12 +25,14 @@ export default function About(): React.JSX.Element {
     <PageTransition>
       <main className='min-h-screen'>
         <header className='grid gap-2'>
-          <h1 className='text-xl font-bold md:text-3xl'>About</h1>
-          <h2 className='text-2xl font-bold md:text-4xl'>
+          <h1 className='text-xl font-bold md:text-3xl animate-enter-y'>
+            About
+          </h1>
+          <h2 className='text-2xl font-bold md:text-4xl animate-enter-y animate-enter-delay-100'>
             <Accent>Risal Amin</Accent>
           </h2>
         </header>
-        <section className='prose dark:prose-invert mt-4'>
+        <section className='prose dark:prose-invert mt-4 animate-enter-y animate-enter-delay-200'>
           <p>
             Hi, I&apos;m Risal. I started learning web development in November
             2021, after building my first web app with{' '}
@@ -61,8 +63,13 @@ export default function About(): React.JSX.Element {
           </p>
         </section>
         <section className='mt-12 grid gap-4'>
-          <h2 className='text-xl font-bold md:text-3xl'>Favorite Tech Stack</h2>
-          <ul className='translate flex gap-4 [&>li:nth-child(-n+3)>div]:[position-area:top_span-right]'>
+          <h2 className='text-xl font-bold md:text-3xl animate-enter-y animate-enter-delay-300'>
+            Favorite Tech Stack
+          </h2>
+          <ul
+            className='translate flex gap-4 [&>li:nth-child(-n+3)>div]:[position-area:top_span-right]
+                       animate-enter-y animate-enter-delay-400'
+          >
             {favoriteTechStack.map(({ tip, name, href, Icon }) => (
               <Tooltip
                 tooltipClassName='w-72 px-3 py-4 mb-4 text-center'
