@@ -65,7 +65,7 @@ export function BookmarksClient({
       >
         <AnimatePresence mode='popLayout'>
           {filteredBookmarks.length ? (
-            <AnimatePresence initial={false}>
+            <AnimatePresence>
               {filteredBookmarks.map((bookmark) => (
                 <motion.li {...variants} layout='position' key={bookmark.id}>
                   <BookmarkCard {...bookmark} selectedTags={selectedTags} />
