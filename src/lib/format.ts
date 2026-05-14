@@ -69,7 +69,7 @@ export function formatMilisecondsToPlayback(ms: number): string {
   return `${minutes}:${paddedSeconds}`;
 }
 
-const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(undefined, {
+const FULL_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat(DEFAULT_LOCALE, {
   weekday: 'short',
   day: 'numeric',
   month: 'short',

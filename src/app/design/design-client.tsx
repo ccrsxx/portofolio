@@ -1,7 +1,7 @@
 'use client';
 
-import { ThemeSwitch } from '@components/common/theme-switch';
 import { Accent } from '@components/ui/accent';
+import { ThemeSwitch } from '@components/ui/theme-switch';
 import { useTheme } from '@wrksz/themes/client';
 import { clsx } from 'clsx';
 

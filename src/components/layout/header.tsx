@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeSwitch } from '@components/common/theme-switch';
+import { ThemeSwitch } from '@components/ui/theme-switch';
 import { clsx } from 'clsx';
 import { useInView } from 'motion/react';
 import Link from 'next/link';

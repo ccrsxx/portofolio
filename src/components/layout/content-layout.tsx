@@ -41,8 +41,8 @@ export function ContentLayout({
 
   const contentIsBlog = type === 'blog';
 
-  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/content/${parsedType}/${slug}.mdx`;
-  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/content/${parsedType}/${slug}.mdx`;
+  const githubCommitHistoryUrl = `https://github.com/ccrsxx/portofolio/commits/main/src/contents/${parsedType}/${slug}.mdx`;
+  const githubContentUrl = `https://github.com/ccrsxx/portofolio/blob/main/src/contents/${parsedType}/${slug}.mdx`;
 
   return (
     <main className='pt-0'>
