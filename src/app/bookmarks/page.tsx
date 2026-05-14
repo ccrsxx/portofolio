@@ -23,7 +23,7 @@ export default async function Bookmarks(): Promise<React.JSX.Element> {
   }
 
   return (
-    <PageTransition>
+    <PageTransition enter='slide-up'>
       <BookmarksClient bookmarks={bookmarks} />
     </PageTransition>
   );
