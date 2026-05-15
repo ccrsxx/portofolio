@@ -1,4 +1,4 @@
-import Banner from '../../../public/assets/projects/twitter-clone/banner.png';
+import Banner from '/public/assets/projects/twitter-clone/banner.png';
 
 export const meta = {
   title: 'Twitter Clone',
