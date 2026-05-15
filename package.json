@@ -12,7 +12,8 @@
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky",
-    "typegen": "next typegen"
+    "typegen": "next typegen",
+    "docker:build": "node ./build.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
