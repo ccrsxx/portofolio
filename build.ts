@@ -32,6 +32,13 @@ function main(): void {
 
   buildArgs.push('--build-arg', `NODE_VERSION=${nodeVersion}`);
 
+  const nodeDistrolessVersion = nodeVersion.split('.').at(0);
+
+  buildArgs.push(
+    '--build-arg',
+    `NODE_DISTROLESS_VERSION=${nodeDistrolessVersion}`
+  );
+
   const envVars = parseEnvFile('.env.local');
 
   for (const [key, value] of Object.entries(envVars)) {

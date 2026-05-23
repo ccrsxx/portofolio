@@ -66,6 +66,7 @@ jobs:
           platforms: linux/arm64
           build-args: |
             NODE_VERSION=${{ needs.extract-node-version.outputs.node-version }}
+            NODE_DISTROLESS_VERSION=${{ needs.extract-node-version.outputs.node-distroless-version }}
             NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
             INTERNAL_BACKEND_URL=${{ secrets.INTERNAL_BACKEND_URL }}
             NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}

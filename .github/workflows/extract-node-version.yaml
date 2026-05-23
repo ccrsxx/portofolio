@@ -6,16 +6,24 @@ on:
       node-version:
         description: 'Node.js version from package.json'
         value: ${{ jobs.extract.outputs.node-version }}
+      node-distroless-version:
+        description: 'Node.js distroless version from package.json'
+        value: ${{ jobs.extract.outputs.node-distroless-version }}
 
 jobs:
   extract:
     runs-on: ubuntu-latest
     outputs:
       node-version: ${{ steps.extract.outputs.node-version }}
+      node-distroless-version: ${{ steps.extract.outputs.node-distroless-version }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - id: extract
         run: |
           NODE_VERSION=$(jq -r '.volta.node' package.json)
+          NODE_DISTROLESS_VERSION=$(echo "$NODE_VERSION" | cut -d. -f1)
+
           echo "node-version=$NODE_VERSION" >> $GITHUB_OUTPUT
-          echo "Detected Node version: $NODE_VERSION"
+          echo "node-distroless-version=$NODE_DISTROLESS_VERSION" >> $GITHUB_OUTPUT
+
+          echo "Detected Node version: $NODE_VERSION (Distroless Version: $NODE_DISTROLESS_VERSION)"

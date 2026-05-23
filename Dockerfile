@@ -1,11 +1,12 @@
 # syntax=docker/dockerfile:1
 # check=skip=InvalidDefaultArgInFrom
 
+ARG NODE_VERSION
+ARG NODE_DISTROLESS_VERSION
+
 # ---
 
-ARG NODE_VERSION
-
-FROM node:${NODE_VERSION}-alpine AS builder
+FROM node:${NODE_VERSION}-trixie-slim AS build
 
 WORKDIR /app
 
@@ -37,19 +38,17 @@ RUN --mount=type=secret,id=gh_token \
 
 # ---
 
-FROM node:${NODE_VERSION}-alpine AS runner
+FROM gcr.io/distroless/nodejs${NODE_DISTROLESS_VERSION}-debian13:nonroot AS final
 
 WORKDIR /app
 
-COPY --from=builder --chown=node:node /app/public ./public
-COPY --from=builder --chown=node:node /app/.next/standalone ./
-COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+COPY --from=build --chown=65532:65532 /app/public ./public
+COPY --from=build --chown=65532:65532 /app/.next/standalone ./
+COPY --from=build --chown=65532:65532 /app/.next/static ./.next/static
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-USER node
-
-ENTRYPOINT ["node", "server.js"]
+ENTRYPOINT ["/nodejs/bin/node", "server.js"]
 
 EXPOSE 3000
 
