@@ -75,8 +75,8 @@ jobs:
             gh_token=${{ secrets.GH_TOKEN }}
             private_secret_key=${{ secrets.PRIVATE_SECRET_KEY }}
           push: true
-          cache-from: type=registry,ref=${{ env.LATEST_IMAGE }}
-          cache-to: type=inline
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache,mode=max
 
       - name: Setup env
         run: |
