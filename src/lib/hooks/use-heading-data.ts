@@ -7,6 +7,8 @@ type UseHeadingData = {
 };
 
 function computeHeadings(): UseHeadingData[] {
+  if (typeof window === 'undefined') return [];
+
   const headingNodes = document.querySelectorAll<HTMLHeadingElement>(
     '#mdx-article :is(h2, h3)'
   );
