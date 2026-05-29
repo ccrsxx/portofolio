@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type UseHeadingData = {
   id: string;
@@ -6,36 +6,33 @@ type UseHeadingData = {
   items: Omit<UseHeadingData, 'items'>[];
 };
 
-function computeHeadings(): UseHeadingData[] {
-  if (typeof window === 'undefined') return [];
-
-  const headingNodes = document.querySelectorAll<HTMLHeadingElement>(
-    '#mdx-article :is(h2, h3)'
-  );
-
-  const parsedHeadings = Array.from(headingNodes);
-
-  const headings: UseHeadingData[] = [];
-
-  for (const heading of parsedHeadings) {
-    const { id, nodeName, textContent: title } = heading;
-
-    if (nodeName === 'H2') {
-      headings.push({ id, title: title, items: [] });
-    } else if (nodeName === 'H3' && headings.length) {
-      const lastHeading = headings[headings.length - 1];
-      lastHeading.items.push({ id, title: title });
-    }
-  }
-
-  return headings;
-}
-
 /**
  * Returns an array of heading data.
  */
 export function useHeadingData(): UseHeadingData[] {
-  const [state] = useState(computeHeadings);
+  const [headingData, setHeadingData] = useState<UseHeadingData[]>([]);
 
-  return state;
+  useEffect(() => {
+    const headingElements: HTMLHeadingElement[] = Array.from(
+      document.querySelectorAll('#mdx-article :is(h2, h3)')
+    );
+
+    const newHeadingData: UseHeadingData[] = [];
+
+    for (const heading of headingElements) {
+      const { id, nodeName, textContent: title } = heading;
+
+      if (nodeName === 'H2') {
+        newHeadingData.push({ id, title: title, items: [] });
+      } else if (nodeName === 'H3' && newHeadingData.length) {
+        const lastH2 = newHeadingData[newHeadingData.length - 1];
+        lastH2.items.push({ id, title: title });
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setHeadingData(newHeadingData);
+  }, []);
+
+  return headingData;
 }
