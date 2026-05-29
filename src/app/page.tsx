@@ -4,7 +4,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { ProjectCard } from '@components/projects/project-card';
 import { PageTransition } from '@components/transitions/page-transition';
 import { Accent } from '@components/ui/accent';
-import { initializeAllContents } from '@lib/api';
+import { getCurrentlyPlayingByType, initializeAllContents } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
 import { generatePageMetadata } from '@lib/metadata';
 import type { Blog, Project } from '@lib/types/contents';
@@ -27,11 +27,17 @@ export default async function Home(): Promise<React.JSX.Element> {
   let featuredBlog: Blog[] = [];
   let featuredProjects: Project[] = [];
 
+  let initialSpotifyData = null;
+  let initialJellyfinData = null;
+
   try {
     await initializeAllContents();
 
     featuredBlog = await getAllContents('blog');
     featuredProjects = await getAllContents('projects');
+
+    initialSpotifyData = await getCurrentlyPlayingByType('spotify');
+    initialJellyfinData = await getCurrentlyPlayingByType('jellyfin');
   } catch (error) {
     console.error('home ssr error', error);
   }
@@ -61,7 +67,10 @@ export default async function Home(): Promise<React.JSX.Element> {
             things.
           </p>
           <div className='mt-6 animate-enter-y animate-enter-delay-300'>
-            <CurrentlyPlayingCard />
+            <CurrentlyPlayingCard
+              initialSpotifyData={initialSpotifyData}
+              initialJellyfinData={initialJellyfinData}
+            />
           </div>
           <nav className='mt-8 animate-enter-y animate-enter-delay-400'>
             <ul className='flex gap-4 text-sm md:text-base'>

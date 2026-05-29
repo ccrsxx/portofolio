@@ -5,23 +5,33 @@ import { useEffect } from 'react';
 import { useLocalStorage } from './use-local-storage';
 
 type UseCurrentlyPlayingSSE = {
-  currentlyPlaying: BackendSuccessApiResponse<CurrentlyPlaying> | null;
+  currentlyPlaying: CurrentlyPlaying | null;
+};
+
+export type CurrentlyPlayingSSEOptions = {
+  initialSpotifyData: CurrentlyPlaying | null;
+  initialJellyfinData: CurrentlyPlaying | null;
 };
 
 /**
  * Get the current playing track from Spotify.
  */
-export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
+export function useCurrentlyPlayingSSE({
+  initialSpotifyData,
+  initialJellyfinData
+}: CurrentlyPlayingSSEOptions): UseCurrentlyPlayingSSE {
   const [spotifyData, setSpotifyData] =
-    useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
+    useLocalStorage<CurrentlyPlaying | null>(
       'spotify',
-      null
+      null,
+      initialSpotifyData
     );
 
   const [jellyfinData, setJellyfinData] =
-    useLocalStorage<BackendSuccessApiResponse<CurrentlyPlaying> | null>(
+    useLocalStorage<CurrentlyPlaying | null>(
       'jellyfin',
-      null
+      null,
+      initialJellyfinData
     );
 
   useEffect(() => {
@@ -36,19 +46,21 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
     });
 
     eventSource.addEventListener('spotify', (event: MessageEvent<string>) => {
-      const data = JSON.parse(
-        event.data
-      ) as BackendSuccessApiResponse<CurrentlyPlaying>;
+      const data =
+        (JSON.parse(
+          event.data
+        ) as BackendSuccessApiResponse<CurrentlyPlaying>) ?? null;
 
-      setSpotifyData(data);
+      setSpotifyData(data.data);
     });
 
     eventSource.addEventListener('jellyfin', (event: MessageEvent<string>) => {
-      const data = JSON.parse(
-        event.data
-      ) as BackendSuccessApiResponse<CurrentlyPlaying>;
+      const data =
+        (JSON.parse(
+          event.data
+        ) as BackendSuccessApiResponse<CurrentlyPlaying>) ?? null;
 
-      setJellyfinData(data);
+      setJellyfinData(data.data);
     });
 
     eventSource.addEventListener('error', (error) => {
@@ -58,20 +70,20 @@ export function useCurrentlyPlayingSSE(): UseCurrentlyPlayingSSE {
     return (): void => eventSource.close();
   }, [setSpotifyData, setJellyfinData]);
 
-  let parsedData: BackendSuccessApiResponse<CurrentlyPlaying> | null = null;
+  let parsedData: CurrentlyPlaying | null = null;
 
-  if (jellyfinData?.data?.item) {
+  if (jellyfinData?.item) {
     parsedData = jellyfinData;
-  } else if (spotifyData?.data?.item) {
+  } else if (spotifyData?.item) {
     parsedData = spotifyData;
   }
 
   // If both platform item exist, but Jellyfin is paused while Spotify is playing, switch to Spotify
   const shouldPreferSpotify =
-    jellyfinData?.data?.item &&
-    spotifyData?.data?.item &&
-    !jellyfinData?.data?.isPlaying &&
-    spotifyData?.data?.isPlaying;
+    jellyfinData?.item &&
+    spotifyData?.item &&
+    !jellyfinData?.isPlaying &&
+    spotifyData?.isPlaying;
 
   if (shouldPreferSpotify) {
     parsedData = spotifyData;

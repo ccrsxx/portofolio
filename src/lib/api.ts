@@ -1,3 +1,4 @@
+import { frontendEnv } from './env';
 import { backendEnv } from './env-server';
 import { fetcher } from './fetcher';
 import {
@@ -14,6 +15,7 @@ import {
   type ContentType,
   type PathContentType
 } from './types/contents';
+import type { CurrentlyPlaying, Platform } from './types/currently-playing';
 import type { Guestbook } from './types/guestbook';
 import type { ContentMeta } from './types/meta';
 import type { ContentColumn, ContentStatistics } from './types/statistics';
@@ -149,6 +151,24 @@ export async function getContentsDataByType(
 
   const response = await fetcher<ContentColumn[]>(
     `${backendEnv.INTERNAL_BACKEND_URL}/contents${queryParams}`
+  );
+
+  return response;
+}
+
+/**
+ * Returns the currently playing track from Spotify or Jellyfin.
+ */
+export async function getCurrentlyPlayingByType(
+  type: Platform
+): Promise<CurrentlyPlaying> {
+  const response = await fetcher<CurrentlyPlaying>(
+    `${backendEnv.INTERNAL_BACKEND_URL}/${type}/currently-playing`,
+    {
+      headers: {
+        Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
+      }
+    }
   );
 
   return response;
