@@ -3,9 +3,12 @@ import { z } from 'zod';
 export const validStringSchema = z.string().trim().min(1);
 
 export function validateEnv<T extends z.ZodRawShape>(
-  schema: z.ZodObject<T>
+  schema: z.ZodObject<T>,
+  customParse?: Record<string, unknown>
 ): z.infer<typeof schema> {
-  let { data, error } = schema.safeParse(process.env);
+  const processEnv = customParse ?? process.env;
+
+  let { data, error } = schema.safeParse(processEnv);
 
   const runningOnCi = process.env.CI === 'true';
 
