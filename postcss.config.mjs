@@ -5,7 +5,7 @@
  * @property {{ '@tailwindcss/postcss': Record<string, unknown>}} plugins
  */
 
-/** @type {Config} */
+/** @satisfies {Config} */
 const config = {
   plugins: {
     '@tailwindcss/postcss': {}
