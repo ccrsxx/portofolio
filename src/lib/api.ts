@@ -1,5 +1,5 @@
-import { frontendEnv } from './env';
-import { backendEnv } from './env-server';
+import { backendEnv } from './env-backend';
+import { frontendEnv } from './env-frontend';
 import { fetcher } from './fetcher';
 import { getAllContents } from './mdx';
 import type { AuthUser } from './types/auth';

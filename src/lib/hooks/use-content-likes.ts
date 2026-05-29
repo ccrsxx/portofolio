@@ -1,4 +1,4 @@
-import { frontendEnv } from '@lib/env';
+import { frontendEnv } from '@lib/env-frontend';
 import { fetcher } from '@lib/fetcher';
 import type { AppMutationResult, AppQueryResult } from '@lib/types/api';
 import type { LikeStatus } from '@lib/types/meta';

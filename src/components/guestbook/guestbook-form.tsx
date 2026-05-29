@@ -1,5 +1,5 @@
 import { Button } from '@components/ui/button';
-import { frontendEnv } from '@lib/env';
+import { frontendEnv } from '@lib/env-frontend';
 import { fetcher } from '@lib/fetcher';
 import { useAddGuestbookEntry } from '@lib/hooks/use-guestbook';
 import { authKeys } from '@lib/hooks/use-session';

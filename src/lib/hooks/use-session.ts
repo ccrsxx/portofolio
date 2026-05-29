@@ -1,4 +1,4 @@
-import { frontendEnv } from '@lib/env';
+import { frontendEnv } from '@lib/env-frontend';
 import { fetcher } from '@lib/fetcher';
 import { ApplicationError, type AppQueryResult } from '@lib/types/api';
 import type { AuthUser } from '@lib/types/auth'; // Map to your Go struct

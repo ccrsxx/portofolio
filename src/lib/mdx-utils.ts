@@ -1,7 +1,7 @@
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 import readingTime from 'reading-time';
-import { backendEnv } from './env-server';
+import { backendEnv } from './env-backend';
 import type { PathContentType } from './types/contents';
 import type { FileCommitHistory } from './types/github';
 

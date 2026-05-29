@@ -1,6 +1,6 @@
 'use client';
 
-import { frontendEnv } from '@lib/env';
+import { frontendEnv } from '@lib/env-frontend';
 import { fetcher } from '@lib/fetcher';
 import type { AppQueryResult } from '@lib/types/api';
 import type { Views } from '@lib/types/meta';

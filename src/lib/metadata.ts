@@ -1,4 +1,4 @@
-import { frontendEnv } from '@lib/env';
+import { frontendEnv } from '@lib/env-frontend';
 import type { Content, PathContentType } from '@lib/types/contents';
 import type { Metadata } from 'next';
 
