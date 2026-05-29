@@ -4,7 +4,7 @@ import { UnstyledLink } from '@components/link/unstyled-link';
 import { ProjectCard } from '@components/projects/project-card';
 import { PageTransition } from '@components/transitions/page-transition';
 import { Accent } from '@components/ui/accent';
-import { getCurrentlyPlayingByType, initializeAllContents } from '@lib/api';
+import { getCurrentlyPlayingByType } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
 import { generatePageMetadata } from '@lib/metadata';
 import type { Blog, Project } from '@lib/types/contents';
@@ -23,6 +23,8 @@ const { title: _, ...homeMetadata } = generatePageMetadata({
 
 export const metadata: Metadata = homeMetadata;
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home(): Promise<React.JSX.Element> {
   let featuredBlog: Blog[] = [];
   let featuredProjects: Project[] = [];
@@ -31,8 +33,6 @@ export default async function Home(): Promise<React.JSX.Element> {
   let initialJellyfinData = null;
 
   try {
-    await initializeAllContents();
-
     featuredBlog = await getAllContents('blog');
     featuredProjects = await getAllContents('projects');
 

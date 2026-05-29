@@ -5,16 +5,12 @@ import type {
   PathContentType,
   Project
 } from '@lib/types/contents';
+import { getContentFiles } from './contents';
 import {
   convertPathContentToContentType,
   removeContentExtension
 } from './helper';
-import {
-  getContentFiles,
-  getContentLastUpdatedDate,
-  getContentReadTime,
-  getSuggestedContents
-} from './mdx-utils';
+import { getContentLastUpdatedDate, getContentReadTime } from './mdx-utils';
 
 export type ContentSlugProps = Pick<Content, 'readTime' | 'lastUpdatedAt'> & {
   type: ContentType;
@@ -124,4 +120,25 @@ export async function getContentByFiles(
   const contents = await Promise.all(contentPromises);
 
   return contents;
+}
+
+/**
+ * Returns three random suggested contents.
+ */
+export async function getSuggestedContents(
+  type: PathContentType,
+  ignoreFiles?: string[]
+): Promise<(Blog | Project)[]> {
+  const contentFiles = await getContentFiles(type, ignoreFiles);
+
+  const shuffledFiles = contentFiles
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+
+  const randomShuffledFiles = shuffledFiles.slice(0, 3);
+
+  const suggestedContents = await getContentByFiles(type, randomShuffledFiles);
+
+  return suggestedContents;
 }
