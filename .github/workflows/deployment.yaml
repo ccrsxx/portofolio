@@ -33,6 +33,7 @@ jobs:
 
     env:
       SHA: ${{ inputs.sha || github.sha }}
+      CACHE_IMAGE: 'ghcr.io/${{ github.repository }}:cache'
       LATEST_IMAGE: 'ghcr.io/${{ github.repository }}:latest'
 
       CURRENT_IMAGE: ''
@@ -75,8 +76,8 @@ jobs:
             gh_token=${{ secrets.GH_TOKEN }}
             private_secret_key=${{ secrets.PRIVATE_SECRET_KEY }}
           push: true
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:buildcache,mode=max
+          cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}
+          cache-to: type=registry,ref=${{ env.CACHE_IMAGE }},mode=max
 
       - name: Setup env
         run: |
