@@ -1,8 +1,7 @@
 import { frontendEnv } from '@lib/env';
 import type { BackendSuccessApiResponse } from '@lib/types/api';
 import type { CurrentlyPlaying } from '@lib/types/currently-playing';
-import { useEffect } from 'react';
-import { useLocalStorage } from './use-local-storage';
+import { useEffect, useState } from 'react';
 
 type UseCurrentlyPlayingSSE = {
   currentlyPlaying: CurrentlyPlaying | null;
@@ -20,19 +19,8 @@ export function useCurrentlyPlayingSSE({
   initialSpotifyData,
   initialJellyfinData
 }: CurrentlyPlayingSSEOptions): UseCurrentlyPlayingSSE {
-  const [spotifyData, setSpotifyData] =
-    useLocalStorage<CurrentlyPlaying | null>(
-      'spotify',
-      null,
-      initialSpotifyData
-    );
-
-  const [jellyfinData, setJellyfinData] =
-    useLocalStorage<CurrentlyPlaying | null>(
-      'jellyfin',
-      null,
-      initialJellyfinData
-    );
+  const [spotifyData, setSpotifyData] = useState(initialSpotifyData);
+  const [jellyfinData, setJellyfinData] = useState(initialJellyfinData);
 
   useEffect(() => {
     const url = new URL(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/sse`);
