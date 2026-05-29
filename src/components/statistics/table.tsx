@@ -32,6 +32,7 @@ export function Table({ data }: TableProps): React.JSX.Element {
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const { getHeaderGroups, getRowModel } = useReactTable<ContentColumn>({
     data: data,
     state: { globalFilter, columnFilters, sorting },

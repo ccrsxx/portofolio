@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type UseHeadingData = {
   id: string;
@@ -6,31 +6,34 @@ type UseHeadingData = {
   items: Omit<UseHeadingData, 'items'>[];
 };
 
+function computeHeadings(): UseHeadingData[] {
+  const headingNodes = document.querySelectorAll<HTMLHeadingElement>(
+    '#mdx-article :is(h2, h3)'
+  );
+
+  const parsedHeadings = Array.from(headingNodes);
+
+  const headings: UseHeadingData[] = [];
+
+  for (const heading of parsedHeadings) {
+    const { id, nodeName, textContent: title } = heading;
+
+    if (nodeName === 'H2') {
+      headings.push({ id, title: title, items: [] });
+    } else if (nodeName === 'H3' && headings.length) {
+      const lastHeading = headings[headings.length - 1];
+      lastHeading.items.push({ id, title: title });
+    }
+  }
+
+  return headings;
+}
+
 /**
  * Returns an array of heading data.
  */
 export function useHeadingData(): UseHeadingData[] {
-  const [headingData, setHeadingData] = useState<UseHeadingData[]>([]);
+  const [state] = useState(computeHeadings);
 
-  useEffect(() => {
-    const headingElements: HTMLHeadingElement[] = Array.from(
-      document.querySelectorAll('#mdx-article :is(h2, h3)')
-    );
-
-    const newHeadingData = headingElements.reduce((acc, heading) => {
-      const { id, nodeName, textContent: title } = heading;
-
-      if (nodeName === 'H2') acc.push({ id, title, items: [] });
-      else if (nodeName === 'H3' && acc.length) {
-        const lastNestedHeading = acc[acc.length - 1];
-        lastNestedHeading.items.push({ id, title });
-      }
-
-      return acc;
-    }, [] as UseHeadingData[]);
-
-    setHeadingData(newHeadingData);
-  }, []);
-
-  return headingData;
+  return state;
 }

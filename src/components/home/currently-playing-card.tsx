@@ -26,6 +26,7 @@ export function CurrentlyPlayingCard(): React.ReactNode {
   useEffect(() => {
     // If there's no song, reset everything to zero and stop.
     if (!item) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentPlaybackTime(0);
       setProgressPercentage(0);
       return;
