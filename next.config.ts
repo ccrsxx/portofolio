@@ -54,6 +54,7 @@ const withMDX = nextMDX({
 
 export default withMDX({
   output: 'standalone',
+  reactCompiler: true,
   allowedDevOrigins: ['dev-frontend.ccrsxx.my.id'],
   experimental: {
     viewTransition: true
