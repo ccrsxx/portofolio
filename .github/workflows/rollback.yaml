@@ -1,0 +1,29 @@
+name: Rollback
+
+run-name: 'Rollback to previous slot'
+
+on:
+  workflow_dispatch:
+
+# Share the deploy lock group so a rollback can't race a deploy.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    name: Hot-reload Caddy to the previous slot
+    runs-on: self-hosted
+    environment: production
+
+    env:
+      DEPLOY_DIR: /opt/portofolio
+
+    steps:
+      - name: Roll back
+        run: |
+          if [ ! -x "$DEPLOY_DIR/rollback.sh" ]; then
+            echo "No rollback.sh found in $DEPLOY_DIR. Run a deploy first." >&2
+            exit 1
+          fi
+          "$DEPLOY_DIR/rollback.sh"

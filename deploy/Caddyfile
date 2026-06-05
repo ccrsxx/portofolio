@@ -1,0 +1,18 @@
+# Internal router for the blue/green stack.
+#
+# TLS is terminated at Cloudflare's edge, so Caddy serves plain HTTP on :80 and
+# cloudflared forwards to it (http://caddy:80). The single `reverse_proxy`
+# upstream line is rewritten by deploy/deploy.sh (blue <-> green) and applied
+# with a hot `caddy reload`, so swaps and rollbacks drop zero connections.
+
+{
+	admin localhost:2019
+	auto_https off
+}
+
+:80 {
+	encode zstd gzip
+
+	# deploy.sh swaps this between portofolio-blue:3000 and portofolio-green:3000
+	reverse_proxy portofolio-blue:3000
+}

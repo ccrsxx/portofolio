@@ -1,0 +1,95 @@
+# Production blue/green stack for the portfolio.
+#
+# Topology:
+#   Cloudflare (edge, TLS) --> cloudflared --> caddy:80 --> portofolio-blue|green:3000
+#
+# Only ONE of blue/green receives traffic at a time. Caddy is the internal
+# router; the deploy script flips its upstream via a hot `caddy reload`
+# (zero dropped connections). The previously-active slot stays running so a
+# rollback is just another hot reload. No host ports are published — the VPS
+# stays dark and Cloudflare Tunnel is the only ingress.
+#
+# Per-slot image tags (BLUE_TAG / GREEN_TAG) and the active marker are managed
+# by deploy/deploy.sh in deploy.state; they are NOT stored here.
+
+services:
+  portofolio-blue:
+    image: ghcr.io/ccrsxx/portofolio:${BLUE_TAG:-latest}
+    container_name: portofolio-blue
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NODE_ENV=production
+    restart: unless-stopped
+    stop_grace_period: 30s
+    healthcheck:
+      # distroless has no shell/curl/wget, and `node` is not on PATH — use the
+      # absolute interpreter path (same one the image ENTRYPOINT uses).
+      test:
+        - CMD
+        - /nodejs/bin/node
+        - -e
+        - "require('http').get('http://127.0.0.1:3000/api/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    cap_drop:
+      - ALL
+    security_opt:
+      - 'no-new-privileges:true'
+
+  portofolio-green:
+    image: ghcr.io/ccrsxx/portofolio:${GREEN_TAG:-latest}
+    container_name: portofolio-green
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NODE_ENV=production
+    restart: unless-stopped
+    stop_grace_period: 30s
+    healthcheck:
+      test:
+        - CMD
+        - /nodejs/bin/node
+        - -e
+        - "require('http').get('http://127.0.0.1:3000/api/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    cap_drop:
+      - ALL
+    security_opt:
+      - 'no-new-privileges:true'
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    # No published ports: cloudflared reaches it as `caddy:80` over the
+    # default compose network.
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      # Token from a dashboard-managed tunnel. In the dashboard, point the
+      # public hostname's service at: http://caddy:80
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - caddy
+
+volumes:
+  caddy-data:
+  caddy-config:

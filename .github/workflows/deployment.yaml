@@ -12,6 +12,11 @@ on:
         description: 'Commit SHA to deploy'
         required: false
 
+# Serialize deploys: a second run waits for the first instead of racing it.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
 jobs:
   ci:
     uses: ./.github/workflows/ci.yaml
@@ -38,6 +43,11 @@ jobs:
 
       CURRENT_IMAGE: ''
 
+      # Persistent deploy directory on the VPS (holds compose.yaml, Caddyfile,
+      # scripts, .env and deploy.state). Lives outside the checkout so it
+      # survives `actions/checkout` cleaning the workspace.
+      DEPLOY_DIR: /opt/portofolio
+
     steps:
       - name: Set current image tag
         run: |
@@ -55,10 +65,22 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check if image already exists
+        id: image
+        run: |
+          if docker manifest inspect "${{ env.CURRENT_IMAGE }}" > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Image ${{ env.CURRENT_IMAGE }} already in registry, skipping build."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Set up Docker Buildx
+        if: steps.image.outputs.exists == 'false'
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push Docker image
+        if: steps.image.outputs.exists == 'false'
         uses: docker/build-push-action@v6
         with:
           tags: |
@@ -79,18 +101,34 @@ jobs:
           cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}
           cache-to: type=registry,ref=${{ env.CACHE_IMAGE }},mode=max
 
-      - name: Setup env
+      - name: Sync deploy stack to ${{ env.DEPLOY_DIR }}
         run: |
-          echo "INTERNAL_BACKEND_URL=${{ secrets.INTERNAL_BACKEND_URL }}" >> .env
+          mkdir -p "$DEPLOY_DIR"
 
-          echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}" >> .env
-          echo "NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}" >> .env
-          echo "NEXT_PUBLIC_OWNER_BEARER_TOKEN=${{ secrets.NEXT_PUBLIC_OWNER_BEARER_TOKEN }}" >> .env
+          # Compose + scripts are always refreshed from the repo (source of truth).
+          cp deploy/compose.yaml "$DEPLOY_DIR/compose.yaml"
+          cp deploy/deploy.sh "$DEPLOY_DIR/deploy.sh"
+          cp deploy/rollback.sh "$DEPLOY_DIR/rollback.sh"
+          chmod +x "$DEPLOY_DIR/deploy.sh" "$DEPLOY_DIR/rollback.sh"
 
-          echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> .env
-          echo "PRIVATE_SECRET_KEY=${{ secrets.PRIVATE_SECRET_KEY }}" >> .env
+          # Caddyfile holds the live upstream selection (blue/green) which the
+          # deploy script manages, so only seed it once and never clobber it.
+          if [ ! -f "$DEPLOY_DIR/Caddyfile" ]; then
+            cp deploy/Caddyfile "$DEPLOY_DIR/Caddyfile"
+          fi
 
-      - name: Deploy with Docker Compose
+      - name: Write runtime env
         run: |
-          docker compose pull
-          docker compose up -d
+          {
+            echo "INTERNAL_BACKEND_URL=${{ secrets.INTERNAL_BACKEND_URL }}"
+            echo "NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}"
+            echo "NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}"
+            echo "NEXT_PUBLIC_OWNER_BEARER_TOKEN=${{ secrets.NEXT_PUBLIC_OWNER_BEARER_TOKEN }}"
+            echo "GH_TOKEN=${{ secrets.GH_TOKEN }}"
+            echo "PRIVATE_SECRET_KEY=${{ secrets.PRIVATE_SECRET_KEY }}"
+            echo "CLOUDFLARE_TUNNEL_TOKEN=${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}"
+          } > "$DEPLOY_DIR/.env"
+
+      - name: Deploy (blue/green hot swap)
+        run: |
+          "$DEPLOY_DIR/deploy.sh" "${{ env.SHA }}"
