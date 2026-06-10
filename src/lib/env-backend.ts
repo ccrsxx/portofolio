@@ -1,4 +1,3 @@
-// env.backend.ts
 import { z } from 'zod';
 import { validStringSchema, validateEnv } from './env';
 
