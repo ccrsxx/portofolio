@@ -7,6 +7,8 @@ import rehypePrettyCode, {
 } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const rehypeAutolinkHeadingsOptions: RehypeAutolinkHeadingsOptions = {
   behavior: 'wrap'
 };
@@ -61,11 +63,14 @@ export default withMDX({
   },
   reactStrictMode: true,
   images: {
+    dangerouslyAllowLocalIP: isDevelopment,
     remotePatterns: [
       new URL('https://i.scdn.co/image/**'),
       new URL('https://pixiv.ccrsxx.com/**'),
+      new URL('https://api.ccrsxx.com/navidrome/cover-art/**'),
       new URL('https://avatars.githubusercontent.com/u/**?v=4'),
-      new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary')
+      new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary'),
+      new URL('https://dev-backend.ccrsxx.my.id/navidrome/cover-art/**')
     ]
   },
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],

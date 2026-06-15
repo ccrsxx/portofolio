@@ -1,4 +1,4 @@
-export type Platform = 'spotify' | 'jellyfin';
+export type Platform = 'spotify' | 'jellyfin' | 'navidrome';
 
 export type Track = {
   trackUrl: string | null;

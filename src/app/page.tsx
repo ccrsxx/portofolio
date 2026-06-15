@@ -30,14 +30,14 @@ export default async function Home(): Promise<React.JSX.Element> {
   let featuredProjects: Project[] = [];
 
   let initialSpotifyData = null;
-  let initialJellyfinData = null;
+  let initialNavidromeData = null;
 
   try {
     featuredBlog = await getAllContents('blog');
     featuredProjects = await getAllContents('projects');
 
     initialSpotifyData = await getCurrentlyPlayingByType('spotify');
-    initialJellyfinData = await getCurrentlyPlayingByType('jellyfin');
+    initialNavidromeData = await getCurrentlyPlayingByType('navidrome');
   } catch (error) {
     console.error('home ssr error', error);
   }
@@ -69,7 +69,7 @@ export default async function Home(): Promise<React.JSX.Element> {
           <div className='mt-6 animate-enter-y animate-enter-delay-300'>
             <CurrentlyPlayingCard
               initialSpotifyData={initialSpotifyData}
-              initialJellyfinData={initialJellyfinData}
+              initialNavidromeData={initialNavidromeData}
             />
           </div>
           <nav className='mt-8 animate-enter-y animate-enter-delay-400'>

@@ -9,7 +9,7 @@ type UseCurrentlyPlayingSSE = {
 
 export type CurrentlyPlayingSSEOptions = {
   initialSpotifyData: CurrentlyPlaying | null;
-  initialJellyfinData: CurrentlyPlaying | null;
+  initialNavidromeData: CurrentlyPlaying | null;
 };
 
 /**
@@ -17,10 +17,10 @@ export type CurrentlyPlayingSSEOptions = {
  */
 export function useCurrentlyPlayingSSE({
   initialSpotifyData,
-  initialJellyfinData
+  initialNavidromeData
 }: CurrentlyPlayingSSEOptions): UseCurrentlyPlayingSSE {
   const [spotifyData, setSpotifyData] = useState(initialSpotifyData);
-  const [jellyfinData, setJellyfinData] = useState(initialJellyfinData);
+  const [navidromeData, setNavidromeData] = useState(initialNavidromeData);
 
   useEffect(() => {
     const url = new URL(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/sse`);
@@ -42,13 +42,13 @@ export function useCurrentlyPlayingSSE({
       setSpotifyData(data.data);
     });
 
-    eventSource.addEventListener('jellyfin', (event: MessageEvent<string>) => {
+    eventSource.addEventListener('navidrome', (event: MessageEvent<string>) => {
       const data =
         (JSON.parse(
           event.data
         ) as BackendSuccessApiResponse<CurrentlyPlaying>) ?? null;
 
-      setJellyfinData(data.data);
+      setNavidromeData(data.data);
     });
 
     eventSource.addEventListener('error', (error) => {
@@ -56,21 +56,21 @@ export function useCurrentlyPlayingSSE({
     });
 
     return (): void => eventSource.close();
-  }, [setSpotifyData, setJellyfinData]);
+  }, [setSpotifyData, setNavidromeData]);
 
   let parsedData: CurrentlyPlaying | null = null;
 
-  if (jellyfinData?.item) {
-    parsedData = jellyfinData;
+  if (navidromeData?.item) {
+    parsedData = navidromeData;
   } else if (spotifyData?.item) {
     parsedData = spotifyData;
   }
 
   // If both platform item exist, but Jellyfin is paused while Spotify is playing, switch to Spotify
   const shouldPreferSpotify =
-    jellyfinData?.item &&
+    navidromeData?.item &&
     spotifyData?.item &&
-    !jellyfinData?.isPlaying &&
+    !navidromeData?.isPlaying &&
     spotifyData?.isPlaying;
 
   if (shouldPreferSpotify) {

@@ -10,7 +10,7 @@ import {
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { HiPause, HiPlay } from 'react-icons/hi2';
-import { SiApplemusic, SiJellyfin, SiSpotify } from 'react-icons/si';
+import { SiApplemusic, SiDiscogs, SiSpotify } from 'react-icons/si';
 
 export function CurrentlyPlayingCard(
   options: CurrentlyPlayingSSEOptions
@@ -75,8 +75,8 @@ export function CurrentlyPlayingCard(
 
   if (platform === 'spotify') {
     platformIcon = <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />;
-  } else if (platform === 'jellyfin') {
-    platformIcon = <SiJellyfin className='text-accent-main shrink-0 text-lg' />;
+  } else if (platform === 'navidrome') {
+    platformIcon = <SiDiscogs className='text-accent-main shrink-0 text-lg' />;
   }
 
   return (
