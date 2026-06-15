@@ -9,7 +9,7 @@ import type { BookmarkTagWithCount } from '@lib/helper';
 import { clsx } from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { Fragment, useState } from 'react';
-import { HiCheck, HiChevronUpDown, HiXMark } from 'react-icons/hi2';
+import { LuCheck, LuChevronsUpDown, LuX } from 'react-icons/lu';
 
 type TagsFilterProps = {
   tags: BookmarkTagWithCount[];
@@ -77,14 +77,14 @@ export function TagsFilter({
                 className='absolute right-8 text-muted hover:text-foreground smooth-tab'
                 onClick={handleClearSelection}
               >
-                <HiXMark className='text-lg' />
+                <LuX className='text-lg' />
               </button>
             )}
             <ComboboxButton
               as='button'
               className='absolute right-2 text-muted hover:text-foreground smooth-tab'
             >
-              <HiChevronUpDown className='text-lg' />
+              <LuChevronsUpDown className='text-lg' />
             </ComboboxButton>
           </div>
           <AnimatePresence mode='wait'>
@@ -110,7 +110,7 @@ export function TagsFilter({
                         {({ selected }) => (
                           <>
                             <span className='text-accent-main flex items-center w-5 h-5 shrink-0'>
-                              {selected && <HiCheck className='text-lg' />}
+                              {selected && <LuCheck className='text-lg' />}
                             </span>
                             <div className='flex items-center gap-1'>
                               <span

@@ -5,7 +5,7 @@ import { ContentTag } from '@components/ui/content-tag';
 import { formatDate } from '@lib/format';
 import { preventBubbling } from '@lib/helper';
 import type { Bookmark } from '@lib/types/bookmarks';
-import { HiArrowTopRightOnSquare } from 'react-icons/hi2';
+import { LuExternalLink } from 'react-icons/lu';
 
 type BookmarkCardProps = Bookmark & {
   selectedTags: string[];
@@ -53,7 +53,7 @@ export function BookmarkCard({
         onClick={preventBubbling()}
         tabIndex={-1}
       >
-        <HiArrowTopRightOnSquare className='text-lg' />
+        <LuExternalLink className='text-lg' />
       </UnstyledLink>
       {aiGenerated && (
         <ContentTag

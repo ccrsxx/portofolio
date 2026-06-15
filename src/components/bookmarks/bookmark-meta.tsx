@@ -1,6 +1,6 @@
 import { Accent } from '@components/ui/accent';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
-import { HiXMark } from 'react-icons/hi2';
+import { LuX } from 'react-icons/lu';
 
 type BookmarkMetaProps = {
   total: number;
@@ -35,7 +35,7 @@ export function BookmarkMeta({
                   onClick={() => onRemoveTag(tag)}
                   className='hover:text-foreground smooth-tab'
                 >
-                  <HiXMark className='text-sm' />
+                  <LuX className='text-sm' />
                 </button>
               </motion.li>
             ))}

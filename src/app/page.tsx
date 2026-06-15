@@ -10,8 +10,7 @@ import { generatePageMetadata } from '@lib/metadata';
 import type { Blog, Project } from '@lib/types/contents';
 import type { Metadata } from 'next';
 import type { IconType } from 'react-icons';
-import { FaLinkedin } from 'react-icons/fa';
-import { HiDocumentText } from 'react-icons/hi2';
+import { FaFileLines, FaLinkedin } from 'react-icons/fa6';
 import { SiGithub } from 'react-icons/si';
 
 const { title: _, ...homeMetadata } = generatePageMetadata({
@@ -160,7 +159,7 @@ const socialLink: SocialLink[] = [
   {
     name: 'Resume',
     href: 'https://docs.google.com/document/d/1WKzJo_tOtDN9_mMx5YhVRmRE2AuC21pKP1sP8CXER9w',
-    Icon: HiDocumentText
+    Icon: FaFileLines
   },
   {
     name: 'LinkedIn',

@@ -1,9 +1,8 @@
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Tooltip } from '@components/ui/tooltip';
 import type { IconType } from 'react-icons';
-import { FaLinkedin } from 'react-icons/fa';
-import { HiEnvelope } from 'react-icons/hi2';
-import { SiDiscord, SiGithub, SiX } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa6';
+import { SiDiscord, SiGithub, SiGmail, SiX } from 'react-icons/si';
 
 export function Footer(): React.JSX.Element {
   const currentYear = new Date().getFullYear();
@@ -102,7 +101,7 @@ const socialLinks: SocialLink[] = [
     tip: 'Contact me at',
     name: 'me@risalamin.com',
     href: 'mailto:me@risalamin.com',
-    Icon: HiEnvelope
+    Icon: SiGmail
   },
   {
     tip: "I'm also on",

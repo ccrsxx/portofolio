@@ -15,7 +15,7 @@ import { formatDate } from '@lib/format';
 import { convertContentTypeToPathContentType } from '@lib/helper';
 import type { ContentSlugProps } from '@lib/mdx';
 import type { Blog, Content, Project } from '@lib/types/contents';
-import { MdHistory } from 'react-icons/md';
+import { LuHistory } from 'react-icons/lu';
 
 type ContentLayoutProps = {
   children: React.ReactNode;
@@ -68,7 +68,7 @@ export function ContentLayout({
                 className='smooth-tab hover:text-accent-main flex items-center gap-1 transition-colors'
                 href={githubCommitHistoryUrl}
               >
-                <MdHistory className='text-lg' />
+                <LuHistory className='text-lg' />
                 View history
               </UnstyledLink>
             </div>

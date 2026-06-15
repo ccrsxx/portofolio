@@ -9,8 +9,8 @@ import {
 } from '@lib/hooks/use-currently-playing-sse';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { HiPause, HiPlay } from 'react-icons/hi2';
-import { SiApplemusic, SiDiscogs, SiSpotify } from 'react-icons/si';
+import { FaCompactDisc, FaMusic, FaSpotify } from 'react-icons/fa6';
+import { LuPause, LuPlay } from 'react-icons/lu';
 
 export function CurrentlyPlayingCard(
   options: CurrentlyPlayingSSEOptions
@@ -67,16 +67,18 @@ export function CurrentlyPlayingCard(
     return (): void => clearInterval(progressIntervalId);
   }, [isPlaying, item]); // Re-run when the song or its playing status changes.
 
-  const defaultPlatform = <SiApplemusic className='shrink-0 text-lg' />;
+  const defaultPlatform = <FaMusic className='shrink-0 text-lg' />;
 
   const totalDuration = item?.durationMs ?? 0;
 
   let platformIcon = defaultPlatform;
 
   if (platform === 'spotify') {
-    platformIcon = <SiSpotify className='shrink-0 text-lg text-[#1ed760]' />;
+    platformIcon = <FaSpotify className='shrink-0 text-lg text-[#1ed760]' />;
   } else if (platform === 'navidrome') {
-    platformIcon = <SiDiscogs className='text-accent-main shrink-0 text-lg' />;
+    platformIcon = (
+      <FaCompactDisc className='text-accent-main shrink-0 text-lg' />
+    );
   }
 
   return (
@@ -143,9 +145,9 @@ export function CurrentlyPlayingCard(
                         </cite>
                       </p>
                       {isPlaying ? (
-                        <HiPause className='shrink-0 text-lg' />
+                        <LuPause className='shrink-0 text-lg' />
                       ) : (
-                        <HiPlay className='shrink-0 text-lg' />
+                        <LuPlay className='shrink-0 text-lg' />
                       )}
                     </div>
                     <p

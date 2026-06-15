@@ -1,7 +1,7 @@
 import type { SortDirection } from '@tanstack/react-table';
 import { clsx } from 'clsx';
 import type { IconType } from 'react-icons';
-import { HiChevronDown, HiChevronUp } from 'react-icons/hi2';
+import { LuChevronDown, LuChevronUp } from 'react-icons/lu';
 
 type SortIconProps = {
   isSorted: false | SortDirection;
@@ -32,6 +32,6 @@ export function SortIcon({
 }
 
 const Icons: Record<SortDirection, IconType> = {
-  asc: HiChevronUp,
-  desc: HiChevronDown
+  asc: LuChevronUp,
+  desc: LuChevronDown
 };

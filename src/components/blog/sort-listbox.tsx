@@ -7,7 +7,7 @@ import {
 import { clsx } from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { Fragment, type Dispatch, type SetStateAction } from 'react';
-import { HiArrowsUpDown, HiCalendar, HiCheck, HiEye } from 'react-icons/hi2';
+import { LuArrowUpDown, LuCalendar, LuCheck, LuEye } from 'react-icons/lu';
 
 type SortListboxProps = {
   sortOrder: SortOption;
@@ -30,14 +30,14 @@ export function SortListbox({
           >
             <span className='flex items-center gap-2 truncate'>
               {sortOrder === 'date' ? (
-                <HiCalendar className='text-lg' />
+                <LuCalendar className='text-lg' />
               ) : (
-                <HiEye className='text-lg' />
+                <LuEye className='text-lg' />
               )}
               Sort by {sortOrder}
             </span>
             <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
-              <HiArrowsUpDown className='text-lg text-gray-400' />
+              <LuArrowUpDown className='text-lg' />
             </span>
           </ListboxButton>
           <AnimatePresence mode='wait'>
@@ -56,7 +56,7 @@ export function SortListbox({
                       {({ selected }): React.JSX.Element => (
                         <>
                           <span className='text-accent-main flex items-center w-5 h-5'>
-                            {selected && <HiCheck className='text-lg' />}
+                            {selected && <LuCheck className='text-lg' />}
                           </span>
                           <span
                             className={clsx(

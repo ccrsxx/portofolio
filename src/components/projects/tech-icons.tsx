@@ -1,8 +1,8 @@
 import type { IconType } from 'react-icons';
 import { IoLogoVercel } from 'react-icons/io5';
+import { LuGitBranch } from 'react-icons/lu';
 import {
   SiFirebase,
-  SiGit,
   SiGoogleanalytics,
   SiJavascript,
   SiMarkdown,
@@ -98,7 +98,7 @@ const techList: TechList = {
   },
   git: {
     name: 'Git',
-    Icon: SiGit
+    Icon: LuGitBranch
   },
   notion: {
     name: 'Notion API',

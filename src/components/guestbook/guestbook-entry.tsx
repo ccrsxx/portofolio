@@ -6,7 +6,7 @@ import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
 import type { AuthUser } from '@lib/types/auth';
 import type { Guestbook } from '@lib/types/guestbook';
-import { HiTrash } from 'react-icons/hi2';
+import { LuTrash2 } from 'react-icons/lu';
 
 type GuestbookEntryProps = Guestbook & {
   session: AuthUser | undefined;
@@ -75,7 +75,7 @@ export function GuestbookEntry({
           type='button'
           onClick={handleUnRegisterGuestbook}
         >
-          <HiTrash className='text-lg' />
+          <LuTrash2 className='text-lg' />
         </Button>
       )}
     </article>

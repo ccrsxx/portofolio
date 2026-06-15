@@ -9,7 +9,7 @@ import {
   type ComponentPropsWithoutRef,
   type PropsWithChildren
 } from 'react';
-import { HiClipboard, HiClipboardDocumentCheck } from 'react-icons/hi2';
+import { LuClipboard, LuClipboardCheck } from 'react-icons/lu';
 
 type PrettyCodeProps = PropsWithChildren<{
   style: Pick<CSSProperties, 'backgroundColor'>;
@@ -51,11 +51,11 @@ export function CustomPre({
             <AnimatePresence mode='wait' initial={false}>
               {copied ? (
                 <motion.span {...variants} key='copied'>
-                  <HiClipboardDocumentCheck className='text-accent-main text-lg' />
+                  <LuClipboardCheck className='text-accent-main text-lg' />
                 </motion.span>
               ) : (
                 <motion.span {...variants} key='not-copied'>
-                  <HiClipboard className='text-lg' />
+                  <LuClipboard className='text-lg' />
                 </motion.span>
               )}
             </AnimatePresence>

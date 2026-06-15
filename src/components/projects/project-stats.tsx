@@ -3,7 +3,7 @@ import { CustomLink } from '@components/link/custom-link';
 import type { Project } from '@lib/types/contents';
 import type { PropsForViews } from '@lib/types/helper';
 import type { IconType } from 'react-icons';
-import { HiClock, HiEye, HiLink, HiUser } from 'react-icons/hi2';
+import { LuClock, LuEye, LuLink, LuUser } from 'react-icons/lu';
 import { SiGithub, SiYoutube } from 'react-icons/si';
 
 type ProjectLinks = {
@@ -39,7 +39,7 @@ export function ProjectStats({
     {
       name: 'Open Live Site',
       link: link,
-      Icon: HiLink
+      Icon: LuLink
     }
   ];
 
@@ -47,11 +47,11 @@ export function ProjectStats({
     <>
       <div className='text-muted flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium'>
         <div className='flex items-center gap-1'>
-          <HiClock className='h-4 w-4' />
+          <LuClock className='h-4 w-4' />
           <p>{readTime}</p>
         </div>
         <div className='flex items-center gap-1'>
-          <HiEye className='h-4 w-4' />
+          <LuEye className='h-4 w-4' />
           <ViewsCounter slug={slug} increment={increment} />
         </div>
         {projectLinks.map(
@@ -65,7 +65,7 @@ export function ProjectStats({
         )}
       </div>
       <div className='text-muted flex items-center gap-2'>
-        <HiUser className='text-lg' />
+        <LuUser className='text-lg' />
         <p className='text-sm'>{category}</p>
       </div>
     </>

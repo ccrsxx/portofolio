@@ -1,7 +1,7 @@
 import { useMounted } from '@lib/hooks/use-mounted';
 import { useTheme } from '@wrksz/themes/client';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
-import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
+import { LuMoon, LuSun } from 'react-icons/lu';
 
 export function ThemeSwitch(): React.JSX.Element {
   const { theme, setTheme } = useTheme();
@@ -25,17 +25,17 @@ export function ThemeSwitch(): React.JSX.Element {
         <AnimatePresence mode='popLayout' initial={false}>
           {isDarkMode ? (
             <motion.span {...moonVariants} key='dark'>
-              <HiOutlineMoon />
+              <LuMoon />
             </motion.span>
           ) : (
             <motion.span {...sunVariants} key='light'>
-              <HiOutlineSun />
+              <LuSun />
             </motion.span>
           )}
         </AnimatePresence>
       ) : (
         <span className='invisible'>
-          <HiOutlineSun />
+          <LuSun />
         </span>
       )}
     </button>
