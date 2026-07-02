@@ -19,7 +19,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        'smooth-tab',
+        'smooth-tab disabled:cursor-not-allowed',
         loading &&
           'relative text-transparent! brightness-75 disabled:cursor-wait',
         className

@@ -51,7 +51,7 @@ export function CustomPre({
             <AnimatePresence mode='wait' initial={false}>
               {copied ? (
                 <motion.span {...variants} key='copied'>
-                  <LuClipboardCheck className='text-accent-main text-lg' />
+                  <LuClipboardCheck className='text-alert-success text-lg' />
                 </motion.span>
               ) : (
                 <motion.span {...variants} key='not-copied'>

@@ -78,10 +78,11 @@ const footerLinks: FooterLink[] = [
     )
   },
   {
-    name: 'Design',
-    href: '/design',
-    tip: 'risalamin.com color palette'
+    name: 'Contact',
+    href: '/contact',
+    tip: 'Contaπct me directly on my website'
   },
+  { name: 'Design', href: '/design', tip: 'risalamin.com color palette' },
   {
     name: 'Statistics',
     href: '/statistics',
@@ -89,12 +90,7 @@ const footerLinks: FooterLink[] = [
   }
 ];
 
-type SocialLink = {
-  tip: string;
-  name: string;
-  href: string;
-  Icon: IconType;
-};
+type SocialLink = { tip: string; name: string; href: string; Icon: IconType };
 
 const socialLinks: SocialLink[] = [
   {
@@ -121,10 +117,5 @@ const socialLinks: SocialLink[] = [
     href: 'https://linkedin.com/in/risalamin',
     Icon: FaLinkedin
   },
-  {
-    tip: 'Follow me on',
-    name: 'X',
-    href: 'https://x.com/ccrsxx',
-    Icon: SiX
-  }
+  { tip: 'Follow me on', name: 'X', href: 'https://x.com/ccrsxx', Icon: SiX }
 ];
