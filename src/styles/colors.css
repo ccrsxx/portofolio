@@ -3,6 +3,11 @@
   --color-accent-start: oklch(0.627 0.265 303.9); /* Purple 500 */
   --color-accent-end: oklch(0.718 0.202 349.761); /* Pink 400 */
 
+  --color-alert-info: oklch(70.7% 0.165 254.624); /* Blue 400 */
+  --color-alert-error: oklch(70.4% 0.191 22.216); /* Red 400 */
+  --color-alert-success: oklch(79.2% 0.209 151.711); /* Green 400 */
+  --color-alert-warning: oklch(85.2% 0.199 91.936); /* Yellow 400 */
+
   --color-background: oklch(1 0 0); /* White */
   --color-foreground: oklch(0 0 0); /* Black */
   --color-primary: oklch(0.208 0.042 265.755); /* Gray 900 */

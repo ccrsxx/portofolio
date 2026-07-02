@@ -6,12 +6,10 @@ import { authKeys } from '@lib/hooks/use-session';
 import type { AuthUser } from '@lib/types/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { clsx } from 'clsx';
-import { type FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import { SiGithub } from 'react-icons/si';
 
-type GuestbookCardProps = {
-  session: AuthUser | undefined;
-};
+type GuestbookCardProps = { session: AuthUser | undefined };
 
 export function GuestbookForm({
   session
@@ -37,7 +35,7 @@ export function GuestbookForm({
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const form = e.currentTarget;

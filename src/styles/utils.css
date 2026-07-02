@@ -23,7 +23,7 @@
 }
 
 @utility clickable {
-  @apply smooth-tab main-border rounded-md shadow-xs transition-transform hover:scale-105 hover:shadow-md focus-visible:scale-105 focus-visible:shadow-md active:scale-95;
+  @apply smooth-tab main-border rounded-md shadow-xs transition-transform! hover:scale-105 hover:shadow-md focus-visible:scale-105 focus-visible:shadow-md active:scale-95;
 }
 
 @utility gradient-title {
