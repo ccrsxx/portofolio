@@ -5,6 +5,8 @@ import {
   SlugPage
 } from '../../content-slug';
 
+export const dynamicParams = false;
+
 export function generateStaticParams(): Promise<{ slug: string }[]> {
   return generateSlugStaticParams('projects');
 }
