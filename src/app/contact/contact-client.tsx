@@ -68,7 +68,8 @@ export default function ContactClient(): React.JSX.Element {
         method: 'POST',
         body: JSON.stringify(dataWithToken),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
         }
       });
 
