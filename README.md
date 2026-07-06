@@ -13,6 +13,7 @@ Currently available features/pages:
   - Content statistics, views, and likes tracking.
   - Guestbook authenticated via custom GitHub OAuth.
   - Real-time Spotify and Jellyfin currently playing status.
+  - Contact form for direct messaging.
 
 ## Development
 
