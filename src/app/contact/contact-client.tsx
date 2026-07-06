@@ -62,12 +62,11 @@ export default function ContactClient(): React.JSX.Element {
       });
 
       reset();
-
-      turnstileRef.current.reset();
     } catch (err) {
       console.error('contact form submit error', err);
     } finally {
       setLoading(false);
+      turnstileRef.current.reset();
     }
   };
 
