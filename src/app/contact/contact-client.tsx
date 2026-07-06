@@ -5,8 +5,10 @@ import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { frontendEnv } from '@lib/env-frontend';
-import { Turnstile } from '@marsidev/react-turnstile';
-import { useState } from 'react';
+import { fetcher } from '@lib/fetcher';
+import type { CloudflareTurnstileStatus } from '@lib/types/cloudflare';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 
@@ -21,13 +23,16 @@ const createContactSchema = z.object({
 
 type CreateContactSchema = z.infer<typeof createContactSchema>;
 
-type CloudflareTurnstileStatus = 'error' | 'expired' | 'solved';
-
 export default function ContactClient(): React.JSX.Element {
+  const [loading, setLoading] = useState(false);
+
   const [cloudflareTurnstileStatus, setCloudflareTurnstileStatus] =
     useState<CloudflareTurnstileStatus | null>(null);
 
+  const turnstileRef = useRef<TurnstileInstance>(null);
+
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors }
@@ -35,8 +40,35 @@ export default function ContactClient(): React.JSX.Element {
     resolver: zodResolver(createContactSchema)
   });
 
-  const onSubmit = (data: CreateContactSchema): void => {
-    alert(JSON.stringify(data, null, 2));
+  const onSubmit = async (data: CreateContactSchema): Promise<void> => {
+    if (!turnstileRef.current) return;
+
+    setLoading(true);
+
+    const token = turnstileRef.current.getResponse();
+
+    const dataWithToken = {
+      ...data,
+      token: token
+    };
+
+    try {
+      await fetcher(`${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/contacts`, {
+        method: 'POST',
+        body: JSON.stringify(dataWithToken),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      reset();
+
+      turnstileRef.current.reset();
+    } catch (err) {
+      console.error('contact form submit error', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isSubmitDisabled = cloudflareTurnstileStatus !== 'solved';
@@ -53,7 +85,7 @@ export default function ContactClient(): React.JSX.Element {
           back to you.
         </p>
       </header>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={(e) => handleSubmit(onSubmit)(e)}>
         <section className='grid gap-4'>
           <div className='flex flex-col md:flex-row gap-4 animate-enter-y animate-enter-delay-200 items-start'>
             <Input
@@ -86,9 +118,10 @@ export default function ContactClient(): React.JSX.Element {
           />
           <div
             className='flex flex-col md:flex-row gap-4 justify-end md:items-start items-end 
-                          animate-enter-y animate-enter-delay-400'
+                       animate-enter-y animate-enter-delay-400'
           >
             <Turnstile
+              ref={turnstileRef}
               siteKey={frontendEnv.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
               onError={() => setCloudflareTurnstileStatus('error')}
               onExpire={() => setCloudflareTurnstileStatus('expired')}
@@ -96,6 +129,7 @@ export default function ContactClient(): React.JSX.Element {
             />
             <Button
               type='submit'
+              loading={loading}
               disabled={isSubmitDisabled}
               className='custom-button enabled:clickable disabled:text-foreground/60 disabled:main-border'
             >

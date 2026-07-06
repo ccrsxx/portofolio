@@ -80,7 +80,7 @@ const footerLinks: FooterLink[] = [
   {
     name: 'Contact',
     href: '/contact',
-    tip: 'Contaπct me directly on my website'
+    tip: 'Contact me directly on my website'
   },
   { name: 'Design', href: '/design', tip: 'risalamin.com color palette' },
   {
