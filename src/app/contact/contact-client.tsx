@@ -100,9 +100,7 @@ export default function ContactClient(): React.JSX.Element {
           <Accent>Contact</Accent>
         </h1>
         <p className='text-secondary animate-enter-y animate-enter-delay-100'>
-          Contact me directly on my website. I&apos;ll get back to you as soon
-          as possible. Make sure to include a valid email address, so I can
-          reply back to you.
+          Contact me directly on my website.
         </p>
       </header>
       <form onSubmit={(e) => handleSubmit(onSubmit)(e)}>
