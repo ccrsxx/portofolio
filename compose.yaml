@@ -1,6 +1,6 @@
 services:
   portofolio:
-    image: ghcr.io/ccrsxx/portofolio:latest
+    image: ghcr.io/ccrsxx/portofolio:${IMAGE_TAG:-latest}
     container_name: portofolio
     env_file:
       - .env
