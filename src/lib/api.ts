@@ -117,6 +117,7 @@ export async function getCurrentlyPlayingByType(
   const response = await fetcher<CurrentlyPlaying>(
     `${backendEnv.INTERNAL_BACKEND_URL}/${type}/currently-playing`,
     {
+      signal: AbortSignal.timeout(1 * 1000),
       headers: {
         Authorization: `Bearer ${frontendEnv.NEXT_PUBLIC_OWNER_BEARER_TOKEN}`
       }
