@@ -17,7 +17,7 @@ jobs:
       node-version: ${{ steps.extract.outputs.node-version }}
       node-distroless-version: ${{ steps.extract.outputs.node-distroless-version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - id: extract
         run: |
           NODE_VERSION=$(jq -r '.volta.node' package.json)
