@@ -38,35 +38,35 @@
   "devDependencies": {
     "@commitlint/cli": "21.2.1",
     "@commitlint/config-conventional": "21.2.0",
-    "@eslint/js": "9.39.4",
+    "@eslint/js": "9.39.5",
     "@prequist/lanyard": "1.1.0",
-    "@tailwindcss/postcss": "4.2.4",
-    "@tailwindcss/typography": "0.5.19",
-    "@types/node": "20.19.39",
-    "@types/react": "19.2.14",
+    "@tailwindcss/postcss": "4.3.3",
+    "@tailwindcss/typography": "0.5.20",
+    "@types/node": "20.19.43",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "9.39.4",
-    "eslint-config-next": "16.2.6",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.2.11",
     "husky": "9.1.7",
     "lint-staged": "17.1.1",
-    "postcss": "8.5.18",
-    "prettier": "3.8.3",
+    "postcss": "8.5.22",
+    "prettier": "3.9.6",
     "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-tailwindcss": "0.7.3",
+    "prettier-plugin-tailwindcss": "0.8.1",
     "reading-time": "1.5.0",
     "rehype-autolink-headings": "7.1.0",
-    "rehype-pretty-code": "0.14.3",
+    "rehype-pretty-code": "0.14.4",
     "rehype-slug": "6.0.0",
     "shiki": "1.29.2",
-    "tailwindcss": "4.2.4",
+    "tailwindcss": "4.3.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.59.0"
+    "typescript-eslint": "8.65.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
   "volta": {
-    "node": "24.16.0"
+    "node": "24.18.0"
   }
 }
