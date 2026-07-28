@@ -66,7 +66,7 @@ export default withMDX({
     dangerouslyAllowLocalIP: isDevelopment,
     remotePatterns: [
       new URL('https://i.scdn.co/image/**'),
-      new URL('https://pixiv.ccrsxx.com/**'),
+      new URL('https://api.ccrsxx.com/pixiv/image/**'),
       new URL('https://api.ccrsxx.com/navidrome/cover-art/**'),
       new URL('https://avatars.githubusercontent.com/u/**?v=4'),
       new URL('https://proxy.ccrsxx.com/Items/*/Images/Primary'),
