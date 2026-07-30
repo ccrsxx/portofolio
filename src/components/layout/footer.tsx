@@ -40,6 +40,7 @@ export function Footer(): React.JSX.Element {
                 <UnstyledLink
                   className='smooth-tab peer hover:text-accent-main grid transition-colors'
                   href={href}
+                  aria-label={name}
                 >
                   <Icon className='smooth-tab h-6 w-6' />
                 </UnstyledLink>
