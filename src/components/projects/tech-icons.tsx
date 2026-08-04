@@ -33,7 +33,7 @@ export function TechIcons({ tags }: { tags: string }): React.JSX.Element {
             tip={name}
             key={name}
           >
-            <Icon />
+            <Icon title={name} />
           </Tooltip>
         );
       })}

@@ -91,10 +91,13 @@ export default async function Home(): Promise<React.JSX.Element> {
                 <li key={name}>
                   <UnstyledLink
                     className='smooth-tab group text-muted flex items-center gap-2 text-sm transition 
-                           *:transition-colors md:text-base'
+                               *:transition-colors md:text-base'
                     href={href}
                   >
-                    <Icon className='group-hover:text-accent-main' />{' '}
+                    <Icon
+                      className='group-hover:text-accent-main'
+                      title={name}
+                    />{' '}
                     <span className='group-hover:text-foreground'>{name}</span>
                   </UnstyledLink>
                 </li>
