@@ -50,7 +50,7 @@
     "eslint-config-next": "16.2.11",
     "husky": "9.1.7",
     "lint-staged": "17.1.1",
-    "postcss": "8.5.22",
+    "postcss": "8.5.23",
     "prettier": "3.9.6",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-tailwindcss": "0.8.1",
