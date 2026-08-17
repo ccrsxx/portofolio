@@ -114,7 +114,7 @@ export function CurrentlyPlayingCard(
                 {albumImageUrl && (
                   <div className='shrink-0'>
                     <LazyImage
-                      className='main-border h-16 w-16 overflow-hidden rounded-md'
+                      className='main-border size-16 overflow-hidden rounded-md'
                       title={albumName}
                       src={albumImageUrl}
                       alt={albumName as string}

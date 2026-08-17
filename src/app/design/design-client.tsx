@@ -39,7 +39,7 @@ export function DesignClient(): React.JSX.Element {
               <li className='flex items-center gap-2' key={title}>
                 <div
                   className={clsx(
-                    'main-border h-10 w-10 rounded-md shrink-0',
+                    'main-border size-10 rounded-md shrink-0',
                     className
                   )}
                 />

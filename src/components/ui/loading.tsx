@@ -8,7 +8,7 @@ type LoadingProps = {
 
 export function Loading({
   className = 'p-4',
-  iconClassName = 'h-7 w-7'
+  iconClassName = 'size-7'
 }: LoadingProps): React.JSX.Element {
   return (
     <span className={clsx('flex justify-center', className)}>

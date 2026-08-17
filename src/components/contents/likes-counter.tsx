@@ -92,7 +92,7 @@ function GradientHeart({
       >
         🥳
       </motion.span>
-      <svg viewBox='0 0 20 20' className='h-12 w-12'>
+      <svg viewBox='0 0 20 20' className='size-12'>
         <defs>
           <linearGradient id='gradient' x2='0%' y2='100%'>
             <stop
@@ -116,13 +116,10 @@ function GradientHeart({
           </clipPath>
         </defs>
         <g clipPath='url(#clip-path)'>
-          <rect
-            fill='currentColor'
-            className='text-accent-foreground h-5 w-5'
-          />
+          <rect fill='currentColor' className='text-accent-foreground size-5' />
           <rect
             fill='url(#gradient)'
-            className='h-5 w-5 transition-transform'
+            className='size-5 transition-transform'
             style={{ transform: `translateY(${gradientOffsetY}px)` }}
           />
         </g>

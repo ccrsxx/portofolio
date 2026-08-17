@@ -109,7 +109,7 @@ export function TagsFilter({
                       >
                         {({ selected }) => (
                           <>
-                            <span className='text-accent-main flex items-center w-5 h-5 shrink-0'>
+                            <span className='text-accent-main flex items-center size-5 shrink-0'>
                               {selected && <LuCheck className='text-lg' />}
                             </span>
                             <div className='flex items-center gap-1'>

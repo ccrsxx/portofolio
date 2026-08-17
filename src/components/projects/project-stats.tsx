@@ -47,11 +47,11 @@ export function ProjectStats({
     <>
       <div className='text-muted flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium'>
         <div className='flex items-center gap-1'>
-          <LuClock className='h-4 w-4' />
+          <LuClock className='size-4' />
           <p>{readTime}</p>
         </div>
         <div className='flex items-center gap-1'>
-          <LuEye className='h-4 w-4' />
+          <LuEye className='size-4' />
           <ViewsCounter slug={slug} increment={increment} />
         </div>
         {projectLinks.map(

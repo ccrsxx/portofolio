@@ -14,11 +14,11 @@ export function BlogStats({
   return (
     <div className='text-muted flex gap-4 text-sm font-medium'>
       <div className='flex items-center gap-1'>
-        <LuClock className='h-4 w-4' />
+        <LuClock className='size-4' />
         <Accent>{readTime}</Accent>
       </div>
       <div className='flex items-center gap-1'>
-        <LuEye className='h-4 w-4' />
+        <LuEye className='size-4' />
         <Accent>
           <ViewsCounter slug={slug} increment={increment} />
         </Accent>

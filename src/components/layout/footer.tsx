@@ -42,7 +42,7 @@ export function Footer(): React.JSX.Element {
                   href={href}
                   aria-label={name}
                 >
-                  <Icon className='smooth-tab h-6 w-6' title={name} />
+                  <Icon className='smooth-tab size-6' title={name} />
                 </UnstyledLink>
               </Tooltip>
             ))}
