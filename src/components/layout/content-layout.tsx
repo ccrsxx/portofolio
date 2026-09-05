@@ -1,20 +1,20 @@
 'use client';
 
-import { BlogCard } from '@components/blog/blog-card';
-import { BlogStats } from '@components/blog/blog-stats';
-import { LikesCounter } from '@components/contents/likes-counter';
-import { TableOfContents } from '@components/contents/table-of-contents';
-import { CustomLink } from '@components/link/custom-link';
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { ImagePreview } from '@components/modal/image-preview';
-import { ProjectCard } from '@components/projects/project-card';
-import { ProjectStats } from '@components/projects/project-stats';
-import { MorphTransition } from '@components/transitions/morph-transition';
-import { Accent } from '@components/ui/accent';
-import { formatDate } from '@lib/format';
-import { convertContentTypeToPathContentType } from '@lib/helper';
-import type { ContentSlugProps } from '@lib/mdx';
-import type { Blog, Content, Project } from '@lib/types/contents';
+import { BlogCard } from '@/components/blog/blog-card';
+import { BlogStats } from '@/components/blog/blog-stats';
+import { LikesCounter } from '@/components/contents/likes-counter';
+import { TableOfContents } from '@/components/contents/table-of-contents';
+import { CustomLink } from '@/components/link/custom-link';
+import { UnstyledLink } from '@/components/link/unstyled-link';
+import { ImagePreview } from '@/components/modal/image-preview';
+import { ProjectCard } from '@/components/projects/project-card';
+import { ProjectStats } from '@/components/projects/project-stats';
+import { MorphTransition } from '@/components/transitions/morph-transition';
+import { Accent } from '@/components/ui/accent';
+import { formatDate } from '@/lib/format';
+import { convertContentTypeToPathContentType } from '@/lib/helper';
+import type { ContentSlugProps } from '@/lib/mdx';
+import type { Blog, Content, Project } from '@/lib/types/contents';
 import { LuHistory } from 'react-icons/lu';
 
 type ContentLayoutProps = {

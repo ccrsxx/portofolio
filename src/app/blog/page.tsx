@@ -1,11 +1,11 @@
-import { PageTransition } from '@components/transitions/page-transition';
+import { PageTransition } from '@/components/transitions/page-transition';
 import {
   getAllBlogWithViews,
   getContentsDataByType,
   type BlogWithViews
-} from '@lib/api';
-import { getContentTags as getBlogTags } from '@lib/helper';
-import { generatePageMetadata } from '@lib/metadata';
+} from '@/lib/api';
+import { getContentTags as getBlogTags } from '@/lib/helper';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { BlogClient } from './blog-client';
 

@@ -1,5 +1,5 @@
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { Tooltip } from '@components/ui/tooltip';
+import { UnstyledLink } from '@/components/link/unstyled-link';
+import { Tooltip } from '@/components/ui/tooltip';
 import type { IconType } from 'react-icons';
 import { FaLinkedin } from 'react-icons/fa6';
 import { SiDiscord, SiGithub, SiGmail, SiX } from 'react-icons/si';

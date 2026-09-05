@@ -1,10 +1,10 @@
-import { StatisticsCard } from '@components/statistics/statistics-card';
-import { Table } from '@components/statistics/table';
-import { PageTransition } from '@components/transitions/page-transition';
-import { Accent } from '@components/ui/accent';
-import { getContentsDataByType, getContentsStatistics } from '@lib/api';
-import { generatePageMetadata } from '@lib/metadata';
-import type { ContentColumn, ContentStatistics } from '@lib/types/statistics';
+import { StatisticsCard } from '@/components/statistics/statistics-card';
+import { Table } from '@/components/statistics/table';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { Accent } from '@/components/ui/accent';
+import { getContentsDataByType, getContentsStatistics } from '@/lib/api';
+import { generatePageMetadata } from '@/lib/metadata';
+import type { ContentColumn, ContentStatistics } from '@/lib/types/statistics';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = generatePageMetadata({

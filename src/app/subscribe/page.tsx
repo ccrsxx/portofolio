@@ -1,7 +1,7 @@
-import { SubscribeCard } from '@components/blog/subscribe-card';
-import { PageTransition } from '@components/transitions/page-transition';
-import { Accent } from '@components/ui/accent';
-import { generatePageMetadata } from '@lib/metadata';
+import { SubscribeCard } from '@/components/blog/subscribe-card';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { Accent } from '@/components/ui/accent';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = generatePageMetadata({

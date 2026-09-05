@@ -30,7 +30,7 @@ export function Layout({ children }: LayoutProps): JSX.Element {
 To implement this custom layout, we can wrap the `Component` within our `_app.tsx` file:
 
 ```tsx title="pages/_app.tsx"
-import { Layout } from '@components/layout';
+import { Layout } from '@/components/layout';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
@@ -51,8 +51,8 @@ If we want to have different layouts (ex. authentication, dashboard, etc...), we
 Here's an example of a page:
 
 ```tsx title="pages/index.tsx"
-import { Layout } from '@components/layout/layout'
-import { NestedLayout } from '@components/layout/nested-layout'
+import { Layout } from '@/components/layout/layout'
+import { NestedLayout } from '@/components/layout/nested-layout'
 import type { ReactElement, ReactNode } from 'react'
 
 function Page(): JSX.Element {

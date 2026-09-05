@@ -1,7 +1,7 @@
-import { ViewsCounter } from '@components/contents/views-counter';
-import { Accent } from '@components/ui/accent';
-import type { Blog } from '@lib/types/contents';
-import type { PropsForViews } from '@lib/types/helper';
+import { ViewsCounter } from '@/components/contents/views-counter';
+import { Accent } from '@/components/ui/accent';
+import type { Blog } from '@/lib/types/contents';
+import type { PropsForViews } from '@/lib/types/helper';
 import { LuClock, LuEye } from 'react-icons/lu';
 
 type BlogStatProps = PropsForViews<Pick<Blog, 'readTime'>>;

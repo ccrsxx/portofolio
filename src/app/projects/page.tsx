@@ -1,8 +1,8 @@
-import { ProjectCard } from '@components/projects/project-card';
-import { PageTransition } from '@components/transitions/page-transition';
-import { Accent } from '@components/ui/accent';
-import { getAllContents } from '@lib/mdx';
-import { generatePageMetadata } from '@lib/metadata';
+import { ProjectCard } from '@/components/projects/project-card';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { Accent } from '@/components/ui/accent';
+import { getAllContents } from '@/lib/mdx';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = generatePageMetadata({

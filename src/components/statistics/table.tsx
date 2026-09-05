@@ -1,7 +1,7 @@
 'use client';
 
-import { formatNumber } from '@lib/format';
-import type { ContentColumn } from '@lib/types/statistics';
+import { formatNumber } from '@/lib/format';
+import type { ContentColumn } from '@/lib/types/statistics';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import {
   createColumnHelper,

@@ -1,8 +1,8 @@
-import { PageTransition } from '@components/transitions/page-transition';
-import { getGuestbook, getSession } from '@lib/api';
-import { generatePageMetadata } from '@lib/metadata';
-import type { AuthUser } from '@lib/types/auth';
-import type { Guestbook } from '@lib/types/guestbook';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { getGuestbook, getSession } from '@/lib/api';
+import { generatePageMetadata } from '@/lib/metadata';
+import type { AuthUser } from '@/lib/types/auth';
+import type { Guestbook } from '@/lib/types/guestbook';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { GuestbookClient } from './guestbook-client';

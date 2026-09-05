@@ -1,4 +1,4 @@
-import type { CustomTag, ValidTag } from '@lib/types/helper';
+import type { CustomTag, ValidTag } from '@/lib/types/helper';
 import { clsx } from 'clsx';
 
 const DEFAULT_TAG = 'button' as const;

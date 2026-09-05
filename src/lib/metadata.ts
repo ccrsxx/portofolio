@@ -1,5 +1,5 @@
-import { frontendEnv } from '@lib/env-frontend';
-import type { Content, PathContentType } from '@lib/types/contents';
+import { frontendEnv } from '@/lib/env-frontend';
+import type { Content, PathContentType } from '@/lib/types/contents';
 import type { Metadata } from 'next';
 
 export type ArticleMeta = Pick<

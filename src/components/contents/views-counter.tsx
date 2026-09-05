@@ -1,8 +1,8 @@
 'use client';
 
-import { formatNumber } from '@lib/format';
-import { useContentViews } from '@lib/hooks/use-content-views';
-import type { PropsForViews } from '@lib/types/helper';
+import { formatNumber } from '@/lib/format';
+import { useContentViews } from '@/lib/hooks/use-content-views';
+import type { PropsForViews } from '@/lib/types/helper';
 
 export function ViewsCounter({
   slug,

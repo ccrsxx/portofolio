@@ -1,4 +1,4 @@
-import { generatePageMetadata } from '@lib/metadata';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { NotFoundClient } from './not-found-client';
 

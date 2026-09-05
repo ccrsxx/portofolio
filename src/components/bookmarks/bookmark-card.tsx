@@ -1,10 +1,10 @@
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { ImagePreview } from '@components/modal/image-preview';
-import { Accent } from '@components/ui/accent';
-import { ContentTag } from '@components/ui/content-tag';
-import { formatDate } from '@lib/format';
-import { preventBubbling } from '@lib/helper';
-import type { Bookmark } from '@lib/types/bookmarks';
+import { UnstyledLink } from '@/components/link/unstyled-link';
+import { ImagePreview } from '@/components/modal/image-preview';
+import { Accent } from '@/components/ui/accent';
+import { ContentTag } from '@/components/ui/content-tag';
+import { formatDate } from '@/lib/format';
+import { preventBubbling } from '@/lib/helper';
+import type { Bookmark } from '@/lib/types/bookmarks';
 import { LuExternalLink } from 'react-icons/lu';
 
 type BookmarkCardProps = Bookmark & {

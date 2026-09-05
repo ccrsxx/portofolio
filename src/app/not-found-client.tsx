@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomLink } from '@components/link/custom-link';
+import { CustomLink } from '@/components/link/custom-link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

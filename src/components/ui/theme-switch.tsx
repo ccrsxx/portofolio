@@ -1,4 +1,4 @@
-import { useMounted } from '@lib/hooks/use-mounted';
+import { useMounted } from '@/lib/hooks/use-mounted';
 import { useTheme } from '@wrksz/themes/client';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { LuMoon, LuSun } from 'react-icons/lu';

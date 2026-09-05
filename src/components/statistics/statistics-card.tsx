@@ -1,6 +1,6 @@
-import { formatNumber } from '@lib/format';
-import { convertContentTypeToPathContentType } from '@lib/helper';
-import type { ContentStatistics } from '@lib/types/statistics';
+import { formatNumber } from '@/lib/format';
+import { convertContentTypeToPathContentType } from '@/lib/helper';
+import type { ContentStatistics } from '@/lib/types/statistics';
 
 export function StatisticsCard({
   type,

@@ -1,8 +1,8 @@
-import { MorphTransition } from '@components/transitions/morph-transition';
-import { Accent } from '@components/ui/accent';
-import type { BlogWithViews } from '@lib/api';
-import { formatDate } from '@lib/format';
-import type { Blog } from '@lib/types/contents';
+import { MorphTransition } from '@/components/transitions/morph-transition';
+import { Accent } from '@/components/ui/accent';
+import type { BlogWithViews } from '@/lib/api';
+import { formatDate } from '@/lib/format';
+import type { Blog } from '@/lib/types/contents';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContentTag } from '../ui/content-tag';

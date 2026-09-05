@@ -1,13 +1,13 @@
 'use client';
 
-import { Accent } from '@components/ui/accent';
-import { Alert } from '@components/ui/alert';
-import { Button } from '@components/ui/button';
-import { Input } from '@components/ui/input';
+import { Accent } from '@/components/ui/accent';
+import { Alert } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { frontendEnv } from '@/lib/env-frontend';
+import { fetcher } from '@/lib/fetcher';
+import type { CloudflareTurnstileStatus } from '@/lib/types/cloudflare';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { frontendEnv } from '@lib/env-frontend';
-import { fetcher } from '@lib/fetcher';
-import type { CloudflareTurnstileStatus } from '@lib/types/cloudflare';
 import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';

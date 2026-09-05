@@ -1,11 +1,11 @@
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { Button } from '@components/ui/button';
-import { LazyImage } from '@components/ui/lazy-image';
-import { Tooltip } from '@components/ui/tooltip';
-import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
-import { useDeleteGuestbookEntry } from '@lib/hooks/use-guestbook';
-import type { AuthUser } from '@lib/types/auth';
-import type { Guestbook } from '@lib/types/guestbook';
+import { UnstyledLink } from '@/components/link/unstyled-link';
+import { Button } from '@/components/ui/button';
+import { LazyImage } from '@/components/ui/lazy-image';
+import { Tooltip } from '@/components/ui/tooltip';
+import { formatFullTimeStamp, formatTimestamp } from '@/lib/format';
+import { useDeleteGuestbookEntry } from '@/lib/hooks/use-guestbook';
+import type { AuthUser } from '@/lib/types/auth';
+import type { Guestbook } from '@/lib/types/guestbook';
 import { LuTrash2 } from 'react-icons/lu';
 
 type GuestbookEntryProps = Guestbook & {

@@ -1,4 +1,4 @@
-import { Accent } from '@components/ui/accent';
+import { Accent } from '@/components/ui/accent';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { LuX } from 'react-icons/lu';
 

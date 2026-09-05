@@ -1,12 +1,12 @@
 'use client';
 
-import { UnstyledLink } from '@components/link/unstyled-link';
-import { LazyImage } from '@components/ui/lazy-image';
-import { formatMilisecondsToPlayback } from '@lib/format';
+import { UnstyledLink } from '@/components/link/unstyled-link';
+import { LazyImage } from '@/components/ui/lazy-image';
+import { formatMilisecondsToPlayback } from '@/lib/format';
 import {
   useCurrentlyPlayingSSE,
   type CurrentlyPlayingSSEOptions
-} from '@lib/hooks/use-currently-playing-sse';
+} from '@/lib/hooks/use-currently-playing-sse';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FaCompactDisc, FaMusic, FaSpotify } from 'react-icons/fa6';

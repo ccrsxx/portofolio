@@ -1,5 +1,5 @@
-import { useActiveHeading } from '@lib/hooks/use-active-heading';
-import { useHeadingData } from '@lib/hooks/use-heading-data';
+import { useActiveHeading } from '@/lib/hooks/use-active-heading';
+import { useHeadingData } from '@/lib/hooks/use-heading-data';
 import { clsx } from 'clsx';
 import type { PropsWithChildren } from 'react';
 

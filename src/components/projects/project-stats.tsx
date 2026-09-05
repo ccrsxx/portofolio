@@ -1,7 +1,7 @@
-import { ViewsCounter } from '@components/contents/views-counter';
-import { CustomLink } from '@components/link/custom-link';
-import type { Project } from '@lib/types/contents';
-import type { PropsForViews } from '@lib/types/helper';
+import { ViewsCounter } from '@/components/contents/views-counter';
+import { CustomLink } from '@/components/link/custom-link';
+import type { Project } from '@/lib/types/contents';
+import type { PropsForViews } from '@/lib/types/helper';
 import type { IconType } from 'react-icons';
 import { LuClock, LuEye, LuLink, LuUser } from 'react-icons/lu';
 import { SiGithub, SiYoutube } from 'react-icons/si';

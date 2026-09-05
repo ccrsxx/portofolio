@@ -1,8 +1,8 @@
-import { CustomLink } from '@components/link/custom-link';
-import { PageTransition } from '@components/transitions/page-transition';
-import { Accent } from '@components/ui/accent';
-import { Tooltip } from '@components/ui/tooltip';
-import { generatePageMetadata } from '@lib/metadata';
+import { CustomLink } from '@/components/link/custom-link';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { Accent } from '@/components/ui/accent';
+import { Tooltip } from '@/components/ui/tooltip';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import type { IconType } from 'react-icons';
 import {

@@ -1,7 +1,7 @@
-import { LazyImage } from '@components/ui/lazy-image';
-import { Loading } from '@components/ui/loading';
-import { preventBubbling } from '@lib/helper';
-import { useModal } from '@lib/hooks/use-modal';
+import { LazyImage } from '@/components/ui/lazy-image';
+import { Loading } from '@/components/ui/loading';
+import { preventBubbling } from '@/lib/helper';
+import { useModal } from '@/lib/hooks/use-modal';
 import { clsx } from 'clsx';
 import Image, { type ImageProps, type StaticImageData } from 'next/image';
 import { useState } from 'react';

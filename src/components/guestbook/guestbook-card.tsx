@@ -1,4 +1,4 @@
-import { Accent } from '@components/ui/accent';
+import { Accent } from '@/components/ui/accent';
 import type { PropsWithChildren } from 'react';
 
 export function GuestbookCard({

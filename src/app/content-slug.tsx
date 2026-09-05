@@ -1,10 +1,10 @@
-import { ContentLayout } from '@components/layout/content-layout';
-import { PageTransition } from '@components/transitions/page-transition';
-import { getContentFiles } from '@lib/contents';
-import { removeContentExtension } from '@lib/helper';
-import { getContentSlugProps, getSlugContent } from '@lib/mdx';
-import { generatePageMetadata, type ArticleMeta } from '@lib/metadata';
-import type { PathContentType } from '@lib/types/contents';
+import { ContentLayout } from '@/components/layout/content-layout';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { getContentFiles } from '@/lib/contents';
+import { removeContentExtension } from '@/lib/helper';
+import { getContentSlugProps, getSlugContent } from '@/lib/mdx';
+import { generatePageMetadata, type ArticleMeta } from '@/lib/metadata';
+import type { PathContentType } from '@/lib/types/contents';
 import type { Metadata } from 'next';
 
 export async function generateSlugStaticParams(

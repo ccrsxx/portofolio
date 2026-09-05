@@ -1,9 +1,9 @@
 'use client';
 
-import { frontendEnv } from '@lib/env-frontend';
-import { fetcher } from '@lib/fetcher';
-import type { AppQueryResult } from '@lib/types/api';
-import type { Views } from '@lib/types/meta';
+import { frontendEnv } from '@/lib/env-frontend';
+import { fetcher } from '@/lib/fetcher';
+import type { AppQueryResult } from '@/lib/types/api';
+import type { Views } from '@/lib/types/meta';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 

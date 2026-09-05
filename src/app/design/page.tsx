@@ -1,5 +1,5 @@
-import { PageTransition } from '@components/transitions/page-transition';
-import { generatePageMetadata } from '@lib/metadata';
+import { PageTransition } from '@/components/transitions/page-transition';
+import { generatePageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import { DesignClient } from './design-client';
 

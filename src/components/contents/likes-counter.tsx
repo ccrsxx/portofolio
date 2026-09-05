@@ -1,5 +1,5 @@
-import { useContentLikes, useLikeContent } from '@lib/hooks/use-content-likes';
-import type { Content } from '@lib/types/contents';
+import { useContentLikes, useLikeContent } from '@/lib/hooks/use-content-likes';
+import type { Content } from '@/lib/types/contents';
 import { clsx } from 'clsx';
 import { motion, type MotionProps } from 'motion/react';
 

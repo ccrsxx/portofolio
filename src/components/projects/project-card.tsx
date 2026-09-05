@@ -1,6 +1,6 @@
-import { TechIcons } from '@components/projects/tech-icons';
-import { MorphTransition } from '@components/transitions/morph-transition';
-import type { Project } from '@lib/types/contents';
+import { TechIcons } from '@/components/projects/tech-icons';
+import { MorphTransition } from '@/components/transitions/morph-transition';
+import type { Project } from '@/lib/types/contents';
 import Image from 'next/image';
 import Link from 'next/link';
 

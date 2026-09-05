@@ -1,7 +1,7 @@
-import { frontendEnv } from '@lib/env-frontend';
-import { fetcher } from '@lib/fetcher';
-import type { AppMutationResult, AppQueryResult } from '@lib/types/api';
-import type { LikeStatus } from '@lib/types/meta';
+import { frontendEnv } from '@/lib/env-frontend';
+import { fetcher } from '@/lib/fetcher';
+import type { AppMutationResult, AppQueryResult } from '@/lib/types/api';
+import type { LikeStatus } from '@/lib/types/meta';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const likesKeys = {

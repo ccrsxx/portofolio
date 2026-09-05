@@ -1,6 +1,6 @@
-import { frontendEnv } from '@lib/env-frontend';
-import type { BackendSuccessApiResponse } from '@lib/types/api';
-import type { CurrentlyPlaying } from '@lib/types/currently-playing';
+import { frontendEnv } from '@/lib/env-frontend';
+import type { BackendSuccessApiResponse } from '@/lib/types/api';
+import type { CurrentlyPlaying } from '@/lib/types/currently-playing';
 import { useEffect, useState } from 'react';
 
 type UseCurrentlyPlayingSSE = {

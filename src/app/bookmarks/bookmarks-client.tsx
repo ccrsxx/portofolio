@@ -1,12 +1,12 @@
 'use client';
 
-import { BookmarkCard } from '@components/bookmarks/bookmark-card';
-import { BookmarkMeta } from '@components/bookmarks/bookmark-meta';
-import { TagsFilter } from '@components/bookmarks/tags-filter';
-import { Accent } from '@components/ui/accent';
-import { getBookmarksTagsWithCount } from '@lib/helper';
-import { setTransition } from '@lib/transition';
-import type { Bookmark } from '@lib/types/bookmarks';
+import { BookmarkCard } from '@/components/bookmarks/bookmark-card';
+import { BookmarkMeta } from '@/components/bookmarks/bookmark-meta';
+import { TagsFilter } from '@/components/bookmarks/tags-filter';
+import { Accent } from '@/components/ui/accent';
+import { getBookmarksTagsWithCount } from '@/lib/helper';
+import { setTransition } from '@/lib/transition';
+import type { Bookmark } from '@/lib/types/bookmarks';
 import clsx from 'clsx';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 import { useState } from 'react';

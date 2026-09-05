@@ -1,14 +1,14 @@
 'use client';
 
-import { GuestbookCard } from '@components/guestbook/guestbook-card';
-import { GuestbookEntry } from '@components/guestbook/guestbook-entry';
-import { GuestbookForm } from '@components/guestbook/guestbook-form';
-import { Accent } from '@components/ui/accent';
-import { useGuestbook } from '@lib/hooks/use-guestbook';
-import { useSession } from '@lib/hooks/use-session';
-import { setTransition } from '@lib/transition';
-import type { AuthUser } from '@lib/types/auth';
-import type { Guestbook } from '@lib/types/guestbook';
+import { GuestbookCard } from '@/components/guestbook/guestbook-card';
+import { GuestbookEntry } from '@/components/guestbook/guestbook-entry';
+import { GuestbookForm } from '@/components/guestbook/guestbook-form';
+import { Accent } from '@/components/ui/accent';
+import { useGuestbook } from '@/lib/hooks/use-guestbook';
+import { useSession } from '@/lib/hooks/use-session';
+import { setTransition } from '@/lib/transition';
+import type { AuthUser } from '@/lib/types/auth';
+import type { Guestbook } from '@/lib/types/guestbook';
 import { AnimatePresence, motion, type MotionProps } from 'motion/react';
 
 type GuestbookClientProps = {
