@@ -70,7 +70,7 @@ type FooterLink = {
 
 const footerLinks: FooterLink[] = [
   {
-    name: 'Source code',
+    name: 'Source',
     href: 'https://github.com/ccrsxx/portofolio',
     tip: (
       <>
