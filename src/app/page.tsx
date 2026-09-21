@@ -8,6 +8,7 @@ import { getCurrentlyPlayingByType } from '@/lib/api';
 import { getAllContents } from '@/lib/mdx';
 import { generatePageMetadata } from '@/lib/metadata';
 import type { Blog, Project } from '@/lib/types/contents';
+import type { CurrentlyPlaying } from '@/lib/types/currently-playing';
 import type { Metadata } from 'next';
 import type { IconType } from 'react-icons';
 import { FaFileLines, FaLinkedin } from 'react-icons/fa6';
@@ -28,17 +29,27 @@ export default async function Home(): Promise<React.JSX.Element> {
   let featuredBlog: Blog[] = [];
   let featuredProjects: Project[] = [];
 
-  let initialSpotifyData = null;
-  let initialNavidromeData = null;
-
   try {
     featuredBlog = await getAllContents('blog');
     featuredProjects = await getAllContents('projects');
-
-    initialSpotifyData = await getCurrentlyPlayingByType('spotify');
-    initialNavidromeData = await getCurrentlyPlayingByType('navidrome');
   } catch (error) {
-    console.error('home ssr error', error);
+    console.error('home ssr post error', error);
+  }
+
+  let initialSpotifyData: CurrentlyPlaying | null = null;
+
+  try {
+    initialSpotifyData = await getCurrentlyPlayingByType('spotify');
+  } catch (err) {
+    console.error('home ssr spotify error', err);
+  }
+
+  let initialNavidromeData: CurrentlyPlaying | null = null;
+
+  try {
+    initialNavidromeData = await getCurrentlyPlayingByType('navidrome');
+  } catch (err) {
+    console.error('home ssr navidrome error', err);
   }
 
   return (
