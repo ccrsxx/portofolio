@@ -36,14 +36,6 @@ export default async function Home(): Promise<React.JSX.Element> {
     console.error('home ssr post error', error);
   }
 
-  let initialSpotifyData: CurrentlyPlaying | null = null;
-
-  try {
-    initialSpotifyData = await getCurrentlyPlayingByType('spotify');
-  } catch (err) {
-    console.error('home ssr spotify error', err);
-  }
-
   let initialNavidromeData: CurrentlyPlaying | null = null;
 
   try {
@@ -78,7 +70,7 @@ export default async function Home(): Promise<React.JSX.Element> {
           </p>
           <div className='mt-6 animate-enter-y animate-enter-delay-300'>
             <CurrentlyPlayingCard
-              initialSpotifyData={initialSpotifyData}
+              initialSpotifyData={null}
               initialNavidromeData={initialNavidromeData}
             />
           </div>
