@@ -57,11 +57,8 @@ const withMDX = nextMDX({
 export default withMDX({
   output: 'standalone',
   reactCompiler: true,
-  allowedDevOrigins: ['dev-frontend.ccrsxx.my.id'],
-  experimental: {
-    viewTransition: true
-  },
   reactStrictMode: true,
+  allowedDevOrigins: ['dev-frontend.ccrsxx.my.id'],
   images: {
     loader: 'custom',
     loaderFile: './cloudflare-loader.ts',
