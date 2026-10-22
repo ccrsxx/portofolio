@@ -6,7 +6,7 @@ import { authKeys } from '@/lib/hooks/use-session';
 import type { AuthUser } from '@/lib/types/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { clsx } from 'clsx';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import type { SubmitEvent } from 'react';
 import { SiGithub } from 'react-icons/si';
 
