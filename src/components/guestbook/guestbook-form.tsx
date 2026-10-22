@@ -6,6 +6,7 @@ import { authKeys } from '@/lib/hooks/use-session';
 import type { AuthUser } from '@/lib/types/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import { clsx } from 'clsx';
+import { useRouter } from 'next/router';
 import type { SubmitEvent } from 'react';
 import { SiGithub } from 'react-icons/si';
 
@@ -14,12 +15,16 @@ type GuestbookCardProps = { session: AuthUser | undefined };
 export function GuestbookForm({
   session
 }: GuestbookCardProps): React.JSX.Element {
+  const router = useRouter();
+
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useAddGuestbookEntry();
 
   const handleSignIn = (): void => {
-    window.location.href = `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`;
+    void router.push(
+      `${frontendEnv.NEXT_PUBLIC_BACKEND_URL}/auth/github/login`
+    );
   };
 
   const handleSignOut = async (): Promise<void> => {
