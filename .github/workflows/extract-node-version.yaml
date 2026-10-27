@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - id: extract
         run: |
-          NODE_VERSION=$(jq -r '.volta.node' package.json)
+          NODE_VERSION=$(yq .tools.node mise.toml)
           NODE_DISTROLESS_VERSION=$(echo "$NODE_VERSION" | cut -d. -f1)
 
           echo "node-version=$NODE_VERSION" >> $GITHUB_OUTPUT

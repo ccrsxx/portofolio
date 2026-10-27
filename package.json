@@ -66,9 +66,6 @@
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
-  "volta": {
-    "node": "24.22.1"
-  },
   "overrides": {
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0"

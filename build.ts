@@ -1,6 +1,5 @@
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
-import packageJson from './package.json' with { type: 'json' };
 
 function parseEnvFile(path: string): Record<string, string> {
   const result: Record<string, string> = {};
@@ -22,7 +21,14 @@ function parseEnvFile(path: string): Record<string, string> {
 }
 
 function getNodeVersion(): string {
-  return packageJson.volta.node;
+  const content = readFileSync('mise.toml', 'utf-8');
+  const match = content.match(/^\s*node\s*=\s*["']([^"']+)["']/m);
+
+  if (!match) {
+    throw new Error('Node version not found in mise.toml');
+  }
+
+  return match[1];
 }
 
 function main(): void {
