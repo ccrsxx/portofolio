@@ -60,7 +60,7 @@
     "rehype-slug": "6.0.0",
     "shiki": "1.29.2",
     "tailwindcss": "4.3.3",
-    "typescript": "5.9.3",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.65.0"
   },
   "lint-staged": {
